@@ -19,7 +19,7 @@ body {
 
 /*SANDBOX*/
 .darkmode {
-  --background: url('images/44444444.png');
+  --background: url('../images/44444444.png')
   --chaosSwitchPosition: 15px;
   --chaosTextShadow: 2px 2px #FFFFFF;
 }
