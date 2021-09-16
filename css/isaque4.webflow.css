@@ -958,6 +958,7 @@ img {
   background-position: 50% 50%;
   background-size: auto 65%;
   background-repeat: no-repeat;
+  border-top: 1px solid #000;
 }
 
 .projectbar100.cover.tgaposter {
