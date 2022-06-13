@@ -94,7 +94,7 @@ img {
   justify-content: space-between;
   border-right: 1px solid #000;
   border-bottom: 1px solid #000;
-  background-image: url('../images/Products_Mockup_4-min.png');
+  background-image: url('../images/fairphone-display-800_x_800.png');
   background-position: 50% 50%;
   background-size: contain;
   background-repeat: no-repeat;
@@ -108,6 +108,7 @@ img {
   display: flex;
   color: #000;
   text-decoration: none;
+  background-size: 280px;
 }
 
 .thumb.tide:hover {
@@ -145,9 +146,9 @@ img {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background-image: url('../images/Mockup.png');
-  background-size: auto 75%;
-  background-repeat: repeat;
+  background-image: url('../images/feed-peek-logo-800.png');
+  background-size: 95%;
+  background-repeat: none;
   color: #000;
   text-decoration: none;
 }
@@ -890,9 +891,17 @@ img {
 
 .projectbar100.cover.eucover {
   background-color: #d2d2d2;
-  background-image: url('../images/Products_Mockup_4-min.png');
+  background-image: url('../images/fairphone-display-2000_x_2000.png');
   background-position: 50% 50%;
   background-size: auto 75%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.feedpeekcover {
+  background-color: #d2d2d2;
+  background-image: url('../images/feed-peek-logo.png');
+  background-position: 50% 50%;
+  background-size: auto 95%;
   background-repeat: no-repeat;
 }
 
