@@ -430,6 +430,7 @@ img {
   -ms-flex-align: center;
   align-items: center;
   line-height: 12px;
+  margin-bottom: 5px;
 }
 
 .imltexto {
@@ -486,6 +487,7 @@ img {
 .butialso {
   padding-right: 95px;
   text-align: right;
+  margin-bottom: 7px;
 }
 
 .eezaaki {
