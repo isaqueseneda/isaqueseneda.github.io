@@ -1,0 +1,72 @@
+.text-block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100px;
+  height: 100px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 200px;
+  background-color: red;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.text-block:hover {
+  background-color: #970101;
+}
+
+.text-block:active {
+  background-color: #010397;
+}
+
+.link {
+  color: #fff;
+  text-align: center;
+}
+
+.body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-image: url(../images/belipe.jpeg);
+  background-color: #000;
+  background-size: auto 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.text-block-2 {
+  margin-top: 19px;
+  background-color: #000;
+  color:#fff;
+  padding: 20px;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
