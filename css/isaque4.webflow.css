@@ -220,9 +220,21 @@ img {
   background-image: url('../images/MockUp888888_1.png');
   color: #000;
   text-decoration: none;
+  display:none;
 }
 
 .thumb.tsh:hover {
+  background-color: #d2d2d2;
+}
+
+.thumb.mentelity {
+  background-image: url('../images/mentelity_cover.png');
+  color: #000;
+  text-decoration: none;
+  background-size: auto 85%;
+}
+
+.thumb.mentelity:hover {
   background-color: #d2d2d2;
 }
 
@@ -895,6 +907,14 @@ img {
 .projectbar100.cover.datashowcase {
   background-color: #d2d2d2;
   background-image: url('../images/insights.png');
+  background-position: 50% 50%;
+  background-size: auto 75%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.mentelity {
+  background-color: #d2d2d2;
+  background-image: url('../images/mentelity_cover.png');
   background-position: 50% 50%;
   background-size: auto 75%;
   background-repeat: no-repeat;
