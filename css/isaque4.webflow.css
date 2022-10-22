@@ -370,6 +370,7 @@ img {
 
 .thumbtagcontainer.projectpage {
   max-width: 44%;
+  justify-content: center;
 }
 
 .thumbtag {
