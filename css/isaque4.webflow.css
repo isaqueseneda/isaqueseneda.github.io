@@ -1661,6 +1661,8 @@ img {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
 
   .projectbar100.textset.ux {
