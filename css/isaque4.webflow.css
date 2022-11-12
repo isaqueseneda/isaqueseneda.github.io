@@ -271,7 +271,6 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 55%;
-  display:none;
 }
 
 .thumb.gosh:hover {
@@ -329,7 +328,6 @@ img {
   background-size: auto 90%;
   color: #000;
   text-decoration: none;
-  display: none;
 }
 
 .thumb.comboakounb:hover {
