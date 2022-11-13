@@ -172,6 +172,39 @@ img {
   background-color: #d2d2d2;
 }
 
+.thumb.bleimag {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-image: url('../images/Mockup.png');
+  background-size: auto 85%;
+  background-repeat: none;
+  color: #000;
+  text-decoration: none;
+  display: none;
+}
+
+.thumb.bleimag:hover {
+  background-color: #d2d2d2;
+}
+
+.thumb.barxp {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-image: url('../images/barxp.png');
+  background-size: auto 85%;
+  background-repeat: none;
+  color: #000;
+  text-decoration: none;
+}
+
+.thumb.barxp:hover {
+  background-color: #d2d2d2;
+}
+
 .thumb.iftf {
   display: none;
   overflow: visible;
@@ -218,6 +251,7 @@ img {
   background-size: auto 70%;
   color: #000;
   text-decoration: none;
+  display: none;
 }
 
 .thumb.forms:hover {
@@ -258,6 +292,7 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 80%;
+  display: none;
 }
 
 .thumb.mentelity:hover {
@@ -269,6 +304,7 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 55%;
+  display: none;
 }
 
 .thumb.gosh:hover {
@@ -1018,6 +1054,14 @@ img {
   background-image: url('../images/MacBook-Pro-16.png');
   background-position: 50% 50%;
   background-size: auto 75%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.barxp {
+  background-color: #d2d2d2;
+  background-image: url('../images/barxp.png');
+  background-position: 50% 50%;
+  background-size: auto 80%;
   background-repeat: no-repeat;
 }
 
