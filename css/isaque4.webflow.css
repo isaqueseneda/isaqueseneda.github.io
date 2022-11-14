@@ -189,6 +189,22 @@ img {
   background-color: #d2d2d2;
 }
 
+.thumb.buma {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-image: url('../images/plugin.png');
+  background-size: auto 60%;
+  background-repeat: none;
+  color: #000;
+  text-decoration: none;
+}
+
+.thumb.buma:hover {
+  background-color: #d2d2d2;
+}
+
 .thumb.barxp {
   display: -webkit-box;
   display: -webkit-flex;
@@ -251,6 +267,7 @@ img {
   background-size: auto 70%;
   color: #000;
   text-decoration: none;
+  display: none;
 }
 
 .thumb.forms:hover {
@@ -291,7 +308,6 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 80%;
-  display: none;
 }
 
 .thumb.mentelity:hover {
@@ -303,6 +319,7 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 55%;
+  display: none;
 }
 
 .thumb.gosh:hover {
@@ -996,6 +1013,14 @@ img {
   background-image: url('../images/mentelity_cover.png');
   background-position: 50% 50%;
   background-size: auto 75%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.buma {
+  background-color: #d2d2d2;
+  background-image: url('../images/plugin.png');
+  background-position: 50% 50%;
+  background-size: auto 65%;
   background-repeat: no-repeat;
 }
 
