@@ -11,12 +11,12 @@ http://ott-cdn.ucom.am/s24/index.m3u8
 https://euronews.alteox.app/hls/en_stream.m3u8
 #EXTINF:-1 tvg-id="DWEnglish.de" tvg-name="DW English" tvg-logo="https://i.imgur.com/A1xzjOI.png" group-title="News (EN)",DW English
 https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8
+#EXTINF:-1 tvg-id="WJLADT1.us" tvg-name="ABC 7 Washington DC (WJLA) (720p)" tvg-logo="https://i.imgur.com/LttuGfq.png" group-title="Undefined",ABC 7 Washington DC (WJLA) (720p)
+https://content.uplynk.com/40cec2bf074c40f08932da03ab4510be.m3u8
 #EXTINF:-1 tvg-id="WABCDT1.us" tvg-name="ABC News New York NY (WABC-TV) (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ABC-2021-LOGO.svg/512px-ABC-2021-LOGO.svg.png" group-title="Undefined",ABC News New York NY (WABC-TV) (720p)
 https://content.uplynk.com/channel/ext/72750b711f704e4a94b5cfe6dc99f5e1/wabc_24x7_news.m3u8
 #EXTINF:-1 tvg-id="BBCAmericaEast.us" tvg-name="BBC America (720p)" tvg-logo="https://i.imgur.com/z7QrIoY.png" group-title="Undefined",BBC America (720p)
 https://bcovlive-a.akamaihd.net/c9bf201b06694453bb29282f97191f58/us-east-1/6240731308001/playlist.m3u8
-#EXTINF:-1 tvg-id="HBOTaiwan.tw" tvg-name="HBO HD Taiwan (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/HBO_logo.svg/512px-HBO_logo.svg.png" group-title="Undefined",HBO HD Taiwan (720p)
-http://50.7.220.74:8278/hbohd_twn/playlist.m3u8?ct=19225&tid=ME9E5260921952609219&tsum=a904cd480db106670befb11d14149fce
 #EXTINF:-1 tvg-id="WCAUDT1.us" tvg-name="WCAU-DT1 (NBC 10) (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/NBC_2013_fixed_logo.png/512px-NBC_2013_fixed_logo.png" group-title="Undefined",WCAU-DT1 (NBC 10) (1080p)
 http://v-pi.theus6tv.duckdns.org/hls/10.1/playlist.m3u8
 #EXTINF:-1 tvg-id="WCBSDT1.us" tvg-name="WCBS-DT1 (CBS 2) (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/CBS_logo_%282020%29.svg/512px-CBS_logo_%282020%29.svg.png" group-title="Undefined",WCBS-DT1 (CBS 2) (1080p)
@@ -31,10 +31,16 @@ http://v-pi.theus6tv.duckdns.org/hls/23.2/playlist.m3u8
 http://v-ny.theus6tv.duckdns.org/hls/47.1/playlist.m3u8
 #EXTINF:-1 tvg-id="WNYWDT1.us" tvg-name="WNYW-DT1 (FOX 5) (720p)" tvg-logo="https://i.imgur.com/zZd9Tkt.png" group-title="Undefined",WNYW-DT1 (FOX 5) (720p)
 http://v-ny.theus6tv.duckdns.org/hls/5.1/playlist.m3u8
-#EXTINF:-1 tvg-id="BloombergTelevision.us" tvg-name="Bloomberg TV US (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/3/3b/Bloomberg_Television_2016.png" group-title="Business",Bloomberg TV US (1080p)
-https://bloomberg-bloomberg-3-br.samsung.wurl.com/manifest/playlist.m3u8
-#EXTINF:-1 tvg-id="MTVJapan.jp" tvg-name="MTV Japan (540p) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/MTV-2021.svg/512px-MTV-2021.svg.png" group-title="Entertainment",MTV Japan (540p) [Not 24/7]
-http://cdn.us195.jpnettv.live:1935/jptv/mtv/playlist.m3u8
+#EXTINF:-1 tvg-id="AdultSwimTheEricAndreShow.us" tvg-name="Adult Swim The Eric Andre Show (1080p) [Geo-blocked]" tvg-logo="https://i.imgur.com/HrMzEnX.png" group-title="Series",Adult Swim The Eric Andre Show (1080p) [Geo-blocked]
+http://adultswim-vodlive.cdn.turner.com/live/eric-andre/stream.m3u8
+#EXTINF:-1 tvg-id="Cops.us" tvg-name="Pluto TV Cops (240p)" tvg-logo="https://images.pluto.tv/channels/5e1f7e089f23700009d66303/colorLogoPNG.png" group-title="Series",Pluto TV Cops (240p)
+https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5e1f7e089f23700009d66303/master.m3u8?advertisingId=&appName=web&appStoreUrl=&appVersion=DNT&app_name=&architecture=&buildVersion=&deviceDNT=0&deviceId=5e1f7e089f23700009d66303&deviceLat=&deviceLon=&deviceMake=web&deviceModel=web&deviceType=web&deviceVersion=DNT&includeExtendedEvents=false&marketingRegion=US&serverSideAds=false&sid=367&terminate=false&userId=
+#EXTINF:-1 tvg-id="PlutoTVMythbusters.us" tvg-name="Pluto TV Mythbusters (720p) [Not 24/7]" tvg-logo="https://images.pluto.tv/channels/5bd833b41843b56328bac189/colorLogoPNG.png" group-title="Series",Pluto TV Mythbusters (720p) [Not 24/7]
+https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5bd833b41843b56328bac189/master.m3u8?advertisingId=channel&appName=rokuchannel&appVersion=1.0&bmodel=bm1&channel_id=channel&content=channel&content_rating=ROKU_ADS_CONTENT_RATING&content_type=livefeed&coppa=false&deviceDNT=1&deviceId=channel&deviceMake=rokuChannel&deviceModel=web&deviceType=rokuChannel&deviceVersion=1.0&embedPartner=rokuChannel&genre=ROKU_ADS_CONTENT_GENRE&is_lat=1&platform=web&rdid=channel&studio_id=viacom&tags=ROKU_CONTENT_TAGS
+#EXTINF:-1 tvg-id="TinyHouseNation.us" tvg-name="Pluto TV Tiny House Nation (720p)" tvg-logo="https://images.pluto.tv/channels/601a0342dcf4370007566891/colorLogoPNG.png" group-title="Series",Pluto TV Tiny House Nation (720p)
+https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/601a0342dcf4370007566891/master.m3u8?advertisingId=channel&appName=rokuchannel&appVersion=1.0&bmodel=bm1&channel_id=channel&content=channel&content_rating=ROKU_ADS_CONTENT_RATING&content_type=livefeed&coppa=false&deviceDNT=1&deviceId=channel&deviceMake=rokuChannel&deviceModel=web&deviceType=rokuChannel&deviceVersion=1.0&embedPartner=rokuChannel&genre=ROKU_ADS_CONTENT_GENRE&is_lat=1&platform=web&rdid=channel&studio_id=viacom&tags=ROKU_CONTENT_TAGS
+#EXTINF:-1 tvg-id="PlutoTVUndercoverBossGlobal.us" tvg-name="Pluto TV Undercover Boss Global (720p) [Not 24/7]" tvg-logo="https://images.pluto.tv/channels/5f0dc00b15eef10007726ef7/colorLogoPNG.png" group-title="Series",Pluto TV Undercover Boss Global (720p) [Not 24/7]
+https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f0dc00b15eef10007726ef7/master.m3u8?advertisingId=channel&appName=rokuchannel&appVersion=1.0&bmodel=bm1&channel_id=channel&content=channel&content_rating=ROKU_ADS_CONTENT_RATING&content_type=livefeed&coppa=false&deviceDNT=1&deviceId=channel&deviceMake=rokuChannel&deviceModel=web&deviceType=rokuChannel&deviceVersion=1.0&embedPartner=rokuChannel&genre=ROKU_ADS_CONTENT_GENRE&is_lat=1&platform=web&rdid=channel&studio_id=viacom&tags=ROKU_CONTENT_TAGS
 #EXTINF:-1 tvg-id="KABCDT1.us" tvg-name="ABC 7 Los Angeles CA (KABC-TV) (720p)" tvg-logo="https://imgur.com/nKAUCLF.jpg" group-title="News",ABC 7 Los Angeles CA (KABC-TV) (720p)
 https://content.uplynk.com/channel/ext/2118d9222a87420ab69223af9cfa0a0f/kabc_24x7_news.m3u8
 #EXTINF:-1 tvg-id="CBSNews.us" tvg-name="CBS News (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/CBS_News_logo_%282020%29.svg/512px-CBS_News_logo_%282020%29.svg.png" group-title="News",CBS News (720p)
@@ -53,9 +59,5 @@ https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5eb1afb21
 https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5dc48170e280c80009a861ab/master.m3u8?advertisingId=&appName=web&appStoreUrl=&appVersion=DNT&app_name=&architecture=&buildVersion=&deviceDNT=0&deviceId=5dc48170e280c80009a861ab&deviceLat=&deviceLon=&deviceMake=web&deviceModel=web&deviceType=web&deviceVersion=DNT&includeExtendedEvents=false&marketingRegion=US&serverSideAds=false&sid=206&terminate=false&userId=
 #EXTINF:-1 tvg-id="CNN.us" tvg-name="Pluto TV CNN (360p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/CNN.svg/512px-CNN.svg.png" group-title="News",Pluto TV CNN (360p)
 https://service-stitcher.clusters.pluto.tv/stitch/hls/channel/5421f71da6af422839419cb3/master.m3u8?advertisingId=&appName=web&appStoreUrl=&appVersion=DNT&app_name=&architecture=&buildVersion=&deviceDNT=0&deviceId=5421f71da6af422839419cb3&deviceLat=&deviceLon=&deviceMake=web&deviceModel=web&deviceType=web&deviceVersion=DNT&includeExtendedEvents=false&marketingRegion=US&serverSideAds=false&sid=209&terminate=false&userId=
-#EXTINF:-1 tvg-id="EuronewsEnglish.fr" tvg-name="Pluto TV Euronews (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/8t9mdg9.png" group-title="News",Pluto TV Euronews (720p) [Not 24/7]
-https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/60d3583ef310610007fb02b1/master.m3u8?advertisingId=channel&appName=rokuchannel&appVersion=1.0&bmodel=bm1&channel_id=channel&content=channel&content_rating=ROKU_ADS_CONTENT_RATING&content_type=livefeed&coppa=false&deviceDNT=1&deviceId=channel&deviceMake=rokuChannel&deviceModel=web&deviceType=rokuChannel&deviceVersion=1.0&embedPartner=rokuChannel&genre=ROKU_ADS_CONTENT_GENRE&is_lat=1&platform=web&rdid=channel&serverSideAds=false&studio_id=viacom&tags=ROKU_CONTENT_TAGS
-#EXTINF:-1 tvg-id="USAToday.us" tvg-name="USA Today (1080p)" tvg-logo="https://i.imgur.com/K9OdCIV.png" group-title="News",USA Today (1080p)
-https://dai.google.com/linear/hls/event/gJJhuFTCRo-HAHYsffb3Xg/master.m3u8
 #EXTINF:-1 tvg-id="WorldChannel.us" tvg-name="PBS World Channel (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/6b/PBSworld.png" group-title="Education",PBS World Channel (480p)
 https://cs.ebmcdn.net/eastbay-live-hs-1/apt/mp4:apt-world/playlist.m3u8
