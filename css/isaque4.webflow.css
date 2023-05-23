@@ -122,8 +122,8 @@ img {
   display: flex;
   color: #000;
   text-decoration: none;
-  background-size: auto 70%;
-  background-image: url('../images/insights.png');
+  background-size: auto 45%;
+  background-image: url('../images/ford.png');
 }
 
 .thumb.data:hover {
@@ -199,6 +199,7 @@ img {
   background-repeat: none;
   color: #000;
   text-decoration: none;
+  display: none;
 }
 
 .thumb.buma:hover {
@@ -296,6 +297,7 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 80%;
+  display: none;
 }
 
 .thumb.web3:hover {
@@ -307,10 +309,25 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 80%;
-  display: none;
 }
 
 .thumb.mentelity:hover {
+  background-color: #d2d2d2;
+}
+
+.thumb.rounds {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-image: url('../images/hnkgm-min-thumb.png');
+  background-size: auto 70%;
+  background-repeat: none;
+  color: #000;
+  text-decoration: none;
+}
+
+.thumb.rounds:hover {
   background-color: #d2d2d2;
 }
 
@@ -1008,9 +1025,9 @@ img {
 
 .projectbar100.cover.datashowcase {
   background-color: #d2d2d2;
-  background-image: url('../images/insights.png');
+  background-image: url('../images/ford.png');
   background-position: 50% 50%;
-  background-size: auto 75%;
+  background-size: auto 65%;
   background-repeat: no-repeat;
 }
 
@@ -1089,6 +1106,14 @@ img {
 .projectbar100.cover.barxp {
   background-color: #d2d2d2;
   background-image: url('../images/barxp.png');
+  background-position: 50% 50%;
+  background-size: auto 80%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.rounds {
+  background-color: #d2d2d2;
+  background-image: url('../images/hnkgm-min.png');
   background-position: 50% 50%;
   background-size: auto 80%;
   background-repeat: no-repeat;
