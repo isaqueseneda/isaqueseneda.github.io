@@ -297,7 +297,6 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 80%;
-  display: none;
 }
 
 .thumb.web3:hover {
@@ -309,6 +308,7 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 80%;
+  display: none;
 }
 
 .thumb.mentelity:hover {
