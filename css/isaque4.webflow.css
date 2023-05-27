@@ -1,3 +1,7 @@
+/*SPECIAL CHARACTERS JETBRAINS*/
+
+@import url('https://fonts.googleapis.com/css?family=JetBrains+Mono&text=%E2%86%97');
+
 /*SANDBOX / lookup SANDBOX to find all custom CSS*/
 body {
   background-image: var(--background);
