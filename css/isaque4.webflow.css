@@ -1986,5 +1986,10 @@ img {
   .collage4.image-wider {
     width: 90%;
   }
+
+  .iamlegend {
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+  }
 }
 
