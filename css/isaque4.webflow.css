@@ -18,6 +18,10 @@ a {
   cursor: inherit;
 }
 
+iframe {
+  cursor: inherit;
+}
+
 /*SANDBOX*/
 :root {
   --background: none;
