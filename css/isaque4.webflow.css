@@ -18,8 +18,8 @@ a {
   cursor: inherit;
 }
 
-iframe {
-  cursor: inherit;
+a:hover{
+  cursor: url('../images/cursor-link.png') 53 53, auto;
 }
 
 /*SANDBOX*/
