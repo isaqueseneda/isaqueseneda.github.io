@@ -20,7 +20,8 @@
 .mega-wrapper{
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 49px;
+    border-top: 1px solid #000;
 }
 
 .calendar {
@@ -47,6 +48,17 @@ padding-top: 20px;
 padding-left: 10px;
 padding-right: 10px;
 position: sticky;
+top: 110px;
+}
+
+.legend-wrapper {
+  width: 250px; /* Adjust the width according to your design */
+  position: sticky;
+  top: 0;
+}
+
+.week:hover{
+  box-shadow: inset 0 0 30px #1A1A1A;
 }
 
 .legend-item {
@@ -68,7 +80,13 @@ margin-right: 5px;
 .progress {
 width: 100%;
 height: 50px;
-background-color: #f3f3f3;
+background: repeating-linear-gradient(
+    -45deg,
+    #f3f3f3,
+    #f3f3f3 7px,
+    #000 2px,
+    #000 8px
+  );
 position: fixed;
 margin-bottom: 20px;
 display: flex;
@@ -91,6 +109,7 @@ color: black;
 @media screen and (max-width: 700px) {
     .mega-wrapper{
         flex-direction: column-reverse;
+        margin-top: 50px;
     }
     .legend {
         flex-direction: row;
@@ -155,7 +174,9 @@ color: black;
 
 <div class="mega-wrapper">
     <div class="calendar" id="calendar"></div>
-    <div class="legend" id="legend"></div>
+    <div class="legend-wrapper">
+      <div class="legend" id="legend"></div>
+    </div>
 </div>
 
 <div class="footer wf-section">
@@ -181,21 +202,25 @@ color: black;
 const today = new Date();
 const todayString = today.toISOString().split("T")[0];
 const periods = [
-{ start: '1996-10-01', end: '2001-12-31', color: 'red', label: 'Brazil (unconscious)' },
-{ start: '2002-01-01', end: '2014-07-31', color: 'green', label: 'Brazil (conscious)' },
-{ start: '2014-08-01', end: '2015-06-30', color: 'blue', label: 'Hungary' },
-{ start: '2015-07-01', end: '2015-12-31', color: 'yellow', label: 'Brazil: Koelle' },
-{ start: '2016-01-01', end: '2016-06-30', color: 'orange', label: 'Sao Paulo: ESPM' },
-{ start: '2016-07-01', end: '2016-08-31', color: 'purple', label: 'Brazil: Preparing' },
-{ start: '2016-09-01', end: '2017-08-31', color: 'brown', label: 'Rotterdam: WdKA' },
-{ start: '2017-09-01', end: '2019-12-31', color: 'pink', label: 'Amsterdam: UvA' },
-{ start: '2020-01-01', end: '2020-03-31', color: 'cyan', label: 'New York' },
-{ start: '2020-04-01', end: '2020-12-31', color: 'magenta', label: 'Amsterdam: COVID' },
-{ start: '2021-01-01', end: '2021-04-30', color: 'lime', label: 'Sao Paulo: Sitcom' },
-{ start: '2021-05-01', end: '2022-08-31', color: 'gray', label: 'Amsterdam: Vaccine' },
-{ start: '2022-09-01', end: '2022-09-30', color: 'maroon', label: 'Toronto' },
-{ start: '2022-10-01', end: '2022-05-31', color: 'navy', label: 'Amsterdam: Le Pub' },
-{ start: '2022-06-01', end: todayString, color: 'black', label: 'Amsterdam: React' },
+{ start: '1996-10-01', end: '2001-12-31', color: 'rgb(0 69 21)', label: 'BRAZIL (UNCONSCIOUS)' },
+{ start: '2002-01-01', end: '2014-07-31', color: 'rgb(13 97 0)', label: 'BRAZIL (CONSCIOUS)' },
+{ start: '2014-08-01', end: '2015-06-30', color: 'rgb(176 51 16)', label: 'HUNGARY' },
+{ start: '2015-07-01', end: '2015-12-31', color: 'rgb(19 152 0)', label: 'BRAZIL: KOELLE' },
+{ start: '2016-01-01', end: '2016-06-30', color: 'rgb(73 170 255)', label: 'SAO PAULO: ESPM' },
+{ start: '2016-07-01', end: '2016-08-31', color: 'rgb(151 161 0)', label: 'BRAZIL: PREPARING' },
+{ start: '2016-09-01', end: '2017-08-31', color: 'rgb(177 24 203)', label: 'ROTTERDAM: WDKA' },
+{ start: '2017-09-01', end: '2019-06-30', color: '#F06292', label: 'AMSTERDAM: UVA' },
+{ start: '2019-07-01', end: '2019-08-31', color: 'rgb(183 217 4)', label: 'BRAZIL: EMDR' },
+{ start: '2019-09-01', end: '2019-12-31', color: 'rgb(255 0 86)', label: 'AMSTERDAM: POST' },
+{ start: '2020-01-01', end: '2020-03-31', color: 'rgb(0 79 255)', label: 'NEW YORK: PARSONS' },
+{ start: '2020-04-01', end: '2020-12-31', color: 'rgb(255 200 0)', label: 'AMSTERDAM: C-19/RSM' },
+{ start: '2021-01-01', end: '2021-04-30', color: '#00D402', label: 'SAO PAULO: SITCOM' },
+{ start: '2021-05-01', end: '2021-11-30', color: '#BDBDBD', label: 'AMSTERDAM: VACCINE' },
+{ start: '2021-12-01', end: '2022-01-15', color: 'Green', label: 'BRAZIL: PRE-NDSM'},
+{ start: '2022-01-16', end: '2022-08-31', color: 'rgb(255 142 56)', label: 'AMSTERDAM: NDSM'},
+{ start: '2022-09-01', end: '2022-09-30', color: '#3949AB', label: 'TORONTO' },
+{ start: '2022-10-01', end: '2023-05-28', color: 'Pink', label: 'AMSTERDAM: LE PUB' },
+{ start: '2023-05-29', end: todayString, color: 'rgb(255 1 181)', label: 'AMSTERDAM: REACT' },
 ];
 const weeksInYear = 52;
 const totalYears = 82;
@@ -219,6 +244,15 @@ week.style.backgroundColor = period.color;
 break;
 }
 }
+  // Check if currentDate is within the same week as today
+  const startOfWeekToday = new Date(today);
+  startOfWeekToday.setDate(today.getDate() - today.getDay() + 1);
+  const endOfWeekToday = new Date(startOfWeekToday);
+  endOfWeekToday.setDate(endOfWeekToday.getDate() + 6);
+  if (currentDate >= startOfWeekToday && currentDate <= endOfWeekToday) {
+    week.style.backgroundColor = 'red';
+  }
+
 if (currentDate <= today) {
 completedWeeks++;
 }
