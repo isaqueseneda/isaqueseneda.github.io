@@ -98,6 +98,7 @@ z-index: 99;
 height: 100%;
 position: absolute;
 background-color: rgb(0, 212, 0);
+border-right: 1px solid #000;
 }
 .progress-text {
 position: absolute;
@@ -204,7 +205,7 @@ const todayString = today.toISOString().split("T")[0];
 const periods = [
 { start: '1996-10-01', end: '2001-12-31', color: 'rgb(0 69 21)', label: 'BRAZIL (UNCONSCIOUS)' },
 { start: '2002-01-01', end: '2014-07-31', color: 'rgb(13 97 0)', label: 'BRAZIL (CONSCIOUS)' },
-{ start: '2014-08-01', end: '2015-06-30', color: 'rgb(176 51 16)', label: 'HUNGARY' },
+{ start: '2014-08-01', end: '2015-06-30', color: 'rgb(176 51 16)', label: 'HUNGARY: RYE' },
 { start: '2015-07-01', end: '2015-12-31', color: 'rgb(19 152 0)', label: 'BRAZIL: KOELLE' },
 { start: '2016-01-01', end: '2016-06-30', color: 'rgb(73 170 255)', label: 'SAO PAULO: ESPM' },
 { start: '2016-07-01', end: '2016-08-31', color: 'rgb(151 161 0)', label: 'BRAZIL: PREPARING' },
@@ -218,7 +219,7 @@ const periods = [
 { start: '2021-05-01', end: '2021-11-30', color: '#BDBDBD', label: 'AMSTERDAM: VACCINE' },
 { start: '2021-12-01', end: '2022-01-15', color: 'Green', label: 'BRAZIL: PRE-NDSM'},
 { start: '2022-01-16', end: '2022-08-31', color: 'rgb(255 142 56)', label: 'AMSTERDAM: NDSM'},
-{ start: '2022-09-01', end: '2022-09-30', color: '#3949AB', label: 'TORONTO' },
+{ start: '2022-09-01', end: '2022-09-30', color: '#3949AB', label: 'TORONTO: HSH' },
 { start: '2022-10-01', end: '2023-05-28', color: 'Pink', label: 'AMSTERDAM: LE PUB' },
 { start: '2023-05-29', end: todayString, color: 'rgb(255 1 181)', label: 'AMSTERDAM: REACT' },
 ];
