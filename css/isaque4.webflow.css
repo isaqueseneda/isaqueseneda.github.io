@@ -28,6 +28,7 @@ a:hover{
   --chaosSwitchPosition: 3px;
   --chaosTextShadow: none;
   --chaosFont: 'JetBrains Mono', sans-serif;
+  --calendarBG: grey;
 }
 
 /*SANDBOX*/
@@ -36,6 +37,7 @@ a:hover{
   --chaosSwitchPosition: 15px;
   --chaosTextShadow: -20px 0 white, 0 20px white, 20px 0 white, 0 -20px white;
   --chaosFont: 'JetBrains Mono', sans-serif;
+  --calendarBG: ;
 }
 
 
