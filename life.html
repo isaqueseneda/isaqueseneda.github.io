@@ -52,7 +52,6 @@ top: 110px;
 }
 
 .legend-wrapper {
-  width: 250px; /* Adjust the width according to your design */
   position: sticky;
   top: 0;
 }
@@ -67,13 +66,12 @@ align-items: start;
 border: 1px solid #000;
 padding-right: 5px;
 margin-bottom: 12px;
-overflow: hidden;
 max-height: 20px;
 }
 
 .legend-color {
-width: 20px;
-height: 20px;
+width: 18px;
+height: 18px;
 margin-right: 5px;
 }
 
@@ -111,26 +109,36 @@ color: black;
     .mega-wrapper{
         flex-direction: column-reverse;
         margin-top: 50px;
-    }
-    .legend {
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 100%;
+        border-top: none;
     }
     .legend-item{
         margin-right: 10px;
         max-height: 15px;
         line-height: 14px;
+        width: unset;
+        min-width: 135px;
+        max-width: 400px;
     }
     .legend-color {
         width: 13px;
         height: 13px;
         margin-right: 5px;
     }
-    .legend{
-        font-size: 9px;
-        border-bottom: 1px solid #000;
-        display: none;
+
+    .legend-wrapper{
+      width: 100vw;
+    }
+    
+    .legend {
+      display: flex;
+      width: unset;
+      flex-direction: row;
+      font-size: 9px;
+      border-bottom: 1px solid #000;
+      overflow-x: scroll;
+      border-bottom: unset;
+      top: unset;
+      position: relative;
     }
     .week {
         width: 10px;
