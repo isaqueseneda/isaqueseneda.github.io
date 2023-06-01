@@ -117,6 +117,10 @@ img {
   cursor: inherit;
 }
 
+.thumb.booking{
+  display: none;
+}
+
 .thumb.tide {
   display: -webkit-box;
   display: -webkit-flex;
