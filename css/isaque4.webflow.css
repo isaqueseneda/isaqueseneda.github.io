@@ -29,6 +29,7 @@ a:hover{
   --chaosTextShadow: none;
   --chaosFont: 'JetBrains Mono', sans-serif;
   --calendarBG: grey;
+  --avBG: black;
 }
 
 /*SANDBOX*/
@@ -38,6 +39,7 @@ a:hover{
   --chaosTextShadow: -20px 0 white, 0 20px white, 20px 0 white, 0 -20px white;
   --chaosFont: 'JetBrains Mono', sans-serif;
   --calendarBG: ;
+  --avBG: ;
 }
 
 
@@ -109,12 +111,12 @@ img {
   justify-content: space-between;
   border-right: 1px solid #000;
   border-bottom: 1px solid #000;
-  background-image: url('../images/fairphone-display-800_x_800.png');
   background-position: 50% 50%;
   background-size: contain;
   background-repeat: no-repeat;
   background-attachment: scroll;
   cursor: inherit;
+  text-decoration: none;
 }
 
 .thumb.booking{
@@ -129,6 +131,7 @@ img {
   color: #000;
   text-decoration: none;
   background-size: 280px;
+  background-image: url('../images/fairphone-display-800_x_800.png');
 }
 
 .thumb.tide:hover {
@@ -987,6 +990,8 @@ img {
   border-top: 1px solid #000;
   border-bottom: 1px none #000;
 }
+
+
 
 .projectbar100.cover {
   min-height: 95vh;
