@@ -55,6 +55,7 @@
       justify-content: center;
       flex-direction: column;
       color: white;
+      padding-bottom: 20px;
     }
 
     .projectbar100.av-tbn{
@@ -64,7 +65,7 @@
       display: flex;
       align-items: start;
       justify-content: start;
-      overflow-x: scroll;
+      overflow: hidden;
  
     }
 
@@ -135,12 +136,35 @@
         justify-content: start;
       }
       .theproject.av{
-        flex-direction: column-reverse;
+        flex-direction: column;
         overflow-y: unset;
         justify-content: start;
       }
       .body.av{
         overflow-y: unset;
+      }
+      .projectbar100.av{
+      height: 72vh;
+      }
+      .projectbar100.av-tbn{
+      height: 20vh;
+      }
+      .thumbav{
+      width: 25%;
+      height: 9.8vh;
+      }
+    }
+  
+    @media screen and (max-width: 500px) {
+      .thumbav{
+      width: 50%;
+      height: 7.95vh;
+      }
+      .projectbar100.av-tbn{
+      height: 32vh;
+      }
+      .projectbar100.av{
+      height: 60vh;
       }
     }
 
@@ -375,7 +399,22 @@
         </div>
     </div>
 </div>
-
+<div class="footer wf-section">
+  <div class="contactbye about">
+    <div class="me">
+      <a href="#" class="contact">currently at publicis italy</a>
+    </div>
+    <div class="contactblock">
+      <div class="linkmesmobox">
+        <span class="contact">hello@isaque.me</span>
+        <a href="calendar.html" class="contact">cal</a>
+        <a href="https://www.linkedin.com/in/isaqueseneda/" target="_blank" class="contact">linkedin</a>
+        <a href="files/isaque_cv.pdf" target="_blank" class="contact">about/cv</a>
+      </div>
+    </div>
+  </div>
+  <div class="contactbye about"></div>
+</div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/webflow.js" type="text/javascript"></script>
