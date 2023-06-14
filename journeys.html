@@ -1,10 +1,13 @@
-<!DOCTYPE html><!--  This site was created in Webflow. http://www.webflow.com  -->
-<!--  Last Published: Thu Sep 16 2021 10:51:57 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html>
 <html data-wf-page="613675ac9a5d43079675532a" data-wf-site="613333e9ce20577884dcc804">
 <head>
   <meta charset="utf-8">
   <title>Audiovisual Journeys</title>
   <style>
+    .dialoguebg.av{
+      display: flex;
+    }
+
     .body.av{
       background-color: black;
       color: white;
@@ -206,10 +209,17 @@
       'anonymize_ip': false
     });
   </script>
-
 </head>
 
 <body class="body av">
+  <div data-w-id="d339e086-dec9-6fa9-e1ad-d59c9fc4e23b" class="dialoguebg av">
+    <div class="dialoguebox">
+      <div style="color: black"><strong>WELCOME!<br></strong><br>Here you can navigate through some of my music and films.<br>‍</div>
+      <BR><div data-w-id="98f09f79-adce-57c7-8e8e-dada48a65041">
+        <button id="avbutton" style="color: black; padding: 5px;;">LET'S GO!</button>
+      </div>
+    </div>
+  </div>
   <div class="header">
     <div class="inheadertitlebox av">
       <a style="color:white" av href="index.html" class="link">&#60;-BACK</a>
@@ -475,7 +485,29 @@
       setTimeout(showSlides, 2000); // Change image every 2 seconds
     }
     </script>
-    
+          <!-- Intro Box Welcome -->
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  
+  var hideElements = function() {
+    var elements = document.querySelectorAll('.dialoguebg.av');
+
+    elements.forEach(function(element) {
+      element.style.display = 'none';
+    });
+  }
+
+  document.getElementById('avbutton').addEventListener('click', hideElements);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      hideElements();
+    }
+  });
+});
+
+  </script>
+
 </body>
 
 </html>
