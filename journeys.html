@@ -499,7 +499,7 @@
     }
     </script>
           <!-- Intro Box Welcome -->
-    <script>
+          <script>
 document.addEventListener("DOMContentLoaded", function() {
   
   var hideElements = function() {
@@ -513,12 +513,13 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById('avbutton').addEventListener('click', hideElements);
 
   document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' || event.key === ' ') {
+    if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       hideElements();
     }
   });
 });
 </script>
+
 
 </body>
 
