@@ -37,7 +37,7 @@ a:hover{
   --background: url('../images/44444444.png');
   --chaosSwitchPosition: 15px;
   --chaosTextShadow: -20px 0 white, 0 20px white, 20px 0 white, 0 -20px white;
-  --chaosFont: 'Arial, sans-serif';
+  --chaosFont: 'Arial', sans-serif;
   --calendarBG: ;
   --avBG: ;
 }
