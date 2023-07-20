@@ -12,6 +12,7 @@ body {
   font-size: 14px;
   line-height: 20px;
   cursor: url('../images/cursor.png') 53 53, auto;
+  overflow-x: hidden;
 }
 
 a {
@@ -34,7 +35,7 @@ a:hover{
 
 /*SANDBOX*/
 .darkmode {
-  --background: url('../images/44444444.png');
+  --background: none;
   --chaosSwitchPosition: 15px;
   --chaosTextShadow: -20px 0 white, 0 20px white, 20px 0 white, 0 -20px white;
   --chaosFont: 'Arial', sans-serif;
@@ -43,6 +44,29 @@ a:hover{
 }
 
 
+
+/* BACKGROUND CHAOS */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200vw;
+  height: 200vh;
+  background: url('../images/44444444.png');
+  background-repeat: repeat;
+  z-index: -1;
+  transform: skew(0deg);
+  pointer-events: none;
+  transform: skew(var(--bg-skew-x, 0deg), var(--bg-skew-y, 0deg));
+  display: none;
+}
+
+body.background-active::before {
+  display: block; /* show when 'background-active' class is present */
+}
+
+/* END OF BACKGROUND CHAOS */
 
 img {
   display: inline-block;
@@ -1857,7 +1881,7 @@ img {
   color: #000;
   font-size: 12px;
   text-decoration: none;
-  cursor: crosshair;
+  cursor: inherit;
 }
 
 .dark-mode-toggle {
