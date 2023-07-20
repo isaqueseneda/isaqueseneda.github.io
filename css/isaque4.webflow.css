@@ -60,6 +60,7 @@ body::before {
   pointer-events: none;
   transform: skew(var(--bg-skew-x, 0deg), var(--bg-skew-y, 0deg));
   display: none;
+  overflow-x: hidden;
 }
 
 body.background-active::before {
