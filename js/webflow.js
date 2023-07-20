@@ -74,7 +74,16 @@ window.addEventListener('load', () => {
   }
 });
 
+
+
+
+
+
 // chaos distort function
+// chaos distort function
+// chaos distort function
+
+
 function distortElements() {
   // Get all elements on the page
   let allElements = document.querySelectorAll('*');
@@ -86,9 +95,12 @@ function distortElements() {
       return;
     }
 
+    //vw ratio
+var ratioBon = (window.innerWidth - 200)/ 2000;
+
     // Generate random skew and scale values
-    let skewX = Math.random() * 60 - 30; // Between -30 and 30 degrees
-    let skewY = Math.random() * 60 - 30; // Between -30 and 30 degrees
+    let skewX = (Math.random() * 60 - 30) * ratioBon; // Between -30 and 30 degrees
+    let skewY = (Math.random() * 60 - 30) * ratioBon; // Between -30 and 30 degrees
     let scaleX = 1 + (Math.random() * 0.2 - 0.1); // Between 0.9 and 1.1
     let scaleY = 1 + (Math.random() * 0.2 - 0.1); // Between 0.9 and 1.1
 
