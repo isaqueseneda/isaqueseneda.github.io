@@ -21,16 +21,19 @@ const enableDarkMode = () => {
   distortElements();
 
   // 5. Change background
+  if(window.innerWidth >= 500) {
     // Add 'background-active' class to the body
     document.body.classList.add('background-active');
   
     // Skew the background
     skewBackground();
+  }
 }
 
 const disableDarkMode = () => {
   // 1. Remove the class from the body
   document.body.classList.remove('darkmode');
+
   // 2. Update darkMode in localStorage 
   localStorage.setItem('darkMode', null);
 
@@ -42,9 +45,13 @@ const disableDarkMode = () => {
   // 5. Remove all distortions
   revertElements();
 
-  // Remove 'background-active' class from the body
-  document.body.classList.remove('background-active');
+  // If viewport width is 500px or more, remove 'background-active' class
+  if(window.innerWidth >= 500) {
+    // Remove 'background-active' class from the body
+    document.body.classList.remove('background-active');
+  }
 }
+
 
 // If the user already visited and enabled darkMode
 // start things off with it on
