@@ -21,7 +21,10 @@ body {
 }
 */
 
-
+div{
+  transition: 0.02s;
+  transition-timing-function: steps(4, end);
+}
 
 
 /*SPECIAL CHARACTERS JETBRAINS*/
@@ -41,6 +44,9 @@ body {
   overflow-x: hidden;
 }
 
+
+/* ensuring cursor adoption */
+
 a {
   cursor: inherit;
 }
@@ -48,6 +54,15 @@ a {
 a:hover{
   cursor: url('../images/cursor-link.png') 53 53, auto;
 }
+
+button {
+  cursor: inherit;
+}
+
+button:hover{
+  cursor: url('../images/cursor-link.png') 53 53, auto;
+}
+
 
 /*SANDBOX*/
 :root {
