@@ -1,3 +1,29 @@
+/* DARK ROOM */
+
+/*
+html::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: red;
+  mix-blend-mode: darken;
+  pointer-events: none;
+  z-index: 9999;
+}
+*/
+
+/*
+body {
+  filter: invert(100%) hue-rotate(180deg);
+}
+*/
+
+
+
+
 /*SPECIAL CHARACTERS JETBRAINS*/
 
 @import url('https://fonts.googleapis.com/css?family=JetBrains+Mono&text=%E2%86%97');

@@ -28,6 +28,11 @@ const enableDarkMode = () => {
     // Skew the background
     skewBackground();
   }
+
+  // 6. Set divs to border plack 1px
+  document.querySelectorAll('div').forEach(function(div) {
+    div.style.border = '1px solid black';
+  });
 }
 
 const disableDarkMode = () => {
@@ -50,6 +55,11 @@ const disableDarkMode = () => {
     // Remove 'background-active' class from the body
     document.body.classList.remove('background-active');
   }
+
+  // 6. Unset divs to border plack 1px
+  document.querySelectorAll('div').forEach(function(div) {
+    div.style.border = '';
+  });
 }
 
 
@@ -108,8 +118,8 @@ function distortElements() {
     // Generate random skew and scale values
     let skewX = (Math.random() * 60 - 30) * ratioBon; // Between -30 and 30 degrees
     let skewY = (Math.random() * 60 - 30) * ratioBon; // Between -30 and 30 degrees
-    let scaleX = 1 + (Math.random() * 0.2 - 0.1); // Between 0.9 and 1.1
-    let scaleY = 1 + (Math.random() * 0.2 - 0.1); // Between 0.9 and 1.1
+    let scaleX = 1 + (Math.random() * 0.4 - 0.2); // Between 0.9 and 1.1
+    let scaleY = 1 + (Math.random() * 0.4 - 0.2); // Between 0.9 and 1.1
 
     // Set the transformation
     el.style.transform = `skew(${skewX}deg, ${skewY}deg) scale(${scaleX}, ${scaleY})`;
