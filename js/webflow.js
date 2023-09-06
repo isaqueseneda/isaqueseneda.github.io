@@ -113,7 +113,7 @@ function distortElements() {
     }
 
     //vw ratio
-    var ratioBon = Math.min(1, (window.innerWidth - 300) / 2200);
+    var ratioBon = Math.min(1, (window.innerWidth - 300) / 4200);
 
     // Generate random skew and scale values
     let skewX = (Math.random() * 60 - 30) * ratioBon; // Between -30 and 30 degrees
