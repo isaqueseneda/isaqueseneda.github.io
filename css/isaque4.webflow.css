@@ -398,6 +398,7 @@ img {
   color: #000;
   text-decoration: none;
   background-size: auto 80%;
+  display: none;
 }
 
 .thumb.web3:hover {
@@ -417,10 +418,7 @@ img {
 }
 
 .thumb.rounds {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   background-image: url('../images/hnkgm-min-thumb.png');
   background-size: auto 70%;
   background-repeat: none;
