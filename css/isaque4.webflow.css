@@ -1981,8 +1981,14 @@ img {
 .cv-body{
   flex: 1;
   border-right: 1px solid black;
+  border-left: 1px solid black;
   border-bottom: 1px solid black;
   max-width: 1180px;
+}
+
+.cv-main-content-wrapper{
+  display: flex;
+  flex-direction: column;
 }
 
 .cv-side{
