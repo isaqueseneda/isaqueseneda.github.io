@@ -2019,7 +2019,7 @@ img {
 }
 
 .cv-section.cvexperience{
-  min-height: 886px;
+  min-height: 964px;
 
 }
 
@@ -2068,6 +2068,7 @@ img {
 .cv-small-section-title{
   font-size: 18px;
   font-weight: 700;
+  line-height: 40px;
 }
 
 .cv-institution{
@@ -2107,6 +2108,10 @@ img {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.cv-award-div{
+  line-height: 16px;
 }
 
 
