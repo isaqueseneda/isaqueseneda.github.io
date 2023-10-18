@@ -1988,7 +1988,7 @@ img {
 
 .cv-main-content-wrapper{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .cv-side{
@@ -2019,11 +2019,13 @@ img {
 }
 
 .cv-section.cvexperience{
+  min-height: 886px;
 
 }
 
 .cv-section.cveducation{
-
+  flex: 1;
+  border-left: 1px solid black;
 }
 
 .cv-circle-unit{
@@ -2119,13 +2121,26 @@ img {
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1360px) {
+
+  .cv-main-content-wrapper{
+    flex-direction: column;
+  }
+
   .the-3-circles{
     flex-direction: column;
   }
 
   .cv-oval-shape{
     width: 100%;
+  }
+
+  .cv-section.cveducation{
+    border-left: unset;
+  }
+
+  .cv-section.cvexperience{
+    min-height: unset;
   }
 }
 
