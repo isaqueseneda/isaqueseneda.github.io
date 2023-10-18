@@ -2211,6 +2211,10 @@ img {
     width: 100%;
     height: 25rem;
   }
+
+  .apetrechos{
+    display: none;
+  }
 }
 
 @media screen and (max-width: 479px) {
