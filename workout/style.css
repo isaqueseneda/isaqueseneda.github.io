@@ -1,0 +1,10 @@
+#exercise-display {
+    text-align: center;
+    font-size: 2em;
+  }
+  
+  #pause-button {
+    display: block;
+    margin: 20px auto;
+  }
+  
