@@ -1326,6 +1326,8 @@ img {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .projectbar100.textset.grey.collage-wrap {
