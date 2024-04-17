@@ -193,11 +193,27 @@ img {
   display: none;
 }
 
-.thumb.tide {
+.thumb.bphone {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  color: #000;
+  text-decoration: none;
+  background-size: auto 60%;
+  background-position: center;
+  background-image: url('../images/phone.png');
+}
+
+.thumb.bphone:hover {
+  background-color: #d2d2d2;
+}
+
+.thumb.tide {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: none;
   color: #000;
   text-decoration: none;
   background-size: 280px;
@@ -603,6 +619,12 @@ img {
   font-size: 11px;
   text-decoration: none;
   min-width: 33px;
+}
+
+.thumbtag.new{
+  border: 1px solid blue;
+  color: white;
+  background-color: blue;
 }
 
 .thumbtag.iml {
@@ -1178,6 +1200,14 @@ img {
   background-image: url('../images/feed-peek-logo.png');
   background-position: 50% 50%;
   background-size: auto 95%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.phonecover {
+  background-color: #d2d2d2;
+  background-image: url('../images/phone.png');
+  background-position: 50% 50%;
+  background-size: auto 60%;
   background-repeat: no-repeat;
 }
 
@@ -2121,9 +2151,6 @@ img {
 .job-description{
   display: block;
 }
-
-
-
 
 
 @media screen and (max-width: 1500px) {
