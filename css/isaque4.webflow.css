@@ -228,7 +228,7 @@ img {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex;
+  display: none;
   color: #000;
   text-decoration: none;
   background-size: auto 45%;
@@ -349,6 +349,7 @@ img {
 }
 
 .thumb.highs {
+  display: none;
   background-image: url('../images/MockUp_1.png');
   background-position: 50% 55%;
   background-size: auto 75%;
