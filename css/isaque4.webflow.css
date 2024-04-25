@@ -2263,6 +2263,10 @@ img {
     height: 27rem;
   }
 
+  .imltexto{
+    height: 4em;
+  }
+
   .link {
     margin-right: 12px;
   }
