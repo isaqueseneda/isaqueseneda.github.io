@@ -157,3 +157,24 @@ function skewBackground() {
   document.documentElement.style.setProperty('--bg-skew-x', `${skewX}deg`);
   document.documentElement.style.setProperty('--bg-skew-y', `${skewY}deg`);
 }
+
+
+// HOVER BOX
+document.querySelectorAll('.hover-link').forEach(link => {
+  link.addEventListener('mouseenter', function (e) {
+      const hoverBox = document.getElementById('hover-box');
+      hoverBox.innerHTML = link.dataset.hover; // Use innerHTML to interpret the <br> tags
+      hoverBox.style.display = 'block';
+  });
+
+  link.addEventListener('mousemove', function (e) {
+      const hoverBox = document.getElementById('hover-box');
+      hoverBox.style.left = e.pageX + 10 + 'px';
+      hoverBox.style.top = e.pageY + 10 + 'px';
+  });
+
+  link.addEventListener('mouseleave', function () {
+      const hoverBox = document.getElementById('hover-box');
+      hoverBox.style.display = 'none';
+  });
+});

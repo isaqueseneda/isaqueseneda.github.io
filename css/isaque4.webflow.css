@@ -2003,6 +2003,26 @@ img {
 
 
 
+/* HOVER BOX */
+/* Style the hover box */
+#hover-box {
+  position: absolute;
+  background-color: lightyellow;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: none;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Style the links */
+.hover-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
 
 
 /* CV */
