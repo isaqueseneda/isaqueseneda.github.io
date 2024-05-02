@@ -2013,6 +2013,7 @@ img {
   display: none;
   z-index: 1000;
   pointer-events: none;
+  margin: 20px;
 }
 
 /* Style the links */
