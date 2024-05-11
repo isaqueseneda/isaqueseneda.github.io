@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJRMB6MHVV"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-EJRMB6MHVV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA TABLE - LIVE PLUS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-sales.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script src="faq-component.js" defer></script>
+<script defer data-domain="www.megatable.org" src="https://analytics.tiiny.site/js/plausible.js"></script><script defer data-domain="www.megatable.org" src="https://analytics.tiiny.site/js/plausible.js"></script><script defer data-domain="www.megatable.org" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
+<body>
+    <div class="floating-arrow">
+        <div class="arrow">↓</div>
+      </div>
+    <header>
+        <div class="container header">
+            <a href="index.html"><img src="images/logo.png" class="logo"></a>
+            <img src="images/tier-live.svg" style="height: 30px;
+            padding: 5px;
+            filter: brightness(0);
+            display: none;">
+            <nav>
+                <a href="#"><- HOME</a>
+                <a href="#"><- LOG IN</a>
+                <button onclick="window.location.href = 'https://megatable.teachable.com/purchase?product_id=5158087'" class="cta-button" style="display: none;">Enroll Now</button>
+                <a style="color: black" href="https://megatable.teachable.com/purchase?product_id=5158087">ENROLL NOW -></a>
+            </nav>
+        </div>
+    </header>
+    <section class="top-placeholder"></section>
+    <section class="hero">
+        <div class="container-hero">
+            <div class="hero_wrapper">
+                <div class="hero-title">MEGA TABLE</div>
+                <img src="images/tier-live.svg" class="hero-image">
+            </div>
+            <h2 style="text-align: center">Get in the rhythm with live classes.</h2>
+
+
+
+            <div class="unibox wrapper">
+                
+                <!-- First screen content -->
+                <div id="dropdowns-container">
+                    <h3>COURSE FINDER</h3>
+                    <select id="uninameDropdown" onchange="updatePrograms()">
+                        <option value="" disabled selected>University</option>
+                        <!-- Other options will be populated by JS -->
+                    </select>
+                    <select id="programnameDropdown" disabled onchange="updateCourses()">
+                        <option value="" disabled selected>Degree</option>
+                        <!-- Options will be disabled until university is chosen -->
+                    </select>
+                    <select id="coursenameDropdown" disabled>
+                        <option value="" disabled selected>Course</option>
+                        <!-- Options will be disabled until program is chosen -->
+                    </select>
+                </div>
+                
+                <!-- Second screen content -->
+                <div class="unibox bg" id="unibox-bg" style="display: none;">
+                <div id="info-container" style="display: none;">
+                    <div class="unibox header">
+                        <span onclick="returnToFirstScreen()" alt="Find another course"><-</span>
+                        <span>MADE FOR</span>
+                        <span style="color: #323232">×</span>
+                    </div>
+                    <div class="unibox footer">
+                        <div class="unibox uniname" id="displayUniname">
+                            <!-- Data will be inserted by JS -->
+                        </div>
+                        <div class="unibox programname" id="displayProgramname">
+                            <!-- Data will be inserted by JS -->
+                        </div>
+                        <div class="unibox coursename" id="displayCoursename">
+                            <!-- Data will be inserted by JS -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <div style="text-align: center; margin-top: 10px; width: 100%; padding: 0px;" id="sign-up-line">Not listed? Suggest a degree/course <a style="color: white;" href="https://isaqueseneda.typeform.com/to/bMbZJhSf">here</a>.</div>
+            </div>
+            
+
+            
+
+        </div>
+            <div class="hero-footer">
+                <div class="price-wrapper">
+                    <span class="price">€8</span>
+                    <span class="price-subtitle">/ 30-day access</span>
+                </div>
+                <button onclick="window.location.href = 'https://megatable.teachable.com/purchase?product_id=5158087'" class="cta-button large">Enroll Now</button>
+                <div id="sign-up-line">Sign up today and get access until <span class="SignUpLineDate">_______</span>.</div>
+                    <div id="sign-up-line">We’ll remind you before any renewal—no hidden charges.</div>
+            </div>
+        </div>
+    </section>
+    <section class="divider-section">
+            <div class="divider">
+                <h3 style="color: white">WHAT YOU GET</h3>
+                <div style="filter: invert(1)" class="light2"></div>
+            </div>
+    </section>
+    <section class="content">
+        <div class="container sections">
+            <!-- Subsection 4 -->
+            <div class="subsection">
+                <div class="bullet_wrapper">
+                    <img class="bullet" src="images/bullet-g.svg" alt="Bullet 3">
+                    <h4>OFFICE HOURS</h4>
+                </div>
+                <p>Daily meetups with a tutor to go over practice exams and dive deeper into the content. Plan your study, and get motivated on the days leading up to exams.</p>
+                <div class="subsection-img three"></div>
+                <div class="live_wrapper">
+                    <h2>UPCOMING</h2>
+                    
+                </div>
+                <div id="collapse-button-wrapper"></div>
+            </div>
+
+            <h3>AND ALSO</h3>
+            <div class="light2"></div>
+            <!-- Subsection 1 -->
+            <div class="subsection">
+                <div class="bullet_wrapper">
+                    <img class="bullet" src="images/bullet-g.svg" alt="Bullet 1">
+                    <h4>THE 10 x 10 PDF</h4>
+                </div>
+                <p>The best summary to quickly refer to one of the 10 attributes or 10 tests.</p>
+                <div class="subsection-img one"></div>
+            </div>
+            <!-- Subsection 2 -->
+            <div class="subsection">
+                <div class="bullet_wrapper">
+                    <img class="bullet" src="images/bullet-g.svg" alt="Bullet 2">
+                    <h4>THE 10 x 10 COURSE</h4>
+                </div>
+                <p>The most efficient and engaging way to learn stats, with tons of visual examples.</p>
+                <div class="subsection-img two"></div>
+                <div class="schedule_wrapper">
+                    <h2>CURRICULUM</h2>
+
+                </div>
+                <div id="collapse-button-wrapper2"></div>
+            </div>
+
+            <!-- Subsection 4 -->
+            <div class="subsection">
+                <div class="bullet_wrapper">
+                    <img class="bullet" src="images/bullet-g.svg" alt="Bullet 3">
+                    <h4>LIVE CHAT</h4>
+                </div>
+                <p>Ask any questions you might have, and get answers based on the MEGA TABLE method<span style="display:none"> — powered by GPT 4</span>.</p>
+                <div class="subsection-img six"></div>
+                    
+                
+                <div id="collapse-button-wrapper"></div>
+            </div>
+            
+            <!-- Subsection 9 -->
+            <div style="display: none" class="subsection">
+                <div class="bullet_wrapper">
+                    <img class="bullet" src="images/bullet-g.svg" alt="Bullet 1">
+                    <h4>MEGA FOCUS</h4>
+                </div>
+                <p>(Optional) A Chrome extension to help you remove all distractions and return to studying.</p>
+                <div class="subsection-img five"></div>
+            </div>
+
+            <div class="targetbreak">
+            </div>
+
+            <div class="container hero final">
+                <div class="container-hero final">
+                    <div class="hero_wrapper final-call">
+                        <div class="hero-title">MEGA TABLE</div>
+                        <img src="images/tier-live.svg" class="hero-image">
+                    </div>
+                <div class="hero-footer">
+                    <div style="margin-top: unset;" class="price-wrapper">
+                        <span class="price">€8</span>
+                        <span class="price-subtitle">/ 30-day access</span>
+                    </div>
+                    <button onclick="window.location.href = 'https://megatable.teachable.com/purchase?product_id=5158087'" class="cta-button large final-call">Enroll Now</button>
+                    <div id="sign-up-line">Sign up today and get access until <span class="SignUpLineDate">_______</span>.</div>
+                        <div id="sign-up-line">We’ll remind you before any renewal—no hidden charges.</div>
+                </div>
+            </div>
+            </div>
+        
+        <div class="zigzagbreak"></div>
+        <h3 style="margin-top: 70px;">VIEW OTHER PLANS</h3>
+    </div>
+    </section>
+
+    <section class="final-section-tier">
+        <div class="grid-wrap">
+            <div class="grid">
+                <div class="column" data-index="0">
+                    <div class="tier-table plan short">
+                        <a class="link-limpo" href="#">
+                        <div class="tier-footer plan" onclick="window.location.href = 'free.html'">
+                            <div class="tier-footer-title plan centerlabel">
+                                <span class="tierTextUnder500">MEGA TABLE</span>
+                                <div class="tier-price center">FREE
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                        <div class="tier-body">
+                            <div class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label" >1-HOUR</div>
+                                    <div class="ttt-title">HEAD START
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                        <div class="event_time label" >THE 10 x 10 PDF</div>
+                                        <div class="ttt-title">SUMMARY
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div class="price_row" onclick="window.location.href = 'free.html'">
+                            <div class="price_cluster">
+                                <div class="price_digit">FREE
+                                </div>
+                                <div class="price_sub">Lifetime access</div>
+                            </div>
+                            <span class="tierTextUnder500">TAKE A LOOK -></span>
+                            <p class="tTUarrow">-></p>
+                        </div>
+                    </div>
+                </div>  
+
+                <!--div class="column" data-index="1">
+                    <div class="tier-table plan short">
+                        <a class="link-limpo" href="#">
+                        <div class="tier-footer plan" onclick="window.location.href = 'plus.html'">
+                            <div class="tier-footer-title plan centerlabel">
+                                <span class="tierTextUnder500">MEGA TABLE</span>
+                                <div class="tier-price center">PLUS
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                        <div class="tier-body">
+                            <div class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/bullet.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="ttt-title">PDF
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tier-item center">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/bullet.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label" >10 x 10</div>
+                                    <div class="ttt-title">BASICS
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tier-item center">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/bullet-b.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label" >10 x 10</div>
+                                    <div class="ttt-title">CORE
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tier-item center">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/bullet-b.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label" >10 x 10</div>
+                                    <div class="ttt-title">PRO
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price_row" onclick="window.location.href = 'plus.html'">
+                            <div class="price_cluster">
+                                <div class="price_digit">€79
+                                </div>
+                                <div class="price_sub">30-day access</div>
+                            </div>
+                            <span class="tierTextUnder500">VIEW PLAN -></span>
+                            <p class="tTUarrow">-></p>
+                        </div>
+                    </div>
+                </div -->  
+                    
+
+                <div class="column" data-index="2">
+                    <div class="tier-table plan short">
+                        <a class="link-limpo" href="#">
+                        <div class="tier-footer plan" onclick="window.location.href = 'liveplus.html'">
+                            <div style="filter: brightness(0)" class="tier-footer-title plan centerlabel">
+                                <span class="tierTextUnder500">MEGA TABLE</span>
+                                <div class="tier-price out2">
+                                    <div STYLE="margin-right: 5px; display: flex; align-items: center;">
+                                        <div style="width: 10px; height: 10px; border-radius: 20px; background-color: red; margin-right: 3px;"></div>
+                                        <div style="color: red;">LIVE</div>
+                                    </div>
+                                    <div class="tier-price in">PLUS
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                        <div class="tier-body">
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label" >1-HOUR</div>
+                                    <div class="ttt-title">HEAD START
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                        <div class="event_time label" >THE 10 x 10 PDF</div>
+                                        <div class="ttt-title">SUMMARY
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label" >THE 10 x 10 COURSE</div>
+                                    <div style="filter: brightness(0)" class="ttt-title">VIDEO CLASSES ✨
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label">EXAM PRACTICE</div>
+                                    <div style="filter: brightness(0)" class="ttt-title">LIVE CLASSES ✨
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label">24H Q&A</div>
+                                    <div style="filter: brightness(0)" class="ttt-title">LIVE CHAT ✨
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="price_row" onclick="window.location.href = 'liveplus.html'">
+                            <div class="price_cluster">
+                                <div class="price_digit">€8
+                                </div>
+                                <div class="price_sub">30-day access</div>
+                            </div>
+                            <span class="tierTextUnder500">VIEW PLAN -></span>
+                            <p class="tTUarrow">-></p>
+                        </div>
+                    </div>
+                </div> 
+
+                <!--
+                <div class="column" data-index="3">
+                    <div class="tier-table plan short">
+                        <a class="link-limpo" href="#">
+                        <div style="filter: brightness(0)" class="tier-footer plan" onclick="window.location.href = 'flex.html'">
+                            <div class="tier-footer-title plan centerlabel">
+                                <span class="tierTextUnder500">MEGA TABLE</span>
+                                <div class="tier-price out2">
+                                    <div STYLE="margin-right: 5px; display: flex; align-items: center;">
+                                        <div style="width: 10px; height: 10px; border-radius: 20px; background-color: limegreen; margin-right: 3px;"></div>
+                                        <div style="color:limegreen;">FLEX</div>
+                                    </div>
+                                    <div class="tier-price in">PLUS
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                        <div class="tier-body">
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label" >1-HOUR</div>
+                                    <div class="ttt-title">HEAD START
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                        <div class="event_time label" >THE 10 x 10 PDF</div>
+                                        <div class="ttt-title">SUMMARY
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label" >THE 10 x 10 COURSE</div>
+                                    <div class="ttt-title">VIDEO CLASSES
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label">EXAM PRACTICE</div>
+                                    <div class="ttt-title">LIVE CLASSES
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label">24H Q&A</div>
+                                    <div class="ttt-title">LIVE CHAT
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label">6 x PRIVATE</div>
+                                    <div style="filter: brightness(0)" class="ttt-title">TUTORING ✨
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price_row" onclick="window.location.href = 'flex.html'">
+                            <div class="price_cluster">
+                                <div class="price_digit">€153
+                                </div>
+                                <div class="price_sub">30-day access</div>
+                            </div>
+                            <span class="tierTextUnder500">VIEW PLAN -></span>
+                            <p class="tTUarrow">-></p>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+                <div class="column" data-index="3">
+                    <div class="tier-table plan short">
+                        <a class="link-limpo" href="#">
+                        <div style="filter: brightness(0)" class="tier-footer plan" onclick="window.location.href = 'calendar.html'">
+                            <div class="tier-footer-title plan centerlabel">
+                                <span class="tierTextUnder500">MEGA TABLE</span>
+                                <div class="tier-price out2">
+                                    <div STYLE="margin-right: 5px; display: flex; align-items: center;">
+                                        <div style="width: 10px; height: 10px; border-radius: 20px; background-color: limegreen; margin-right: 3px;"></div>
+                                        <div style="color:limegreen;">FLEX</div>
+                                    </div>
+                                    <div class="tier-price in">PLUS
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                        <div class="tier-body">
+                            <div class="tier-item">
+                                <div class="tier-item-icon-wrapper plan">
+                                    <img class ="tier-item-icon plan" src="images/incl.svg">
+                                </div>
+                                <div class="tier-item-text">
+                                    <div class="event_time label">PRIVATE</div>
+                                    <div style="filter: brightness(0)" class="ttt-title">TUTORING ✨
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price_row" onclick="window.location.href = 'calendar.html'">
+                            <div class="price_cluster">
+                                <div class="price_digit">€24.50
+                                </div>
+                                <div class="price_sub">30-min class</div>
+                            </div>
+                            <span class="tierTextUnder500">BOOK NOW -></span>
+                            <p class="tTUarrow">-></p>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </section>
+
+
+
+    <faq-component></faq-component>
+
+
+    
+    <footer class="footer">
+        <div class="footer-main-1">
+            <div class="final-crown"></div>
+            <p class="contact">
+                hello@megatable.org
+            </p>
+            <p class="f-links">
+                <a class="f-links" href="calendar.html">Book a Session</a>
+                <a class="f-links" href="https://www.youtube.com/@MEGATABLE">YouTube</a>
+                <a class="f-links" href="https://megatable.teachable.com/p/terms">Terms of Use</a>
+                <a class="f-links" href="https://megatable.teachable.com/p/privacy">Privacy Policy</a>
+            </p>
+        </div>
+        <div class="footer-main-2">
+            <p>
+                © MEGA TABLE - UNITED STATS PUNK - 2023
+            </p>
+        </div>
+    </footer>
+    <whatsapp-button></whatsapp-button>
+    <script src="whatsapp-button.js"></script>
+</body>
+
+<script src="sales.js"></script>
+
+</html>

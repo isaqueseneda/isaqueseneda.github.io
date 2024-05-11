@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunknotes=self.webpackChunknotes||[]).push([[266],{2376:(e,n,t)=>{t.r(n),t.d(n,{default:()=>c});var u=t(96540);function c(){return(0,u.useEffect)((()=>{window.location.replace("/archive/")}),[]),null}}}]);

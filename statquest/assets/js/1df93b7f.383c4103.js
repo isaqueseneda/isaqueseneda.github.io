@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunknotes=self.webpackChunknotes||[]).push([[4583],{36866:(e,n,o)=>{o.r(n),o.d(n,{default:()=>s});var t=o(96540);function s(){return(0,t.useEffect)((()=>{window.location.replace("/docs/videobook/intro")}),[]),null}}}]);
