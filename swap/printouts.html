@@ -94,7 +94,7 @@ button {
     flex-direction: row;
 }
 .nadaver{
-    transform: scale(1.2);
+    transform: scale(1.5);
 }
 
 @media (max-width: 900px) {
@@ -103,16 +103,13 @@ button {
 }
 .detarde{
     border-bottom: 1px solid black; 
-    min-height: 10vh;
+    min-height: 20vh;
 }
 
 .nadaver{
     transform: scale(1);
+    
     overflow: scroll;
-}
-
-.container {
-    border: unset !important;
 }
 
 }
@@ -120,7 +117,7 @@ button {
 
           </style>
     </head>
-    <body style="padding-right: 40px; padding-left: 40px; text-transform:uppercase; font-size: 15px; font-family: Arial Narrow; font-kerning:80;" id="page-top">
+    <body style="text-transform:uppercase; font-size: 15px; font-family: Arial Narrow; font-kerning:80;" id="page-top">
         <div id="DottedOverlay" class="is-hidden"></div>
         <div id="TomorrowPopup" class="is-hidden">
           <div class="BananaContent">
@@ -148,7 +145,7 @@ button {
             </div>
         </nav>
         <!-- Masthead-->
-        <header style="min-height: 95vh; border: 1px solid black; border-bottom: none;" class="masthead">
+        <header style="min-height: 95vh; border: 1px solid black;" class="masthead">
             <div style="border: 1px solid black; border-bottom: none; border-top: none; display: flex; flex-direction: column;" class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <img src="https://media.tenor.com/HXKZkVQr8lcAAAAM/office-chair-spin.gif">
                 <div class="d-flex justify-content-center">  
@@ -161,9 +158,9 @@ button {
             </div>
         </header>
         <!-- Break -->
-        <section style="border-bottom: 1px solid black; border-top: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <section style="border-bottom: 1px solid black; border-top: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
-            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset; border-top: unset;">
+            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset;">
             </div>
             </section>
 
@@ -191,22 +188,20 @@ button {
             
         </section>
         <!-- Break -->
-        <section style="border-top: 1px solid black;border-bottom: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <section style="border-bottom: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
-            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset;border-top: unset">
+            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset;">
             </div>
             </section>
         <!-- Projects-->
-        <section style=" border: 1px solid black; border-top: none; border-right:unset; border-left: unset;display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
+        <section style=" border: 1px solid black; border-right:unset; border-left: unset;display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
-        <div style="max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-top: none; border-bottom: none;">
+        <div style="max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid black;">
             <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 10vh; border-bottom: 1px solid black;"><h2 style="margin-bottom: unset;">APPLY NOW!</h2></div>
-            <div style="padding: 10px; display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 60vh; border-bottom: 1px solid black;">
-                <iframe class="nadaver; width: 60%; min-height 400px;" style="overflow: scroll;" data-tally-src="https://tally.so/embed/mDVb7X?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" frameborder="0" marginheight="0" marginwidth="0" title="Registration form"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+            <div style="padding: 40px; display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 60vh; border-bottom: 1px solid black;">
+                <iframe class="nadaver" style="overflow: scroll;" data-tally-src="https://tally.so/embed/mDVb7X?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="50%" height="40vh" frameborder="0" marginheight="0" marginwidth="0" title="Registration form"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
 
             </div>
-            <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 5vh; border-bottom: 1px solid black;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; TEXT-ALIGN: CENTER;">THINK OF EVERYTHING YOU COULD DO</h4><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
-
             <div class="denoite" style="display: flex; min-height: 15vh;">
                 <!-- Project One Row-->
                 <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
@@ -225,9 +220,9 @@ button {
         </section>
 
                 <!-- Break -->
-                <section style="border-top: none; border-bottom: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
+                <section style="border-top: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
-                    <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset; border-top: none;">
+                    <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset;">
                     </div>
                     </section>
 
