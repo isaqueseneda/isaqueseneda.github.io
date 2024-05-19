@@ -30,6 +30,13 @@
   display: none;
 }
 
+body {
+    transform: scale(0.8);
+    transform-origin: top left;
+    width: 125%; /* Increase width to compensate for the reduction caused by scaling */
+}
+
+
 #DottedOverlay {
   position: fixed;
   top: 0;
@@ -89,6 +96,12 @@ button {
     cursor: none !important;
 }
 
+.detarde{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 /* width below 900px */
 .denoite{
     flex-direction: row;
@@ -120,7 +133,7 @@ button {
 
           </style>
     </head>
-    <body style="padding-right: 40px; padding-left: 40px; text-transform:uppercase; font-size: 15px; font-family: Arial Narrow; font-kerning:80;" id="page-top">
+    <body style="padding-right: 20px; padding-left: 20px; text-transform:uppercase; font-size: 15px; font-family: Arial; font-kerning:80;" id="page-top">
         <div id="DottedOverlay" class="is-hidden"></div>
         <div id="TomorrowPopup" class="is-hidden">
           <div class="BananaContent">
@@ -155,7 +168,7 @@ button {
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase">Quit-My-Job.Today</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">A sabbatical grant* to quit your agency</h2>
-                        <a style="background-color: rgb(255, 89, 0); color: white; font-size: 18px; border: 1px solid black;" class="btn btn-primary" href="#about">Apply Now</a>
+                        <a style="background-color: rgb(255, 89, 0); color: white; font-size: 18px; border: 1px solid black;" class="btn btn-primary" href="#signup">Apply Now</a>
                     </div>
                 </div>
             </div>
@@ -173,16 +186,16 @@ button {
                 <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 15vh; border-bottom: 1px solid black;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h2 style="margin-bottom: unset; ">HOW IT WORKS</h2><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
                 <div class="denoite" style="display: flex; min-height: 30vh;">
                     <!-- Project One Row-->
-                    <div class="detarde" style="padding: 2vw; text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
+                    <div class="detarde" style="padding: 2vw; display: flex; width: 100%; border-right: 1px solid black;">
                                         <h4 class="text-white">①<br><br>QUIT YOUR JOB</h4>
                     </div>
                     <!-- Project One Row-->
-                    <div class="detarde"style="padding: 2vw;text-align: center; display: flex; justifya-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
+                    <div class="detarde"style="padding: 2vw display: flex; width: 100%; border-right: 1px solid black;">
                                         <h4 class="text-white">②<br><br>REFER <a href="https://fownk.com/" id="matt-link">Matt 🔎</a> and
                                 <a href="https://isaque.me/" id="isaac-link">Isaque 🔎</a> to take your spot.</h4>
                     </div>
                                     <!-- Project One Row-->
-                    <div class="detarde" style="padding: 2vw;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; ">
+                    <div class="detarde" style="padding: 2vw display: flex; width: 100%; ">
                                         <h4 class="text-white">③<br><br>GET PAID OUT BY YOUR HR DEPARTMENT REFERRAL PROGRAM</h4>
                     </div>
                 </div>
@@ -203,27 +216,39 @@ button {
             <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 10vh; border-bottom: 1px solid black;"><h2 style="margin-bottom: unset;">APPLY NOW!</h2></div>
             <div style="padding: 10px; display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 60vh; border-bottom: 1px solid black;">
                 <iframe class="nadaver; width: 60%; min-height 400px;" style="overflow: scroll;" data-tally-src="https://tally.so/embed/mDVb7X?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" frameborder="0" marginheight="0" marginwidth="0" title="Registration form"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-
             </div>
-            <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 5vh; border-bottom: 1px solid black;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; TEXT-ALIGN: CENTER;">THINK OF EVERYTHING YOU COULD DO</h4><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
-
-            <div class="denoite" style="display: flex; min-height: 15vh;">
-                <!-- Project One Row-->
-                <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
-                                    <h4 class="text-white">☑<br>FINISH WRITING YOUR BOOK</h4>
-                </div>
-                <!-- Project One Row-->
-                <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
-                                    <h4 class="text-white">☑<br>PICK UP ON BACHATA</h4>
-                </div>
-                                <!-- Project One Row-->
-                <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; ">
-                                    <h4 class="text-white">☑<br>FORGIVE YOUR SON</h4>
-                </div>
-            </div>
-        </div>
         </section>
 
+                        <!-- Break -->
+                        <section style="border-top: none; border-bottom: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
+            
+                            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset; border-top: none;">
+                            </div>
+                            </section>
+        
+        <!-- Projects-->
+        <section style=" border: 1px solid black; border-top: none; border-right:unset; border-left: unset;display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
+            
+            <div style="max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-top: none; border-bottom: none;">
+
+                <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 5vh; border-bottom: 1px solid black;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; TEXT-ALIGN: CENTER;">THINK OF EVERYTHING YOU COULD DO</h4><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
+    
+                <div class="denoite" style="display: flex; min-height: 15vh;">
+                    <!-- Project One Row-->
+                    <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
+                                        <h4 class="text-white">☑<br>FINISH WRITING YOUR BOOK</h4>
+                    </div>
+                    <!-- Project One Row-->
+                    <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
+                                        <h4 class="text-white">☑<br>PICK UP ON BACHATA</h4>
+                    </div>
+                                    <!-- Project One Row-->
+                    <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; ">
+                                        <h4 class="text-white">☑<br>FORGE YOUR SON</h4>
+                    </div>
+                </div>
+            </div>
+            </section>
                 <!-- Break -->
                 <section style="border-top: none; border-bottom: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
@@ -284,6 +309,7 @@ button {
                 </div>
             </div>
         </section>
+        
         <!-- Contact-->
         <section class="contact-section bg-black;">
             <div class="container px-4 px-lg-5">
