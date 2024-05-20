@@ -5195,7 +5195,7 @@ textarea.form-control-lg {
 
 .list-group-item-white {
   color: #999999;
-  background-color: white;
+  background-color: #FFF9FF;
 }
 .list-group-item-white.list-group-item-action:hover, .list-group-item-white.list-group-item-action:focus {
   color: #999999;
@@ -11062,7 +11062,7 @@ body {
 
 
 section.about-section{
-  background: #FF5900;
+  background: blue;
 }
 
 .about-section p {
