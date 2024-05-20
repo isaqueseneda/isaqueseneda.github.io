@@ -43,8 +43,8 @@
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(circle, #000 15%, transparent 10%),
-    radial-gradient(circle, #000 15%, transparent 10%);
+    radial-gradient(circle, blue 15%, transparent 10%),
+    radial-gradient(circle, blue 15%, transparent 10%);
   background-position: 0 0, 5px 5px;
   background-size: 10px 10px;
   opacity: 0.9;
@@ -66,12 +66,10 @@
 
 
 .BananaContent p {
-  font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
 }
 
 button {
-  font-family: 'Courier New', Courier, monospace;
   background-color: #000080;
   color: white;
   border: none;
@@ -81,7 +79,9 @@ button {
 }
 
 body {
-    font-family: 'JetBrains Mono', monospace;
+    /* font-family: 'JetBrains Mono', monospace; */
+    font-family: Arial Narrow;
+    letter-spacing: -0.5px;
 }
 
 
@@ -94,11 +94,15 @@ body {
   max-width: 40vh;
   height: auto;
   pointer-events: none;
-  border: 1px solid black;
+  border: 1px solid blue;
 }
 
 #matt-link, #isaac-link {
     cursor: none !important;
+}
+
+.titulo44{
+    color: blue;
 }
 
 /* width below 900px */
@@ -131,7 +135,7 @@ body {
 
           </style>
     </head>
-    <body style="margin-right: 20px;  text-transform: uppercase; margin-left: 20px;  font-size: 15px;" id="page-top">
+    <body style="margin-right: 20px;  text-transform: uppercase; margin-left: 20px;  font-size: 15px; color: blue;" id="page-top">
         <div id="DottedOverlay" class="is-hidden"></div>
         <div id="TomorrowPopup" class="is-hidden">
           <div class="BananaContent">
@@ -140,9 +144,9 @@ body {
           </div>
         </div>
         <!-- Navigation-->
-        <nav style="min-height: 10VH; border-bottom: 1px solid black;" class="navbar navbar-light fixed-top" id="mainNav">
+        <nav style="min-height: 10VH; border-bottom: 1px solid blue;" class="navbar navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <img src="https://media.tenor.com/HXKZkVQr8lcAAAAM/office-chair-spin.gif" style="width: 50px; height: 50px; margin-right: 10px;"/>
+                <img src="https://media.tenor.com/HXKZkVQr8lcAAAAM/office-chair-spin.gif" style="width: 50px; height: 50px; margin-right: 10px; filter: sepia(100%) hue-rotate(190deg) saturate(500%);"/>
                 <a class="navbar-brand" href="#page-top"></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
@@ -150,23 +154,23 @@ body {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li style="border: 1px solid black; border-bottom: none;" class="nav-item"><a class="nav-link" href="#about">HOW IT WORKS</a></li>
-                        <li style="border: 1px solid black; border-bottom: none;" class="nav-item"><a class="nav-link" href="#signup">APPLY</a></li>
-                        <li style="border: 1px solid black; border-bottom: none;" class="nav-item"><a class="nav-link" href="#projects">PRINTOUTS</a></li>
+                        <li style="border: 1px solid blue; border-bottom: none;" class="nav-item"><a class="nav-link" href="#about">HOW IT WORKS</a></li>
+                        <li style="border: 1px solid blue; border-bottom: none;" class="nav-item"><a class="nav-link" href="#signup">APPLY</a></li>
+                        <li style="border: 1px solid blue; border-bottom: none;" class="nav-item"><a class="nav-link" href="#projects">TERMS</a></li>
                     </ul>
                 </div>
                 
             </div>
         </nav>
         <!-- Masthead-->
-        <header style="height: 90vh; border: 1px solid black; border-bottom: none;" class="masthead">
-            <div style="border: 1px solid black; border-bottom: none; border-top: none; display: flex; flex-direction: column;" class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-                <img src="https://media.tenor.com/HXKZkVQr8lcAAAAM/office-chair-spin.gif">
+        <header style="height: 90vh; border: 1px solid blue; border-bottom: none;" class="masthead">
+            <div style="border: 1px solid blue; border-bottom: none; border-top: none; display: flex; flex-direction: column;" class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <img STYLE="filter: sepia(100%) hue-rotate(190deg) saturate(500%);" src="https://media.tenor.com/HXKZkVQr8lcAAAAM/office-chair-spin.gif">
                 <div class="d-flex justify-content-center">  
                     <div class="text-center">
-                        <h1 style="font-size: 40px;" class="titulo44">Quit-My-Job.Today</h1>
+                        <h1 style="font-size: 40px; color:blue;     letter-spacing: -2px;" class="titulo44">Quit-My-Job.Today</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">A sabbatical grant*<BR>to quit your agency</h2>
-                        <a style="background-color: rgb(255, 89, 0); color: white; font-size: 18px; border: 1px solid black;" class="btn btn-primary" href="#about">Get Started</a>
+                        <a style="background-color: rgb(255, 89, 0); color: white; font-size: 18px; border: 1px solid blue;" class="btn btn-primary" href="#about">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -175,23 +179,24 @@ body {
         
 
         <!-- Break -->
-        <section style="border-bottom: 1px solid black; border-top: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <section style="border-bottom: 1px solid blue; border-top: 1px solid blue; display: flex; justify-content: center; align-items: center; flex-direction: column;">
             
-            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset; border-top: unset;">
+            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 255) 2px, rgb(0, 0, 255) 8px);
+            height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-bottom: unset; border-top: unset;">
             </div>
             </section>
 
         <!-- About-->
         <section style="display: flex; justify-content: center; align-items: center; flex-direction: column;" id="about">
-            <div style="background-color: white; max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-top: none; border-bottom: none;">
-                <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-bottom: 1px solid black;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; ">HOW IT WORKS</h4><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
+            <div style="background-color: white; max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-top: none; border-bottom: none;">
+                <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-bottom: 1px solid blue;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; ">HOW IT WORKS</h4><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
                 <div class="denoite" style="display: flex; min-height: 40vh;">
                     <!-- Project One Row-->
-                    <div class="detarde" style="padding: 2vw; text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
-                                        <h6 class="text-white">①<br><br>WIN TO THE GRANT & QUIT YOUR JOB</h6>
+                    <div class="detarde" style="padding: 2vw; text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid blue;">
+                                        <h6 class="text-white">①<br><br>WIN THE GRANT & QUIT YOUR JOB</h6>
                     </div>
                     <!-- Project One Row-->
-                    <div class="detarde"style="padding: 2vw;text-align: center; display: flex; justifya-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
+                    <div class="detarde"style="padding: 2vw;text-align: center; display: flex; justifya-content: center; align-items: center; width: 100%; border-right: 1px solid blue;">
                                         <h6 class="text-white">②<br><br>REFER <a href="https://fownk.com/" id="matt-link">Matt 🔎</a> and/or
                                 <a href="https://isaque.me/" id="isaac-link">Isaque 🔎</a> to take your spot.</h6>
                     </div>
@@ -200,25 +205,26 @@ body {
                                         <h6 class="text-white">③<br><br>GET PAID OUT BY YOUR HR REFERRAL PROGRAM*</h6>
                     </div>
                 </div>
-                <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-top: 1px solid black; ">
-                    <a style="background-color: rgb(255, 89, 0); color: white; font-size: 18px; border: 1px solid black;" class="btn btn-primary" href="#signup">Apply Now</a>
+                <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-top: 1px solid blue; ">
+                    <a style="background-color: rgb(255, 89, 0); color: white; font-size: 18px; border: 1px solid blue;" class="btn btn-primary" href="#signup">Apply Now</a>
 
             </div>
             
         </section>
 
                 <!-- Break -->
-                <section style="border-top: 1px solid black;border-bottom: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                <section style="border-top: 1px solid blue;border-bottom: 1px solid blue; display: flex; justify-content: center; align-items: center; flex-direction: column;">
             
-                    <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset;border-top: unset">
+                    <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 255) 2px, rgb(0, 0, 255) 8px);
+ max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-bottom: unset;border-top: unset">
                     </div>
                     </section>
 
         <!-- PDF -->
         <section style="padding: 10vw 10vw;" class="about-section text-center"  id="projects">
             <h2 style="text-align: center; margin-bottom: 40px; font-weight: 600;" class="text-white">TERMS & CONDITIONS</h4>
-            <div style="background-color: white; max-width: 870px; border: 1px solid black" class="container px-4 px-lg-5">
-                <div class="email-header" style="margin-top: 20px; width: 100%; padding: 10px; font-family: 'Times New Roman'; text-align: left; border-bottom: 1px solid black;">
+            <div style="background-color: white; max-width: 870px; border: 1px solid blue" class="container px-4 px-lg-5">
+                <div class="email-header" style="margin-top: 20px; width: 100%; padding: 10px; font-family: 'Times New Roman'; text-align: left; border-bottom: 1px solid blue;">
                     <p style="margin-bottom: 1rem;">From: info@yourcompany.com <br>To: recipient@example.com <br>Date: June 21, 2005 14:45 <br>Subject: Sabbatical Grant Offer</p>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -231,10 +237,10 @@ body {
                             <ol>
                                 <li style="text-align: left; margin-bottom: 5vh;">Quit your job.</li>
                                 <li style="text-align: left; margin-bottom: 5vh;">Refer
-                                    <a href="https://fownk.com/" >Matt 🔎</a> and
-                                <a href="https://isaque.me/" >Isaque 🔎</a> to take your spot.
-                                <img  src="assets/img/matt.png" style="display: none; position: absolute;">
-                                <img  src="assets/img/isaque.png" style="display: none; position: absolute;">
+                                    <a href="https://fownk.com/" id="matt-link">Matt 🔎</a> and
+                                <a href="https://isaque.me/" id="isaac-link">Isaque 🔎</a> to take your spot.
+                                <img id="matt-img" src="assets/img/matt.png" style="display: none; position: absolute;">
+                                <img id="isaac-img" src="assets/img/isaque.png" style="display: none; position: absolute;">
                                     <br><small>—Guaranteed seamless transition.</small></li>
                                 <li style="text-align: left;">Get your <strong>sabbatical grant*</strong> funds.<br><small>—To be paid out in full by your HR department.</small></li>
                             </ol>
@@ -260,7 +266,7 @@ body {
                         <div style="margin-bottom: 100px;"></div>
                     </div>
                 </div>
-                <div class="email-footer" style="padding: 10px 0px; font-family: 'Times New Roman', serif; border-top: 1px solid black; text-align: center; font-size: 7px;">
+                <div class="email-footer" style="padding: 10px 0px; font-family: 'Times New Roman', serif; border-top: 1px solid blue; text-align: center; font-size: 7px;">
                     <p style="margin-bottom: 1rem;">
                         CONFIDENTIALITY NOTICE: This message is intended only for the use of the addressee and may contain information that is privileged and confidential. If you are not the intended recipient, you are hereby notified that any dissemination of this communication is strictly prohibited.
                     </p>
@@ -269,43 +275,45 @@ body {
         </section>
 
         <!-- Break -->
-        <section style="border-top: 1px solid black;border-bottom: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <section style="border-top: 1px solid blue;border-bottom: 1px solid blue; display: flex; justify-content: center; align-items: center; flex-direction: column;">
             
-            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset;border-top: unset">
+            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 255) 2px, rgb(0, 0, 255) 8px);
+ max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-bottom: unset;border-top: unset">
             </div>
             </section>
         <!-- Projects-->
-        <section style=" border: 1px solid black; border-top: none; border-right:unset; border-left: unset;display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
+        <section style=" border: 1px solid blue; border-top: none; border-right:unset; border-left: unset;display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
-        <div style="max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-top: none; border-bottom: none;">
-            <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-bottom: 1px solid black;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; ">APPLICATION FORM</h2><h1 style="margin-left: 20px; margin-bottom: unset;"></h4></div>
+        <div style="max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-top: none; border-bottom: none;">
+            <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-bottom: 1px solid blue;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; ">APPLICATION FORM</h2><h1 style="margin-left: 20px; margin-bottom: unset;"></h4></div>
             <div style="padding: 10px; display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%;min-height: 40vh;">
-                <iframe class="nadaver" STYLE="width: 60%; height: 40vh; overflow: scroll;" data-tally-src="https://tally.so/embed/mDVb7X?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" frameborder="0" marginheight="0" marginwidth="0" title="Registration form"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+                <iframe class="nadaver" STYLE="filter: sepia(100%) hue-rotate(190deg) saturate(500%);width: 60%; height: 40vh; overflow: scroll;" data-tally-src="https://tally.so/embed/mDVb7X?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" frameborder="0" marginheight="0" marginwidth="0" title="Registration form"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
             </div>
-            <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-top: 1px solid black; "><h1 style="margin-bottom: unset;margin-right: 20px;">☹ ⤑</h1><h4 style="margin-bottom: unset; ">QUIT</h4><h1 style="margin-left: 20px; margin-bottom: unset;">⤑ ☺</h1></div>
+            <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-top: 1px solid blue; "><h1 style="margin-bottom: unset;margin-right: 20px; font-family: 'JetBrains Mono'">☹ --></h1><h4 style="margin-bottom: unset; ">QUIT</h4><h1 style="margin-left: 20px; margin-bottom: unset; font-family: 'JetBrains Mono'">--> ☺</h1></div>
         </section>
 
 
-                        <section style="border-top: none; border-bottom: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
+                        <section style="border-top: none; border-bottom: 1px solid blue; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
-                            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset; border-top: none;">
+                            <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 255) 2px, rgb(0, 0, 255) 8px);
+ max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-bottom: unset; border-top: none;">
                             </div>
                             </section>
         
                             <!--
-        <section style=" border: 1px solid black; border-top: none; border-right:unset; border-left: unset;display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
+        <section style=" border: 1px solid blue; border-top: none; border-right:unset; border-left: unset;display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
-            <div style="max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-top: none; border-bottom: none;">
+            <div style="max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-top: none; border-bottom: none;">
 
-                <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 5vh; border-bottom: 1px solid black;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; TEXT-ALIGN: CENTER;">THINK OF EVERYTHING YOU COULD DO</h4><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
+                <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 5vh; border-bottom: 1px solid blue;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; TEXT-ALIGN: CENTER;">THINK OF EVERYTHING YOU COULD DO</h4><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
     
                 <div class="denoite" style="display: flex; min-height: 15vh;">
 
-                    <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
+                    <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid blue;">
                                         <h4 class="text-white">☑<br>FINISH WRITING YOUR BOOK</h4>
                     </div>
 
-                    <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid black;">
+                    <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; border-right: 1px solid blue;">
                                         <h4 class="text-white">☑<br>PICK UP ON BACHATA</h4>
                     </div>
                     <div class="detarde" style="padding: 30px;text-align: center; display: flex; justify-content: center; align-items: center; width: 100%; ">
@@ -314,9 +322,10 @@ body {
                 </div>
             </div>
             </section>
-                <section style="border-top: none; border-bottom: 1px solid black; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
+                <section style="border-top: none; border-bottom: 1px solid blue; display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
-                    <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 0) 2px, rgb(0, 0, 0) 8px); max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-bottom: unset; border-top: none;">
+                    <div style="background-image: repeating-linear-gradient(-45deg, rgb(243, 243, 243), rgb(243, 243, 243) 7px, rgb(0, 0, 255) 2px, rgb(0, 0, 255) 8px);
+ max-width: 1320px; height: 30vh; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-bottom: unset; border-top: none;">
                     </div>
                     </section>
                 -->
@@ -324,9 +333,9 @@ body {
 
         <!-- Footer-->
         <section style="display: flex; justify-content: center; align-items: center; flex-direction: column;" id="about">
-            <div style="background-color: white; max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid black; border-top: none; border-bottom: none;">
-                <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-bottom: 1px solid black;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; ">MEET YOUR SPONSORS</h4><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
-                <div style="background-image: url('assets/img/beach.png'); background-position:center;background-size: contain; background-repeat: no-repeat; display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; height: 40vh; border-bottom: 1px solid black;">
+            <div style="background-color: white; max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-top: none; border-bottom: none;">
+                <div style="display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-bottom: 1px solid blue;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; ">MEET YOUR SPONSORS</h4><h1 style="margin-left: 20px; margin-bottom: unset;"></h1></div>
+                <div style="filter: sepia(100%) hue-rotate(190deg) saturate(500%); background-image: url('assets/img/beach.png'); background-position:center;background-size: contain; background-repeat: no-repeat; display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%; height: 40vh; border-bottom: 1px solid blue;">
                 </div>
                     <!--
                 <div class="denoite" style="display: flex; max-height: 20vh; overflow: hidden;">
@@ -336,18 +345,18 @@ body {
                                 <img style="max-width: 100%; height: auto;" src="assets/img/isaque.png">
                                 </a>
                                 <h4 class="text-uppercase m-0">isaque seneda</h4>
-                                <div class="small text-black-50"><a href="https://isaque.me/">isaque.me</a></div>
+                                <div class="small text-blue-50"><a href="https://isaque.me/">isaque.me</a></div>
                     </div>
                     <div>
                                 <h4 class="text-uppercase m-0">QUESTIONS?</h4>
-                                <div class="small text-black-50"><a href="https://isaque.me/whatsapp">Shoot us a text!</a></div>
+                                <div class="small text-blue-50"><a href="https://isaque.me/whatsapp">Shoot us a text!</a></div>
                     </div>
                     <div>
                                 <a href="https://fownk.com/">
                                 <img style="max-width: 100%; height: auto;" src="assets/img/matt.png">
                                 </a>
                                 <h4 class="text-uppercase m-0">matt lebedev</h4>
-                                <div class="small text-black-50"><a href="https://fownk.com/">fownk.com</a></div>
+                                <div class="small text-blue-50"><a href="https://fownk.com/">fownk.com</a></div>
                     </div>
                 </div>
                 Project One Row-->
@@ -374,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.head.appendChild(style);
 
     // Add CSS rule for borders on all sides to the style element
-    style.sheet.insertRule('* { border: 1px solid black; padding-top: 20px; padding-bottom: 20px; }', style.sheet.cssRules.length);
+    style.sheet.insertRule('* { border: 1px solid blue; padding-top: 20px; padding-bottom: 20px; }', style.sheet.cssRules.length);
 
     // Select all elements on the page except for script and style tags
     var allElements = document.querySelectorAll('body *:not(script):not(style)');
