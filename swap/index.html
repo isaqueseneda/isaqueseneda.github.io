@@ -253,12 +253,12 @@ body {
                             <ol>
                                 <li style="text-align: left; margin-bottom: 5vh;">Quit your job.</li>
                                 <li style="text-align: left; margin-bottom: 5vh;">Refer
-                                    <a href="https://fownk.com/" id="matt-link">Matt 🔎</a> and
-                                <a href="https://isaque.me/" id="isaac-link">Isaque 🔎</a> to take your spot.
+                                    <a href="https://fownk.com/">Matt</a> and/or
+                                <a href="https://isaque.me/">Isaque</a> to take your spot.
                                 <img id="matt-img" src="assets/img/matt.png" style="display: none; position: absolute;">
                                 <img id="isaac-img" src="assets/img/isaque.png" style="display: none; position: absolute;">
-                                    <br><small>—Guaranteed seamless transition.</small></li>
-                                <li style="text-align: left;">Get your <strong>sabbatical grant*</strong> funds.<br><small>—To be paid out in full by your HR department.</small></li>
+                                  </li>
+                                <li style="text-align: left;">CASH IN YOUR SABBATICAL FUNDS*.<br><small>(AKA YOUR AGENCY'S REFERRAL BONUS)</small></li>
                             </ol>
                             <br>
                         </p>
@@ -273,11 +273,11 @@ body {
                                 <p>ISAQUE SENEDA<br>Sponsor</p>
                             </div>
                         </div>
-                        <strong>
+                        <!--strong>
                             Please apply by <a href="#signup">filling out the form</a> below, and we’ll get back to you!
-                        </strong>
+                        </strong-->
                         <br><br>
-                        <small style="color: rgb(166, 166, 166);">*Valid only at select agencies already on board with cool referral programs. That is: we are not giving you any cash, foo. That's up to your HR department. Conditions may apply.
+                        <small style="color: rgb(166, 166, 166);">*Conditions may apply.
                         </small>
                         <div style="margin-bottom: 100px;"></div>
                     </div>
@@ -302,7 +302,7 @@ body {
         <section style=" border: 1px solid blue; border-top: none; border-right:unset; border-left: unset;display: flex; justify-content: center; align-items: center; flex-direction: column;" id="signup">
             
         <div style="max-width: 1320px; width: 100%; display: flex; flex-direction: column; border: 1px solid blue; border-top: none; border-bottom: none;">
-            <div style="display: flex; flex-direction: column; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-bottom: 1px solid blue;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; ">APPLICATION FORM</h2><small>DEADLINE MAY 31 2024</small><h1 style="margin-left: 20px; margin-bottom: unset;"></h4></div>
+            <div style="display: flex; flex-direction: column; align-items: center;justify-content: center; font-weight: 600; width: 100%; min-height: 20vh; border-bottom: 1px solid blue;"><h1 style="margin-bottom: unset;margin-right: 20px;"></h1><h4 style="margin-bottom: unset; ">APPLICATION FORM</h2><small>DEADLINE MAY 31 2024 23:59 CET</small><h1 style="margin-left: 20px; margin-bottom: unset;"></h4></div>
             <div style="padding: 10px; display: flex; align-items: center;justify-content: center; font-weight: 600; width: 100%;min-height: 40vh;">
                 <iframe class="nadaver" STYLE="filter: sepia(100%) hue-rotate(190deg) saturate(500%);width: 60%; height: 40vh; overflow: scroll; padding-top: 50px; padding-bottom: 50px;" data-tally-src="https://tally.so/embed/mDVb7X?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" frameborder="0" marginheight="0" marginwidth="0" title="Registration form"></iframe><script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
             </div>
@@ -445,6 +445,7 @@ function closeTomorrowPopup() {
 }
 
 /* portfolio preview */
+/* Portfolio preview setup for isaac */
 document.getElementById('matt-link').addEventListener('mouseover', function() {
   showImage('matt-img');
 });
@@ -474,6 +475,8 @@ function hideImage(imgId) {
   img.style.display = 'none'; // Hide the image
   document.removeEventListener('mousemove', handler); // Stop updating position
 }
+
+
         </script>
     </body>
 </html>
