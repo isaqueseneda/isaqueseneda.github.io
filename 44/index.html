@@ -71,8 +71,8 @@
     // Embedding JSON data directly
     const rules = [
     {
-        ruleName: "WELCOME TO PROCESSO 44. SUBMIT YOUR OFFERING HERE.",
-        ruleDescr: "READ GUIDELINES BELOW."
+        ruleName: "WELCOME TO PROCESSO 44",
+        ruleDescr: "READ GUIDELINES AND SUBMIT YOUR OFFERING HERE."
     },
     {
         ruleName: "Harvest from Soul",
@@ -80,7 +80,7 @@
     },
     {
         ruleName: "Be the Bold Captain of a Journey",
-        ruleDescr: "You've found a gold mine in the distance, and you're taking the audience there. They trust you."
+        ruleDescr: "You've found a gold mine in the distance, and you're taking the audience there. So allow them to relax. Take care of them. You're a tour guide, and the city your showing is totally worth it."
     },
     {
         ruleName: "Draft in Bulk, with Randomness",
@@ -88,15 +88,15 @@
     },
     {
         ruleName: "Finish Authentic, Raw, & ASAP",
-        ruleDescr: "Fuck production value. Fixed lens. Only one synth texture. Get form out of the way. Simplify setup and let the content speak. Anyone with access to your tools could have done this. What gives is your heart. Music recorded in a single track with voice and instrument without BPM then worked around."
+        ruleDescr: "Fuck production value. Fixed lens. Use a single synth texture. Get form out of the way. Simplify the setup and let the content speak. Anyone with access to your tools could have done this. What gives is your heart. Music recorded in a single track with voice and instrument without BPM then worked around the momentum."
     },
     {
-        ruleName: "Conclude as Offering (Before You Normally Would)",
-        ruleDescr: "Finish to the point of offering to God. Trust that God is your most avant-garde creative partner and executive producer and can see the soul past the production value. You are trying to put together a pitch to God."
+        ruleName: "Conclude as an Offering Pitch",
+        ruleDescr: "Finish to the point of offering to God. Trust that God is your most avant-garde creative partner and executive producer and can see the soul past the production value. You are trying to put together a pitch to God. It's like you're showing him a menu for your restaurant."
     },
     {
         ruleName: "Only Flow State",
-        ruleDescr: "There's no 'I have to mix this'. If you don't know how to mix, you'll ship it as is. Do not beat yourself up. Do not edit while you create."
+        ruleDescr: "There's no 'I have to mix this'. If you don't know how to mix, you'll ship it as is. Do not beat yourself up. Do not edit while you create. Only think about outcome / distribution once the product is finished."
     },
     {
         ruleName: "Be Synesthetic",
@@ -108,7 +108,7 @@
     },
     {
         ruleName: "Fuck Algorithms + Capital",
-        ruleDescr: "Free-access, own-server, non-profit, ranked, main storage is offline. A website called Processo44 in mono font with a list of everything being shipped ranked by most recent date."
+        ruleDescr: "Free-access, own-server, non-profit, main storage is offline. A website called Processo44 in mono font with a list of everything being shipped, ranked by most recent date, and a list of principles."
     },
     {
         ruleName: "Get the Crew",
@@ -124,27 +124,27 @@
     },
     {
         ruleName: "Get Hated",
-        ruleDescr: "Aim at making at least 30-40% of the world throw up."
+        ruleDescr: "Not only disrespect the 'minimum requirements' for what a song is. Aim at making at least 30-40% of the world throw up."
     },
     {
-        ruleName: "Get Lost",
-        ruleDescr: "Use tools you don't know how to use. Intuition and instincts bring greater ideas than rationality. Do not edit."
-    },
-    {
-        ruleName: "Get the Word Out",
-        ruleDescr: "Ship a short 30-sec preview that captures the core. Social media promotion material is a single screen recording from the website. Website features the aforementioned principles, and a newsletter for notifications about new stuff."
-    },
-    {
-        ruleName: "Ship Daily",
-        ruleDescr: "It's a diary entry, so there's no right or wrong. (Daily podcast called Process044 showcases artist + excerpt of piece in under 10mins). Only think about the outcome and distribution once the product is finished."
+        ruleName: "Get Dunning–Kruger-ing",
+        ruleDescr: "Fuck being a virtuoso. Use tools you don't know how to use. Intuition and instincts bring greater ideas than rationality. Do not allow 'experts' to edit you through invasive thoughts."
     },
     {
         ruleName: "Unlearn Templates",
-        ruleDescr: "Become a native person getting in touch with a drum kit for the first time ever. How would that look like? Maybe you wouldn't sit. Maybe you would throw pieces of the drum kit around, and that would be your piece."
+        ruleDescr: "Become a native person getting in touch with a drum kit for the first time ever. How would that look like? Maybe you wouldn't sit. Maybe you would throw pieces of the drum kit around, and that would express your joy of having found a wild horse."
+    },
+    {
+        ruleName: "Get the Word Out",
+        ruleDescr: "Ship a short 30-sec preview that captures the momentum. Fuck feeds. Only emails or DMs of a single preview file. Send the file, not a link. Website features a newsletter for notifications about new stuff."
+    },
+    {
+        ruleName: "Ship Daily",
+        ruleDescr: "It's a diary entry, so there's no right or wrong. A daily podcast showcases artist + excerpt of piece in under 10mins."
     },
     {
         ruleName: "Faith in the Randomness of Love/Hate",
-        ruleDescr: "People love/hate art based on random factors outside of your control. That's good news because it means there's always going to be some people who are into / cringe at your stuff, from an Ed Sheeran cover to your Marina Abramovićing."
+        ruleDescr: "People love/hate everything based on random factors outside of your control. That's good news because it means there's always going to be some people who are into / cringe at your stuff, anywhere from an Ed Sheeran cover to your Marina Abramovićing."
     }
 ];
 
@@ -459,8 +459,9 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
             </div>
             <div>
+            <a href="javascript:void(0);" onclick="playPreview('${file.previewPath}')" class="file-download">💬</a>
             <a href="javascript:void(0);" onclick="playPreview('${file.previewPath}')" class="file-download">►</a>
-            <a href="${file.downloadPath}" download="${file.title}" class="file-download">Download</a>
+            <a href="${file.downloadPath}" download="${file.title}" class="file-download">⬇</a>
             </div>        `;
         container.appendChild(fileItem);
     });
