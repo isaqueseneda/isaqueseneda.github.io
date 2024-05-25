@@ -618,12 +618,20 @@ img {
   border: 1px solid blue;
   color: white;
   background-color: blue;
+  margin-top: unset;
 }
 
 .thumbtag.iml {
   margin-top: 0px;
   padding: 9px;
   min-width: 53px;
+}
+
+.thumbtag.ff {
+  margin-top: 0px;
+  padding: 9px;
+  min-width: 35px;
+  height: unset;
 }
 
 .thumbtag.medal {
@@ -650,6 +658,10 @@ img {
   border-bottom: 1px solid #000;
 }
 
+.introcontainer.ff{
+  max-height:95vh;
+}
+
 .iamlegend {
   display: -webkit-box;
   display: -webkit-flex;
@@ -670,6 +682,11 @@ img {
   align-items: center;
   line-height: 12px;
   margin-bottom: 5px;
+}
+
+.iamlegend.rules{
+  justify-content: start;
+  text-transform: uppercase;
 }
 
 .imltexto {
@@ -721,6 +738,18 @@ img {
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.paragraphdiv.heymy.files{
+  padding: unset;
+  overflow: scroll;
+  justify-content: START;
+}
+
+.paragraphdiv.rules{
+  justify-content: start;
+  padding: unset;
+  overflow: scroll;
 }
 
 .butialso {
@@ -2161,6 +2190,47 @@ img {
 
 .job-description{
   display: block;
+}
+
+/* FILE LIST */
+.file-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid BLACK ;
+  min-height: 7em;
+}
+.file-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.file-info {
+  flex-grow: 1;
+}
+.file-download {
+  margin-left: 10px;
+  padding: 5px 10px;
+  text-decoration: none;
+  COLOR: BLACK;
+  BORDER: 1PX SOLID BLACK;
+
+}
+
+.file-description{
+  text-transform: uppercase;
+}
+
+.file-download:hover {
+  background-color: BLACK;
+  color: WHITE;
+}
+
+.file-title{
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 
