@@ -449,13 +449,19 @@ document.addEventListener("DOMContentLoaded", function() {
         const fileItem = document.createElement('div');
         fileItem.className = 'file-item';
         fileItem.innerHTML = `
+            <div style="display:flex; ">
             <img src="${file.icon}" alt="File Icon" class="file-icon">
+            <div>
             <div class="file-info">
                 <div class="file-title">${file.title}</div>
                 <div class="file-description">${file.description}</div>
             </div>
+            </div>
+            </div>
+            <div>
             <a href="javascript:void(0);" onclick="playPreview('${file.previewPath}')" class="file-download">►</a>
-            <a href="${file.downloadPath}" download="${file.title}" class="file-download">Download</a>        `;
+            <a href="${file.downloadPath}" download="${file.title}" class="file-download">Download</a>
+            </div>        `;
         container.appendChild(fileItem);
     });
 });
