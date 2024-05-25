@@ -662,6 +662,21 @@ img {
   max-height:95vh;
 }
 
+@media screen and (max-width: 670px) {
+  .introcontainer.ff{
+    max-height: unset;
+    flex-direction: column;
+  }
+  .paragraphdiv.heymy.files{
+    width: unset;
+  }
+
+  .paragraphdiv.rules{
+    width: unset;
+  
+  }
+}
+
 .iamlegend {
   display: -webkit-box;
   display: -webkit-flex;
