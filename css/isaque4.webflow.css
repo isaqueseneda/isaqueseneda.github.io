@@ -2153,7 +2153,15 @@ img {
   height: 14px;
   width: 14px;
   margin-right: 5px;
+  position: relative;
+  top: -1px;
 }
+
+.cv-institution-icon.withsub{
+  position: relative;
+  top: 5px;
+}
+
 
 .cv-award-icon{
   height: 14px;
@@ -2167,6 +2175,20 @@ img {
 .cv-city.big{
   font-size: 14px;
 }
+
+.cv-faculty{
+  margin-left: 19px;
+  font-weight: 300;
+  font-size: 12px;
+  margin-bottom: -4px;
+  position: relative;
+  bottom: 4px;
+}
+
+.cv-offset{
+  margin-left: 19px;
+}
+
 
 .the-3-circles{
   display: flex;
