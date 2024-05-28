@@ -159,22 +159,33 @@ function skewBackground() {
 }
 
 
-// HOVER BOX
-document.querySelectorAll('.hover-link').forEach(link => {
-  link.addEventListener('mouseenter', function (e) {
-      const hoverBox = document.getElementById('hover-box');
-      hoverBox.innerHTML = link.dataset.hover; // Use innerHTML to interpret the <br> tags
-      hoverBox.style.display = 'block';
-  });
 
-  link.addEventListener('mousemove', function (e) {
-      const hoverBox = document.getElementById('hover-box');
-      hoverBox.style.left = e.pageX + 10 + 'px';
-      hoverBox.style.top = e.pageY + 10 + 'px';
-  });
 
-  link.addEventListener('mouseleave', function () {
-      const hoverBox = document.getElementById('hover-box');
-      hoverBox.style.display = 'none';
-  });
+// NEW HOVER
+
+/* portfolio preview */
+/* Portfolio preview setup for isaac */
+
+document.getElementById('isaac-link').addEventListener('mouseover', function() {
+  showImage('isaac-img');
 });
+document.getElementById('isaac-link').addEventListener('mouseout', function() {
+  setTimeout('', 1000);
+  hideImage('isaac-img');
+});
+
+function showImage(imgId) {
+  const img = document.getElementById(imgId);
+  img.style.display = 'block';
+
+  document.addEventListener('mousemove', function handler(e) {
+    img.style.left = e.pageX + 'px';
+    img.style.top = e.pageY - 190 + 'px';
+  });
+}
+
+function hideImage(imgId) {
+  const img = document.getElementById(imgId);
+  img.style.display = 'none';
+  document.removeEventListener('mousemove', handler); // Stop updating position
+}
