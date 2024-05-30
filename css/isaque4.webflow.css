@@ -2092,7 +2092,7 @@ img {
 }
 
 .cv-section.cvexperience{
-  min-height: 1805px;
+  min-height: unset;
 
 }
 
