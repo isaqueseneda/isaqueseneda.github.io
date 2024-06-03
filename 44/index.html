@@ -44,15 +44,15 @@
   </div>
   <div class="introsection wf-section">
     <div class="introcontainer ff">
-      <div class="paragraphdiv heymy files" id="files-container">
-        <!-- File items will be injected here -->
-    </div>
       <div class="paragraphdiv rules">
         <div class="thesearelegends" id="rules-container">
           <!-- Rules will be loaded here -->
         </div>
         
       </div>
+      <div class="paragraphdiv heymy files" id="files-container">
+        <!-- File items will be injected here -->
+    </div>
     </div>
     
   </div>
@@ -72,7 +72,7 @@
     const rules = [
     {
         ruleName: "WELCOME TO PROCESSO 44",
-        ruleDescr: "READ GUIDELINES AND SUBMIT YOUR OFFERING HERE."
+        ruleDescr: "READ GUIDELINES AND SUBMIT YOUR FILES TO 44@ISAQUE.ME."
     },
     {
         ruleName: "Yell A Message Like You Had the Right to Be Heard",
@@ -154,7 +154,7 @@
 
 
 function numberToWords(num) {
-    const words = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+    const words = ['one', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
                    'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
 
     if (num <= 20) {
@@ -194,256 +194,11 @@ window.onload = populateRules;
 document.addEventListener("DOMContentLoaded", function() {
     const filesData = [
       {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
-      },
-      {
-        "title": "Sample Document",
-        "description": "This is a sample PDF document.",
-        "icon": "file_icon.png",
-        "downloadPath": "sample_document.pdf",
-        "previewPath": "sample_preview.mp4"
-      },
-      {
-        "title": "Example Image",
-        "description": "An example image file.",
-        "icon": "image_icon.png",
-        "downloadPath": "example_image.jpg",
-        "previewPath": "example_preview.mp4"
+        "title": "DO FUTURO",
+        "description": "i see you out the window",
+        "icon": "files/DO-FUTURO-i-see-you-out-the-window-1.jpg",
+        "downloadPath": "files/DO-FUTURO-i-see-you-out-the-window-1.mp3",
+        "previewPath": "files/DO-FUTURO-i-see-you-out-the-window-1.mp3"
       },
     ];
 
@@ -463,9 +218,9 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
             </div>
             <div>
-            <a href="javascript:void(0);" onclick="playPreview('${file.previewPath}')" class="file-download">💬</a>
-            <a href="javascript:void(0);" onclick="playPreview('${file.previewPath}')" class="file-download">►</a>
-            <a href="${file.downloadPath}" download="${file.title}" class="file-download">⬇</a>
+            <a style="display: none;" href="javascript:void(0);" onclick="playPreview('${file.previewPath}')" class="file-download">💬</a>
+            <a style="display: none;" href="javascript:void(0);" onclick="playPreview('${file.previewPath}')" class="file-download">►</a>
+            <a href="${file.downloadPath}" class="file-download" download>⬇</a>
             </div>        `;
         container.appendChild(fileItem);
     });
