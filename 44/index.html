@@ -154,7 +154,7 @@
 
 
 function numberToWords(num) {
-    const words = ['one', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+    const words = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
                    'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
 
     if (num <= 20) {
@@ -174,7 +174,7 @@ function populateRules() {
         ruleDiv.className = 'file-item';
         ruleDiv.id = 'rule' + index; // Unique ID for each rule container
         ruleDiv.innerHTML = `            
-            <img src="https://uxwing.com/wp-content/themes/uxwing/download/controller-and-music/${numberToWords(index)}-number-round-icon.png" alt="File Icon" class="file-icon">
+            <!--img src="https://uxwing.com/wp-content/themes/uxwing/download/controller-and-music/${numberToWords(index)}-number-round-icon.png" alt="File Icon" class="file-icon" -->
             <div class="file-info">
                 <div class="file-title">${"#" + index + " " + rule.ruleName}</div>
                 <div class="file-description">${rule.ruleDescr}</div>
