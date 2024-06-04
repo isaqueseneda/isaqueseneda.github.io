@@ -2209,6 +2209,41 @@ img {
   line-height: 16px;
 }
 
+.cv-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d2d2d2;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 50px;
+  width: 100px;
+  position: relative;
+  margin-top: 7px;
+}
+
+.cv-thumb:hover{
+  background-color: grey;
+  color: #fff;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.cv-thumb-img{
+  color: #000;
+}
+
+.cv-thumb-group{
+  display: flex;
+  gap: 10px;
+}
+
+.cv-thumb-arrow{
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
+
 .job-description{
   display: block;
 }
