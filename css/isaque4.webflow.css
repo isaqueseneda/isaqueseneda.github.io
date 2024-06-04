@@ -212,6 +212,17 @@ img {
   background-image: url('../images/fairphone-display-800_x_800.png');
 }
 
+.thumb.tide2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: none;
+  color: #000;
+  text-decoration: none;
+  background-size: 280px;
+  background-image: url('../images/Products_Mockup_4-min.png');
+}
+
 .thumb.tide:hover {
   background-color: #d2d2d2;
 }
@@ -1211,6 +1222,14 @@ img {
 .projectbar100.cover.eucover {
   background-color: #d2d2d2;
   background-image: url('../images/fairphone-display-2000_x_2000.png');
+  background-position: 50% 50%;
+  background-size: auto 75%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.tide {
+  background-color: #d2d2d2;
+  background-image: url('../images/Products_Mockup_4-min-p-2000.png');
   background-position: 50% 50%;
   background-size: auto 75%;
   background-repeat: no-repeat;
