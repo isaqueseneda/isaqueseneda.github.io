@@ -486,9 +486,23 @@ img {
   background-size: auto 57%;
   color: #000;
   text-decoration: none;
+  display: none;
 }
 
 .thumb.bose:hover {
+  background-color: #d2d2d2;
+}
+
+.thumb.fridge {
+  background-image: url('../images/fridge.png');
+  background-position: 50% 60%;
+  background-size: auto 70%;
+  color: #000;
+  text-decoration: none;
+  filter: saturate(90%);
+}
+
+.thumb.fridge:hover {
   background-color: #d2d2d2;
 }
 
@@ -1265,6 +1279,14 @@ img {
   background-image: url('../images/TINI.png');
   background-position: 50% 64%;
   background-size: auto 60%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.fridgecover {
+  background-color: #d2d2d2;
+  background-image: url('../images/fridge.png');
+  background-position: 50% 64%;
+  background-size: auto 72%;
   background-repeat: no-repeat;
 }
 
