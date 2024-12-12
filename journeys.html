@@ -1,527 +1,652 @@
 <!DOCTYPE html>
-<html data-wf-page="613675ac9a5d43079675532a" data-wf-site="613333e9ce20577884dcc804">
-<head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Audiovisual Journeys</title>
-  <style>
-    .dialoguebg.av{
-      display: flex;
-    }
+<html
+  data-wf-page="613675ac9a5d43079675532a"
+  data-wf-site="613333e9ce20577884dcc804"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
+    <title>Audiovisual Journeys</title>
+    <style>
+        .dialoguebg.av{
+          display: flex;
+        }
 
-    .body.av{
-      background-color: black;
-      color: white;
-      overflow-y: hidden;
-    }
+        .body.av{
+          background-color: black;
+          color: white;
+          overflow-y: hidden;
+        }
 
-    .inheadertitlebox.av{
-      background-color: black;
-      border-bottom: 1px solid grey;
-    }
+        .inheadertitlebox.av{
+          background-color: black;
+          border-bottom: 1px solid grey;
+        }
 
-    .coselectorwrap.av{
-      border: 1px solid grey;
-    }
+        .coselectorwrap.av{
+          border: 1px solid grey;
+        }
 
-    .theblackcircle.av{
-      border: 1px solid grey;
-      background-color: grey;
-    }
+        .theblackcircle.av{
+          border: 1px solid grey;
+          background-color: grey;
+        }
 
-    .theproject.av{
-      height: 100%;
-      position: absolute;
-    }
+        .theproject.av{
+          height: 100%;
+          position: absolute;
+        }
 
-    .projectbar100.av{
-      height: 80%;
-      background-color: var(--avBG);
-      justify-content: space-around;
-      border-bottom: 1px solid grey;
-      border-top: unset;
-    }
-        
-    .av-video {
-      width: 70vw;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5vh;
-    }
+        .projectbar100.av{
+          height: 80%;
+          background-color: var(--avBG);
+          justify-content: space-around;
+          border-bottom: 1px solid grey;
+          border-top: unset;
+        }
 
-    .av-side{
-      width: 30vw;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: white;
-      padding-bottom: 20px;
-    }
+        .av-video {
+          width: 70vw;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5vh;
+        }
 
-    .projectbar100.av-tbn{
-      height: 200px;
-      min-height: unset;
-      width: 100vw;
-      display: flex;
-      align-items: start;
-      justify-content: start;
-      overflow: hidden;
- 
-    }
+        .av-side{
+          width: 30vw;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          color: white;
+          padding-bottom: 20px;
+        }
 
-    .thumbtag.av{
-      background-color: black;
-      border: 1px solid white;
-    }
-    
-    .thumbav{
-      height: 100%;
-      border-right: 1px solid grey;
-      border-bottom: 1px solid grey;
-      cursor: inherit;
-      width: 12.5%;
-    }
+        .projectbar100.av-tbn{
+          height: 200px;
+          min-height: unset;
+          width: 100vw;
+          display: flex;
+          align-items: start;
+          justify-content: start;
+          overflow: hidden;
 
-    .thumbav:hover{
-      background-color: #2b2b2b;
-    }
+        }
 
-    .thumbtitletext.av{
-      color:white;
-    }
+        .thumbtag.av{
+          background-color: black;
+          border: 1px solid white;
+        }
 
-    .thumbav.selected {
-      background-color: #2b2b2b;
-    }
+        .thumbav{
+          height: 100%;
+          border-right: 1px solid grey;
+          border-bottom: 1px solid grey;
+          cursor: inherit;
+          width: 12.5%;
+        }
 
-    .slideshow-container {
-      padding: 5vh;
-    }
+        .thumbav:hover{
+          background-color: #2b2b2b;
+        }
 
-    .mySlides{
-      background-color: #d2d2d2;
-    }
+        .thumbtitletext.av{
+          color:white;
+        }
 
-    .mySlide{
-    }
+        .thumbav.selected {
+          background-color: #2b2b2b;
+        }
 
-    .navigation-button {
-    font-size: 1.5em;
-    padding: 10px;
-    margin: 5px;
-    cursor: inherit;
-    border: none;
-    background-color: transparent;
-    color: #FFFFFF;
-    position: absolute;
-    }
-    .navigation-button:hover {
-      color: #CCCCCC;
-    }
+        .slideshow-container {
+          padding: 5vh;
+        }
 
-    @media screen and (max-width: 1200px) {
-      .projectbar100.av{
-      flex-direction: column;
-      justify-content:center;
+        .mySlides{
+          background-color: #d2d2d2;
+        }
+
+        .mySlide{
+        }
+
+        .navigation-button {
+        font-size: 1.5em;
+        padding: 10px;
+        margin: 5px;
+        cursor: inherit;
+        border: none;
+        background-color: transparent;
+        color: #FFFFFF;
+        position: absolute;
+        }
+        .navigation-button:hover {
+          color: #CCCCCC;
+        }
+
+        @media screen and (max-width: 1200px) {
+          .projectbar100.av{
+          flex-direction: column;
+          justify-content:center;
+          }
+          .av-video{
+            width: 100vw;
+            height: 75%;
+          }
+          .av-side{
+            width: 100vw;
+            height: unset;
+            align-items: center;
+            justify-content: start;
+          }
+          .theproject.av{
+            flex-direction: column;
+            overflow-y: unset;
+            justify-content: start;
+          }
+          .body.av{
+            overflow-y: unset;
+          }
+          .projectbar100.av{
+          height: 72vh;
+          }
+          .projectbar100.av-tbn{
+          height: 20vh;
+          }
+          .thumbav{
+          width: 25%;
+          height: 9.8vh;
+          }
+        }
+
+        @media screen and (max-width: 500px) {
+          .thumbav{
+          width: 50%;
+          height: 7.95vh;
+          }
+          .projectbar100.av-tbn{
+          height: 32vh;
+          }
+          .projectbar100.av{
+          height: 60vh;
+          }
+        }
+
+        @media screen and (max-height: 1000px) {
+          .projectbar100.av{
+          height: 80vh;
+        }
+          .theproject.av{
+            height: unset;
+          }
+
+        @media screen and (max-height: 600px) {
+          .body.av{
+            overflow-y: unset;
+        }
       }
-      .av-video{
-        width: 100vw;
-        height: 75%;
-      }
-      .av-side{
-        width: 100vw;
-        height: unset;
-        align-items: center;
-        justify-content: start;
-      }
-      .theproject.av{
-        flex-direction: column;
-        overflow-y: unset;
-        justify-content: start;
-      }
-      .body.av{
-        overflow-y: unset;
-      }
-      .projectbar100.av{
-      height: 72vh;
-      }
-      .projectbar100.av-tbn{
-      height: 20vh;
-      }
-      .thumbav{
-      width: 25%;
-      height: 9.8vh;
-      }
-    }
-  
-    @media screen and (max-width: 500px) {
-      .thumbav{
-      width: 50%;
-      height: 7.95vh;
-      }
-      .projectbar100.av-tbn{
-      height: 32vh;
-      }
-      .projectbar100.av{
-      height: 60vh;
-      }
-    }
-
-    @media screen and (max-height: 1000px) {
-      .projectbar100.av{
-      height: 80vh;
-    }
-      .theproject.av{
-        height: unset;
-      }
-
-    @media screen and (max-height: 600px) {
-      .body.av{
-        overflow-y: unset;
-    }
-  }
-    
-  </style>
-  <meta content="Audiovisual Journeys" property="og:title">
-  <meta content="Audiovisual Journeys" property="twitter:title">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Webflow" name="generator">
-  <link href="css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="css/isaque4.webflow.css" rel="stylesheet" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
-  <script type="text/javascript">
-    WebFont.load({
-      google: {
-        families: ["JetBrains Mono:200,300,regular,600,700,800,600italic"]
-      }
-    });
-  </script>
+    </style>
+    <meta content="Audiovisual Journeys" property="og:title" />
+    <meta content="Audiovisual Journeys" property="twitter:title" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Webflow" name="generator" />
+    <link href="css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="css/webflow.css" rel="stylesheet" type="text/css" />
+    <link href="css/isaque4.webflow.css" rel="stylesheet" type="text/css" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      WebFont.load({
+        google: {
+          families: ["JetBrains Mono:200,300,regular,600,700,800,600italic"],
+        },
+      });
+    </script>
     <script type="text/javascript">
       (function (o, c) {
         var n = c.documentElement,
           t = " w-mod-";
-        n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
+        (n.className += t + "js"),
+          ("ontouchstart" in o ||
+            (o.DocumentTouch && c instanceof DocumentTouch)) &&
+            (n.className += t + "touch");
       })(window, document);
     </script>
-  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
-  <link href="images/webclip.png" rel="apple-touch-icon">
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-34XBLJNX5W"></script>
-  <script type="text/javascript">
-    window.dataLayer = window.dataLayer || [];
+    <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="images/webclip.png" rel="apple-touch-icon" />
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=G-34XBLJNX5W"
+    ></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'G-34XBLJNX5W', {
-      'anonymize_ip': false
-    });
-  </script>
-</head>
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-34XBLJNX5W", {
+        anonymize_ip: false,
+      });
+    </script>
+  </head>
 
-<body class="body av">
-  <div data-w-id="d339e086-dec9-6fa9-e1ad-d59c9fc4e23b" class="dialoguebg av">
-    <div class="dialoguebox">
-      <div style="color: black"><strong>WELCOME!<br></strong><br>Here you can navigate through some of my music and films.‍</div>
-      <img width="50px" style="margin: 15px;" src="images/keyarrows.png">
-      <BR><div data-w-id="98f09f79-adce-57c7-8e8e-dada48a65041">
-        <button id="avbutton" style="color: black; padding: 5px; cursor: inherit;">LET'S GO!</button>
+  <body class="body av">
+    <div data-w-id="d339e086-dec9-6fa9-e1ad-d59c9fc4e23b" class="dialoguebg av">
+      <div class="dialoguebox">
+        <div style="color: black">
+          <strong>WELCOME!<br /></strong><br />Here you can navigate through
+          some of my music and films.‍
+        </div>
+        <img width="50px" style="margin: 15px" src="images/keyarrows.png" />
+        <br />
+        <div data-w-id="98f09f79-adce-57c7-8e8e-dada48a65041">
+          <button
+            id="avbutton"
+            style="color: black; padding: 5px; cursor: inherit"
+          >
+            LET'S GO!
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="header">
-    <div class="inheadertitlebox av">
-      <a style="color:white" av href="index.html" class="link">&#60;-BACK</a>
-      <a style="color:white" href="#" class="link projectname">AUDIOVISUAL JOURNEYS</a>
-      <div data-w-id="d342c014-63fa-44c6-767a-1dacd9ee3b2e" class="chaosorder">
-        <div class="coselectorwrap av">
-          <div data-w-id="d342c014-63fa-44c6-767a-1dacd9ee3b30" class="theblackcircle av"></div>
+    <div class="header">
+      <div class="inheadertitlebox av">
+        <a style="color: white" av href="index.html" class="link">&#60;-BACK</a>
+        <a style="color: white" href="#" class="link projectname"
+          >AUDIOVISUAL JOURNEYS</a
+        >
+        <div
+          data-w-id="d342c014-63fa-44c6-767a-1dacd9ee3b2e"
+          class="chaosorder"
+        >
+          <div class="coselectorwrap av">
+            <div
+              data-w-id="d342c014-63fa-44c6-767a-1dacd9ee3b30"
+              class="theblackcircle av"
+            ></div>
+          </div>
+          <div style="color: white" class="cotext">chaos</div>
+          <button
+            id="dark-mode-toggle"
+            href="#"
+            class="dark-mode-toggle w-button"
+          ></button>
         </div>
-        <div style="color:white" class="cotext">chaos</div>
-        <button id="dark-mode-toggle" href="#" class="dark-mode-toggle w-button"></button>
       </div>
+      <div class="headerplaceholder"></div>
     </div>
-    <div class="headerplaceholder"></div>
-  </div>
-  <div class="theproject av">
-    <!-- Short Film: The Guaporé Akodont -->
-    <div class="projectbar100 av" id="content1">
+    <div class="theproject av">
+      <!-- Short Film: The Guaporé Akodont -->
+      <div class="projectbar100 av" id="content1">
         <div class="av-video">
-            <iframe width="100%" height="100%" src="https://player.vimeo.com/video/585520267?h=d96f90b929&title=0&byline=0&portrait=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://player.vimeo.com/video/585520267?h=d96f90b929&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
         <div class="av-side">
-            <div class="thumbtagcontainer projectpage">
-                <div class="thumbtag av">Short Film</div>
-            </div>
-            <div class="pbtext">Shot in Transylvania.<br></div>
+          <div class="thumbtagcontainer projectpage">
+            <div class="thumbtag av">Short Film</div>
+          </div>
+          <div class="pbtext">Shot in Transylvania.<br /></div>
         </div>
-    </div>
-    
-    <!-- Album: unburden -->
-    <div class="projectbar100 av" id="content2">
-        <div class="av-video">
-          <iframe style="border-radius:12px; max-height: 770px;" src="https://open.spotify.com/embed/album/6xaZrtMEdxRkUc6lEOtWpK?utm_source=generator&theme=0" width="70%" height="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-        <div class="av-side">
-            <div class="thumbtagcontainer projectpage">
-                <div class="thumbtag av">Album</div>
-            </div>
-            <div class="pbtext">"unburden" is a coming-of-age folktronica project about being away from home. You can listen to the complete album on Spotify.<br></div>
-        </div>
-    </div>
+      </div>
 
-    <!-- Music Video: Show Me The Way -->
-    <div class="projectbar100 av" id="content3">
+      <!-- Album: unburden -->
+      <div class="projectbar100 av" id="content2">
         <div class="av-video">
-            <iframe width="100%" height="100%" src="https://player.vimeo.com/video/530465586?h=d96f90b929&title=0&byline=0&portrait=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            style="border-radius: 12px; max-height: 770px"
+            src="https://open.spotify.com/embed/album/6xaZrtMEdxRkUc6lEOtWpK?utm_source=generator&theme=0"
+            width="70%"
+            height="100%"
+            frameborder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>
         </div>
         <div class="av-side">
-            <div class="thumbtagcontainer projectpage">
-                <div class="thumbtag av">Music Video</div>
-            </div>
-            <div class="pbtext">A music video for unburden.<br></div>
+          <div class="thumbtagcontainer projectpage">
+            <div class="thumbtag av">Album</div>
+          </div>
+          <div class="pbtext">
+            "unburden" is a coming-of-age folktronica project about being away
+            from home. You can listen to the complete album on Spotify.<br />
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Music Video: Fall 2 -->
-    <div class="projectbar100 av" id="content4">
+      <!-- Music Video: Show Me The Way -->
+      <div class="projectbar100 av" id="content3">
         <div class="av-video">
-            <iframe width="100%" height="100%" src="https://player.vimeo.com/video/601039720?h=d96f90b929&title=0&byline=0&portrait=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://player.vimeo.com/video/530465586?h=d96f90b929&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
         <div class="av-side">
-            <div class="thumbtagcontainer projectpage">
-                <div class="thumbtag av">Music Video</div>
-            </div>
-            <div class="pbtext">A music video for unburden.<br></div>
+          <div class="thumbtagcontainer projectpage">
+            <div class="thumbtag av">Music Video</div>
+          </div>
+          <div class="pbtext">A music video for unburden.<br /></div>
         </div>
-    </div>
+      </div>
 
-    <!-- Music Video: AA -->
-    <div class="projectbar100 av" id="content5">
+      <!-- Music Video: Fall 2 -->
+      <div class="projectbar100 av" id="content4">
         <div class="av-video">
-            <iframe width="100%" height="100%" src="https://player.vimeo.com/video/274861469?h=d96f90b929&title=0&byline=0&portrait=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://player.vimeo.com/video/601039720?h=d96f90b929&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
         <div class="av-side">
-            <div class="thumbtagcontainer projectpage">
-                <div class="thumbtag av">Music Video</div>
-            </div>
-            <div class="pbtext">A music video for the first single of DO FUTURO.<br></div>
+          <div class="thumbtagcontainer projectpage">
+            <div class="thumbtag av">Music Video</div>
+          </div>
+          <div class="pbtext">A music video for unburden.<br /></div>
         </div>
-    </div>
+      </div>
 
-    <!-- Music Video: MOMO’s -->
-    <div class="projectbar100 av" id="content6">
+      <!-- Music Video: AA -->
+      <div class="projectbar100 av" id="content5">
         <div class="av-video">
-            <iframe width="100%" height="100%" src="https://player.vimeo.com/video/724959566?h=d96f90b929&title=0&byline=0&portrait=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://player.vimeo.com/video/274861469?h=d96f90b929&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
         <div class="av-side">
-            <div class="thumbtagcontainer projectpage">
-                <div class="thumbtag av">Music Video</div>
-            </div>
-            <div class="pbtext">A fan-made music video for James Blake’s song.<br></div>
+          <div class="thumbtagcontainer projectpage">
+            <div class="thumbtag av">Music Video</div>
+          </div>
+          <div class="pbtext">
+            A music video for the first single of DO FUTURO.<br />
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Photography: Downtown Sao Paulo -->
-    <div class="projectbar100 av" id="content7">
+      <!-- Music Video: MOMO’s -->
+      <div class="projectbar100 av" id="content6">
+        <div class="av-video">
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://player.vimeo.com/video/724959566?h=d96f90b929&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="av-side">
+          <div class="thumbtagcontainer projectpage">
+            <div class="thumbtag av">Music Video</div>
+          </div>
+          <div class="pbtext">
+            A fan-made music video for James Blake’s song.<br />
+          </div>
+        </div>
+      </div>
+
+      <!-- Photography: Downtown Sao Paulo -->
+      <div class="projectbar100 av" id="content7">
         <div class="av-video">
           <div class="slideshow-container">
-
             <div class="mySlides">
-              <img src="images/Mockup-min.png" class="mySlide">
+              <img src="images/Mockup-min.png" class="mySlide" />
             </div>
 
             <div class="mySlides">
-              <img src="images/blei3.png" class="mySlide">
-            </div>
-          
-            <div class="mySlides">
-              <img src="images/blei4.png" class="mySlide">
-            </div>
-          
-            <div class="mySlides">
-              <img src="images/blei5.png" class="mySlide">
+              <img src="images/blei3.png" class="mySlide" />
             </div>
 
             <div class="mySlides">
-              <img src="images/blei6.png" class="mySlide">
+              <img src="images/blei4.png" class="mySlide" />
             </div>
 
             <div class="mySlides">
-              <img src="images/blei7.png" class="mySlide">
+              <img src="images/blei5.png" class="mySlide" />
             </div>
-          
+
+            <div class="mySlides">
+              <img src="images/blei6.png" class="mySlide" />
+            </div>
+
+            <div class="mySlides">
+              <img src="images/blei7.png" class="mySlide" />
+            </div>
           </div>
         </div>
         <div class="av-side">
-            <div class="thumbtagcontainer projectpage">
-                <div class="thumbtag av">Photography</div>
-            </div>
-            <div class="pbtext">São Paulo is the epicenter of diversity in Brazil. In this series, we look at glimpses of social inequality and a nostalgic Paulista architecture.<br></div>
+          <div class="thumbtagcontainer projectpage">
+            <div class="thumbtag av">Photography</div>
+          </div>
+          <div class="pbtext">
+            São Paulo is the epicenter of diversity in Brazil. In this series,
+            we look at glimpses of social inequality and a nostalgic Paulista
+            architecture.<br />
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Short Film: Handball -->
-    <div class="projectbar100 av" id="content8">
+      <!-- Short Film: Handball -->
+      <div class="projectbar100 av" id="content8">
         <div class="av-video">
-            <iframe width="100%" height="100%" src="https://player.vimeo.com/video/491797650?h=d96f90b929&title=0&byline=0&portrait=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://player.vimeo.com/video/491797650?h=d96f90b929&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
         <div class="av-side">
-            <div class="thumbtagcontainer projectpage">
-                <div class="thumbtag av">Short Film</div>
-            </div>
-            <div class="pbtext">Shot in the woods.<br></div>
+          <div class="thumbtagcontainer projectpage">
+            <div class="thumbtag av">Short Film</div>
+          </div>
+          <div class="pbtext">Shot in the woods.<br /></div>
         </div>
-    </div>
+      </div>
 
-    <!-- Thumbnails -->
-    <div class="projectbar100 av-tbn">
+      <!-- Thumbnails -->
+      <div class="projectbar100 av-tbn">
         <div class="thumbav" onclick="changeTab(0)">
-            <div class="title">
-                <div class="thumbtitletext av"><strong>SHORT FILM<br>‍</strong>THE GUAPORÉ AKODONT</div>
+          <div class="title">
+            <div class="thumbtitletext av">
+              <strong>SHORT FILM<br />‍</strong>THE GUAPORÉ AKODONT
             </div>
+          </div>
         </div>
         <div class="thumbav" onclick="changeTab(1)">
-            <div class="title">
-                <div class="thumbtitletext av"><strong>ALBUM<br>‍</strong>UNBURDEN</div>
+          <div class="title">
+            <div class="thumbtitletext av">
+              <strong>ALBUM<br />‍</strong>UNBURDEN
             </div>
+          </div>
         </div>
         <div class="thumbav" onclick="changeTab(2)">
-            <div class="title">
-                <div class="thumbtitletext av"><strong>MUSIC VIDEO<br>‍</strong>SHOW ME THE WAY</div>
+          <div class="title">
+            <div class="thumbtitletext av">
+              <strong>MUSIC VIDEO<br />‍</strong>SHOW ME THE WAY
             </div>
+          </div>
         </div>
         <div class="thumbav" onclick="changeTab(3)">
-            <div class="title">
-                <div class="thumbtitletext av"><strong>MUSIC VIDEO<br>‍</strong>FALL 2</div>
+          <div class="title">
+            <div class="thumbtitletext av">
+              <strong>MUSIC VIDEO<br />‍</strong>FALL 2
             </div>
+          </div>
         </div>
         <div class="thumbav" onclick="changeTab(4)">
-            <div class="title">
-                <div class="thumbtitletext av"><strong>MUSIC VIDEO<br>‍</strong>AA</div>
+          <div class="title">
+            <div class="thumbtitletext av">
+              <strong>MUSIC VIDEO<br />‍</strong>AA
             </div>
+          </div>
         </div>
         <div class="thumbav" onclick="changeTab(5)">
-            <div class="title">
-                <div class="thumbtitletext av"><strong>MUSIC VIDEO<br>‍</strong>MOMO’s</div>
+          <div class="title">
+            <div class="thumbtitletext av">
+              <strong>MUSIC VIDEO<br />‍</strong>MOMO’s
             </div>
+          </div>
         </div>
         <div class="thumbav" onclick="changeTab(6)">
-            <div class="title">
-                <div class="thumbtitletext av"><strong>PHOTOGRAPHY<br>‍</strong>DOWNTOWN SAO PAULO</div>
+          <div class="title">
+            <div class="thumbtitletext av">
+              <strong>PHOTOGRAPHY<br />‍</strong>DOWNTOWN SAO PAULO
             </div>
+          </div>
         </div>
         <div class="thumbav" onclick="changeTab(7)">
-            <div class="title">
-                <div class="thumbtitletext av"><strong>SHORT FILM<br>‍</strong>HANDBALL</div>
+          <div class="title">
+            <div class="thumbtitletext av">
+              <strong>SHORT FILM<br />‍</strong>HANDBALL
             </div>
+          </div>
         </div>
-    </div>
-</div>
-<div class="footer wf-section">
-  <div class="contactbye about">
-    <div class="me">
-      <a href="#" class="contact">CURRENTLY AT 2049</a>
-    </div>
-    <div class="contactblock">
-      <div class="linkmesmobox">
-        <span class="contact">hello@isaque.me</span>
-        <a href="calendar.html" class="contact">cal</a>
-        <a href="https://www.linkedin.com/in/isaqueseneda/" target="_blank" class="contact">linkedin</a>
-        <a href="about.html" class="contact">about</a>
       </div>
     </div>
-  </div>
-  <div class="contactbye about"></div>
-</div>
+    <div class="footer wf-section">
+      <div class="contactbye about">
+        <div class="me">
+          <a href="#" class="contact">2024 GOLDEN SAW HOLDER</a>
+        </div>
+        <div class="contactblock">
+          <div class="linkmesmobox">
+            <span class="contact">hello@isaque.me</span>
+            <a href="calendar.html" class="contact">cal</a>
+            <a
+              href="https://www.linkedin.com/in/isaqueseneda/"
+              target="_blank"
+              class="contact"
+              >linkedin</a
+            >
+            <a href="about.html" class="contact">about</a>
+          </div>
+        </div>
+      </div>
+      <div class="contactbye about"></div>
+    </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="js/webflow.js" type="text/javascript"></script>
-  <script type="text/javascript">
-    $(document).ready(function () {
-      window.changeTab = function (tabNum) {
-        $('.projectbar100.av').css('display', 'none');
-        $('#content' + (tabNum + 1)).css('display', 'flex');
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/webflow.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        window.changeTab = function (tabNum) {
+          $(".projectbar100.av").css("display", "none");
+          $("#content" + (tabNum + 1)).css("display", "flex");
 
-        // Remove the "selected" class from all thumbnails
-        $('.thumbav').removeClass('selected');
-        // Add the "selected" class to the clicked thumbnail
-        $('.thumbav').eq(tabNum).addClass('selected');
+          // Remove the "selected" class from all thumbnails
+          $(".thumbav").removeClass("selected");
+          // Add the "selected" class to the clicked thumbnail
+          $(".thumbav").eq(tabNum).addClass("selected");
 
-        // Update the URL with the hash extension
-        window.location.hash = '#' + (tabNum + 1);
-      }
+          // Update the URL with the hash extension
+          window.location.hash = "#" + (tabNum + 1);
+        };
 
-      // Initially hide all project bars and show the first one
-      $('.projectbar100.av').css('display', 'none');
-      $('#content1').css('display', 'flex');
+        // Initially hide all project bars and show the first one
+        $(".projectbar100.av").css("display", "none");
+        $("#content1").css("display", "flex");
 
-      // Check if the URL has a hash and navigate to the corresponding tab
-      var hash = window.location.hash;
-      if (hash) {
-        var tabNum = parseInt(hash.substr(1)) - 1;
-        if (!isNaN(tabNum) && tabNum >= 0 && tabNum < $('.thumbav').length) {
-          changeTab(tabNum);
+        // Check if the URL has a hash and navigate to the corresponding tab
+        var hash = window.location.hash;
+        if (hash) {
+          var tabNum = parseInt(hash.substr(1)) - 1;
+          if (!isNaN(tabNum) && tabNum >= 0 && tabNum < $(".thumbav").length) {
+            changeTab(tabNum);
+          }
         }
-      }
 
-      // Add keyboard navigation
-      $(document).keydown(function (e) {
-        var currentTab = $('.thumbav.selected').index();
-        if (e.keyCode == 37) { // Left arrow key
-          currentTab = (currentTab - 1 + $('.thumbav').length) % $('.thumbav').length;
-        } else if (e.keyCode == 39) { // Right arrow key
-          currentTab = (currentTab + 1) % $('.thumbav').length;
-        }
-        changeTab(currentTab);
+        // Add keyboard navigation
+        $(document).keydown(function (e) {
+          var currentTab = $(".thumbav.selected").index();
+          if (e.keyCode == 37) {
+            // Left arrow key
+            currentTab =
+              (currentTab - 1 + $(".thumbav").length) % $(".thumbav").length;
+          } else if (e.keyCode == 39) {
+            // Right arrow key
+            currentTab = (currentTab + 1) % $(".thumbav").length;
+          }
+          changeTab(currentTab);
+        });
       });
-    });
-
-  </script>
-  <script>
-    var slideIndex = 0;
-    showSlides();
-    
-    function showSlides() {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) {slideIndex = 1}    
-      slides[slideIndex-1].style.display = "block";  
-      setTimeout(showSlides, 2000); // Change image every 2 seconds
-    }
     </script>
-          <!-- Intro Box Welcome -->
-          <script>
-document.addEventListener("DOMContentLoaded", function() {
-  
-  var hideElements = function() {
-    var elements = document.querySelectorAll('.dialoguebg.av');
+    <script>
+      var slideIndex = 0;
+      showSlides();
 
-    elements.forEach(function(element) {
-      element.style.display = 'none';
-    });
-  }
+      function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+      }
+    </script>
+    <!-- Intro Box Welcome -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var hideElements = function () {
+          var elements = document.querySelectorAll(".dialoguebg.av");
 
-  document.getElementById('avbutton').addEventListener('click', hideElements);
+          elements.forEach(function (element) {
+            element.style.display = "none";
+          });
+        };
 
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      hideElements();
-    }
-  });
-});
-</script>
+        document
+          .getElementById("avbutton")
+          .addEventListener("click", hideElements);
 
-
-</body>
-
+        document.addEventListener("keydown", function (event) {
+          if (
+            event.key === "Enter" ||
+            event.key === " " ||
+            event.key === "ArrowUp" ||
+            event.key === "ArrowDown" ||
+            event.key === "ArrowLeft" ||
+            event.key === "ArrowRight"
+          ) {
+            hideElements();
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
