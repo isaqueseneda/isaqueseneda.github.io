@@ -811,7 +811,7 @@
         const container = document.getElementById('awards-summary');
         container.innerHTML = summary.map(({ competition, counts }) => `
             <div>
-                <div style="margin-bottom: 6px;">${competition}</div>
+                <div style="margin-bottom: 1px;">${competition}</div>
                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                     ${counts.map(([cat, count]) => `
                         <div style="display: flex; align-items: center; gap: 4px; background: #f3f3f3; 
