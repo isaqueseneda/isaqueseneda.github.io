@@ -606,7 +606,7 @@ img {
 }
 
 .thumbtagcontainer.projectpage {
-  max-width: 40%;
+  max-width: 70%;
   justify-content: center;
 }
 
@@ -618,7 +618,8 @@ img {
   height: 2.2em;
   margin-top: 12px;
   margin-right: 12px;
-  padding: 12px 9px;
+  /* padding: 12px 9px; */
+  padding: 15px 12px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -627,11 +628,23 @@ img {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  border: 1px solid #000;
-  background-color: #fff;
+  border: 1px solid #ddd;
+  /* border: 1px solid black; */
+  background-color: #f3f3f3;
+  /* background-color: rgb(107, 107, 107);
+  color: white; */
   font-size: 11px;
   text-decoration: none;
   min-width: 33px;
+  border-radius: 20px;
+  white-space: nowrap;
+  text-align: center;
+  /* filter: grayscale(1); */
+}
+
+.thesearelegends {
+  display: grid;
+  gap: 4px;
 }
 
 .thumbtag.new {
@@ -642,7 +655,7 @@ img {
 
 .thumbtag.iml {
   margin-top: 0px;
-  padding: 9px;
+  /* padding: 9px; */
   min-width: 53px;
 }
 
@@ -658,7 +671,6 @@ img {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background-color: blue;
 }
 
 .myname {
@@ -722,9 +734,9 @@ img {
 .skill_subcategory_badge {
   font-weight: 500;
   color: white;
-  background-color: #aaa;
+  background-color: gray;
   border-radius: 50px;
-  padding: 0px 10px;
+  padding: 2px 12px;
   width: fit-content;
   margin-bottom: 10px;
 }
@@ -893,9 +905,13 @@ img {
   -ms-flex-line-pack: stretch;
   align-content: stretch;
   border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  border-left: 1px solid #000;
+  max-width: 1530px;
+  margin: 0 auto;
 }
 
-.contactbye {
+.wf-section .contactbye {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
