@@ -2207,6 +2207,7 @@ img {
 .cv-institution {
   font-size: 14px;
   font-weight: 700;
+  white-space: preserve nowrap;
 }
 
 .cv-institution-icon {
