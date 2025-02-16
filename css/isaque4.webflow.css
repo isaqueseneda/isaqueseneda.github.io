@@ -1559,6 +1559,13 @@ img {
   max-width: 47vw;
 }
 
+.mysig-widgets {
+  width: 500px;
+  height: auto;
+  object-fit: cover;
+  margin: 7vh 0px;
+}
+
 .mt-class-gif {
   height: 35vh;
   margin-top: 30vh;
