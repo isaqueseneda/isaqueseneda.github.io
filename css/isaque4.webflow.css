@@ -532,6 +532,19 @@ img {
   background-color: #d2d2d2;
 }
 
+.thumb.mysig {
+  overflow: hidden;
+  background-image: url("../images/mysigthumb.png");
+  background-position: 50% 50%;
+  background-size: auto 65%;
+  color: #000;
+  text-decoration: none;
+}
+
+.thumb.mysig:hover {
+  background-color: #d2d2d2;
+}
+
 .div-block-2 {
   min-height: 400px;
   min-width: 400px;
@@ -1290,6 +1303,14 @@ img {
   background-image: url("../images/feed-peek-logo.png");
   background-position: 50% 50%;
   background-size: auto 95%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.mysig {
+  background-color: #d2d2d2;
+  background-image: url("../images/mysigthumb.png");
+  background-position: 50% 50%;
+  background-size: auto 75%;
   background-repeat: no-repeat;
 }
 
