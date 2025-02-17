@@ -669,8 +669,9 @@ img {
 
 .thumbtag.iml {
   margin-top: 0px;
-  /* padding: 9px; */
-  min-width: 53px;
+  margin-left: 3px;
+  /* padding: 0px 9px; */
+  min-width: 70px;
 }
 
 .thumbtag.ff {
