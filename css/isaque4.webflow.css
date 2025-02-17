@@ -374,7 +374,7 @@ img {
 
 .thumb.megatable {
   background-image: url("../images/megatable_thumb.png");
-  background-size: auto 67%;
+  background-size: auto 50%;
   color: #000;
   text-decoration: none;
 }
