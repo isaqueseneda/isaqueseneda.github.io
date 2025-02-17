@@ -491,7 +491,7 @@ img {
 .thumb.fridge {
   background-image: url("../images/fridge.png");
   background-position: 50% 60%;
-  background-size: auto 70%;
+  background-size: auto 60%;
   color: #000;
   text-decoration: none;
   filter: saturate(90%);
