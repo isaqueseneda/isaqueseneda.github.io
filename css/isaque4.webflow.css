@@ -535,7 +535,7 @@ img {
 .thumb.mysig {
   overflow: hidden;
   background-image: url("../images/mysigthumb.png");
-  background-position: 50% 50%;
+  background-position: 50% 55%;
   background-size: auto 55%;
   color: #000;
   text-decoration: none;
