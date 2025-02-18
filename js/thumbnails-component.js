@@ -1,11 +1,14 @@
 // Allowed badges (whitelist)
-const ALLOWED_BADGES = new Set([
-  "🏆",
-  "📐 STRAT",
-  "✏️ CREAT",
-  "📟 #####",
-  "MORE",
-]);
+const ALLOWED_BADGES = new Set(["🏆", "📐 STRAT", "✏️ CREAT", "📟 #####"]);
+
+// Function to get current page URL without domain
+function getCurrentPage() {
+  const path = window.location.pathname;
+  // Extract just the filename from the full path
+  const filename = path.split("/").pop();
+  console.log("Current page:", filename); // For debugging
+  return filename;
+}
 
 // Data object for projects with CSS classes
 const projects = [
@@ -154,8 +157,14 @@ const projects = [
 // Function to generate HTML for a single project
 function generateProjectHTML(project) {
   const filteredTags = project.tags.filter((tag) => ALLOWED_BADGES.has(tag));
+  const currentPage = getCurrentPage();
+  const isActive = project.href === currentPage;
+  const activeStyle = isActive
+    ? ' style="filter: grayscale(1); background-color: #d2d2d2;"'
+    : "";
+
   return `
-    <a href="${project.href}" class="thumb ${project.cssClass}">
+    <a href="${project.href}" class="thumb ${project.cssClass}"${activeStyle}>
       <div class="title">
         <div class="thumbtitletext">
           <strong>${project.title}<br />‍</strong>${project.subtitle}
