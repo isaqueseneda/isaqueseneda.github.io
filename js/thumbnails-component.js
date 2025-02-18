@@ -160,7 +160,7 @@ function generateProjectHTML(project) {
   const currentPage = getCurrentPage();
   const isActive = project.href === currentPage;
   const activeStyle = isActive
-    ? ' style="filter: grayscale(1); background-color: #d2d2d2;"'
+    ? ' style="filter: grayscale(1); background-color: #d2d2d2; color: gray;"'
     : "";
 
   return `
