@@ -191,6 +191,32 @@ function renderTheSection() {
     <div class="thesection wf-section">
       ${thesectionContent}
     </div>
+    <div class="footer wf-section">
+      <div class="contactbye respiro">
+        <div class="acabou">##</div>
+        <img
+          src="images/portrait_isaque.png"
+          loading="lazy"
+          alt=""
+          class="image-4"
+        />
+      </div>
+      <div class="contactbye about">
+        <div class="me">
+          <span>2025 GOLDEN SAW HOLDER</span>
+        </div>
+        <div class="contactblock">
+          <div class="linkmesmobox">
+            <span class="contact">HELLO@ISAQUE.ME</span>
+
+            <a href="about.html" class="contact">ABOUT</a>
+            <a href="about.html" class="contact">CV</a>
+          </div>
+        </div>
+      </div>
+      <div class="contactbye about"></div>
+    </div>
+    <div id="hover-box"></div>
   `;
 }
 
