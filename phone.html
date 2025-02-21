@@ -84,7 +84,8 @@
       <div class="projectbar100 textset">
         <div class="pbtext">
           We parternered with Bodega and Nokia's manufacturer HMD to create the
-          world's most Boring Phone. Complete project coming soon.<br />
+          world's most Boring Phone, speaking to a latent nostalgic Gen-Z
+          sentiment and making it to top tech publications worldwide.<br />
         </div>
         <div class="thumbtagcontainer projectpage">
           <!--           
@@ -146,6 +147,24 @@
         <img src="images/boring-poster.jpeg" alt="" class="image-5" />
       </div>
     </div>
+    <div class="projectbar100 literallyslides"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const container = document.querySelector(
+          ".projectbar100.literallyslides"
+        );
+
+        for (let i = 1; i <= 26; i++) {
+          const img = document.createElement("img");
+          img.src = `images/boringphone_slide_${i}.png`;
+          img.loading = "lazy";
+          img.sizes = "(max-width: 991px) 100vw, 50vw";
+          img.classList.add("aslide");
+          container.appendChild(img);
+        }
+      });
+    </script>
 
     <div class="break wf-section">
       <div class="text-block-5">-</div>

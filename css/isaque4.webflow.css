@@ -2508,6 +2508,17 @@ img {
   .apetrechos {
     display: none;
   }
+
+  .projectbar100.half {
+    /* display: grid; */
+  }
+
+  .projectblock50 {
+    width: 100%;
+    min-height: 20rem;
+    padding: 40px 0;
+    border-bottom: 1px solid black;
+  }
 }
 
 @media screen and (max-width: 479px) {
