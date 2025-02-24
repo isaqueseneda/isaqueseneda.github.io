@@ -2523,6 +2523,10 @@ img {
 }
 
 @media screen and (max-width: 479px) {
+  .mysig-widgets {
+    margin: 0;
+  }
+
   .thumb {
     width: 100%;
     height: 27rem;
