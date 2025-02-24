@@ -37,6 +37,7 @@ body {
   line-height: 20px;
   cursor: url("../images/cursor.png") 53 53, auto;
   overflow-x: hidden;
+  text-wrap: balance;
 }
 
 /* ensuring cursor adoption */
