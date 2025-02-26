@@ -12,13 +12,29 @@ function getCurrentPage() {
 
 // Data object for projects with CSS classes
 const projects = [
+  // below is temporary
   {
-    href: "booking.html",
-    cssClass: "booking",
-    title: "BOOKING.COM",
-    subtitle: "NOT THE BEST HOTELS",
-    tags: ["📐 STRAT", "PRODUCT"],
+    href: "mysig.html",
+    cssClass: "mysig",
+    title: "MENSA INTERNATIONAL",
+    subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
+    tags: ["📟 #####"],
   },
+  // below is temporary
+  {
+    href: "megatable.html",
+    cssClass: "megatable",
+    title: "MEGA TABLE",
+    subtitle: "A MODULAR EDUCATION PLATFORM FOR PROCRASTINATORS",
+    tags: ["📐 STRAT", "📟 #####"],
+  },
+  // {
+  //   href: "booking.html",
+  //   cssClass: "booking",
+  //   title: "BOOKING.COM",
+  //   subtitle: "NOT THE BEST HOTELS",
+  //   tags: ["📐 STRAT", "PRODUCT"],
+  // },
   {
     href: "phone.html",
     cssClass: "bphone",
@@ -33,13 +49,7 @@ const projects = [
     subtitle: "MAKE BARTENDING A SEXY CAREER CHOICE",
     tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
   },
-  {
-    href: "the-tinnitus-earbuds.html",
-    cssClass: "bose",
-    title: "BOSE",
-    subtitle: "FINDING A NEW DEMAND SEGMENT FOR SILENCE",
-    tags: ["📐 STRAT", "✏️ CREAT"],
-  },
+
   {
     href: "feed-peek.html",
     cssClass: "blei",
@@ -47,13 +57,13 @@ const projects = [
     subtitle: "DONATE YOUR ALGORITHM AGAINST STEREOTYPES",
     tags: ["🏆", "📐 STRAT", "✏️ CREAT", "📟 #####"],
   },
-  {
-    href: "mysig.html",
-    cssClass: "mysig",
-    title: "MENSA INTERNATIONAL",
-    subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
-    tags: ["📟 #####"],
-  },
+  // {
+  //   href: "mysig.html",
+  //   cssClass: "mysig",
+  //   title: "MENSA INTERNATIONAL",
+  //   subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
+  //   tags: ["📟 #####"],
+  // },
   {
     href: "open-wine-like-magic.html",
     cssClass: "wp",
@@ -61,20 +71,13 @@ const projects = [
     subtitle: "OPEN WINE LIKE MAGIC",
     tags: ["📐 STRAT", "📟 #####"],
   },
-  {
-    href: "fairphone.html",
-    cssClass: "tide",
-    title: "FAIRPHONE",
-    subtitle: "A LAUNCH TO HALT SALES",
-    tags: ["🥇", "✏️ CREAT"],
-  },
-  {
-    href: "megatable.html",
-    cssClass: "megatable",
-    title: "MEGA TABLE",
-    subtitle: "A MODULAR STATS PLATFORM FOR PROCRASTINATORS",
-    tags: ["📐 STRAT", "📟 #####"],
-  },
+  // {
+  //   href: "megatable.html",
+  //   cssClass: "megatable",
+  //   title: "MEGA TABLE",
+  //   subtitle: "A MODULAR STATS PLATFORM FOR PROCRASTINATORS",
+  //   tags: ["📐 STRAT", "📟 #####"],
+  // },
   {
     href: "fridge.html",
     cssClass: "fridge",
@@ -83,75 +86,89 @@ const projects = [
     tags: ["🏆", "📐 STRAT"],
   },
   {
-    href: "ford.html",
-    cssClass: "data",
-    title: "FORD",
-    subtitle: "YIELDING EV CONVERSION IN THE FINAL WEEK",
-    tags: ["📐 STRAT"],
-  },
-  {
-    href: "megafocus.html",
-    cssClass: "kys",
-    title: "MEGA TABLE",
-    subtitle: "CREATING BRAND MEANIGFULNESS WITH A CHROME EXTENSION",
-    tags: ["📐 STRAT"],
-  },
-  {
-    href: "high-symphonies.html",
-    cssClass: "highs",
-    title: "CONCERTGEBOUW",
-    subtitle: "BRINGING THE YOUTH TO CLASSICAL MUSIC",
-    tags: ["🥉", "✏️ CREAT"],
-  },
-  {
-    href: "forms.html",
-    cssClass: "forms",
-    title: "FORMS",
-    subtitle: "A BRAND IDENTITY BASED ON ANTENNAE AND SPARKS",
-    tags: ["✏️ CREAT"],
-  },
-  {
-    href: "web3.html",
-    cssClass: "web3",
-    title: "TEZOS",
-    subtitle: "WEB3 BY WEB3",
-    tags: ["✏️ CREAT"],
-  },
-  {
-    href: "mentelity.html",
-    cssClass: "mentelity",
-    title: "MENTELITY FOUNDATION",
-    subtitle: "THE DRAMATIC LIVES OF PROSTHETIC LEGS",
-    tags: ["🥈"],
-  },
-  {
-    href: "gosh.html",
-    cssClass: "gosh",
-    title: "GREAT ORMOND STREET HOSPITAL",
-    subtitle: "GOSH SPORTS, INC.",
-    tags: [],
-  },
-  {
-    href: "buma.html",
-    cssClass: "buma",
-    title: "BUMA",
-    subtitle: "BLANK FILES: YOUR NEWEST POINT OF SALE",
-    tags: ["🏅"],
-  },
-  {
-    href: "blei.html",
-    cssClass: "bleimag",
-    title: "BLEI MAGAZINE",
-    subtitle: "DOWNTOWN SÃO PAULO",
-    tags: ["📸"],
-  },
-  {
     href: "journeys.html#2",
     cssClass: "comboakounb",
     title: "AUDIOVISUAL JOURNEYS",
     subtitle: "FILMMAKING + MUSIC ENDEAVORS",
     tags: ["MORE"],
   },
+  // {
+  //   href: "the-tinnitus-earbuds.html",
+  //   cssClass: "bose",
+  //   title: "BOSE",
+  //   subtitle: "FINDING A NEW DEMAND SEGMENT FOR SILENCE",
+  //   tags: ["📐 STRAT", "✏️ CREAT"],
+  // },
+  // {
+  //   href: "fairphone.html",
+  //   cssClass: "tide",
+  //   title: "FAIRPHONE",
+  //   subtitle: "A LAUNCH TO HALT SALES",
+  //   tags: ["🥇", "✏️ CREAT"],
+  // },
+  // {
+  //   href: "ford.html",
+  //   cssClass: "data",
+  //   title: "FORD",
+  //   subtitle: "YIELDING EV CONVERSION IN THE FINAL WEEK",
+  //   tags: ["📐 STRAT"],
+  // },
+  // {
+  //   href: "megafocus.html",
+  //   cssClass: "kys",
+  //   title: "MEGA TABLE",
+  //   subtitle: "CREATING BRAND MEANIGFULNESS WITH A CHROME EXTENSION",
+  //   tags: ["📐 STRAT"],
+  // },
+  // {
+  //   href: "high-symphonies.html",
+  //   cssClass: "highs",
+  //   title: "CONCERTGEBOUW",
+  //   subtitle: "BRINGING THE YOUTH TO CLASSICAL MUSIC",
+  //   tags: ["🥉", "✏️ CREAT"],
+  // },
+  // {
+  //   href: "forms.html",
+  //   cssClass: "forms",
+  //   title: "FORMS",
+  //   subtitle: "A BRAND IDENTITY BASED ON ANTENNAE AND SPARKS",
+  //   tags: ["✏️ CREAT"],
+  // },
+  // {
+  //   href: "web3.html",
+  //   cssClass: "web3",
+  //   title: "TEZOS",
+  //   subtitle: "WEB3 BY WEB3",
+  //   tags: ["✏️ CREAT"],
+  // },
+  // {
+  //   href: "mentelity.html",
+  //   cssClass: "mentelity",
+  //   title: "MENTELITY FOUNDATION",
+  //   subtitle: "THE DRAMATIC LIVES OF PROSTHETIC LEGS",
+  //   tags: ["🥈"],
+  // },
+  // {
+  //   href: "gosh.html",
+  //   cssClass: "gosh",
+  //   title: "GREAT ORMOND STREET HOSPITAL",
+  //   subtitle: "GOSH SPORTS, INC.",
+  //   tags: [],
+  // },
+  // {
+  //   href: "buma.html",
+  //   cssClass: "buma",
+  //   title: "BUMA",
+  //   subtitle: "BLANK FILES: YOUR NEWEST POINT OF SALE",
+  //   tags: ["🏅"],
+  // },
+  // {
+  //   href: "blei.html",
+  //   cssClass: "bleimag",
+  //   title: "BLEI MAGAZINE",
+  //   subtitle: "DOWNTOWN SÃO PAULO",
+  //   tags: ["📸"],
+  // },
 ];
 
 // Function to generate HTML for a single project
@@ -195,7 +212,7 @@ function renderTheSection() {
       <div class="contactbye respiro">
         <div class="acabou">##</div>
         <img
-          src="images/portrait_isaque.png"
+          src="images/profile.gif"
           loading="lazy"
           alt=""
           class="image-4"
