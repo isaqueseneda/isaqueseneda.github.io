@@ -14,19 +14,19 @@ function getCurrentPage() {
 const projects = [
   // below is temporary
   {
-    href: "mysig.html",
-    cssClass: "mysig",
-    title: "MENSA INTERNATIONAL",
-    subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
-    tags: ["📟 #####"],
-  },
-  // below is temporary
-  {
     href: "megatable.html",
     cssClass: "megatable",
     title: "MEGA TABLE",
     subtitle: "A MODULAR EDUCATION PLATFORM FOR PROCRASTINATORS",
     tags: ["📐 STRAT", "📟 #####"],
+  },
+  // below is temporary
+  {
+    href: "mysig.html",
+    cssClass: "mysig",
+    title: "MENSA INTERNATIONAL",
+    subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
+    tags: ["📟 #####"],
   },
   // {
   //   href: "booking.html",
