@@ -1,18 +1,18 @@
 // check for saved 'darkMode' in localStorage
-let darkMode = localStorage.getItem('darkMode'); 
+let darkMode = localStorage.getItem("darkMode");
 
-const darkModeToggle = document.querySelector('#dark-mode-toggle');
+const darkModeToggle = document.querySelector("#dark-mode-toggle");
 
 // Adding audio element and setting loop to true
-const audioElement = new Audio('audio/chaos.mp3');
+const audioElement = new Audio("audio/chaos.mp3");
 audioElement.loop = true;
 
 const enableDarkMode = () => {
   // 1. Add the class to the body
-  document.body.classList.add('darkmode');
+  document.body.classList.add("darkmode");
 
   // 2. Update darkMode in localStorage
-  localStorage.setItem('darkMode', 'enabled');
+  localStorage.setItem("darkMode", "enabled");
 
   // 3. Play the audio
   audioElement.play();
@@ -21,94 +21,93 @@ const enableDarkMode = () => {
   distortElements();
 
   // 5. Change background
-  if(window.innerWidth >= 500) {
+  if (window.innerWidth >= 500) {
     // Add 'background-active' class to the body
-    document.body.classList.add('background-active');
-  
+    document.body.classList.add("background-active");
+
     // Skew the background
     skewBackground();
   }
 
   // 6. Set divs to border plack 1px
-  document.querySelectorAll('div').forEach(function(div) {
-    div.style.border = '1px solid black';
-  });
-}
+  // document.querySelectorAll('div').forEach(function(div) {
+  //   div.style.border = '1px solid black';
+  // });
+};
 
 const disableDarkMode = () => {
   // 1. Remove the class from the body
-  document.body.classList.remove('darkmode');
+  document.body.classList.remove("darkmode");
 
-  // 2. Update darkMode in localStorage 
-  localStorage.setItem('darkMode', null);
+  // 2. Update darkMode in localStorage
+  localStorage.setItem("darkMode", null);
 
   // 3. Pause the audio
   audioElement.pause();
   // 4. Reset the audio time
   audioElement.currentTime = 0;
-  
+
   // 5. Remove all distortions
   revertElements();
 
   // If viewport width is 500px or more, remove 'background-active' class
-  if(window.innerWidth >= 500) {
+  if (window.innerWidth >= 500) {
     // Remove 'background-active' class from the body
-    document.body.classList.remove('background-active');
+    document.body.classList.remove("background-active");
   }
 
   // 6. Unset divs to border plack 1px
-  document.querySelectorAll('div').forEach(function(div) {
-    div.style.border = '';
+  document.querySelectorAll("div").forEach(function (div) {
+    div.style.border = "";
   });
-}
-
+};
 
 // If the user already visited and enabled darkMode
 // start things off with it on
-if (darkMode === 'enabled') {
+if (darkMode === "enabled") {
   enableDarkMode();
 }
 
 // When someone clicks the button
-darkModeToggle.addEventListener('click', () => {
+darkModeToggle.addEventListener("click", () => {
   // get their darkMode setting
-  darkMode = localStorage.getItem('darkMode'); 
-  
+  darkMode = localStorage.getItem("darkMode");
+
   // if it not current enabled, enable it
-  if (darkMode !== 'enabled') {
+  if (darkMode !== "enabled") {
     enableDarkMode();
-  // if it has been enabled, turn it off  
-  } else {  
-    disableDarkMode(); 
+    // if it has been enabled, turn it off
+  } else {
+    disableDarkMode();
   }
 });
 
 // If darkMode is enabled when the page loads, start playing the audio
-window.addEventListener('load', () => {
-  darkMode = localStorage.getItem('darkMode');
-  if (darkMode === 'enabled') {
+window.addEventListener("load", () => {
+  darkMode = localStorage.getItem("darkMode");
+  if (darkMode === "enabled") {
     audioElement.play();
   }
 });
 
-
-
-
-
-
 // chaos distort function
 // chaos distort function
 // chaos distort function
-
 
 function distortElements() {
   // Get all elements on the page
-  let allElements = document.querySelectorAll('*');
+  let allElements = document.querySelectorAll("*");
 
   // Iterate over each element
   allElements.forEach((el) => {
     // Ignore elements with tagName 'HTML', 'BODY' or class 'inheadertitlebox' or 'header'
-    if (el.tagName === 'HTML' || el.tagName === 'BODY' || el.classList.contains('inheadertitlebox') || el.classList.contains('header') || el.classList.contains('theproject')) {
+    if (
+      el.tagName === "HTML" ||
+      el.tagName === "BODY" ||
+      el.classList.contains("inheadertitlebox") ||
+      el.classList.contains("header") ||
+      el.classList.contains("theproject")
+    ) {
       return;
     }
 
@@ -129,23 +128,25 @@ function distortElements() {
 // Remove all transformations
 function revertElements() {
   // Get all elements on the page
-  let allElements = document.querySelectorAll('*');
+  let allElements = document.querySelectorAll("*");
 
   // Iterate over each element
   allElements.forEach((el) => {
     // Ignore elements with tagName 'HTML', 'BODY' or class 'inheadertitlebox' or 'header'
-    if (el.tagName === 'HTML' || el.tagName === 'BODY' || el.classList.contains('inheadertitlebox') || el.classList.contains('header') || el.classList.contains('theproject')) {
+    if (
+      el.tagName === "HTML" ||
+      el.tagName === "BODY" ||
+      el.classList.contains("inheadertitlebox") ||
+      el.classList.contains("header") ||
+      el.classList.contains("theproject")
+    ) {
       return;
     }
 
     // Remove all transformations
-    el.style.transform = '';
+    el.style.transform = "";
   });
 }
-
-
-
-
 
 //skewing-bg
 function skewBackground() {
@@ -154,38 +155,37 @@ function skewBackground() {
   let skewY = Math.random() * 5 + 10; // Between -60 and 60 degrees
 
   // Apply skew to the body's before pseudo-element
-  document.documentElement.style.setProperty('--bg-skew-x', `${skewX}deg`);
-  document.documentElement.style.setProperty('--bg-skew-y', `${skewY}deg`);
+  document.documentElement.style.setProperty("--bg-skew-x", `${skewX}deg`);
+  document.documentElement.style.setProperty("--bg-skew-y", `${skewY}deg`);
 }
-
-
-
 
 // NEW HOVER
 
 /* portfolio preview */
 /* Portfolio preview setup for isaac */
 
-document.getElementById('isaac-link').addEventListener('mouseover', function() {
-  showImage('isaac-img');
-});
-document.getElementById('isaac-link').addEventListener('mouseout', function() {
-  setTimeout('', 1000);
-  hideImage('isaac-img');
+document
+  .getElementById("isaac-link")
+  .addEventListener("mouseover", function () {
+    showImage("isaac-img");
+  });
+document.getElementById("isaac-link").addEventListener("mouseout", function () {
+  setTimeout("", 1000);
+  hideImage("isaac-img");
 });
 
 function showImage(imgId) {
   const img = document.getElementById(imgId);
-  img.style.display = 'block';
+  img.style.display = "block";
 
-  document.addEventListener('mousemove', function handler(e) {
-    img.style.left = e.pageX + 'px';
-    img.style.top = e.pageY - 190 + 'px';
+  document.addEventListener("mousemove", function handler(e) {
+    img.style.left = e.pageX + "px";
+    img.style.top = e.pageY - 190 + "px";
   });
 }
 
 function hideImage(imgId) {
   const img = document.getElementById(imgId);
-  img.style.display = 'none';
-  document.removeEventListener('mousemove', handler); // Stop updating position
+  img.style.display = "none";
+  document.removeEventListener("mousemove", handler); // Stop updating position
 }
