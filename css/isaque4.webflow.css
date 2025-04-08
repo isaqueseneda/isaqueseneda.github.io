@@ -1251,6 +1251,14 @@ img {
   background-repeat: no-repeat;
 }
 
+.projectbar100.cover.earplugs {
+  background-color: #d2d2d2;
+  background-image: url("../images/earplug_thumb.png");
+  background-position: 50% 50%;
+  background-size: auto 50%;
+  background-repeat: no-repeat;
+}
+
 .projectbar100.cover.web3 {
   background-color: #d2d2d2;
   background-image: url("../images/web3_hero.png");
