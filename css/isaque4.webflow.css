@@ -1243,6 +1243,14 @@ img {
   background-repeat: no-repeat;
 }
 
+.projectbar100.cover.notsweden {
+  background-color: #d2d2d2;
+  background-image: url("../images/not-sweden-1.png");
+  background-position: 50% 50%;
+  background-size: auto 75%;
+  background-repeat: no-repeat;
+}
+
 .projectbar100.cover.evolutionary {
   background-color: #d2d2d2;
   background-image: url("../images/evolutionary_thumb.png");
