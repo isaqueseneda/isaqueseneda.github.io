@@ -48,16 +48,46 @@
         <div class="thesearelegends" id="rules-container">
           <!-- Rules will be loaded here -->
         </div>
-        
       </div>
-      <div class="paragraphdiv heymy files" id="files-container">
-        <!-- File items will be injected here -->
+      
+      <div class="paragraphdiv heymy files">
+        <div class="audio-navigation-controls">
+          <div class="media-controls-wrapper">
+            <div class="key-instruction">
+              <span class="control-icon">▲</span><span class="control-text">PREV</span>
+            </div>
+            <div class="key-instruction">
+              <span class="control-icon">▼</span><span class="control-text">NEXT</span>
+            </div>
+            <div class="key-instruction">
+              <span class="control-icon">⎵</span><span class="control-text">PLAY/PAUSE</span>
+            </div>
+          </div>
+        </div>
+        
+        <div id="files-container" class="files-container">
+          <!-- File items will be injected here -->
+        </div>
+        
+        <div class="mobile-instructions">
+          <div class="instruction-item">SWIPE ↔️ TO NAVIGATE</div>
+          <div class="instruction-item">TAP TO PLAY/PAUSE</div>
+        </div>
+        
+        <!-- Added spacer to prevent player from covering content -->
+        <div class="player-spacer"></div>
+      </div>
     </div>
-    </div>
-    
   </div>
-
-
+  
+  <!-- Moved player outside the main content flow to position it at the bottom -->
+  <div id="audio-player-container" class="media-player-fixed">
+    <div class="media-player-wrapper">
+      <div id="now-playing-info" class="media-now-playing"></div>
+      <audio id="audio-player" controls></audio>
+    </div>
+  </div>
+  
   <div class="footer wf-section">
   <div id="hover-box"></div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=613333e9ce20577884dcc804" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -208,38 +238,539 @@ document.addEventListener("DOMContentLoaded", function() {
         "downloadPath": "files/DO-FUTURO-i-see-you-out-the-window-1.mp3",
         "previewPath": "files/DO-FUTURO-i-see-you-out-the-window-1.mp3"
       },
+      {
+        "title": "DO FUTURO",
+        "description": "i see you out the window",
+        "icon": "files/DO-FUTURO-i-see-you-out-the-window-1.jpg",
+        "downloadPath": "files/DO-FUTURO-i-see-you-out-the-window-1.mp3",
+        "previewPath": "files/DO-FUTURO-i-see-you-out-the-window-1.mp3"
+      },
     ];
 
     const container = document.getElementById('files-container');
+    let currentFileIndex = 0;
+    const audioPlayer = document.getElementById('audio-player');
+    const nowPlayingInfo = document.getElementById('now-playing-info');
 
-    filesData.forEach(file => {
+    // Create and add file items to the container
+    filesData.forEach((file, index) => {
         const fileItem = document.createElement('div');
         fileItem.className = 'file-item';
+        fileItem.dataset.index = index;
         fileItem.innerHTML = `
-            <div style="display:flex; ">
-            <img src="${file.icon}" alt="File Icon" class="file-icon">
-            <div>
-            <div class="file-info">
-                <div class="file-title">${file.title}</div>
-                <div class="file-description">${file.description}</div>
+            <div class="file-content-wrapper">
+                <img src="${file.icon}" alt="${file.title}" class="file-icon">
+                <div class="file-info-container">
+                    <div class="file-title">${file.title}</div>
+                    <div class="file-description">${file.description}</div>
+                </div>
             </div>
-            </div>
-            </div>
-            <div>
-            <a style="display: none;" href="javascript:void(0);" onclick="playPreview('${file.previewPath}')" class="file-download">💬</a>
-            <a style="display: none;" href="javascript:void(0);" onclick="playPreview('${file.previewPath}')" class="file-download">►</a>
-            <a href="${file.downloadPath}" class="file-download" download>⬇</a>
-            </div>        `;
+            <div class="file-actions">
+                <a href="javascript:void(0);" class="file-action-button file-preview" data-preview="${file.previewPath}">▶</a>
+                <a href="${file.downloadPath}" class="file-action-button file-download" download>⬇</a>
+            </div>`;
         container.appendChild(fileItem);
+    });
+
+    // Add active class to the first file
+    highlightCurrentFile();
+
+    // Function to highlight the current file
+    function highlightCurrentFile() {
+        const fileItems = document.querySelectorAll('.file-item');
+        fileItems.forEach((item, index) => {
+            if (index === currentFileIndex) {
+                item.classList.add('active-file');
+            } else {
+                item.classList.remove('active-file');
+            }
+        });
+        
+        // Scroll the active item into view if needed
+        const activeItem = document.querySelector('.active-file');
+        if (activeItem) {
+            activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    // Function to play/pause preview
+    function togglePlayPreview() {
+        if (!filesData[currentFileIndex]) return;
+        
+        const previewPath = filesData[currentFileIndex].previewPath;
+        
+        if (audioPlayer.src.indexOf(previewPath) === -1) {
+            audioPlayer.src = previewPath;
+            audioPlayer.play();
+            nowPlayingInfo.innerHTML = `<strong>${filesData[currentFileIndex].title}</strong><br>${filesData[currentFileIndex].description}`;
+            document.querySelectorAll('.file-preview').forEach(button => button.textContent = '▶');
+            document.querySelector('.active-file .file-preview').textContent = '⏸';
+        } else if (audioPlayer.paused) {
+            audioPlayer.play();
+            document.querySelector('.active-file .file-preview').textContent = '⏸';
+        } else {
+            audioPlayer.pause();
+            document.querySelector('.active-file .file-preview').textContent = '▶';
+        }
+    }
+
+    // Function to navigate to previous file
+    function navigateToPrevious() {
+        currentFileIndex = (currentFileIndex - 1 + filesData.length) % filesData.length;
+        highlightCurrentFile();
+        if (!audioPlayer.paused) {
+            audioPlayer.pause();
+            togglePlayPreview();
+        }
+    }
+
+    // Function to navigate to next file
+    function navigateToNext() {
+        currentFileIndex = (currentFileIndex + 1) % filesData.length;
+        highlightCurrentFile();
+        if (!audioPlayer.paused) {
+            audioPlayer.pause();
+            togglePlayPreview();
+        }
+    }
+
+    // Keyboard event listeners
+    document.addEventListener('keydown', function(event) {
+        switch (event.code) {
+            case 'Space':
+                event.preventDefault();
+                togglePlayPreview();
+                break;
+            case 'ArrowUp':
+                event.preventDefault();
+                navigateToPrevious();
+                break;
+            case 'ArrowDown':
+                event.preventDefault();
+                navigateToNext();
+                break;
+        }
+    });
+
+    // Click event listeners for preview buttons
+    document.querySelectorAll('.file-preview').forEach((button) => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            currentFileIndex = parseInt(this.closest('.file-item').dataset.index);
+            highlightCurrentFile();
+            togglePlayPreview();
+        });
+    });
+
+    // Click event for file items
+    document.querySelectorAll('.file-item').forEach((item) => {
+        item.addEventListener('click', function(event) {
+            // Only handle clicks that aren't on action buttons
+            if (!event.target.closest('.file-action-button')) {
+                currentFileIndex = parseInt(this.dataset.index);
+                highlightCurrentFile();
+                togglePlayPreview();
+            }
+        });
+    });
+
+    // Touch events for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    container.addEventListener('touchstart', function(event) {
+        touchStartX = event.changedTouches[0].screenX;
+        touchStartY = event.changedTouches[0].screenY;
+    });
+
+    container.addEventListener('touchend', function(event) {
+        touchEndX = event.changedTouches[0].screenX;
+        touchEndY = event.changedTouches[0].screenY;
+        
+        // Check if horizontal swipe is more significant than vertical
+        const horizontalDiff = Math.abs(touchStartX - touchEndX);
+        const verticalDiff = Math.abs(touchStartY - touchEndY);
+        
+        if (horizontalDiff > verticalDiff && horizontalDiff > 50) {
+            if (touchEndX < touchStartX) {
+                // Swipe left - next file
+                navigateToNext();
+            } else {
+                // Swipe right - previous file
+                navigateToPrevious();
+            }
+        } else if (verticalDiff > horizontalDiff && verticalDiff > 50) {
+            if (touchEndY < touchStartY) {
+                // Swipe up - next file
+                navigateToNext();
+            } else {
+                // Swipe down - previous file
+                navigateToPrevious();
+            }
+        }
+    });
+
+    // Handle audio ended event
+    audioPlayer.addEventListener('ended', function() {
+        document.querySelector('.active-file .file-preview').textContent = '▶';
     });
 });
 
+// Previous playPreview function is now replaced with the more comprehensive system above
 function playPreview(mediaPath) {
-    console.log("Playing media from:", mediaPath);
-    // Add real functionality here to play the media
+    console.log("Using legacy playPreview function with path:", mediaPath);
+    // This function is kept for backward compatibility but functionality is moved
 }
 
     </script>
 
+<style>
+  .file-item {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .file-item.active-file {
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+  }
+
+  .control-instructions {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .keyboard-controls, .mobile-controls {
+    margin: 8px 0;
+  }
+
+  .key-icon, .swipe-icon, .tap-icon {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 0 5px;
+  }
+
+  .audio-player {
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  .now-playing {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  /* Show appropriate controls based on device */
+  .mobile-controls { display: none; }
+  .keyboard-controls { display: block; }
+
+  @media (max-width: 768px) {
+    .mobile-controls { display: block; }
+    .keyboard-controls { display: none; }
+  }
+
+  /* File items styling */
+  .file-item {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .file-item.active-file {
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: scale(1.01);
+  }
+
+  .file-content-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+
+  .file-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 4px;
+  }
+
+  .file-info-container {
+    flex: 1;
+  }
+
+  .file-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .file-description {
+    font-size: 0.9em;
+    opacity: 0.7;
+  }
+
+  .file-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .file-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* color: white; Changed to white for better visibility */
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: all 0.2s ease;
+  }
+
+  .file-action-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Fixed player at the bottom of the screen */
+  .media-player-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(172, 172, 172, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0;
+  }
+
+  .media-player-wrapper {
+    padding: 15px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .media-now-playing {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  audio#audio-player {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: transparent;
+    border-radius: 5px;
+  }
+
+  /* Player spacer to prevent content from being hidden behind fixed player */
+  .player-spacer {
+    height: 120px; /* Adjust based on player height */
+  }
+
+  /* Files container with improved scrolling */
+  .files-container {
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+    padding-right: 5px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .files-container::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .files-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .files-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    border: 2px solid transparent;
+  }
+
+  /* Controls and instructions */
+  .audio-navigation-controls {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .media-controls-wrapper {
+    display: flex;
+    gap: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+  }
+
+  .key-instruction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8em;
+  }
+
+  .control-icon {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+  }
+
+  .mobile-instructions {
+    display: none;
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .instruction-item {
+    margin: 5px 0;
+  }
+
+  /* Show appropriate controls based on device */
+  @media (max-width: 768px) {
+    .audio-navigation-controls {
+      display: none;
+    }
+
+    .mobile-instructions {
+      display: block;
+    }
+
+    .file-item {
+      padding: 12px;
+    }
+
+    .file-content-wrapper {
+      width: 100%;
+    }
+
+    .file-icon {
+      width: 45px;
+      height: 45px;
+    }
+    
+    /* Keep action buttons in a row for mobile */
+    .file-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .file-actions {
+      width: 100%;
+      justify-content: flex-end;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Adjust player size for mobile */
+    .media-player-wrapper {
+      padding: 10px;
+    }
+
+    .player-spacer {
+      height: 100px;
+    }
+
+    /* Optimize file container height for mobile */
+    .files-container {
+      max-height: calc(100vh - 350px);
+    }
+  }
+</style>
+
+<script>
+// ...existing script code...
+
+document.addEventListener("DOMContentLoaded", function() {
+    // ...existing code...
+
+    // Update to handle scroll position when the active item changes
+    function highlightCurrentFile() {
+        const fileItems = document.querySelectorAll('.file-item');
+        fileItems.forEach((item, index) => {
+            if (index === currentFileIndex) {
+                item.classList.add('active-file');
+            } else {
+                item.classList.remove('active-file');
+            }
+        });
+        
+        // Improved scroll handling for better user experience
+        const activeItem = document.querySelector('.active-file');
+        const container = document.getElementById('files-container');
+        
+        if (activeItem && container) {
+            // Calculate positions for smooth scrolling
+            const containerRect = container.getBoundingClientRect();
+            const activeRect = activeItem.getBoundingClientRect();
+            
+            // Only scroll if the item is outside the visible area
+            if (activeRect.bottom > containerRect.bottom || activeRect.top < containerRect.top) {
+                // Scroll with offset to show context
+                container.scrollTo({
+                    top: activeItem.offsetTop - container.offsetHeight/2 + activeItem.offsetHeight/2,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }
+
+    // ...existing code...
+
+    // Add resize handler to adjust player spacer height if needed
+    window.addEventListener('resize', function() {
+        const player = document.getElementById('audio-player-container');
+        const spacer = document.querySelector('.player-spacer');
+        
+        if (player && spacer) {
+            spacer.style.height = player.offsetHeight + 'px';
+        }
+    });
+
+    // Initialize player spacer height
+    setTimeout(function() {
+        const player = document.getElementById('audio-player-container');
+        const spacer = document.querySelector('.player-spacer');
+        
+        if (player && spacer) {
+            spacer.style.height = player.offsetHeight + 'px';
+        }
+    }, 100);
+});
+</script>
 </body>
 </html>
