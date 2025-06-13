@@ -1,5 +1,11 @@
 // Allowed badges (whitelist)
-const ALLOWED_BADGES = new Set(["🏆", "📐 STRAT", "✏️ CREAT", "📟 #####"]);
+const ALLOWED_BADGES = new Set([
+  "🏆",
+  "📐 STRAT",
+  "✏️ CREAT",
+  "📟 #####",
+  "✨ NEW",
+]);
 
 // Function to get current page URL without domain
 function getCurrentPage() {
@@ -27,27 +33,43 @@ const projects = [
     tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
   },
   {
+    href: "ice.html",
+    cssClass: "ice",
+    title: "ROGERS",
+    subtitle: "HACKING THE NHL FINAL TO BRING SOME LUCK",
+    tags: ["✨ NEW", "📐 STRAT", "✏️ CREAT"],
+  },
+  {
+    href: "mysig.html",
+    cssClass: "mysig",
+    title: "MY-SIG (MENSA INTERNATIONAL)",
+    subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
+    tags: ["📐 STRAT", "📟 #####"],
+  },
+  {
     href: "barxp.html",
     cssClass: "barxp",
     title: "HEINEKEN",
     subtitle: "MAKE BARTENDING A SEXY CAREER CHOICE",
     tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
   },
+
   // below is temporary
   {
     href: "megatable.html",
     cssClass: "megatable",
     title: "MEGA TABLE",
-    subtitle: "A MODULAR EDUCATION PLATFORM FOR PROCRASTINATORS",
+    // subtitle: "A MODULAR EDUCATION PLATFORM FOR PROCRASTINATORS",
+    subtitle: "A STATS SCHOOL FOR PEOPLE WHO HATE SCHOOL",
     tags: ["📐 STRAT", "📟 #####"],
   },
   // below is temporary
   {
-    href: "mysig.html",
-    cssClass: "mysig",
-    title: "MY-SIG (MENSA INTERNATIONAL)",
-    subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
-    tags: ["📟 #####"],
+    href: "fridge.html",
+    cssClass: "fridge",
+    title: "HEINEKEN",
+    subtitle: "COOL DOWN YOUR CPU WITH SOCIALIZATION",
+    tags: ["🏆", "📐 STRAT"],
   },
 
   {
@@ -78,13 +100,7 @@ const projects = [
   //   subtitle: "A MODULAR STATS PLATFORM FOR PROCRASTINATORS",
   //   tags: ["📐 STRAT", "📟 #####"],
   // },
-  {
-    href: "fridge.html",
-    cssClass: "fridge",
-    title: "HEINEKEN",
-    subtitle: "COOL DOWN YOUR CPU WITH SOCIALIZATION",
-    tags: ["🏆", "📐 STRAT"],
-  },
+
   {
     href: "journeys.html#2",
     cssClass: "comboakounb",

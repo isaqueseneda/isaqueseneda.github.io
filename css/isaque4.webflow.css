@@ -197,6 +197,22 @@ img {
   background-color: #d2d2d2;
 }
 
+.thumb.ice {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #000;
+  text-decoration: none;
+  background-size: auto 82%;
+  background-position: center;
+  background-image: url("../images/ice-cover.png");
+}
+
+.thumb.ice:hover {
+  background-color: #d2d2d2;
+}
+
 .thumb.tide {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1344,6 +1360,14 @@ img {
   background-image: url("../images/phone.png");
   background-position: 50% 50%;
   background-size: auto 60%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.ice {
+  background-color: #d2d2d2;
+  background-image: url("../images/ice-cover.png");
+  background-position: 50% 50%;
+  background-size: auto 75%;
   background-repeat: no-repeat;
 }
 
