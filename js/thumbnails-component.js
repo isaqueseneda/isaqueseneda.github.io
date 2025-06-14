@@ -96,7 +96,8 @@ const projects = [
     href: "open-wine-like-magic.html",
     cssClass: "wp",
     title: "WINEPOPPER",
-    subtitle: "WE MADE WINE OPENING FUN AND PISSED OFF TRADITION",
+    // subtitle: "WE MADE WINE OPENING FUN AND PISSED OFF TRADITION",
+    subtitle: "WE MADE OPENING WINE LESS SACRED: YOU'RE WELCOME",
     tags: ["📐 STRAT", "📟 #####"],
   },
   // {
