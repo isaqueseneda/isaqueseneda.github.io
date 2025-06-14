@@ -41,13 +41,22 @@ const projects = [
     tags: ["✨ NEW", "📐 STRAT", "✏️ CREAT"],
   },
   {
-    href: "fridge.html",
-    cssClass: "fridge",
-    title: "HEINEKEN",
-    // subtitle: "COOL DOWN YOUR CPU WITH SOCIALIZATION",
-    subtitle: "WE OPTIMIZED PCs FOR SOCIALIZATION",
-    tags: ["🏆", "📐 STRAT"],
+    href: "megatable.html",
+    cssClass: "megatable",
+    title: "MEGA TABLE",
+    // subtitle: "A MODULAR EDUCATION PLATFORM FOR PROCRASTINATORS",
+    subtitle: "WE BUILT A SCHOOL FOR PEOPLE WHO HATE STATS",
+    tags: ["📐 STRAT", "📟 #####"],
   },
+  {
+    href: "mysig.html",
+    cssClass: "mysig",
+    title: "MY-SIG (MENSA INTERNATIONAL)",
+    // subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
+    subtitle: "WE MADE AN APP THAT WANTS YOU GONE CAMPING",
+    tags: ["📐 STRAT", "📟 #####"],
+  },
+
   {
     href: "barxp.html",
     cssClass: "barxp",
@@ -58,24 +67,16 @@ const projects = [
   },
 
   // below is temporary
-  {
-    href: "megatable.html",
-    cssClass: "megatable",
-    title: "MEGA TABLE",
-    // subtitle: "A MODULAR EDUCATION PLATFORM FOR PROCRASTINATORS",
-    subtitle: "WE BUILT A SCHOOL FOR PEOPLE WHO HATE STATS",
-    tags: ["📐 STRAT", "📟 #####"],
-  },
-  // below is temporary
 
   {
-    href: "mysig.html",
-    cssClass: "mysig",
-    title: "MY-SIG (MENSA INTERNATIONAL)",
-    // subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
-    subtitle: "WE MADE AN APP THAT WANTS YOU GONE CAMPING",
-    tags: ["📐 STRAT", "📟 #####"],
+    href: "fridge.html",
+    cssClass: "fridge",
+    title: "HEINEKEN",
+    // subtitle: "COOL DOWN YOUR CPU WITH SOCIALIZATION",
+    subtitle: "WE OPTIMIZED PCs FOR SOCIALIZATION",
+    tags: ["🏆", "📐 STRAT"],
   },
+  // below is temporary
   {
     href: "feed-peek.html",
     cssClass: "blei",
