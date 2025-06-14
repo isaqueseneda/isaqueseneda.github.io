@@ -113,7 +113,7 @@ const projects = [
     cssClass: "comboakounb",
     title: "AUDIOVISUAL JOURNEYS",
     // subtitle: "FILMMAKING + MUSIC ENDEAVORS",
-    subtitle: "WE TOLD BIG STORIES WITH BROKE GEAR AND NO PERMISSION",
+    subtitle: "WE TOLD BIG STORIES W/ BROKE GEAR AND NO PERMISSION",
     tags: ["MORE"],
   },
   // {
