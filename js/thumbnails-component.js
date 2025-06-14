@@ -96,7 +96,8 @@ const projects = [
     href: "open-wine-like-magic.html",
     cssClass: "wp",
     title: "WINEPOPPER",
-    subtitle: "WE MADE WINE OPENING FUN AND PISSED OFF TRADITION",
+    // subtitle: "WE MADE WINE OPENING FUN AND PISSED OFF TRADITION",
+    subtitle: "WE MADE OPENING WINE LESS SACRED: YOU'RE WELCOME",
     tags: ["📐 STRAT", "📟 #####"],
   },
   // {
@@ -112,7 +113,7 @@ const projects = [
     cssClass: "comboakounb",
     title: "AUDIOVISUAL JOURNEYS",
     // subtitle: "FILMMAKING + MUSIC ENDEAVORS",
-    subtitle: "WE TOLD GRAND STORIES WITH BROKE GEAR",
+    subtitle: "WE TOLD BIG STORIES WITH BROKE GEAR AND NO PERMISSION",
     tags: ["MORE"],
   },
   // {
