@@ -213,6 +213,22 @@ img {
   background-color: #d2d2d2;
 }
 
+.thumb.evolutionary {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #000;
+  text-decoration: none;
+  background-size: auto 60%;
+  background-position: center;
+  background-image: url("../images/evolutionary_thumb.png");
+}
+
+.thumb.evolutionary:hover {
+  background-color: #d2d2d2;
+}
+
 .thumb.tide {
   display: -webkit-box;
   display: -webkit-flex;

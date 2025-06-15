@@ -5,6 +5,7 @@ const ALLOWED_BADGES = new Set([
   "✏️ CREAT",
   "📟 #####",
   "✨ NEW",
+  "MORE",
 ]);
 
 // Function to get current page URL without domain
@@ -97,7 +98,7 @@ const projects = [
     cssClass: "wp",
     title: "WINEPOPPER",
     // subtitle: "WE MADE WINE OPENING FUN AND PISSED OFF TRADITION",
-    subtitle: "WE MADE OPENING WINE LESS SACRED: YOU'RE WELCOME",
+    subtitle: "WE MADE OPENING WINE LESS SACRED",
     tags: ["📐 STRAT", "📟 #####"],
   },
   // {
@@ -107,7 +108,14 @@ const projects = [
   //   subtitle: "A MODULAR STATS PLATFORM FOR PROCRASTINATORS",
   //   tags: ["📐 STRAT", "📟 #####"],
   // },
-
+  {
+    href: "evolutionary.html",
+    cssClass: "evolutionary",
+    title: "ERASMUS UNIVERSITY ROTTERDAM",
+    // subtitle: "WE MADE WINE OPENING FUN AND PISSED OFF TRADITION",
+    subtitle: "WE BURIED DON DRAPER AND REPLACED HIM WITH DATA ",
+    tags: ["📐 STRAT"],
+  },
   {
     href: "journeys.html#2",
     cssClass: "comboakounb",
