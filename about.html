@@ -210,7 +210,7 @@
                   <div>
                      <div class="cv-institution"><img class="cv-institution-icon" src="images/about/megatable_logo.jpeg">MEGA TABLE</div>
                      <div class="cv-offset">FOUNDER + STATS INSTRUCTOR + DEVELOPER</div>
-                     <div class="cv-offset">OCT 2017 -> PRESENT (7 YRS 5 MOS)</div>
+                      <div class="cv-offset">OCT 2017 -> FEB 2025 (7 YRS 4 MOS)</div>
                      <div class="cv-city cv-offset">AMSTERDAM, NETHERLANDS</div>
                      <div class="cv-offset">
                         <div class="job-description">
@@ -906,6 +906,65 @@
          </script> -->
       <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=613333e9ce20577884dcc804" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
       <script src="js/webflow.js" type="text/javascript"></script>
+      
+      <script>
+         // Function to calculate duration between start date and current date
+         function calculateDuration(startDate) {
+             const start = new Date(startDate);
+             const now = new Date();
+             
+             let years = now.getFullYear() - start.getFullYear();
+             let months = now.getMonth() - start.getMonth();
+             
+             // Adjust for negative months
+             if (months < 0) {
+                 years--;
+                 months += 12;
+             }
+             
+             // Format the duration string
+             if (years === 0) {
+                 return `(${months} MO${months !== 1 ? 'S' : ''})`;
+             } else if (months === 0) {
+                 return `(${years} YR${years !== 1 ? 'S' : ''})`;
+             } else {
+                 return `(${years} YR${years !== 1 ? 'S' : ''} ${months} MO${months !== 1 ? 'S' : ''})`;
+             }
+         }
+         
+         // Function to update duration displays
+         function updateDurations() {
+             // Update Seneda & Abrucio duration (started March 2025)
+             const senedaAbrucioStart = '2025-03-01';
+             const senedaAbrucioDuration = calculateDuration(senedaAbrucioStart);
+             
+             // Find and update the Seneda & Abrucio duration
+             const senedaAbrucioElements = document.querySelectorAll('.cv-offset');
+             senedaAbrucioElements.forEach(element => {
+                 if (element.textContent.includes('MAR 2025 -> PRESENT')) {
+                     element.textContent = `MAR 2025 -> PRESENT ${senedaAbrucioDuration}`;
+                 }
+             });
+             
+             // Update ISAQUE.ME duration (started November 2023)
+             const isaqueStart = '2023-11-01';
+             const isaqueDuration = calculateDuration(isaqueStart);
+             
+             // Find and update the ISAQUE.ME duration
+             senedaAbrucioElements.forEach(element => {
+                 if (element.textContent.includes('NOV 2023 -> PRESENT')) {
+                     element.textContent = `NOV 2023 -> PRESENT ${isaqueDuration}`;
+                 }
+             });
+         }
+         
+         // Update durations when the page loads
+         document.addEventListener('DOMContentLoaded', updateDurations);
+         
+         // Optional: Update durations every hour (3600000 milliseconds)
+         setInterval(updateDurations, 3600000);
+      </script>
+      
       <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
    </body>
 </html>
