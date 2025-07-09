@@ -38,6 +38,12 @@ body {
   cursor: url("../images/cursor.png") 53 53, auto;
   overflow-x: hidden;
   text-wrap: balance;
+  max-width: 100vw;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* ensuring cursor adoption */
@@ -93,7 +99,7 @@ body::before {
   pointer-events: none;
   transform: skew(var(--bg-skew-x, 0deg), var(--bg-skew-y, 0deg));
   display: none;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body.background-active::before {
@@ -2215,6 +2221,8 @@ img {
   padding-top: 60px;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .cv-body {
@@ -2223,6 +2231,7 @@ img {
   border-left: 1px solid black;
   border-bottom: 1px solid black;
   max-width: 1180px;
+  overflow-x: hidden;
 }
 
 .cv-main-content-wrapper {
@@ -2586,6 +2595,7 @@ img {
   }
 }
 
+/* Fix for iPhone Safari horizontal scrolling */
 @media screen and (max-width: 479px) {
   .mysig-widgets {
     margin: 0;
@@ -2600,55 +2610,71 @@ img {
     height: 4em;
   }
 
-  .link {
-    margin-right: 12px;
-  }
-
-  .link.projectname {
-    text-align: left;
-  }
-
-  .thumbtagcontainer.projectpage {
-    max-width: 90%;
-    width: 90vw;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
-
-  .butialso {
-    padding-right: 12px;
-  }
-
-  .contactbye.about {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-
-  .contactblock {
+  /* Ensure no horizontal overflow on mobile */
+  .cv-wrapper {
+    overflow-x: hidden;
     width: 100%;
-    border-bottom: 1px solid #000;
   }
 
-  .me {
+  .cv-body {
     width: 100%;
-    border-bottom: 1px solid #000;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
-  .image-showcase.image-wider {
-    width: 90%;
+  .cv-section.cvheader {
+    overflow-x: hidden;
   }
 
-  .collage4.image-wider {
-    width: 90%;
+  /* Fix header text wrapping on very small screens */
+  .cv-section.cvheader span {
+    white-space: normal !important;
+    word-break: break-word;
   }
 
-  .iamlegend {
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
+  /* Ensure body pseudo-element doesn't cause overflow */
+  body::before {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Fix any wide elements in the CV sections */
+  .cv-section {
+    overflow-x: hidden;
+    word-wrap: break-word;
+  }
+
+  .cv-thumb-group {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Ensure institution names don't overflow */
+  .cv-institution {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Fix skill sections */
+  .skill_subcategory {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Additional fix for small screens between 479px and 610px */
+@media screen and (max-width: 610px) {
+  .cv-wrapper {
+    overflow-x: hidden;
+  }
+
+  .cv-body {
+    overflow-x: hidden;
+  }
+
+  /* Ensure the header text wraps properly */
+  .cv-section.cvheader span {
+    white-space: normal !important;
+    word-break: break-word;
   }
 }
