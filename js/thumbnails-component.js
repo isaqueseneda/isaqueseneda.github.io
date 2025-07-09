@@ -259,7 +259,7 @@ function renderTheSection() {
             <span class="contact">HELLO@ISAQUE.ME</span>
 
             <a href="about.html" class="contact">ABOUT</a>
-            <a href="about.html" class="contact">CV</a>
+
           </div>
         </div>
       </div>
