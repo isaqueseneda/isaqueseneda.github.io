@@ -39,7 +39,7 @@ const projects = [
     cssClass: "ice",
     title: "ROGERS",
     subtitle: "WE HACKED THE NHL FINAL AND SMUGGLED ICE FROM HOME",
-    tags: ["✨ NEW", "📐 STRAT", "✏️ CREAT"],
+    tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
   },
   {
     href: "megatable.html",
