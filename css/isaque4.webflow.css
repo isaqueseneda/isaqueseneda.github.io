@@ -2275,6 +2275,7 @@ img {
 .cv-section.cveducation {
   flex: 1;
   border-left: 1px solid black;
+  overflow: hidden;
 }
 
 .cv-circle-unit {
