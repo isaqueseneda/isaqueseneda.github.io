@@ -100,9 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Check localStorage or System Preference
   const currentTheme = localStorage.getItem("theme");
-  const systemPrefersDark = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  );
+  const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
   if (currentTheme === "dark" || (!currentTheme && systemPrefersDark.matches)) {
     body.classList.add("dark-mode");
