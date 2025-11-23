@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html
+  data-wf-page="613333e9ce2057dc8fdcc805"
+  data-wf-site="613333e9ce20577884dcc804"
+>
+  <head>
+    <meta charset="utf-8" />
+    <title>isaque seneda, work (revamped)</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
+    <link href="css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="css/webflow.css" rel="stylesheet" type="text/css" />
+    <link href="css/isaque4.webflow.css" rel="stylesheet" type="text/css" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      WebFont.load({
+        google: {
+          families: ["JetBrains Mono:200,300,regular,600,700,800,600italic"],
+        },
+      });
+    </script>
+
+    <style>
+      body {
+        overflow-x: hidden;
+        background-color: #f0f0f0;
+        transition: background-color 0.5s ease;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      #app-container {
+        position: relative;
+        width: 100vw;
+        min-height: 100vh;
+        padding-top: 100px; /* Space for header */
+        padding-bottom: 100px;
+      }
+
+      .header-revamped {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0); /* Transparent initially */
+        pointer-events: none; /* Let clicks pass through to elements below if needed */
+      }
+
+      .header-revamped > * {
+        pointer-events: auto;
+      }
+
+      .brand-name {
+        font-size: 24px;
+        font-weight: 800;
+        text-decoration: none;
+        color: #000;
+        background: #fff;
+        padding: 5px 10px;
+        border: 1px solid #000;
+        box-shadow: 4px 4px 0px #000;
+      }
+
+      .mode-toggle {
+        cursor: pointer;
+        font-family: "JetBrains Mono", monospace;
+        font-weight: bold;
+        border: 1px solid #000;
+        padding: 10px 20px;
+        background: #000;
+        color: #fff;
+        transition: all 0.2s;
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      .mode-toggle:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      .mode-toggle:active {
+        transform: translate(0, 0);
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Card Styles */
+      .project-card.thumb {
+        width: 320px !important;
+        height: 240px !important;
+        position: absolute; /* Default for Chaos */
+        border: 1px solid #000;
+        background-color: #fff;
+        transition: top 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+          left 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+          transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-decoration: none;
+        color: #000;
+        margin: 0;
+        box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        cursor: grab;
+        user-select: none; /* Prevent text selection while dragging */
+      }
+
+      .project-card.thumb:active {
+        cursor: grabbing;
+      }
+
+      .project-card.thumb:hover {
+        z-index: 100;
+        box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.2);
+        border-color: blue;
+      }
+
+      .draggable-window {
+        position: absolute;
+        width: 800px;
+        height: 600px;
+        max-width: 90vw;
+        max-height: 80vh;
+        background: #fff;
+        border: 2px solid #000;
+        box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.2);
+        z-index: 2000;
+        display: flex;
+        flex-direction: column;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .window-header {
+        background: #000;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: grab;
+      }
+
+      .window-header:active {
+        cursor: grabbing;
+      }
+
+      .window-header button {
+        background: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        cursor: pointer;
+        padding: 2px 8px;
+      }
+
+      .window-header button:hover {
+        background: #fff;
+        color: #000;
+      }
+
+      .no-transition {
+        transition: none !important;
+      }
+
+      .draggable-window iframe {
+        flex-grow: 1;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .project-info {
+        background: #fff;
+        padding: 12px;
+        border-top: 1px solid #000;
+        margin-top: auto;
+      }
+
+      .project-tags {
+        display: flex;
+        gap: 5px;
+        padding: 10px;
+        flex-wrap: wrap;
+        pointer-events: none; /* Let clicks go to card */
+      }
+
+      .tag {
+        background: #000;
+        color: #fff;
+        padding: 2px 6px;
+        font-size: 10px;
+        border-radius: 0px;
+      }
+
+      /* Order Mode Styles */
+      body.order-mode {
+        background-color: #fff;
+      }
+
+      body.order-mode #app-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 40px;
+        padding: 120px 40px 40px 40px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      body.order-mode .project-card.thumb {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        height: 300px !important;
+        box-shadow: 5px 5px 0px #000;
+      }
+
+      body.order-mode .project-card.thumb:hover {
+        transform: translate(-2px, -2px) !important;
+        box-shadow: 8px 8px 0px #000;
+      }
+
+      /* Chaos Background Elements */
+      .chaos-bg-element {
+        position: absolute;
+        font-size: 200px;
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 0;
+        font-weight: 900;
+      }
+
+      .footer-revamped {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+        border-top: 1px solid #000;
+        font-size: 12px;
+      }
+
+      @media (max-width: 768px) {
+        .project-card.thumb {
+          width: 80vw !important;
+          height: 60vw !important;
+        }
+
+        .draggable-window {
+          width: 100% !important;
+          height: 100% !important;
+          max-width: 100% !important;
+          max-height: 100% !important;
+          top: 0 !important;
+          left: 0 !important;
+          transform: none !important;
+          border: none;
+        }
+
+        .window-header {
+          padding: 15px;
+        }
+
+        .header-revamped {
+          padding: 10px 20px;
+        }
+
+        .brand-name {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body class="body">
+    <div class="header-revamped">
+      <a href="index.html" class="brand-name">ISAQUE SENEDA</a>
+      <div style="display: flex; gap: 10px">
+        <button id="about-btn" class="mode-toggle">ABOUT</button>
+        <button id="toggle-btn" class="mode-toggle">CHAOS</button>
+      </div>
+    </div>
+
+    <div id="app-container">
+      <!-- Projects will be injected here -->
+    </div>
+
+    <div id="about-window" class="draggable-window" style="display: none">
+      <div class="window-header" id="about-header">
+        <span>ABOUT.HTML</span>
+        <button id="close-about">X</button>
+      </div>
+      <iframe src="about.html"></iframe>
+    </div>
+
+    <div class="footer-revamped">
+      <div>AMSTERDAM, NL</div>
+      <div>
+        <a href="mailto:hello@isaque.me" style="color: black"
+          >HELLO@ISAQUE.ME</a
+        >
+      </div>
+    </div>
+
+    <script>
+      // Project Data
+      const projects = [
+        {
+          href: "phone.html",
+          cssClass: "bphone",
+          title: "HEINEKEN",
+          subtitle: "WE MADE SMARTPHONES OBSOLETE WITH 2005 TECH",
+          tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
+        },
+        {
+          href: "ice.html",
+          cssClass: "ice",
+          title: "ROGERS",
+          subtitle: "WE HACKED THE NHL FINAL AND SMUGGLED ICE FROM HOME",
+          tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
+        },
+        {
+          href: "megatable.html",
+          cssClass: "megatable",
+          title: "MEGA TABLE",
+          subtitle: "WE BUILT A SCHOOL FOR PEOPLE WHO HATE STATS",
+          tags: ["📐 STRAT", "📟 #####"],
+        },
+        {
+          href: "mysig.html",
+          cssClass: "mysig",
+          title: "MY-SIG (MENSA)",
+          subtitle: "WE MADE AN APP THAT WANTS YOU GONE CAMPING",
+          tags: ["📐 STRAT", "📟 #####"],
+        },
+        {
+          href: "barxp.html",
+          cssClass: "barxp",
+          title: "HEINEKEN",
+          subtitle: "WE REBRANDED BARTENDING AS A SEXY CAREER CHOICE",
+          tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
+        },
+        {
+          href: "fridge.html",
+          cssClass: "fridge",
+          title: "HEINEKEN",
+          subtitle: "WE OPTIMIZED PCs FOR SOCIALIZATION",
+          tags: ["🏆", "📐 STRAT"],
+        },
+        {
+          href: "feed-peek.html",
+          cssClass: "blei",
+          title: "UNITED NATIONS",
+          subtitle: "WE MADE ACTIVISM FREE AND REPLACED STEREOTYPES",
+          tags: ["🏆", "📐 STRAT", "✏️ CREAT", "📟 #####"],
+        },
+        {
+          href: "open-wine-like-magic.html",
+          cssClass: "wp",
+          title: "WINEPOPPER",
+          subtitle: "WE MADE OPENING WINE LESS SACRED",
+          tags: ["📐 STRAT", "📟 #####"],
+        },
+        {
+          href: "evolutionary.html",
+          cssClass: "evolutionary",
+          title: "ERASMUS UNI",
+          subtitle: "WE BURIED DON DRAPER AND REPLACED HIM WITH DATA ",
+          tags: ["📐 STRAT"],
+        },
+        {
+          href: "journeys.html#2",
+          cssClass: "comboakounb",
+          title: "AV JOURNEYS",
+          subtitle: "WE TOLD GRAND STORIES WITH BROKE GEAR",
+          tags: ["MORE"],
+        },
+      ];
+
+      const container = document.getElementById("app-container");
+      const toggleBtn = document.getElementById("toggle-btn");
+      const aboutBtn = document.getElementById("about-btn");
+      const aboutWindow = document.getElementById("about-window");
+      const closeAboutBtn = document.getElementById("close-about");
+      const aboutHeader = document.getElementById("about-header");
+
+      let isChaos = true;
+
+      // About Window Logic
+      aboutBtn.addEventListener("click", () => {
+        aboutWindow.style.display = "flex";
+        // Randomize position slightly if in chaos mode
+        if (isChaos) {
+          const randomLeft = Math.random() * (window.innerWidth - 800);
+          const randomTop = Math.random() * (window.innerHeight - 600);
+          aboutWindow.style.left = `${Math.max(0, randomLeft)}px`;
+          aboutWindow.style.top = `${Math.max(0, randomTop)}px`;
+          aboutWindow.style.transform = "none"; // Remove centering transform
+        } else {
+          // Center it
+          aboutWindow.style.left = "50%";
+          aboutWindow.style.top = "50%";
+          aboutWindow.style.transform = "translate(-50%, -50%)";
+        }
+      });
+
+      closeAboutBtn.addEventListener("click", () => {
+        aboutWindow.style.display = "none";
+      });
+
+      // Make About Window Draggable
+      makeDraggable(aboutWindow, aboutHeader);
+
+      function renderProjects() {
+        container.innerHTML = "";
+
+        // Add some background chaos text
+        if (isChaos) {
+          const bgText = document.createElement("div");
+          bgText.className = "chaos-bg-element";
+          bgText.innerText = "CHAOS";
+          bgText.style.top = "10%";
+          bgText.style.left = "10%";
+          bgText.style.transform = "rotate(-10deg)";
+          container.appendChild(bgText);
+
+          const bgText2 = document.createElement("div");
+          bgText2.className = "chaos-bg-element";
+          bgText2.innerText = "ORDER";
+          bgText2.style.bottom = "10%";
+          bgText2.style.right = "10%";
+          bgText2.style.transform = "rotate(10deg)";
+          container.appendChild(bgText2);
+
+          // Add hint
+          const hint = document.createElement("div");
+          hint.style.position = "absolute";
+          hint.style.top = "50%";
+          hint.style.left = "50%";
+          hint.style.transform = "translate(-50%, -50%)";
+          hint.style.fontSize = "14px";
+          hint.style.color = "#aaa";
+          hint.style.pointerEvents = "none";
+          hint.style.zIndex = "0";
+          hint.innerText = "( DRAG TO TOSS )";
+          container.appendChild(hint);
+        }
+
+        projects.forEach((p, index) => {
+          const card = document.createElement("div"); // Changed from 'a' to 'div'
+          // card.href = p.href; // Removed href
+          card.className = `project-card thumb ${p.cssClass}`;
+          card.dataset.href = p.href; // Store href in dataset
+          card.dataset.title = p.title;
+
+          card.innerHTML = `
+                    <div class="project-tags">
+                        ${p.tags
+                          .map((t) => `<span class="tag">${t}</span>`)
+                          .join("")}
+                    </div>
+                    <div class="project-info">
+                        <strong>${p.title}</strong><br><small>${
+            p.subtitle
+          }</small>
+                    </div>
+                `;
+
+          // Add click listener for expansion
+          card.addEventListener("click", (e) => {
+            // If it was a drag (handled in makeDraggable), this might still fire if we don't stop it.
+            // But makeDraggable adds a capturing listener to stop propagation.
+            // Let's double check.
+
+            // We need to check if it's chaos mode or order mode.
+            // In order mode, we probably just want to navigate? Or expand too?
+            // User said "click a project it expands into this window".
+
+            expandProject(p);
+          });
+
+          container.appendChild(card);
+
+          if (isChaos) {
+            // Delay scattering slightly to allow layout
+            setTimeout(() => scatterCard(card), 10);
+          }
+        });
+      }
+
+      function expandProject(project) {
+        const win = document.createElement("div");
+        win.className = "draggable-window";
+        win.style.display = "flex";
+        win.style.zIndex = 3000;
+
+        // Check if mobile
+        const isMobile = window.innerWidth <= 768;
+
+        if (isMobile) {
+          // Mobile styles are handled by CSS class, but we need to ensure inline styles don't override
+          win.style.left = "0";
+          win.style.top = "0";
+          win.style.transform = "none";
+        } else {
+          // Desktop centering
+          win.style.left = "50%";
+          win.style.top = "50%";
+          win.style.transform = "translate(-50%, -50%)";
+        }
+
+        win.innerHTML = `
+                <div class="window-header">
+                    <span>${project.title}</span>
+                    <button class="close-win">X</button>
+                </div>
+                <iframe src="${project.href}"></iframe>
+            `;
+
+        document.body.appendChild(win);
+
+        const closeBtn = win.querySelector(".close-win");
+        closeBtn.addEventListener("click", () => {
+          win.remove();
+        });
+
+        const header = win.querySelector(".window-header");
+        makeDraggable(win, header);
+      }
+
+      function scatterCard(card) {
+        const cardWidth = 320;
+        const cardHeight = 240;
+        const headerHeight = 100;
+
+        // Calculate available area
+        // We want them to be spread out vertically so they don't all bunch up
+        // Let's define a virtual height based on number of projects
+        const virtualHeight = Math.max(
+          window.innerHeight,
+          projects.length * 150
+        );
+
+        const randomLeft =
+          Math.random() * (window.innerWidth - cardWidth - 40) + 20;
+        const randomTop =
+          Math.random() * (virtualHeight - cardHeight - headerHeight) +
+          headerHeight;
+        const randomRot = (Math.random() - 0.5) * 30; // -15 to 15 deg
+
+        card.style.left = `${randomLeft}px`;
+        card.style.top = `${randomTop}px`;
+        card.style.transform = `rotate(${randomRot}deg)`;
+
+        // Add drag functionality (simple version)
+        makeDraggable(card);
+      }
+
+      function makeDraggable(element, handle) {
+        let pos1 = 0,
+          pos2 = 0,
+          pos3 = 0,
+          pos4 = 0;
+        let isDragging = false;
+        // If handle is provided, use it, otherwise use the element itself
+        const dragHandle = handle || element;
+
+        // Use addEventListener instead of onmousedown to avoid overwriting
+        dragHandle.addEventListener("mousedown", dragMouseDown);
+        dragHandle.addEventListener("touchstart", dragMouseDown, {
+          passive: false,
+        });
+
+        function dragMouseDown(e) {
+          if (!isChaos && element.classList.contains("project-card")) return; // Only drag cards in chaos mode
+
+          // Handle touch event
+          let clientX, clientY;
+          if (e.type === "touchstart") {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+          } else {
+            e = e || window.event;
+            clientX = e.clientX;
+            clientY = e.clientY;
+            // Only prevent default if it's not a button or interactive element inside
+            if (e.target.tagName !== "BUTTON" && e.target.tagName !== "A") {
+              e.preventDefault();
+            }
+          }
+
+          // get the mouse cursor position at startup:
+          pos3 = clientX;
+          pos4 = clientY;
+
+          // Use addEventListener for document events
+          if (e.type === "touchstart") {
+            document.addEventListener("touchend", closeDragElement);
+            document.addEventListener("touchmove", elementDrag, {
+              passive: false,
+            });
+          } else {
+            document.addEventListener("mouseup", closeDragElement);
+            document.addEventListener("mousemove", elementDrag);
+          }
+
+          // Bring to front
+          element.style.zIndex = 1000;
+          if (element.classList.contains("draggable-window")) {
+            element.style.zIndex = 2001; // Higher than cards
+          }
+
+          // Disable transition during drag
+          element.classList.add("no-transition");
+
+          isDragging = false;
+        }
+
+        function elementDrag(e) {
+          let clientX, clientY;
+          if (e.type === "touchmove") {
+            e.preventDefault(); // Prevent scrolling
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+          } else {
+            e = e || window.event;
+            e.preventDefault();
+            clientX = e.clientX;
+            clientY = e.clientY;
+          }
+
+          // calculate the new cursor position:
+          pos1 = pos3 - clientX;
+          pos2 = pos4 - clientY;
+          pos3 = clientX;
+          pos4 = clientY;
+
+          // Check if actually moved
+          if (Math.abs(pos1) > 0 || Math.abs(pos2) > 0) {
+            isDragging = true;
+          }
+
+          // set the element's new position:
+          element.style.top = element.offsetTop - pos2 + "px";
+          element.style.left = element.offsetLeft - pos1 + "px";
+
+          // Remove transform if it was centered
+          if (element.style.transform.includes("translate")) {
+            element.style.transform = element.style.transform.replace(
+              /translate\([^)]+\)/,
+              ""
+            );
+          }
+        }
+
+        function closeDragElement(e) {
+          // stop moving when mouse button is released:
+          document.removeEventListener("mouseup", closeDragElement);
+          document.removeEventListener("mousemove", elementDrag);
+          document.removeEventListener("touchend", closeDragElement);
+          document.removeEventListener("touchmove", elementDrag);
+
+          // Re-enable transition
+          element.classList.remove("no-transition");
+
+          if (element.classList.contains("project-card")) {
+            element.style.zIndex = 1; // Reset z-index for cards
+          }
+
+          // If it was a drag, prevent click
+          if (isDragging) {
+            const preventClick = (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              element.removeEventListener("click", preventClick, true);
+              element.removeEventListener("touchend", preventClick, true);
+            };
+            element.addEventListener("click", preventClick, true);
+            element.addEventListener("touchend", preventClick, true);
+          }
+        }
+      }
+
+      function toggleMode() {
+        isChaos = !isChaos;
+        document.body.classList.toggle("order-mode", !isChaos);
+        toggleBtn.innerText = isChaos ? "CHAOS" : "ORDER";
+        toggleBtn.style.background = isChaos ? "#000" : "#fff";
+        toggleBtn.style.color = isChaos ? "#fff" : "#000";
+
+        const cards = document.querySelectorAll(".project-card");
+        const bgElements = document.querySelectorAll(".chaos-bg-element");
+
+        if (isChaos) {
+          bgElements.forEach((el) => (el.style.display = "block"));
+          cards.forEach((card) => scatterCard(card));
+        } else {
+          bgElements.forEach((el) => (el.style.display = "none"));
+          cards.forEach((card) => {
+            card.style.left = "";
+            card.style.top = "";
+            card.style.transform = "";
+          });
+        }
+      }
+
+      toggleBtn.addEventListener("click", toggleMode);
+
+      // Initial Render
+      renderProjects();
+
+      // Re-scatter on resize if in chaos mode
+      let resizeTimeout;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          if (isChaos) {
+            const cards = document.querySelectorAll(".project-card");
+            cards.forEach((card) => scatterCard(card));
+          }
+        }, 200);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Isaque Seneda — Selected Works</title>
+    <link href="css/normalize.css" rel="stylesheet" type="text/css" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      WebFont.load({
+        google: {
+          families: [
+            "JetBrains Mono:200,300,regular,500,600,700",
+            "Playfair Display:400,700",
+          ],
+        },
+      });
+    </script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
+
+      :root {
+        --bg-color: #f4f4f4;
+        --text-color: #111;
+        --accent-color: #e63946;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* We'll handle horizontal scroll manually or via container */
+        height: 100vh;
+        width: 100vw;
+      }
+
+      /* Horizontal Scroll Container */
+      .gallery-container {
+        display: flex;
+        height: 100vh;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        padding: 0 10vw; /* Start/End padding */
+        align-items: center;
+        gap: 10vw;
+        /* Hide scrollbar */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .gallery-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Intro Section */
+      .intro-section {
+        min-width: 60vw;
+        padding-right: 5vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(3rem, 6vw, 6rem);
+        margin: 0;
+        line-height: 1.1;
+        font-weight: 400;
+      }
+
+      .subtitle {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        margin-top: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.7;
+      }
+
+      /* Project Card */
+      .project-card {
+        min-width: 40vw; /* Width of each card */
+        height: 70vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        transition: transform 0.5s ease;
+        text-decoration: none;
+        color: inherit;
+        scroll-snap-align: center;
+      }
+
+      .project-image-container {
+        width: 100%;
+        height: 85%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .project-card:hover .project-image {
+        transform: scale(1.05);
+      }
+
+      .project-info {
+        height: 15%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding-top: 20px;
+        border-top: 1px solid #000;
+        margin-top: 20px;
+      }
+
+      .project-number {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        line-height: 0.8;
+        opacity: 0.2;
+        position: absolute;
+        top: -3rem;
+        left: -2rem;
+        z-index: -1;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .project-tags {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        opacity: 0.6;
+      }
+
+      /* Navigation / Progress */
+      .progress-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        background: #000;
+        width: 0%;
+        transition: width 0.1s;
+        z-index: 100;
+      }
+
+      .fixed-header {
+        position: fixed;
+        top: 30px;
+        left: 40px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        font-weight: 700;
+        z-index: 100;
+        mix-blend-mode: difference;
+        color: #fff; /* Will be inverted by mix-blend-mode */
+      }
+
+      .fixed-menu {
+        position: fixed;
+        top: 30px;
+        right: 40px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        z-index: 100;
+        mix-blend-mode: difference;
+        color: #fff;
+      }
+
+      .fixed-menu a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      @media (max-width: 768px) {
+        .gallery-container {
+          flex-direction: column;
+          height: auto;
+          padding: 100px 20px;
+          gap: 80px;
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+
+        .intro-section {
+          min-width: 100%;
+          height: 60vh;
+        }
+
+        .project-card {
+          min-width: 100%;
+          width: 100%;
+          height: 60vh;
+        }
+
+        .progress-bar {
+          top: 0;
+          bottom: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fixed-header">ISAQUE SENEDA</div>
+    <div class="fixed-menu">
+      <a href="about.html">About</a>
+      <a href="mailto:hello@isaque.me">Contact</a>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <div class="gallery-container" id="gallery">
+      <div class="intro-section">
+        <h1>Strategy,<br />Design,<br />& Code.</h1>
+        <div class="subtitle">SCROLL TO EXPLORE -></div>
+      </div>
+
+      <!-- Project 1 -->
+      <a href="phone.html" class="project-card">
+        <div class="project-number">01</div>
+        <div class="project-image-container">
+          <img
+            src="images/phone.png"
+            alt="Heineken Phone"
+            class="project-image"
+          />
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Heineken Phone</h3>
+          <div class="project-tags">STRATEGY / CREATIVE</div>
+        </div>
+      </a>
+
+      <!-- Project 2 -->
+      <a href="ice.html" class="project-card">
+        <div class="project-number">02</div>
+        <div class="project-image-container">
+          <img
+            src="images/ice-cover.png"
+            alt="Rogers Ice"
+            class="project-image"
+          />
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Rogers Ice</h3>
+          <div class="project-tags">STRATEGY / CREATIVE</div>
+        </div>
+      </a>
+
+      <!-- Project 3 -->
+      <a href="megatable.html" class="project-card">
+        <div class="project-number">03</div>
+        <div class="project-image-container">
+          <img
+            src="images/megatable_thumb.png"
+            alt="Mega Table"
+            class="project-image"
+          />
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Mega Table</h3>
+          <div class="project-tags">PRODUCT DESIGN</div>
+        </div>
+      </a>
+
+      <!-- Project 4 -->
+      <a href="mysig.html" class="project-card">
+        <div class="project-number">04</div>
+        <div class="project-image-container">
+          <img src="images/mysigthumb.png" alt="My-Sig" class="project-image" />
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">My-Sig</h3>
+          <div class="project-tags">UX / DEV</div>
+        </div>
+      </a>
+
+      <!-- Project 5 -->
+      <a href="barxp.html" class="project-card">
+        <div class="project-number">05</div>
+        <div class="project-image-container">
+          <img
+            src="images/barxp.png"
+            alt="Bar Experience"
+            class="project-image"
+          />
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Bar Experience</h3>
+          <div class="project-tags">BRANDING</div>
+        </div>
+      </a>
+
+      <!-- End Section -->
+      <div class="intro-section" style="min-width: 40vw">
+        <h1>Let's<br />Work<br />Together.</h1>
+        <div class="subtitle">
+          <a href="mailto:hello@isaque.me" style="text-decoration: underline"
+            >HELLO@ISAQUE.ME</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const gallery = document.getElementById("gallery");
+      const progress = document.getElementById("progress");
+
+      // Horizontal Scroll with Mouse Wheel
+      gallery.addEventListener("wheel", (evt) => {
+        // Only if screen is wide enough (desktop)
+        if (window.innerWidth > 768) {
+          // Check if we are at the boundaries
+          const atStart = gallery.scrollLeft === 0;
+          const atEnd =
+            gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth;
+
+          // If we are scrolling vertically (deltaY) and not at boundaries, or if we want to force horizontal
+          // Usually we want to map vertical scroll to horizontal scroll
+
+          if (evt.deltaY !== 0) {
+            evt.preventDefault();
+            gallery.scrollLeft += evt.deltaY;
+          }
+        }
+      });
+
+      // Progress Bar Logic
+      gallery.addEventListener("scroll", () => {
+        let scrollPercent;
+        if (window.innerWidth > 768) {
+          // Horizontal calculation
+          const maxScrollLeft = gallery.scrollWidth - gallery.clientWidth;
+          scrollPercent = (gallery.scrollLeft / maxScrollLeft) * 100;
+        } else {
+          // Vertical calculation for mobile
+          const maxScrollTop = gallery.scrollHeight - gallery.clientHeight;
+          scrollPercent = (gallery.scrollTop / maxScrollTop) * 100;
+        }
+        progress.style.width = `${scrollPercent}%`;
+      });
+    </script>
+  </body>
+</html>
