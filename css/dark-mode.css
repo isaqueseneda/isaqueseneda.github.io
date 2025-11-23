@@ -48,9 +48,27 @@ body.dark-mode .tag {
 }
 
 body.dark-mode .thumbtag {
-  background-color: #1a1a1a;
+  border-color: #333;
+  background-color: #222;
   color: #eee;
-  border: 1px solid #333;
+}
+
+body.dark-mode .projectbar100.uxdemo {
+  background-color: #222;
+}
+
+body.dark-mode .mysig-light-bg {
+  background-color: #222;
+}
+
+body.dark-mode .mysig-dark-bg {
+  background-color: #111;
+  color: #eee;
+}
+
+body.dark-mode .projectbar100.grey {
+  background-color: #222;
+  color: #eee;
 }
 
 body.dark-mode .headerplaceholder {
@@ -267,4 +285,21 @@ body.dark-mode .cv-thumb {
 body.dark-mode .av-tbn,
 body.dark-mode .projectbar100.av {
   background-color: #111 !important;
+}
+
+/* Break Section Override */
+body.dark-mode .break {
+  border-color: #333 !important;
+}
+
+/* Aslide Border Override */
+body.dark-mode .aslide,
+body.dark-mode .aslide.blacklines {
+  border-color: #333 !important;
+}
+
+/* Additional Border Overrides */
+body.dark-mode .theproject,
+body.dark-mode .calendarbye {
+  border-color: #333 !important;
 }

@@ -1707,6 +1707,10 @@ img {
   position: relative;
 }
 
+.mysig-bg {
+  background-color: #f9fafb;
+}
+
 .projectbar100.akodont {
   position: relative;
 }
@@ -2233,6 +2237,7 @@ img {
   top: 0px;
   display: inline-block;
   text-wrap: balance;
+  line-height: 1.4;
 }
 
 .cta-button:hover {
