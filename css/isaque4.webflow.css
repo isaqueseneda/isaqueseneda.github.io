@@ -2245,6 +2245,26 @@ img {
   background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #047857 100%);
 }
 
+/* Live Demo Button Styles */
+.live-demo-btn {
+  padding: 14px 32px;
+  font-size: 1.1em;
+  background: #222;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: 1px solid #222;
+}
+
+.live-demo-btn:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0.7;
+}
+
 /* CV */
 .cv-wrapper {
   display: flex;

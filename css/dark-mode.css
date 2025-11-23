@@ -115,7 +115,8 @@ body.dark-mode .paragraphdiv {
 }
 
 body.dark-mode .imagearrow,
-body.dark-mode .eezaaki {
+body.dark-mode .eezaaki,
+body.dark-mode .mt-matrix-img {
   filter: invert(1);
 }
 
@@ -166,6 +167,18 @@ body.dark-mode .cta-button:hover {
   background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #047857 100%);
   color: #fff;
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Live Demo Button Dark Mode */
+body.dark-mode .live-demo-btn {
+  background: #eee;
+  color: #111;
+  border-color: #eee;
+}
+
+body.dark-mode .live-demo-btn:hover {
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
 
 /* About Button Styles */
