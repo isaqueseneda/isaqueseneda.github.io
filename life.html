@@ -43,132 +43,341 @@
 
     <title>Life Calendar</title>
     <style>
-      .mega-wrapper {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 49px;
-        border-top: 1px solid #000;
+      :root {
+        --bg-color: #f4f4f4;
+        --text-color: #1a1a1a;
+        --grid-gap: 2px;
+        --cell-size: 8px;
+        --timeline-height: 180px;
+        --accent-color: #000;
       }
 
-      .calendar {
-        display: flex;
-        flex-wrap: wrap;
-        border-left: 1px solid #000;
-        width: 100%;
-      }
-
-      .week {
-        width: 20px;
-        height: 20px;
-        border-right: 1px solid #000;
-        border-bottom: 1px solid #000;
-        box-sizing: border-box;
-      }
-
-      .legend {
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "JetBrains Mono", monospace;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
-        align-items: start;
-        width: 250px;
-        padding-top: 20px;
-        padding-left: 10px;
-        padding-right: 10px;
-        position: sticky;
-        top: 110px;
       }
 
-      .legend-wrapper {
-        position: sticky;
-        top: 0;
+      /* Dark Mode */
+      .dark-mode {
+        --bg-color: #111;
+        --text-color: #eee;
+        --accent-color: #fff;
       }
 
-      .week:hover {
-        box-shadow: inset 0 0 30px #1a1a1a;
-      }
-
-      .legend-item {
-        display: flex;
-        align-items: start;
-        border: 1px solid #000;
-        padding-right: 5px;
-        margin-bottom: 12px;
-        max-height: 20px;
-      }
-
-      .legend-color {
-        width: 18px;
-        height: 18px;
-        margin-right: 5px;
-      }
-
-      .progress {
-        width: 100%;
-        height: 50px;
-        background: repeating-linear-gradient(
-          -45deg,
-          #f3f3f3,
-          #f3f3f3 7px,
-          #000 2px,
-          #000 8px
-        );
-        position: fixed;
-        margin-bottom: 20px;
+      /* Header / Progress */
+      .header-bar {
+        height: 60px;
+        flex-shrink: 0;
+        position: relative;
+        border-bottom: 1px solid var(--text-color);
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #000;
-        z-index: 99;
+        background: repeating-linear-gradient(
+          -45deg,
+          var(--bg-color),
+          var(--bg-color) 7px,
+          var(--text-color) 2px,
+          var(--text-color) 8px
+        );
       }
-      .progress-bar {
+
+      .life-progress {
         height: 100%;
-        position: absolute;
         background-color: rgb(0, 212, 0);
-        border-right: 1px solid #000;
+        border-right: 1px solid var(--text-color);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        transition: width 1s ease-out;
       }
-      .progress-text {
+
+      .life-text {
         position: absolute;
         width: 100%;
         text-align: center;
-        color: black;
+        z-index: 2;
+        /* font-weight: bold; */
+        font-size: 14px;
+        color: var(--text-color);
+        /* text-shadow: 0 0 2px var(--bg-color); */
+        pointer-events: none;
       }
 
-      @media screen and (max-width: 700px) {
-        .mega-wrapper {
-          flex-direction: column-reverse;
-          margin-top: 50px;
-          border-top: none;
-        }
-        .legend-item {
-          margin-right: 10px;
-          max-height: 15px;
-          line-height: 14px;
-          width: unset;
-          min-width: 135px;
-          max-width: 400px;
-        }
-        .legend-color {
-          width: 13px;
-          height: 13px;
-          margin-right: 5px;
-        }
+      /* Main Layout */
+      .main-container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
 
-        .legend-wrapper {
-          width: 100vw;
-        }
+      /* Timeline (Top Half) */
+      .timeline-section {
+        height: var(--timeline-height);
+        border-bottom: 1px solid var(--text-color);
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: var(--bg-color);
+        scrollbar-width: thin;
+      }
 
-        .legend {
-          display: flex;
-          width: unset;
+      .timeline-section::-webkit-scrollbar {
+        height: 6px;
+      }
+      .timeline-section::-webkit-scrollbar-thumb {
+        background: var(--text-color);
+      }
+
+      .timeline-card {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-width: 180px;
+        height: 110px;
+        border: 1px solid var(--text-color);
+        padding: 12px;
+        white-space: normal;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+        background: var(--bg-color);
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .timeline-card:hover,
+      .timeline-card.active {
+        transform: translateY(-4px);
+        box-shadow: 4px 4px 0 var(--text-color);
+        z-index: 10;
+        border-color: var(--accent-color);
+      }
+
+      .timeline-card.dimmed {
+        opacity: 0.3;
+      }
+
+      .card-color-strip {
+        height: 6px;
+        width: 100%;
+        margin-bottom: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .card-title {
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 1.4;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+      }
+
+      .card-date {
+        font-size: 10px;
+        opacity: 0.7;
+        margin-top: auto;
+      }
+
+      /* Grid (Bottom Half) */
+      .grid-section {
+        flex-grow: 1;
+        padding: 20px;
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        background: var(--bg-color);
+      }
+
+      .life-grid {
+        display: flex;
+        flex-direction: row;
+        gap: 2px;
+        padding-bottom: 40px; /* Space for tooltip */
+        padding-top: 15px;
+      }
+
+      .year-col {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        position: relative;
+      }
+
+      .year-label {
+        font-size: 8px;
+        text-align: center;
+        margin-bottom: 2px;
+        opacity: 0.5;
+        position: absolute;
+        top: -15px;
+        width: 100%;
+        pointer-events: none;
+      }
+
+      .week-cell {
+        width: var(--cell-size);
+        height: var(--cell-size);
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 0px;
+        transition: opacity 0.2s;
+      }
+      .dark-mode .week-cell {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .week-cell.active-week {
+        border: 1px solid var(--text-color);
+        transform: scale(1.2);
+        z-index: 5;
+      }
+
+      .week-cell.dimmed {
+        opacity: 0.1;
+      }
+
+      /* Current Week Indicator */
+      .week-cell.current {
+        background-color: red !important;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 4px rgba(255, 0, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+        }
+      }
+
+      /* Footer Overrides */
+      .footer.wf-section {
+        flex-shrink: 0;
+        background: var(--bg-color);
+        border-top: 1px solid var(--text-color);
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .contactbye {
+        display: flex;
+        align-items: center;
+      }
+
+      .contactbye.respiro {
+        margin-right: 20px;
+      }
+
+      .acabou {
+        font-size: 20px;
+        margin-right: 10px;
+        color: var(--text-color);
+      }
+
+      .image-4 {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid var(--text-color);
+      }
+
+      .contactblock {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .linkmesmobox {
+        display: flex;
+        gap: 15px;
+      }
+
+      .contact {
+        color: var(--text-color) !important;
+        text-decoration: none;
+        font-size: 10px;
+        text-transform: uppercase;
+      }
+
+      .contact:hover {
+        text-decoration: underline;
+      }
+
+      .me .contact {
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      /* Tooltip */
+      #tooltip {
+        position: fixed;
+        background: var(--bg-color);
+        border: 1px solid var(--text-color);
+        padding: 8px 12px;
+        display: none;
+        z-index: 1000;
+        font-size: 10px;
+        pointer-events: none;
+        box-shadow: 4px 4px 0 var(--text-color);
+        max-width: 200px;
+      }
+
+      /* Dialogue Box (Legacy) */
+      .dialoguebg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none; /* Hidden by default for now, or logic to show */
+      }
+      .dialoguebox {
+        background: #fff;
+        padding: 20px;
+        border: 2px solid #000;
+        max-width: 300px;
+        text-align: center;
+      }
+
+      @media screen and (max-width: 768px) {
+        .life-grid {
+          flex-direction: column; /* Stack years vertically on mobile? No, horizontal scroll is better */
           flex-direction: row;
-          font-size: 9px;
-          border-bottom: 1px solid #000;
-          overflow-x: scroll;
-          border-bottom: unset;
-          top: unset;
-          position: relative;
         }
-        .week {
-          width: 10px;
-          height: 10px;
+        .grid-section {
+          justify-content: flex-start;
+        }
+        :root {
+          --cell-size: 6px;
         }
       }
     </style>
@@ -188,45 +397,30 @@
         </div>
       </div>
     </div>
-    <div class="header wf-section" data-project-name="LIFE CALENDAR"></div>
-    <div class="progress" id="progress">
-      <div class="progress-bar" id="progress-bar"></div>
-      <div class="progress-text" id="progress-text"></div>
+
+    <div class="header-bar">
+      <div class="life-progress" id="progress-bar"></div>
+      <div class="life-text" id="progress-text"></div>
     </div>
 
-    <div class="mega-wrapper">
-      <div class="calendar" id="calendar"></div>
-      <div class="legend-wrapper">
-        <div class="legend" id="legend"></div>
+    <div class="main-container">
+      <div class="timeline-section" id="timeline">
+        <!-- Timeline cards will be injected here -->
+      </div>
+
+      <div class="grid-section">
+        <div class="life-grid" id="life-grid">
+          <!-- Grid will be injected here -->
+        </div>
       </div>
     </div>
 
-    <div class="footer wf-section">
-      <div class="contactbye respiro"></div>
-      <div class="contactbye about">
-        <div class="me">
-          <span>2025 GOLDEN SAW HOLDER</span>
-        </div>
-        <div class="contactblock">
-          <div class="linkmesmobox">
-            <span class="contact">hello@isaque.me</span>
-            <a href="https://isaque.me/calendar.html" class="contact">cal</a>
-            <a
-              href="https://www.linkedin.com/in/isaqueseneda/"
-              target="_blank"
-              class="contact"
-              >linkedin</a
-            >
-            <a href="about.html" class="contact">about</a>
-          </div>
-        </div>
-      </div>
-      <div class="contactbye about"></div>
-    </div>
+    <div id="tooltip"></div>
 
     <script>
       const today = new Date();
       const todayString = today.toISOString().split("T")[0];
+      // Data
       const periods = [
         {
           start: "1996-10-01",
@@ -374,62 +568,414 @@
         },
         {
           start: "2024-04-19",
-          end: todayString,
+          end: "2024-06-07",
           color: "green",
           label: "JAGUARIÚNA: RETREAT",
         },
+        {
+          start: "2024-06-08",
+          end: "2024-06-18",
+          color: "green",
+          label: "MY-SOLSTICE: ROM/BUL",
+        },
+        {
+          start: "2024-06-18",
+          end: "2024-06-22",
+          color: "blue",
+          label: "FRANCE: CANNES",
+        },
+        {
+          start: "2024-06-23",
+          end: "2024-06-30",
+          color: "red",
+          label: "ALICANTE: MATTHIEU",
+        },
+        {
+          start: "2024-07-01",
+          end: "2024-07-19",
+          color: "yellow",
+          label: "AMSTERDAM / BERLIN",
+        },
+        {
+          start: "2024-07-20",
+          end: "2024-07-31",
+          color: "purple",
+          label: "MY-CAMP: UK / LONDON",
+        },
+        {
+          start: "2024-08-01",
+          end: "2024-08-12",
+          color: "orange",
+          label: "EMAG: ROMANIA / RAZ",
+        },
+        {
+          start: "2024-08-13",
+          end: "2024-08-22",
+          color: "pink",
+          label: "FODMAP: BUDAPEST / STUTTGART",
+        },
+        {
+          start: "2024-08-23",
+          end: "2024-09-04",
+          color: "lime",
+          label: "AMSTERDAM: FODMAP + GLASSES",
+        },
+        {
+          start: "2024-09-05",
+          end: "2024-12-10",
+          color: "orange",
+          label: "BRAZIL: FODMAP + BOARD GAMES + MATH + GLAM",
+        },
+        {
+          start: "2024-12-11",
+          end: "2024-12-26",
+          color: "purple",
+          label: "LISBON: ANAISA (TOSCA) + PARENTS + AMS",
+        },
+        {
+          start: "2024-12-27",
+          end: "2025-01-03",
+          color: "green",
+          label: "MY-NY: ITALY",
+        },
+        {
+          start: "2025-01-04",
+          end: "2025-01-14",
+          color: "blue",
+          label: "SPAIN + MOROCCO: PARENTS",
+        },
+        {
+          start: "2025-01-15",
+          end: "2025-03-27",
+          color: "red",
+          label: "AMSTERDAM: MOCCHI + INTESE BOOM",
+        },
+        {
+          start: "2025-03-28",
+          end: "2025-04-06",
+          color: "yellow",
+          label: "AMSTERDAM: GABRIEL + BRUNA + LL",
+        },
+        {
+          start: "2025-04-07",
+          end: "2025-04-12",
+          color: "green",
+          label: "PARIS: MUSTACHE + THE BIG SHIFT",
+        },
+        {
+          start: "2025-04-13",
+          end: "2025-04-20",
+          color: "blue",
+          label: "MY-EASTER: DENMARK (TECH ROOM, TGG)",
+        },
+        {
+          start: "2025-04-21",
+          end: "2025-05-15",
+          color: "red",
+          label: "AMSTERDAM: ED'S + CANADA",
+        },
+        {
+          start: "2025-05-16",
+          end: "2025-06-13",
+          color: "yellow",
+          label: "PARIS: 1-MONTH TRIAL (TIM BERNARDES)",
+        },
+        {
+          start: "2025-06-14",
+          end: "2025-06-22",
+          color: "green",
+          label: "MY-SOLSTICE: BULGARIA (VOLLEYBALL)",
+        },
+        {
+          start: "2025-06-23",
+          end: "2025-07-06",
+          color: "blue",
+          label: "AMSTERDAM: GABRUNA + DILLINGER + HACKATHON",
+        },
+        {
+          start: "2025-07-07",
+          end: "2025-07-25",
+          color: "red",
+          label: "FRANCE: RENNES, ETC.",
+        },
+        {
+          start: "2025-07-26",
+          end: "2025-08-04",
+          color: "yellow",
+          label: "MY-CAMP: ITALY",
+        },
+        {
+          start: "2025-08-05",
+          end: "2025-09-02",
+          color: "green",
+          label: "AMSTERDAM: COMMUNIST + RE-CANADA + AUDITIONS",
+        },
+        {
+          start: "2025-09-03",
+          end: "2025-09-10",
+          color: "blue",
+          label: "PORTUGAL: ANAISA + ISABEL",
+        },
+        {
+          start: "2025-09-11",
+          end: "2025-09-19",
+          color: "green",
+          label: "PARIS: HIBERNATION",
+        },
+        {
+          start: "2025-09-20",
+          end: "2025-10-19",
+          color: "blue",
+          label: "BRAZIL: BDAY + FAMILY + FRIENDS + AKQA",
+        },
+        {
+          start: "2025-10-20",
+          end: todayString,
+          color: "green",
+          label: "PARIS: CLIMBING + HOPE",
+        },
       ];
-      const weeksInYear = 52;
-      const totalYears = 82;
-      const totalWeeks = totalYears * weeksInYear;
-      const calendar = document.getElementById("calendar");
-      const legend = document.getElementById("legend");
+
+      // Sort periods by start date to ensure timeline order
+      periods.sort((a, b) => new Date(a.start) - new Date(b.start));
+
+      // Color Algorithm: Distinct Palette
+      const palette = [
+        "#FF5733",
+        "#33FF57",
+        "#3357FF",
+        "#FF33A1",
+        "#33FFF5",
+        "#F5FF33",
+        "#FF8C33",
+        "#8C33FF",
+        "#FF3333",
+        "#33FF8C",
+      ];
+      periods.forEach((p, i) => {
+        p.color = palette[i % palette.length];
+      });
+
+      const timelineContainer = document.getElementById("timeline");
+      const gridContainer = document.getElementById("life-grid");
+      const tooltip = document.getElementById("tooltip");
       const progressBar = document.getElementById("progress-bar");
       const progressText = document.getElementById("progress-text");
+
+      let activePeriodIndex = -1;
+
+      // Render Timeline
+      periods.forEach((period, index) => {
+        const card = document.createElement("div");
+        card.className = "timeline-card";
+        card.dataset.label = period.label;
+
+        const start = new Date(period.start);
+        const end = new Date(period.end);
+        const duration = Math.ceil((end - start) / (1000 * 60 * 60 * 24 * 7)); // weeks
+
+        card.innerHTML = `
+            <div class="card-color-strip" style="background-color: ${period.color}"></div>
+            <div class="card-title">${period.label}</div>
+            <div class="card-date">${period.start} — ${period.end}</div>
+            <div class="card-duration">${duration} wks</div>
+        `;
+
+        // Click to select
+        card.addEventListener("click", (e) => {
+          e.stopPropagation();
+          activePeriodIndex = index;
+          updateSelection();
+        });
+
+        timelineContainer.appendChild(card);
+      });
+
+      // Render Grid (Years as Columns)
+      const birthDate = new Date(1996, 9, 1); // Oct 1, 1996
+      const totalYears = 82;
+      const weeksPerYear = 52;
       let completedWeeks = 0;
-      for (let i = 0; i < totalWeeks; i++) {
-        const week = document.createElement("div");
-        week.classList.add("week");
-        const currentDate = new Date(1996, 9, 1 + i * 7);
-        for (const period of periods) {
-          const start = new Date(period.start);
-          const end = new Date(period.end);
-          const startOfWeek = new Date(start);
-          startOfWeek.setDate(start.getDate() - start.getDay() + 1);
-          if (currentDate >= startOfWeek && currentDate <= end) {
-            week.style.backgroundColor = period.color;
-            break;
-          }
-        }
-        // Check if currentDate is within the same week as today
-        const startOfWeekToday = new Date(today);
-        startOfWeekToday.setDate(today.getDate() - today.getDay() + 1);
-        const endOfWeekToday = new Date(startOfWeekToday);
-        endOfWeekToday.setDate(endOfWeekToday.getDate() + 6);
-        if (currentDate >= startOfWeekToday && currentDate <= endOfWeekToday) {
-          week.style.backgroundColor = "red";
+      let totalWeeksCount = 0;
+
+      for (let y = 0; y < totalYears; y++) {
+        const col = document.createElement("div");
+        col.className = "year-col";
+
+        // Optional: Year Label every 5 years
+        if (y % 5 === 0) {
+          const yearLabel = document.createElement("div");
+          yearLabel.className = "year-label";
+          yearLabel.textContent = 1996 + y;
+          col.appendChild(yearLabel);
         }
 
-        if (currentDate <= today) {
-          completedWeeks++;
+        for (let w = 0; w < weeksPerYear; w++) {
+          const cell = document.createElement("div");
+          cell.className = "week-cell";
+
+          // Calculate date for this cell
+          const cellDate = new Date(birthDate);
+          cellDate.setDate(birthDate.getDate() + (y * 52 + w) * 7);
+
+          // Find period
+          let cellPeriod = null;
+          for (const p of periods) {
+            const pStart = new Date(p.start);
+            const pEnd = new Date(p.end);
+            // Adjust start to beginning of week
+            const pStartWeek = new Date(pStart);
+            pStartWeek.setDate(pStart.getDate() - pStart.getDay() + 1);
+
+            if (cellDate >= pStartWeek && cellDate <= pEnd) {
+              cellPeriod = p;
+              break;
+            }
+          }
+
+          if (cellPeriod) {
+            cell.style.backgroundColor = cellPeriod.color;
+            cell.dataset.label = cellPeriod.label;
+          }
+
+          // Check if current week
+          const now = new Date();
+          const startOfWeekToday = new Date(now);
+          startOfWeekToday.setDate(now.getDate() - now.getDay() + 1);
+          const endOfWeekToday = new Date(startOfWeekToday);
+          endOfWeekToday.setDate(endOfWeekToday.getDate() + 6);
+
+          if (cellDate >= startOfWeekToday && cellDate <= endOfWeekToday) {
+            cell.classList.add("current");
+          }
+
+          if (cellDate <= now) {
+            completedWeeks++;
+          }
+          totalWeeksCount++;
+
+          // Tooltip & Hover
+          cell.addEventListener("mouseenter", (e) => {
+            const label = cell.dataset.label || "Unknown";
+            const dateStr = cellDate.toISOString().split("T")[0];
+            tooltip.style.display = "block";
+            tooltip.innerHTML = `<strong>${label}</strong><br>${dateStr}`;
+            tooltip.style.left = e.clientX + 10 + "px";
+            tooltip.style.top = e.clientY + 10 + "px";
+
+            if (cellPeriod) {
+              // Highlight grid only, no scroll, no timeline dim
+              highlightGrid(cellPeriod.label);
+            }
+          });
+
+          cell.addEventListener("mouseleave", () => {
+            tooltip.style.display = "none";
+            // If there is an active selection, revert to that
+            if (activePeriodIndex !== -1) {
+              highlightGrid(periods[activePeriodIndex].label);
+            } else {
+              resetGridHighlight();
+            }
+          });
+
+          // Click to select
+          cell.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (cellPeriod) {
+              const idx = periods.findIndex(
+                (p) => p.label === cellPeriod.label
+              );
+              if (idx !== -1) {
+                activePeriodIndex = idx;
+                updateSelection();
+              }
+            }
+          });
+
+          col.appendChild(cell);
         }
-        calendar.appendChild(week);
+        gridContainer.appendChild(col);
       }
-      const progressPercentage = (completedWeeks / totalWeeks) * 100;
-      const remainingPercentage = 100 - progressPercentage;
-      progressBar.style.width = remainingPercentage + "%";
-      progressText.textContent = remainingPercentage.toFixed(2) + "%";
-      for (const period of periods) {
-        const legendItem = document.createElement("div");
-        legendItem.classList.add("legend-item");
-        const legendColor = document.createElement("div");
-        legendColor.classList.add("legend-color");
-        legendColor.style.backgroundColor = period.color;
-        const legendLabel = document.createElement("span");
-        legendLabel.textContent = period.label;
-        legendItem.appendChild(legendColor);
-        legendItem.appendChild(legendLabel);
-        legend.appendChild(legendItem);
+
+      // Global Deselect
+      document.addEventListener("click", () => {
+        activePeriodIndex = -1;
+        resetGridHighlight();
+        document
+          .querySelectorAll(".timeline-card")
+          .forEach((c) => c.classList.remove("active"));
+      });
+
+      // Keyboard Navigation
+      document.addEventListener("keydown", (e) => {
+        if (periods.length === 0) return;
+
+        if (e.key === "ArrowRight") {
+          if (activePeriodIndex === -1) activePeriodIndex = -1;
+          activePeriodIndex++;
+          if (activePeriodIndex >= periods.length) activePeriodIndex = 0;
+          updateSelection();
+        } else if (e.key === "ArrowLeft") {
+          if (activePeriodIndex === -1) activePeriodIndex = 0;
+          activePeriodIndex--;
+          if (activePeriodIndex < 0) activePeriodIndex = periods.length - 1;
+          updateSelection();
+        } else if (e.key === "Escape") {
+          activePeriodIndex = -1;
+          resetGridHighlight();
+          document
+            .querySelectorAll(".timeline-card")
+            .forEach((c) => c.classList.remove("active"));
+        }
+      });
+
+      function updateSelection() {
+        const p = periods[activePeriodIndex];
+        highlightGrid(p.label);
+
+        // Scroll timeline
+        const card = Array.from(
+          document.querySelectorAll(".timeline-card")
+        ).find((c) => c.dataset.label === p.label);
+        if (card) {
+          card.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+          document
+            .querySelectorAll(".timeline-card")
+            .forEach((c) => c.classList.remove("active"));
+          card.classList.add("active");
+        }
+      }
+
+      // Progress Bar
+      const percentage = (completedWeeks / totalWeeksCount) * 100;
+      const remaining = 100 - percentage;
+      progressBar.style.width = remaining + "%";
+      progressText.textContent = remaining.toFixed(2) + "%";
+
+      // Helpers
+
+      function highlightGrid(label) {
+        document.querySelectorAll(".week-cell").forEach((cell) => {
+          if (cell.dataset.label === label) {
+            cell.classList.remove("dimmed");
+            cell.classList.add("active-week");
+          } else {
+            cell.classList.remove("dimmed");
+            cell.classList.remove("active-week");
+          }
+        });
+      }
+
+      function resetGridHighlight() {
+        document.querySelectorAll(".week-cell").forEach((cell) => {
+          cell.classList.remove("dimmed");
+          cell.classList.remove("active-week");
+        });
       }
     </script>
     <script
