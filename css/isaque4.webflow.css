@@ -84,6 +84,11 @@ button:hover {
   --avBG: ;
 }
 
+.chaos-mode .thumbtitletext {
+  font-weight: 400;
+  overflow: visible !important;
+}
+
 /* BACKGROUND CHAOS */
 body::before {
   content: "";
@@ -2647,6 +2652,10 @@ img {
   .cv-thumb-group {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: 40px;
+    margin-bottom: -40px;
+    position: relative;
+    z-index: 5;
   }
 
   /* Ensure institution names don't overflow */
