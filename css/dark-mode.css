@@ -138,25 +138,6 @@ body.dark-mode #awards-summary > div > div > div {
   color: #eee;
 }
 
-/* CTA Button Styles */
-.cta-button {
-  background: black;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  top: 0px;
-  display: inline-block;
-}
-
-.cta-button:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #047857 100%);
-}
-
 body.dark-mode .cta-button {
   background: #eee;
   color: #111;
