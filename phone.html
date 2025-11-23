@@ -17,6 +17,15 @@
     <link href="css/normalize.css" rel="stylesheet" type="text/css" />
     <link href="css/webflow.css" rel="stylesheet" type="text/css" />
     <link href="css/isaque4.webflow.css" rel="stylesheet" type="text/css" />
+    <link href="css/dark-mode.css" rel="stylesheet" type="text/css" />
+    <script>
+      if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark-mode");
+        document.addEventListener("DOMContentLoaded", () => {
+          document.body.classList.add("dark-mode");
+        });
+      }
+    </script>
     <script
       src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
       type="text/javascript"
@@ -55,30 +64,7 @@
     </script>
   </head>
   <body class="body">
-    <div class="header">
-      <div class="inheadertitlebox">
-        <a href="index.html" class="link">ISAQUE<br />SENEDA</a>
-        <a href="#" class="link projectname">THE BORING PHONE</a>
-        <div
-          data-w-id="d342c014-63fa-44c6-767a-1dacd9ee3b2e"
-          class="chaosorder"
-        >
-          <div class="coselectorwrap">
-            <div
-              data-w-id="d342c014-63fa-44c6-767a-1dacd9ee3b30"
-              class="theblackcircle"
-            ></div>
-          </div>
-          <div class="cotext">chaos</div>
-          <button
-            id="dark-mode-toggle"
-            href="#"
-            class="dark-mode-toggle w-button"
-          ></button>
-        </div>
-      </div>
-      <div class="headerplaceholder"></div>
-    </div>
+    <div class="header wf-section" data-project-name="THE BORING PHONE"></div>
     <div class="theproject wf-section">
       <div class="projectbar100 cover phonecover"></div>
       <div class="projectbar100 textset">
@@ -100,8 +86,13 @@
           <div class="thumbtag">
             🧾 Shortlist / Cannes Lions (Brand XP: Partnerships)
           </div>
-          <div class="thumbtag">🏆 Shortlisted / Eurobest (PR: Sectors, Consumer Goods)</div>
-<div class="thumbtag">🥈 Silver / Eurobest (Excellence: PR Craft, Sponsorship & Brand Partnerships)</div>
+          <div class="thumbtag">
+            🏆 Shortlisted / Eurobest (PR: Sectors, Consumer Goods)
+          </div>
+          <div class="thumbtag">
+            🥈 Silver / Eurobest (Excellence: PR Craft, Sponsorship & Brand
+            Partnerships)
+          </div>
           <div class="thumbtag">🥈 Silver / 2024 LIA (Design: Zeitgeist)</div>
           <div class="thumbtag">
             🥈 Silver / 2024 LIA (Design: Direct Marketing)
@@ -191,5 +182,6 @@
     ></script>
     <script src="js/webflow.js" type="text/javascript"></script>
     <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+    <script src="js/header-component.js"></script>
   </body>
 </html>

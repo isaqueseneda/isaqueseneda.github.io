@@ -1,0 +1,289 @@
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #111;
+  color: #eee;
+}
+
+body.dark-mode .header,
+body.dark-mode .introsection,
+body.dark-mode .introcontainer,
+body.dark-mode .footer {
+  background-color: #111;
+  color: #eee;
+  border-color: #333 !important;
+}
+
+body.dark-mode .thesection {
+  background-color: transparent;
+  color: #eee;
+  border-color: #333 !important;
+}
+
+body.dark-mode a {
+  color: #eee;
+}
+
+body.dark-mode .thumb {
+  border-color: #333;
+  background-color: transparent;
+  color: #eee;
+}
+
+body.dark-mode .projectbar100.cover {
+  background-color: #222;
+}
+
+body.dark-mode .thumb:hover {
+  background-color: #333;
+}
+
+body.dark-mode .project-info {
+  background-color: #1a1a1a;
+  border-top-color: #333 !important;
+}
+
+body.dark-mode .tag {
+  background-color: #eee;
+  color: #111;
+}
+
+body.dark-mode .thumbtag {
+  background-color: #1a1a1a;
+  color: #eee;
+  border: 1px solid #333;
+}
+
+body.dark-mode .headerplaceholder {
+  background-color: #111;
+}
+
+body.dark-mode .inheadertitlebox {
+  background-color: #111;
+  border-color: #333 !important;
+}
+
+body.dark-mode .chaosorder {
+  border-color: #333;
+}
+
+body.dark-mode .coselectorwrap {
+  border-color: #333 !important;
+}
+
+body.dark-mode .cotext {
+  color: #eee;
+}
+
+body.dark-mode .theblackcircle {
+  background-color: #eee;
+  border-color: #333 !important;
+}
+
+body.dark-mode .contactbye {
+  border-color: #333 !important;
+}
+
+body.dark-mode .contactblock,
+body.dark-mode .me {
+  border-color: #333 !important;
+}
+
+body.dark-mode .contact {
+  color: #eee !important;
+}
+
+body.dark-mode .paragraphdiv {
+  border-color: #333 !important;
+}
+
+body.dark-mode .imagearrow,
+body.dark-mode .eezaaki {
+  filter: invert(1);
+}
+
+/* Global Border Overrides for Dark Mode */
+body.dark-mode .cv-body,
+body.dark-mode .cv-side,
+body.dark-mode .cv-section,
+body.dark-mode .cv-section.cveducation,
+body.dark-mode .cv-circle-shape,
+body.dark-mode .cv-oval-shape,
+body.dark-mode .cv-thumb,
+body.dark-mode .file-item,
+body.dark-mode .file-download,
+body.dark-mode .footer .contactbye,
+body.dark-mode .projectbar100,
+body.dark-mode .projectblock50,
+body.dark-mode .projectbar50-50,
+body.dark-mode .sidebar,
+body.dark-mode .image-17,
+body.dark-mode .kysimage,
+body.dark-mode .image-7,
+body.dark-mode .download,
+body.dark-mode .inheadertitlebox,
+body.dark-mode .paragraphdiv,
+body.dark-mode .contactblock,
+body.dark-mode .me {
+  border-color: #333 !important;
+}
+
+/* Tag Overrides */
+body.dark-mode .skill_subcategory_badge {
+  background-color: #eee;
+  color: #111;
+}
+
+body.dark-mode #awards-summary > div > div > div {
+  background-color: #333 !important;
+  color: #eee;
+}
+
+/* CTA Button Styles */
+.cta-button {
+  background: black;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  top: 0px;
+  display: inline-block;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #047857 100%);
+}
+
+body.dark-mode .cta-button {
+  background: #eee;
+  color: #111;
+  border-color: #333;
+}
+
+body.dark-mode .cta-button:hover {
+  background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #047857 100%);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* About Button Styles */
+.about-header-btn {
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: 12px;
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.about-header-btn:hover {
+  background-color: #e0e0e0;
+}
+
+body.dark-mode .about-header-btn {
+  border-color: #333;
+  color: #eee;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .about-header-btn:hover {
+  background-color: #333;
+}
+
+/* Toggle Button Style */
+#theme-toggle-btn {
+  background: transparent;
+  border: none;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  margin-right: 15px;
+  position: relative;
+  overflow: visible;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+@media (min-width: 1001px) {
+  #theme-toggle-btn {
+    display: flex;
+  }
+}
+
+#theme-toggle-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+#theme-toggle-btn .icon-sun {
+  display: block !important;
+}
+
+#theme-toggle-btn .icon-moon {
+  display: none !important;
+}
+
+body.dark-mode #theme-toggle-btn {
+  border-color: transparent;
+  background: transparent;
+}
+
+body.dark-mode #theme-toggle-btn .icon-sun {
+  display: none !important;
+}
+
+body.dark-mode #theme-toggle-btn .icon-moon {
+  display: block !important;
+}
+
+#theme-toggle-btn::after {
+  display: none;
+}
+
+body.dark-mode #theme-toggle-btn::after {
+  display: none;
+}
+
+/* More/Less Button Override */
+body.dark-mode #collapse-awards {
+  background-color: #eee !important;
+  color: #111 !important;
+}
+
+/* Muted Text & Elements Override */
+body.dark-mode .cv-city,
+body.dark-mode .skill_subcategory,
+body.dark-mode [style*="color: lightgray"],
+body.dark-mode [style*="COLOR: LIGHTGRAY"] {
+  color: #444 !important;
+}
+
+body.dark-mode [style*="background-color: lightgray"] {
+  background-color: #444 !important;
+}
+
+/* Available for Projects Tag Override */
+body.dark-mode .cv-institution span[style*="background-color: #f3f3f3"] {
+  background-color: #333 !important;
+  color: #eee !important;
+}
+
+/* CV Thumb Override */
+body.dark-mode .cv-thumb {
+  background-color: #333 !important;
+  color: #eee !important;
+}
+
+/* AV Thumb & Project Bar Override */
+body.dark-mode .av-tbn,
+body.dark-mode .projectbar100.av {
+  background-color: #111 !important;
+}

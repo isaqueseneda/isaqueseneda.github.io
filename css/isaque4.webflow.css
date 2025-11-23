@@ -75,7 +75,7 @@ button:hover {
 }
 
 /*SANDBOX*/
-.darkmode {
+.chaos-mode {
   --background: none;
   --chaosSwitchPosition: 15px;
   /* --chaosTextShadow: -20px 0 white, 0 20px white, 20px 0 white, 0 -20px white; */
@@ -2156,7 +2156,7 @@ img {
   cursor: inherit;
 }
 
-.dark-mode-toggle {
+.chaos-toggle-overlay {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -2218,7 +2218,7 @@ img {
 /* CV */
 .cv-wrapper {
   display: flex;
-  padding-top: 60px;
+  padding-top: 0px;
   display: flex;
   justify-content: center;
   overflow-x: hidden;
