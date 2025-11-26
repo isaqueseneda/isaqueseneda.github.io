@@ -294,6 +294,12 @@ body.dark-mode .cv-thumb {
   color: #eee !important;
 }
 
+body.dark-mode .cv-thumb:hover {
+  background-color: #555 !important;
+  color: #fff !important;
+  transition: 0.3s;
+}
+
 /* AV Thumb & Project Bar Override */
 body.dark-mode .av-tbn,
 body.dark-mode .projectbar100.av {
