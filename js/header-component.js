@@ -20,9 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // 'dark-mode' class (with hyphen) is the new Dark Mode.
 
   const darkModeToggle = `
-      <button id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle Dark Mode">
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <button id="theme-toggle-btn" style="background: none; border: none; cursor: pointer; padding: 5px; color: inherit; margin-right: 5px;" title="Toggle Theme">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg>
       </button>
   `;
 
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     rightContent = `
             <div style="display: flex; align-items: center;">
                 ${darkModeToggle}
-                <a href="files/isaque_cv.pdf" target="_blank" download class="about-header-btn">cv ↓</a>
+                <a href="files/isaque_cv.pdf" target="_blank" download class="about-header-btn" style="padding: 5px 7px; margin-right: 5px;">cv ↓</a>
                 ${chaosToggle}
             </div>
         `;
@@ -59,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     rightContent = `
             <div style="display: flex; align-items: center;">
                 ${darkModeToggle}
-                <a href="about.html" class="about-header-btn">about</a>
+                <a href="about.html" class="about-header-btn" style="padding: 5px 7px; margin-right: 5px;">about</a>
                 ${chaosToggle}
             </div>
         `;
@@ -96,23 +95,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 2. Handle Dark Mode Logic
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
-  const body = document.body;
+  const html = document.documentElement;
 
   // Check localStorage or System Preference
   const currentTheme = localStorage.getItem("theme");
   const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
   if (currentTheme === "dark" || (!currentTheme && systemPrefersDark.matches)) {
-    body.classList.add("dark-mode");
+    html.classList.add("dark-mode");
   }
 
   // Listen for System Preference Changes
   systemPrefersDark.addEventListener("change", (e) => {
     if (e.matches) {
-      body.classList.add("dark-mode");
+      html.classList.add("dark-mode");
       localStorage.setItem("theme", "dark");
     } else {
-      body.classList.remove("dark-mode");
+      html.classList.remove("dark-mode");
       localStorage.setItem("theme", "light");
     }
   });
@@ -120,9 +119,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Toggle Event
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", function () {
-      body.classList.toggle("dark-mode");
+      html.classList.toggle("dark-mode");
 
-      if (body.classList.contains("dark-mode")) {
+      if (html.classList.contains("dark-mode")) {
         localStorage.setItem("theme", "dark");
       } else {
         localStorage.setItem("theme", "light");
@@ -208,9 +207,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function enableChaosMode() {
-    body.classList.add("chaos-mode");
+    document.body.classList.add("chaos-mode");
     localStorage.setItem("chaosMode", "enabled");
-    body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
 
     // Play Audio
     // Note: Browsers might block autoplay if not triggered by user interaction.
@@ -223,10 +222,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function disableChaosMode() {
-    body.classList.remove("chaos-mode");
-    body.classList.remove("background-active");
+    document.body.classList.remove("chaos-mode");
+    document.body.classList.remove("background-active");
     localStorage.setItem("chaosMode", "disabled");
-    body.style.overflow = "";
+    document.body.style.overflow = "";
 
     chaosAudio.pause();
     chaosAudio.currentTime = 0;
@@ -239,8 +238,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (savedChaosMode === "enabled") {
     // We can't auto-play audio reliably on load without interaction,
     // but we can apply visual effects.
-    body.classList.add("chaos-mode");
-    body.style.overflow = "hidden";
+    document.body.classList.add("chaos-mode");
+    document.body.style.overflow = "hidden";
     distortElements();
     skewBackground();
     // Try to play audio, might fail
@@ -253,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (chaosBtn) {
     chaosBtn.addEventListener("click", function () {
-      const isChaosEnabled = body.classList.contains("chaos-mode");
+      const isChaosEnabled = document.body.classList.contains("chaos-mode");
       if (isChaosEnabled) {
         disableChaosMode();
       } else {

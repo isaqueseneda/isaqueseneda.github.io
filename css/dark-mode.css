@@ -1,182 +1,183 @@
 /* Dark Mode Styles */
-body.dark-mode {
+html.dark-mode,
+html.dark-mode body {
   background-color: #111;
   color: #eee;
 }
 
-body.dark-mode .header,
-body.dark-mode .introsection,
-body.dark-mode .introcontainer,
-body.dark-mode .footer {
+html.dark-mode .header,
+html.dark-mode .introsection,
+html.dark-mode .introcontainer,
+html.dark-mode .footer {
   background-color: #111;
   color: #eee;
   border-color: #333 !important;
 }
 
-body.dark-mode .thesection {
+html.dark-mode .thesection {
   background-color: transparent;
   color: #eee;
   border-color: #333 !important;
 }
 
-body.dark-mode a {
+html.dark-mode a {
   color: #eee;
 }
 
-body.dark-mode .thumb {
+html.dark-mode .thumb {
   border-color: #333;
   background-color: transparent;
   color: #eee;
 }
 
-body.dark-mode .projectbar100.cover {
+html.dark-mode .projectbar100.cover {
   background-color: #222;
 }
 
-body.dark-mode .thumb:hover {
+html.dark-mode .thumb:hover {
   background-color: #333;
 }
 
-body.dark-mode .project-info {
+html.dark-mode .project-info {
   background-color: #1a1a1a;
   border-top-color: #333 !important;
 }
 
-body.dark-mode .tag {
+html.dark-mode .tag {
   background-color: #eee;
   color: #111;
 }
 
-body.dark-mode .thumbtag {
+html.dark-mode .thumbtag {
   border-color: #333;
   background-color: #222;
   color: #eee;
 }
 
-body.dark-mode .projectbar100.uxdemo {
+html.dark-mode .projectbar100.uxdemo {
   background-color: #222;
 }
 
-body.dark-mode .mysig-light-bg {
+html.dark-mode .mysig-light-bg {
   background-color: #222;
 }
 
-body.dark-mode .mysig-dark-bg {
+html.dark-mode .mysig-dark-bg {
   background-color: #111;
   color: #eee;
 }
 
-body.dark-mode .projectbar100.grey {
+html.dark-mode .projectbar100.grey {
   background-color: #222;
   color: #eee;
 }
 
-body.dark-mode .headerplaceholder {
+html.dark-mode .headerplaceholder {
   background-color: #111;
 }
 
-body.dark-mode .inheadertitlebox {
+html.dark-mode .inheadertitlebox {
   background-color: #111;
   border-color: #333 !important;
 }
 
-body.dark-mode .chaosorder {
+html.dark-mode .chaosorder {
   border-color: #333;
 }
 
-body.dark-mode .coselectorwrap {
+html.dark-mode .coselectorwrap {
   border-color: #333 !important;
 }
 
-body.dark-mode .cotext {
+html.dark-mode .cotext {
   color: #eee;
 }
 
-body.dark-mode .theblackcircle {
+html.dark-mode .theblackcircle {
   background-color: #eee;
   border-color: #333 !important;
 }
 
-body.dark-mode .contactbye {
+html.dark-mode .contactbye {
   border-color: #333 !important;
 }
 
-body.dark-mode .contactblock,
-body.dark-mode .me {
+html.dark-mode .contactblock,
+html.dark-mode .me {
   border-color: #333 !important;
 }
 
-body.dark-mode .contact {
+html.dark-mode .contact {
   color: #eee !important;
 }
 
-body.dark-mode .paragraphdiv {
+html.dark-mode .paragraphdiv {
   border-color: #333 !important;
 }
 
-body.dark-mode .imagearrow,
-body.dark-mode .eezaaki,
-body.dark-mode .mt-matrix-img {
+html.dark-mode .imagearrow,
+html.dark-mode .eezaaki,
+html.dark-mode .mt-matrix-img {
   filter: invert(1);
 }
 
 /* Global Border Overrides for Dark Mode */
-body.dark-mode .cv-body,
-body.dark-mode .cv-side,
-body.dark-mode .cv-section,
-body.dark-mode .cv-section.cveducation,
-body.dark-mode .cv-circle-shape,
-body.dark-mode .cv-oval-shape,
-body.dark-mode .cv-thumb,
-body.dark-mode .file-item,
-body.dark-mode .file-download,
-body.dark-mode .footer .contactbye,
-body.dark-mode .projectbar100,
-body.dark-mode .projectblock50,
-body.dark-mode .projectbar50-50,
-body.dark-mode .sidebar,
-body.dark-mode .image-17,
-body.dark-mode .kysimage,
-body.dark-mode .image-7,
-body.dark-mode .download,
-body.dark-mode .inheadertitlebox,
-body.dark-mode .paragraphdiv,
-body.dark-mode .contactblock,
-body.dark-mode .me {
+html.dark-mode .cv-body,
+html.dark-mode .cv-side,
+html.dark-mode .cv-section,
+html.dark-mode .cv-section.cveducation,
+html.dark-mode .cv-circle-shape,
+html.dark-mode .cv-oval-shape,
+html.dark-mode .cv-thumb,
+html.dark-mode .file-item,
+html.dark-mode .file-download,
+html.dark-mode .footer .contactbye,
+html.dark-mode .projectbar100,
+html.dark-mode .projectblock50,
+html.dark-mode .projectbar50-50,
+html.dark-mode .sidebar,
+html.dark-mode .image-17,
+html.dark-mode .kysimage,
+html.dark-mode .image-7,
+html.dark-mode .download,
+html.dark-mode .inheadertitlebox,
+html.dark-mode .paragraphdiv,
+html.dark-mode .contactblock,
+html.dark-mode .me {
   border-color: #333 !important;
 }
 
 /* Tag Overrides */
-body.dark-mode .skill_subcategory_badge {
+html.dark-mode .skill_subcategory_badge {
   background-color: #eee;
   color: #111;
 }
 
-body.dark-mode #awards-summary > div > div > div {
+html.dark-mode #awards-summary > div > div > div {
   background-color: #333 !important;
   color: #eee;
 }
 
-body.dark-mode .cta-button {
+html.dark-mode .cta-button {
   background: #eee;
   color: #111;
   border-color: #333;
 }
 
-body.dark-mode .cta-button:hover {
+html.dark-mode .cta-button:hover {
   background: linear-gradient(135deg, #022c22 0%, #064e3b 50%, #047857 100%);
   color: #fff;
   border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Live Demo Button Dark Mode */
-body.dark-mode .live-demo-btn {
+html.dark-mode .live-demo-btn {
   background: #eee;
   color: #111;
   border-color: #eee;
 }
 
-body.dark-mode .live-demo-btn:hover {
+html.dark-mode .live-demo-btn:hover {
   background: #fff;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
@@ -198,13 +199,13 @@ body.dark-mode .live-demo-btn:hover {
   background-color: #e0e0e0;
 }
 
-body.dark-mode .about-header-btn {
+html.dark-mode .about-header-btn {
   border-color: #333;
   color: #eee;
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 }
 
-body.dark-mode .about-header-btn:hover {
+html.dark-mode .about-header-btn:hover {
   background-color: #333;
 }
 
@@ -243,16 +244,16 @@ body.dark-mode .about-header-btn:hover {
   display: none !important;
 }
 
-body.dark-mode #theme-toggle-btn {
+html.dark-mode #theme-toggle-btn {
   border-color: transparent;
   background: transparent;
 }
 
-body.dark-mode #theme-toggle-btn .icon-sun {
+html.dark-mode #theme-toggle-btn .icon-sun {
   display: none !important;
 }
 
-body.dark-mode #theme-toggle-btn .icon-moon {
+html.dark-mode #theme-toggle-btn .icon-moon {
   display: block !important;
 }
 
@@ -260,65 +261,65 @@ body.dark-mode #theme-toggle-btn .icon-moon {
   display: none;
 }
 
-body.dark-mode #theme-toggle-btn::after {
+html.dark-mode #theme-toggle-btn::after {
   display: none;
 }
 
 /* More/Less Button Override */
-body.dark-mode #collapse-awards {
+html.dark-mode #collapse-awards {
   background-color: #eee !important;
   color: #111 !important;
 }
 
 /* Muted Text & Elements Override */
-body.dark-mode .cv-city,
-body.dark-mode .skill_subcategory,
-body.dark-mode [style*="color: lightgray"],
-body.dark-mode [style*="COLOR: LIGHTGRAY"] {
+html.dark-mode .cv-city,
+html.dark-mode .skill_subcategory,
+html.dark-mode [style*="color: lightgray"],
+html.dark-mode [style*="COLOR: LIGHTGRAY"] {
   color: #444 !important;
 }
 
-body.dark-mode [style*="background-color: lightgray"] {
+html.dark-mode [style*="background-color: lightgray"] {
   background-color: #444 !important;
 }
 
 /* Available for Projects Tag Override */
-body.dark-mode .cv-institution span[style*="background-color: #f3f3f3"] {
+html.dark-mode .cv-institution span[style*="background-color: #f3f3f3"] {
   background-color: #333 !important;
   color: #eee !important;
 }
 
 /* CV Thumb Override */
-body.dark-mode .cv-thumb {
+html.dark-mode .cv-thumb {
   background-color: #333 !important;
   color: #eee !important;
 }
 
-body.dark-mode .cv-thumb:hover {
+html.dark-mode .cv-thumb:hover {
   background-color: #555 !important;
   color: #fff !important;
   transition: 0.3s;
 }
 
 /* AV Thumb & Project Bar Override */
-body.dark-mode .av-tbn,
-body.dark-mode .projectbar100.av {
+html.dark-mode .av-tbn,
+html.dark-mode .projectbar100.av {
   background-color: #111 !important;
 }
 
 /* Break Section Override */
-body.dark-mode .break {
+html.dark-mode .break {
   border-color: #333 !important;
 }
 
 /* Aslide Border Override */
-body.dark-mode .aslide,
-body.dark-mode .aslide.blacklines {
+html.dark-mode .aslide,
+html.dark-mode .aslide.blacklines {
   border-color: #333 !important;
 }
 
 /* Additional Border Overrides */
-body.dark-mode .theproject,
-body.dark-mode .calendarbye {
+html.dark-mode .theproject,
+html.dark-mode .calendarbye {
   border-color: #333 !important;
 }

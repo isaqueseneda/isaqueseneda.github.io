@@ -29,10 +29,6 @@
       // Prevent FOUC
       if (localStorage.getItem('theme') === 'dark') {
         document.documentElement.classList.add('dark-mode');
-        // Also add to body immediately if possible, or wait for DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', () => {
-           document.body.classList.add('dark-mode');
-        });
       }
     </script>
     <script
