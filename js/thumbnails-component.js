@@ -83,7 +83,7 @@ const projects = [
     cssClass: "blei",
     title: "UNITED NATIONS",
     // subtitle: "DONATE YOUR ALGORITHM AGAINST STEREOTYPES",
-    subtitle: "WE MADE ACTIVISM FREE AND REPLACED STEREOTYPES",
+    subtitle: "WE TURNED PERSONAL DATA INTO ACTIVISM",
     tags: ["🏆", "📐 STRAT", "✏️ CREAT", "📟 #####"],
   },
   // {
