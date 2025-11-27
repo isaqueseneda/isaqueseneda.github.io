@@ -38,7 +38,7 @@ const projects = [
     href: "ice.html",
     cssClass: "ice",
     title: "ROGERS",
-    subtitle: "WE HACKED THE NHL FINAL AND SMUGGLED ICE FROM HOME",
+    subtitle: "WE SMUGGLED CANADA'S ICE INTO THE NHL FINALS",
     tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
   },
   {
