@@ -193,16 +193,42 @@
       </div>
       <div
         class="projectbar100 grey"
-        style="padding-top: 100px; padding-bottom: 100px"
+        style="padding: 0"
       >
-        <iframe
-          width="80%"
-          height="700px"
-          src="https://youtube.com/embed/aktoBRPcdow"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+        <div class="video-wrapper">
+          <video
+            id="fridgeVideoBottom"
+            width="100%"
+            height="700px"
+            controls
+            style="object-fit: cover; width: 100%"
+          >
+            <source src="videos/fridge.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div
+            class="video-overlay"
+            onclick="this.style.opacity = 0; setTimeout(() => { this.style.display = 'none'; document.getElementById('fridgeVideoBottom').play(); }, 500);"
+          >
+            <img
+              src="images/fridge-thumbnail.jpg"
+              alt="The Gaming Fridge Video Thumbnail"
+              class="video-thumbnail"
+            />
+            <div class="video-play-button">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                style="margin-left: 4px"
+              >
+                <path d="M8 5V19L19 12L8 5Z" />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
       <!-- <div class="projectbar100">
