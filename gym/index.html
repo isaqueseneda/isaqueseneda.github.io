@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      window.onerror = function (msg, url, line, col, error) {
+        // Ignore ResizeObserver loop limit exceeded
+        if (msg.includes("ResizeObserver loop limit exceeded")) return;
+
+        var div = document.createElement("div");
+        div.style.cssText =
+          "position:fixed;top:0;left:0;right:0;background:rgba(255,0,0,0.9);color:white;padding:20px;z-index:9999;white-space:pre-wrap;font-family:monospace;font-size:12px;";
+        div.textContent =
+          "JS Error: " +
+          msg +
+          "\n" +
+          (url || "").split("/").pop() +
+          ":" +
+          line +
+          ":" +
+          col +
+          "\n" +
+          (error ? error.stack : "");
+        document.body.appendChild(div);
+      };
+    </script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Climber Gym Guide</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Gym Guide" />
+    <link rel="apple-touch-icon" href="/images/webclip.png" />
+    <link rel="manifest" href="manifest.json" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script>
+      window.react = window.React;
+    </script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/lucide-react@0.344.0/dist/umd/lucide-react.js"
+    ></script>
+    <style>
+      body {
+        -webkit-tap-highlight-color: transparent;
+      }
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-white min-h-screen">
+    <div id="root"></div>
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+      const {
+        Activity,
+        ChevronRight,
+        Calendar,
+        Trophy,
+        Info,
+        Check,
+        Plus,
+        Minus,
+        Shuffle,
+        Sparkles,
+        Zap,
+        Flame,
+        Dumbbell,
+        RotateCcw,
+      } = LucideReact;
+
+      // --- DATA & CUES ---
+
+      const EXERCISE_LIBRARY = {
+        // --- PREHAB (Fixed Daily Pairs) ---
+        "scap-retract": {
+          name: "Scapular Retractions",
+          type: "Prehab",
+          muscle: "Scapula",
+          how: "Hang with straight arms. Pull shoulder blades down/back (no elbow bend).",
+          why: "Teaches safe pulling mechanics.",
+          defaultReps: 10,
+          defaultWeight: 0,
+          unit: "bodyweight",
+          alt: "band-pull-aparts",
+        },
+        "band-pull-aparts": {
+          name: "Band Pull-Aparts",
+          type: "Prehab",
+          muscle: "Rear Delt",
+          how: "Hold band, pull apart to chest keeping arms straight.",
+          why: "Great alternative if no bar available.",
+          defaultReps: 15,
+          defaultWeight: 0,
+          unit: "band",
+          alt: "scap-retract",
+        },
+        "ext-rot": {
+          name: "External Rotations",
+          type: "Prehab",
+          muscle: "Rotator Cuff",
+          how: "Elbow tucked to side, rotate forearm outward.",
+          why: "Strengthens rotator cuff.",
+          defaultReps: 12,
+          defaultWeight: 4,
+          unit: "kg",
+          alt: "face-pulls",
+        },
+        "face-pulls": {
+          name: "Face Pulls",
+          type: "Prehab",
+          muscle: "Rear Delt",
+          how: "Pull rope to forehead, leading with hands.",
+          why: "Dynamic rotator cuff work.",
+          defaultReps: 15,
+          defaultWeight: 10,
+          unit: "kg",
+          alt: "ext-rot",
+        },
+        ytw: {
+          name: "Y-T-W Raises",
+          type: "Prehab",
+          muscle: "Lower Trap",
+          how: "Lying face-down, lift arms into Y → T → W shapes.",
+          why: "Rebalances shoulder muscles.",
+          defaultReps: 10,
+          defaultWeight: 2,
+          unit: "kg",
+          alt: "prone-swimmers",
+        },
+        "prone-swimmers": {
+          name: "Prone Swimmers",
+          type: "Mobility",
+          muscle: "Shoulder",
+          how: "Lie face down, move arms from overhead to lower back (handcuff).",
+          why: "Active range of motion.",
+          defaultReps: 8,
+          defaultWeight: 0,
+          unit: "bodyweight",
+          alt: "ytw",
+        },
+        "wall-slide": {
+          name: "Wall Slides",
+          type: "Prehab",
+          muscle: "Mobility",
+          how: "Back + forearms against wall. Slide up/down maintaining contact.",
+          why: "Restores shoulder mobility.",
+          defaultReps: 10,
+          defaultWeight: 0,
+          unit: "bodyweight",
+          alt: "doorway-stretch",
+        },
+        "doorway-stretch": {
+          name: "Doorway Stretch",
+          type: "Mobility",
+          muscle: "Pec Minor",
+          how: "Forearms on door frame, lean forward.",
+          why: "Passive stretch option.",
+          defaultReps: 30,
+          defaultWeight: 0,
+          unit: "seconds",
+          isTime: true,
+          alt: "wall-slide",
+        },
+
+        // --- STRENGTH / WORKOUT LIBRARY ---
+
+        // Push Patterns
+        ohp: {
+          name: "Overhead Press",
+          type: "Push",
+          muscle: "Shoulders",
+          how: "Strict press bar overhead, core tight.",
+          why: "Vertical pushing strength.",
+          defaultReps: 8,
+          defaultWeight: 30,
+          unit: "kg",
+          alt: "landmine-press",
+        },
+        "landmine-press": {
+          name: "Landmine Press",
+          type: "Push",
+          muscle: "Shoulders",
+          how: "Press bar end with one arm, leaning slightly.",
+          why: "Shoulder friendly pressing.",
+          defaultReps: 10,
+          defaultWeight: 15,
+          unit: "kg",
+          alt: "ohp",
+        },
+        "bench-press": {
+          name: "DB Bench Press",
+          type: "Push",
+          muscle: "Chest",
+          how: "Flat bench, dumbbells at 45 degree angle.",
+          why: "Horizontal pushing power.",
+          defaultReps: 10,
+          defaultWeight: 20,
+          unit: "kg",
+          alt: "floor-press",
+        },
+        "floor-press": {
+          name: "Floor Press",
+          type: "Push",
+          muscle: "Triceps/Chest",
+          how: "Lie on floor, press weights until elbows touch ground.",
+          why: "Limits range of motion to protect shoulders.",
+          defaultReps: 10,
+          defaultWeight: 20,
+          unit: "kg",
+          alt: "bench-press",
+        },
+        dips: {
+          name: "Weighted Dips",
+          type: "Push",
+          muscle: "Triceps",
+          how: "Keep chest slightly forward, dip to 90 degrees.",
+          why: "Antagonist to climbing pulling muscles.",
+          defaultReps: 8,
+          defaultWeight: 10,
+          unit: "kg",
+          alt: "pushups",
+        },
+        pushups: {
+          name: "Weighted Pushups",
+          type: "Push",
+          muscle: "Core/Chest",
+          how: "Plate on back, strict form.",
+          why: "Core integrated pushing.",
+          defaultReps: 15,
+          defaultWeight: 10,
+          unit: "kg",
+          alt: "dips",
+        },
+
+        // Pull Patterns
+        pullups: {
+          name: "Pull Ups",
+          type: "Pull",
+          muscle: "Lats",
+          how: "Full ROM, chest to bar.",
+          why: "Primary climbing strength.",
+          defaultReps: 5,
+          defaultWeight: 0,
+          unit: "bodyweight",
+          alt: "lat-pulldown",
+        },
+        "lat-pulldown": {
+          name: "Lat Pulldown",
+          type: "Pull",
+          muscle: "Lats",
+          how: "Wide grip, pull to collarbone.",
+          why: "Volume for back muscles.",
+          defaultReps: 10,
+          defaultWeight: 50,
+          unit: "kg",
+          alt: "pullups",
+        },
+        "db-row": {
+          name: "DB Rows",
+          type: "Pull",
+          muscle: "Mid-Back",
+          how: "Hand on bench, pull weight to hip.",
+          why: "Horizontal pulling balance.",
+          defaultReps: 10,
+          defaultWeight: 25,
+          unit: "kg",
+          alt: "inv-row",
+        },
+        "inv-row": {
+          name: "Inverted Rows",
+          type: "Pull",
+          muscle: "Rear Delt",
+          how: "Hang under bar, pull chest to bar.",
+          why: "Bodyweight horizontal pull.",
+          defaultReps: 12,
+          defaultWeight: 0,
+          unit: "bodyweight",
+          alt: "db-row",
+        },
+
+        // Leg Patterns
+        "goblet-squat": {
+          name: "Goblet Squat",
+          type: "Legs",
+          muscle: "Quads",
+          how: "Hold weight at chest, deep squat.",
+          why: "Leg strength without spinal loading.",
+          defaultReps: 10,
+          defaultWeight: 24,
+          unit: "kg",
+          alt: "lunge",
+        },
+        lunge: {
+          name: "Walking Lunges",
+          type: "Legs",
+          muscle: "Glutes",
+          how: "Step forward, back knee kisses ground.",
+          why: "Unilateral leg strength.",
+          defaultReps: 12,
+          defaultWeight: 16,
+          unit: "kg",
+          alt: "goblet-squat",
+        },
+        rdl: {
+          name: "Romanian Deadlift",
+          type: "Legs",
+          muscle: "Hamstrings",
+          how: "Hinge at hips, slight knee bend, flat back.",
+          why: "Posterior chain protection.",
+          defaultReps: 10,
+          defaultWeight: 60,
+          unit: "kg",
+          alt: "kb-swing",
+        },
+        "kb-swing": {
+          name: "Kettlebell Swings",
+          type: "Legs",
+          muscle: "Hips",
+          how: "Explosive hip hinge.",
+          why: "Dynamic posterior power.",
+          defaultReps: 20,
+          defaultWeight: 24,
+          unit: "kg",
+          alt: "rdl",
+        },
+        cossack: {
+          name: "Cossack Squat",
+          type: "Legs",
+          muscle: "Mobility",
+          how: "Side lunge, keep other leg straight, toe up.",
+          why: "Hip mobility for high steps.",
+          defaultReps: 6,
+          defaultWeight: 0,
+          unit: "bodyweight",
+          alt: "lat-lunge",
+        },
+        "lat-lunge": {
+          name: "Lateral Lunge",
+          type: "Legs",
+          muscle: "Adductors",
+          how: "Step to side, sink hips back.",
+          why: "Groin strength.",
+          defaultReps: 10,
+          defaultWeight: 12,
+          unit: "kg",
+          alt: "cossack",
+        },
+
+        // Core
+        "leg-raise": {
+          name: "Hanging Leg Raise",
+          type: "Core",
+          muscle: "Abs",
+          how: "Hang from bar, lift toes to bar.",
+          why: "Core tension on the wall.",
+          defaultReps: 8,
+          defaultWeight: 0,
+          unit: "bodyweight",
+          alt: "v-up",
+        },
+        "v-up": {
+          name: "V-Ups",
+          type: "Core",
+          muscle: "Abs",
+          how: "Snap body into V shape on floor.",
+          why: "Dynamic core.",
+          defaultReps: 15,
+          defaultWeight: 0,
+          unit: "bodyweight",
+          alt: "leg-raise",
+        },
+        pallof: {
+          name: "Pallof Press",
+          type: "Core",
+          muscle: "Obliques",
+          how: "Resist rotation from cable/band.",
+          why: "Anti-rotation stability.",
+          defaultReps: 10,
+          defaultWeight: 15,
+          unit: "kg",
+          alt: "side-plank",
+        },
+        "side-plank": {
+          name: "Side Plank",
+          type: "Core",
+          muscle: "Obliques",
+          how: "Hold straight line.",
+          why: "Lateral stability.",
+          defaultReps: 45,
+          defaultWeight: 0,
+          unit: "seconds",
+          isTime: true,
+          alt: "pallof",
+        },
+      };
+
+      // --- STRATEGY: 4 PAIRS DAILY ---
+      // Pairs 1 & 2: ALWAYS PREHAB (Fixed)
+      // Pairs 3 & 4: SYNERGISTIC SPLIT (Variable)
+
+      const FIXED_PREHAB = [
+        { pairId: "pre1", exercises: ["scap-retract", "ext-rot"], sets: 3 },
+        { pairId: "pre2", exercises: ["ytw", "wall-slide"], sets: 3 },
+      ];
+
+      const WEEKLY_PLAN = {
+        Monday: [
+          ...FIXED_PREHAB,
+          // Focus: Vertical Push + Squat (Shoulder/Legs Synergy)
+          { pairId: "m-w1", exercises: ["ohp", "goblet-squat"], sets: 3 },
+          // Focus: Accessory Push + Core
+          {
+            pairId: "m-w2",
+            exercises: ["landmine-press", "leg-raise"],
+            sets: 3,
+          },
+        ],
+        Tuesday: [
+          ...FIXED_PREHAB,
+          // Focus: Vertical Pull + Unilateral Legs (Opposing forces)
+          { pairId: "t-w1", exercises: ["pullups", "lunge"], sets: 3 },
+          // Focus: Mid-back + Anti-Rotation
+          { pairId: "t-w2", exercises: ["db-row", "pallof"], sets: 3 },
+        ],
+        Wednesday: [
+          ...FIXED_PREHAB,
+          // Focus: Horizontal Push + Hinge (Chest/Hamstrings)
+          { pairId: "w-w1", exercises: ["bench-press", "rdl"], sets: 3 },
+          // Focus: Triceps + Mobility
+          { pairId: "w-w2", exercises: ["dips", "cossack"], sets: 3 },
+        ],
+        Thursday: [
+          ...FIXED_PREHAB,
+          // Focus: Explosive Hinge + Horizontal Pull (Power Day)
+          { pairId: "th-w1", exercises: ["kb-swing", "inv-row"], sets: 3 },
+          // Focus: Core + Stabilizers
+          { pairId: "th-w2", exercises: ["pushups", "side-plank"], sets: 3 },
+        ],
+        Friday: [
+          ...FIXED_PREHAB,
+          // Focus: Volume Pull + Squat Variation
+          {
+            pairId: "f-w1",
+            exercises: ["lat-pulldown", "goblet-squat"],
+            sets: 3,
+          },
+          // Focus: Arm Pump + Abs (Fun Friday)
+          { pairId: "f-w2", exercises: ["floor-press", "v-up"], sets: 3 },
+        ],
+      };
+
+      const ExerciseCard = ({
+        exerciseId,
+        logData,
+        onInputChange,
+        isComplete,
+        onSwap,
+        isSwapped,
+      }) => {
+        const ex = EXERCISE_LIBRARY[exerciseId];
+        if (!ex) return null;
+
+        // Recommendations
+        const recommendedWeight = ex.defaultWeight;
+        const recommendedReps = ex.defaultReps;
+
+        const currentWeight =
+          logData?.weight !== undefined ? logData.weight : recommendedWeight;
+        const currentReps =
+          logData?.reps !== undefined ? logData.reps : recommendedReps;
+
+        const adjustWeight = (delta) => {
+          const newVal = Math.max(0, Number(currentWeight) + delta);
+          onInputChange(exerciseId, "weight", newVal);
+        };
+
+        const adjustReps = (delta) => {
+          const newVal = Math.max(0, Number(currentReps) + delta);
+          onInputChange(exerciseId, "reps", newVal);
+        };
+
+        return (
+          <div
+            className={`
+            rounded-3xl p-5 flex flex-col gap-4 shadow-xl border-2 transition-all duration-500 relative overflow-hidden group animate-in slide-in-from-bottom-4
+            ${
+              isComplete
+                ? "bg-gradient-to-br from-indigo-900/40 to-emerald-900/40 border-emerald-500/30"
+                : "bg-gradient-to-br from-indigo-950 to-slate-900 border-indigo-500/20 hover:border-indigo-400/40"
+            }
+            `}
+          >
+            {/* Card Glow Effect */}
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-indigo-500/10 blur-3xl rounded-full group-hover:bg-indigo-400/20 transition-all"></div>
+
+            {/* Header */}
+            <div className="z-10 flex justify-between items-start">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="font-black text-xl text-white tracking-tight">
+                    {ex.name}
+                  </h3>
+                  {isSwapped && (
+                    <span className="bg-indigo-500 text-white text-[10px] px-1.5 py-0.5 rounded font-bold animate-pulse">
+                      ALT
+                    </span>
+                  )}
+                </div>
+                <span className="text-xs font-bold text-indigo-300 bg-indigo-950/50 px-2 py-1 rounded-lg border border-indigo-500/20">
+                  {ex.muscle}
+                </span>
+              </div>
+
+              {/* Swap Button */}
+              <button
+                onClick={() => onSwap(exerciseId)}
+                className="p-2 rounded-full bg-slate-800/50 text-slate-400 hover:text-white hover:bg-indigo-600 hover:rotate-180 transition-all duration-500 active:scale-90"
+                title="Swap Exercise"
+              >
+                <Shuffle size={16} />
+              </button>
+            </div>
+
+            {/* Cues */}
+            <div className="z-10 bg-slate-950/40 rounded-2xl p-4 border border-white/5 backdrop-blur-sm shadow-inner">
+              <div className="flex gap-3 mb-2">
+                <div className="w-1 h-auto bg-gradient-to-b from-indigo-500 to-indigo-700 rounded-full"></div>
+                <div>
+                  <p className="text-slate-200 text-sm font-medium leading-relaxed">
+                    {ex.how}
+                  </p>
+                </div>
+              </div>
+              <p className="text-slate-400 text-xs pl-4 flex items-center gap-1">
+                <Zap size={10} className="text-yellow-500 fill-yellow-500" />
+                {ex.why}
+              </p>
+            </div>
+
+            {/* Inputs */}
+            <div className="z-10 grid grid-cols-2 gap-3">
+              {/* Weight Control */}
+              <div className="bg-slate-950/60 rounded-2xl p-3 flex flex-col items-center border border-white/5 relative group/input shadow-sm">
+                <label className="text-slate-500 text-[9px] uppercase font-black tracking-widest mb-2">
+                  {ex.unit === "bodyweight" ? "Added Weight" : "Load (kg)"}
+                </label>
+                <div className="flex items-center justify-between w-full">
+                  <button
+                    onClick={() => adjustWeight(-1)}
+                    className="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-indigo-600 hover:text-white active:scale-90 transition-all shadow-md"
+                  >
+                    <Minus size={16} strokeWidth={3} />
+                  </button>
+                  <span className="text-2xl font-black text-white font-mono tabular-nums">
+                    {currentWeight}
+                  </span>
+                  <button
+                    onClick={() => adjustWeight(2.5)}
+                    className="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-indigo-600 hover:text-white active:scale-90 transition-all shadow-md"
+                  >
+                    <Plus size={16} strokeWidth={3} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Reps Control */}
+              <div className="bg-slate-950/60 rounded-2xl p-3 flex flex-col items-center border border-white/5 shadow-sm">
+                <label className="text-slate-500 text-[9px] uppercase font-black tracking-widest mb-2">
+                  {ex.isTime ? "Seconds" : "Reps"}
+                </label>
+                <div className="flex items-center justify-between w-full">
+                  <button
+                    onClick={() => adjustReps(-1)}
+                    className="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-indigo-600 hover:text-white active:scale-90 transition-all shadow-md"
+                  >
+                    <Minus size={16} strokeWidth={3} />
+                  </button>
+                  <span className="text-2xl font-black text-white font-mono tabular-nums">
+                    {currentReps}
+                  </span>
+                  <button
+                    onClick={() => adjustReps(1)}
+                    className="w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-indigo-600 hover:text-white active:scale-90 transition-all shadow-md"
+                  >
+                    <Plus size={16} strokeWidth={3} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      function ClimberGymGuide() {
+        // Auto-detect day, fallback to Monday if weekend
+        const getInitialDay = () => {
+          const d = new Date().toLocaleDateString("en-US", { weekday: "long" });
+          if (d === "Saturday" || d === "Sunday") return "Monday";
+          return d;
+        };
+
+        const [currentDay, setCurrentDay] = useState(getInitialDay());
+
+        // Load progress from local storage
+        const getDayProgress = (day) => {
+          try {
+            const saved = JSON.parse(
+              localStorage.getItem("gym-progress") || "{}"
+            );
+            return (
+              saved[day] || {
+                activeGroupIndex: 0,
+                currentSet: 1,
+                isComplete: false,
+              }
+            );
+          } catch {
+            return { activeGroupIndex: 0, currentSet: 1, isComplete: false };
+          }
+        };
+
+        const initialProgress = getDayProgress(currentDay);
+        const [activeGroupIndex, setActiveGroupIndex] = useState(
+          initialProgress.activeGroupIndex
+        );
+        const [currentSet, setCurrentSet] = useState(
+          initialProgress.currentSet
+        );
+        const [isComplete, setIsComplete] = useState(
+          initialProgress.isComplete
+        );
+
+        // Update state when day changes
+        useEffect(() => {
+          const p = getDayProgress(currentDay);
+          setActiveGroupIndex(p.activeGroupIndex);
+          setCurrentSet(p.currentSet);
+          setIsComplete(p.isComplete);
+        }, [currentDay]);
+
+        // Save progress whenever it changes
+        useEffect(() => {
+          try {
+            const allProgress = JSON.parse(
+              localStorage.getItem("gym-progress") || "{}"
+            );
+            const newProgress = {
+              ...allProgress,
+              [currentDay]: { activeGroupIndex, currentSet, isComplete },
+            };
+            localStorage.setItem("gym-progress", JSON.stringify(newProgress));
+          } catch (e) {}
+        }, [activeGroupIndex, currentSet, isComplete, currentDay]);
+
+        // Local Storage for Logs and Swaps
+        const [logs, setLogs] = useState(() => {
+          try {
+            const saved = localStorage.getItem("gym-logs");
+            return saved ? JSON.parse(saved) : {};
+          } catch (e) {
+            return {};
+          }
+        });
+
+        const [swaps, setSwaps] = useState(() => {
+          try {
+            const saved = localStorage.getItem("gym-swaps");
+            return saved ? JSON.parse(saved) : {};
+          } catch (e) {
+            return {};
+          }
+        });
+
+        useEffect(() => {
+          localStorage.setItem("gym-logs", JSON.stringify(logs));
+        }, [logs]);
+
+        useEffect(() => {
+          localStorage.setItem("gym-swaps", JSON.stringify(swaps));
+        }, [swaps]);
+
+        const [showDaySelector, setShowDaySelector] = useState(false);
+
+        const [celebrate, setCelebrate] = useState(false);
+        const [celebrationMessage, setCelebrationMessage] = useState("");
+
+        const dailyRoutine = WEEKLY_PLAN[currentDay] || [];
+        const activeGroup = dailyRoutine[activeGroupIndex];
+
+        const getExerciseId = (originalId) => {
+          const key = `${currentDay}-${originalId}`;
+          return swaps[key] ? EXERCISE_LIBRARY[originalId].alt : originalId;
+        };
+
+        const handleSwap = (originalId) => {
+          const key = `${currentDay}-${originalId}`;
+          setSwaps((prev) => ({ ...prev, [key]: !prev[key] }));
+        };
+
+        const handleInputChange = (exId, field, value) => {
+          const key = `${currentDay}-set${currentSet}-${exId}`;
+          setLogs((prev) => ({
+            ...prev,
+            [key]: { ...prev[key], [field]: value },
+          }));
+        };
+
+        const getLog = (exId) => {
+          const key = `${currentDay}-set${currentSet}-${exId}`;
+          if (logs[key]) return logs[key];
+          if (currentSet > 1) {
+            const prevKey = `${currentDay}-set${currentSet - 1}-${exId}`;
+            return logs[prevKey] || {};
+          }
+          return {};
+        };
+
+        const triggerCelebration = () => {
+          // UPDATED: Now shows summary instead of random message
+          setCelebrationMessage(
+            `Set ${currentSet} of ${activeGroup.sets} Complete`
+          );
+          setCelebrate(true);
+
+          // FASTER TIMEOUT: 1000ms
+          setTimeout(() => setCelebrate(false), 1000);
+        };
+
+        const nextStep = () => {
+          triggerCelebration();
+
+          setTimeout(() => {
+            if (currentSet < activeGroup.sets) {
+              setCurrentSet((prev) => prev + 1);
+            } else {
+              if (activeGroupIndex < dailyRoutine.length - 1) {
+                setActiveGroupIndex((prev) => prev + 1);
+                setCurrentSet(1);
+              } else {
+                setIsComplete(true);
+              }
+            }
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }, 600); // Slightly faster transition
+        };
+
+        const allSets = dailyRoutine.flatMap((group, gIdx) =>
+          Array.from({ length: group.sets }).map((_, sIdx) => ({
+            groupIndex: gIdx,
+            setNumber: sIdx + 1,
+            isCompleted:
+              gIdx < activeGroupIndex ||
+              (gIdx === activeGroupIndex && sIdx + 1 < currentSet),
+            isCurrent: gIdx === activeGroupIndex && sIdx + 1 === currentSet,
+          }))
+        );
+
+        const handleReset = () => {
+          if (confirm("Reset progress for " + currentDay + "?")) {
+            setActiveGroupIndex(0);
+            setCurrentSet(1);
+            setIsComplete(false);
+          }
+        };
+
+        if (isComplete) {
+          return (
+            <div className="min-h-screen bg-slate-950 text-white flex flex-col items-center justify-center p-8 text-center animate-in zoom-in duration-500 font-sans relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-indigo-900/20 to-slate-950 z-0"></div>
+              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-indigo-500/20 blur-3xl rounded-full animate-pulse"></div>
+
+              <div className="z-10 relative">
+                <div className="bg-gradient-to-br from-yellow-400 to-orange-500 w-28 h-28 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-orange-500/30 rotate-3 transform hover:rotate-6 transition-transform hover:scale-105 duration-300">
+                  <Trophy size={56} className="text-white drop-shadow-md" />
+                </div>
+                <h1 className="text-5xl font-black mb-4 text-white tracking-tight drop-shadow-lg">
+                  Workout Done!
+                </h1>
+                <p className="text-indigo-200 text-lg mb-10 max-w-xs mx-auto leading-relaxed">
+                  Great session. Refuel and recover.
+                </p>
+
+                <button
+                  onClick={() => {
+                    setIsComplete(false);
+                    setActiveGroupIndex(0);
+                    setCurrentSet(1);
+                  }}
+                  className="text-slate-400 hover:text-white transition-colors underline decoration-slate-700 underline-offset-4 decoration-2"
+                >
+                  Start Over
+                </button>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <div className="min-h-screen bg-slate-950 text-slate-100 font-sans mx-auto max-w-md flex flex-col relative">
+            {celebrate && (
+              <div className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none">
+                <div className="absolute inset-0 bg-indigo-950/60 backdrop-blur-sm animate-in fade-in duration-200"></div>
+                <div className="bg-gradient-to-br from-indigo-600 to-violet-600 px-10 py-8 rounded-[2rem] border-4 border-white/10 shadow-[0_0_50px_rgba(79,70,229,0.5)] animate-in zoom-in-50 duration-200 slide-in-from-bottom-10 transform scale-110">
+                  <h2 className="text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] flex flex-col items-center gap-4 italic transform -rotate-1 text-center leading-none">
+                    <div className="bg-white/20 p-4 rounded-full animate-bounce">
+                      <Check
+                        className="text-emerald-400 w-12 h-12"
+                        strokeWidth={4}
+                      />
+                    </div>
+                    <span className="uppercase tracking-tighter text-xl mt-2">
+                      {celebrationMessage}
+                    </span>
+                  </h2>
+                </div>
+              </div>
+            )}
+
+            <header className="bg-slate-900/80 backdrop-blur-xl border-b border-white/5 sticky top-0 z-50">
+              <div className="p-5 pb-2 flex justify-between items-center">
+                <div className="relative">
+                  <button
+                    onClick={() => setShowDaySelector(!showDaySelector)}
+                    className="flex items-center gap-2 text-2xl font-black text-white tracking-tight hover:text-indigo-400 transition-colors active:scale-95"
+                  >
+                    {currentDay}{" "}
+                    <ChevronRight
+                      className={`transition-transform text-indigo-500 ${
+                        showDaySelector ? "rotate-90" : ""
+                      }`}
+                      size={20}
+                      strokeWidth={3}
+                    />
+                  </button>
+                  {showDaySelector && (
+                    <div className="absolute top-full left-0 mt-3 bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl py-2 w-56 z-50 max-h-80 overflow-y-auto animate-in fade-in zoom-in-95 duration-200">
+                      {Object.keys(WEEKLY_PLAN).map((day) => (
+                        <button
+                          key={day}
+                          onClick={() => {
+                            setCurrentDay(day);
+                            setShowDaySelector(false);
+                          }}
+                          className={`block w-full text-left px-5 py-3 hover:bg-slate-700/50 transition-colors ${
+                            currentDay === day
+                              ? "text-indigo-400 font-bold bg-slate-700/30"
+                              : "text-slate-400 font-medium"
+                          }`}
+                        >
+                          {day}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <button
+                  onClick={handleReset}
+                  className="p-2 rounded-full bg-slate-800/50 text-slate-400 hover:text-white hover:bg-indigo-600 transition-all active:scale-90"
+                  title="Reset Progress"
+                >
+                  <RotateCcw size={20} />
+                </button>
+              </div>
+
+              <div className="px-5 pb-5 pt-1 flex flex-wrap gap-1.5">
+                {allSets.map((set, idx) => (
+                  <div
+                    key={idx}
+                    className={`h-2.5 flex-1 rounded-full transition-all duration-500 ${
+                      set.isCompleted
+                        ? "bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.5)] scale-100"
+                        : set.isCurrent
+                        ? "bg-indigo-500 animate-pulse w-[1.5] scale-110 shadow-[0_0_10px_rgba(99,102,241,0.6)]"
+                        : "bg-slate-800 scale-95"
+                    } ${
+                      idx > 0 && set.groupIndex !== allSets[idx - 1].groupIndex
+                        ? "ml-2"
+                        : ""
+                    }`}
+                  />
+                ))}
+              </div>
+            </header>
+
+            <main className="flex-1 p-5 flex flex-col gap-6 pb-40">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-indigo-300 bg-indigo-900/20 px-3 py-1 rounded-full border border-indigo-500/20">
+                  <Activity size={14} />
+                  <span className="text-xs font-bold uppercase tracking-wider">
+                    Pair {activeGroupIndex + 1} / {dailyRoutine.length}
+                  </span>
+                </div>
+                <span className="text-sm font-black text-white">
+                  Set {currentSet}{" "}
+                  <span className="text-slate-500 font-medium">
+                    / {activeGroup.sets}
+                  </span>
+                </span>
+              </div>
+
+              <div className="flex flex-col gap-8 relative">
+                <div className="absolute left-1/2 top-10 bottom-10 w-0.5 bg-gradient-to-b from-slate-800 via-indigo-900/50 to-slate-800 -translate-x-1/2 rounded-full"></div>
+
+                {activeGroup ? (
+                  activeGroup.exercises.map((originalId) => {
+                    const effectiveId = getExerciseId(originalId);
+                    const isSwapped = swaps[`${currentDay}-${originalId}`];
+
+                    return (
+                      <ExerciseCard
+                        key={originalId}
+                        exerciseId={effectiveId}
+                        isSwapped={isSwapped}
+                        onSwap={() => handleSwap(originalId)}
+                        onInputChange={handleInputChange}
+                        logData={getLog(effectiveId)}
+                        isComplete={false}
+                      />
+                    );
+                  })
+                ) : (
+                  <div className="text-center text-slate-500">Rest Day</div>
+                )}
+              </div>
+            </main>
+
+            <footer className="fixed bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent z-40 max-w-md mx-auto">
+              <button
+                onClick={nextStep}
+                className="w-full bg-indigo-600 hover:bg-indigo-500 active:scale-[0.97] active:bg-indigo-700 text-white font-black py-4 rounded-2xl shadow-[0_10px_30px_rgba(79,70,229,0.3)] flex items-center justify-center gap-3 transition-all duration-200 group border-t border-white/10"
+              >
+                <span className="text-lg tracking-wide">
+                  {currentSet < activeGroup.sets
+                    ? "Finish Set"
+                    : "Complete Pair"}
+                </span>
+                <div className="bg-indigo-700 rounded-lg p-1 group-hover:bg-indigo-600 transition-colors group-hover:translate-x-1 duration-300">
+                  <ChevronRight size={18} strokeWidth={3} />
+                </div>
+              </button>
+            </footer>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<ClimberGymGuide />);
+    </script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("gym-sw.js").then(
+            (registration) => {
+              console.log(
+                "ServiceWorker registration successful with scope: ",
+                registration.scope
+              );
+            },
+            (err) => {
+              console.log("ServiceWorker registration failed: ", err);
+            }
+          );
+        });
+      }
+    </script>
+  </body>
+</html>
