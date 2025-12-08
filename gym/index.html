@@ -713,17 +713,20 @@
         const activeGroup = dailyRoutine[activeGroupIndex];
 
         const getExerciseId = (originalId) => {
-          const key = `${currentDay}-${originalId}`;
+          // Unified swaps: Key is just the exercise ID
+          const key = originalId;
           return swaps[key] ? EXERCISE_LIBRARY[originalId].alt : originalId;
         };
 
         const handleSwap = (originalId) => {
-          const key = `${currentDay}-${originalId}`;
+          const key = originalId;
           setSwaps((prev) => ({ ...prev, [key]: !prev[key] }));
         };
 
         const handleInputChange = (exId, field, value) => {
-          const key = `${currentDay}-set${currentSet}-${exId}`;
+          // Unified logging: Key is just the exercise ID
+          // This ensures Prehab and repeated exercises share data across sets and days
+          const key = exId;
           setLogs((prev) => ({
             ...prev,
             [key]: { ...prev[key], [field]: value },
@@ -731,13 +734,8 @@
         };
 
         const getLog = (exId) => {
-          const key = `${currentDay}-set${currentSet}-${exId}`;
-          if (logs[key]) return logs[key];
-          if (currentSet > 1) {
-            const prevKey = `${currentDay}-set${currentSet - 1}-${exId}`;
-            return logs[prevKey] || {};
-          }
-          return {};
+          const key = exId;
+          return logs[key] || {};
         };
 
         const triggerCelebration = () => {
@@ -929,7 +927,7 @@
                 {activeGroup ? (
                   activeGroup.exercises.map((originalId) => {
                     const effectiveId = getExerciseId(originalId);
-                    const isSwapped = swaps[`${currentDay}-${originalId}`];
+                    const isSwapped = swaps[originalId];
 
                     return (
                       <ExerciseCard
