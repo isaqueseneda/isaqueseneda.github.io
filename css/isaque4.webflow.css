@@ -240,6 +240,24 @@ img {
   background-color: #d2d2d2;
 }
 
+.thumb.vibeapps {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #000;
+  text-decoration: none;
+  background-size: auto 60%;
+  background-position: center;
+  background-image: url("../images/vibe-os-thumb.png");
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
+
+.thumb.vibeapps:hover {
+  background-color: #d2d2d2;
+}
+
 .thumb.tide {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2783,4 +2801,19 @@ img {
 
 .video-overlay:hover .video-play-button {
   transform: scale(1.1);
+}
+
+.vibeapps {
+  background-color: #333;
+  background-image: linear-gradient(
+    45deg,
+    #333 25%,
+    #444 25%,
+    #444 50%,
+    #333 50%,
+    #333 75%,
+    #444 75%,
+    #444 100%
+  );
+  background-size: 20px 20px;
 }

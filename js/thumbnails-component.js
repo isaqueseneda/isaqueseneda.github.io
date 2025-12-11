@@ -117,6 +117,13 @@ const projects = [
     tags: ["📐 STRAT"],
   },
   {
+    href: "vibe-coded-apps.html",
+    cssClass: "vibeapps",
+    title: "VIBE CODED APPS",
+    subtitle: "WEIRD WEB EXPERIMENTS",
+    tags: ["MORE", "📟 #####"],
+  },
+  {
     href: "journeys.html#2",
     cssClass: "comboakounb",
     title: "AUDIOVISUAL JOURNEYS",
