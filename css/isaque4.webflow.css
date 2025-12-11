@@ -2817,3 +2817,10 @@ img {
   );
   background-size: 20px 20px;
 }
+
+/* Active thumb style (moved from inline JS) */
+.thumb.active-thumb {
+  filter: grayscale(1);
+  background-color: #d2d2d2;
+  color: gray;
+}

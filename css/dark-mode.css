@@ -327,3 +327,9 @@ html.dark-mode .theproject,
 html.dark-mode .calendarbye {
   border-color: #333 !important;
 }
+
+html.dark-mode .thumb.active-thumb {
+  background-color: #333;
+  color: #888;
+  filter: grayscale(1);
+}

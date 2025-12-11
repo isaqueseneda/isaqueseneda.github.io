@@ -215,12 +215,10 @@ function generateProjectHTML(project) {
   const filteredTags = project.tags.filter((tag) => ALLOWED_BADGES.has(tag));
   const currentPage = getCurrentPage();
   const isActive = project.href === currentPage;
-  const activeStyle = isActive
-    ? ' style="filter: grayscale(1); background-color: #d2d2d2; color: gray;"'
-    : "";
+  const activeClass = isActive ? " active-thumb" : "";
 
   return `
-    <a href="${project.href}" class="thumb ${project.cssClass}"${activeStyle}>
+    <a href="${project.href}" class="thumb ${project.cssClass}${activeClass}">
       <div class="title">
         <div class="thumbtitletext">
           <strong>${project.title}<br />‍</strong>${project.subtitle}
@@ -259,7 +257,7 @@ function renderTheSection() {
       </div>
       <div class="contactbye about">
         <div class="me">
-          <span>2025 GOLDEN SAW HOLDER</span>
+          <span>CURRENTLY AT SENEDA & ABRUCIO</span>
         </div>
         <div class="contactblock">
           <div class="linkmesmobox">
