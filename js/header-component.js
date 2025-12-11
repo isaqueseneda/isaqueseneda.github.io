@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Check for project name in data attribute
   const projectName = headerContainer.getAttribute("data-project-name");
+  const rootPath = headerContainer.getAttribute("data-root-path") || "";
 
   let leftContent = "";
   let centerContent = "";
@@ -37,19 +38,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (isAbout) {
     // About Page Layout
-    leftContent = `<a href="index.html" class="link">&#60;-BACK</a>`;
+    leftContent = `<a href="${rootPath}index.html" class="link">&#60;-BACK</a>`;
     centerContent = `<a href="#" class="link projectname">ABOUT</a>`;
     rightContent = `
             <div style="display: flex; align-items: center;">
                 ${darkModeToggle}
-                <a href="files/isaque_cv.pdf" target="_blank" download class="about-header-btn" style="padding: 5px 7px; margin-right: 5px;">cv ↓</a>
+                <a href="${rootPath}files/isaque_cv.pdf" target="_blank" download class="about-header-btn" style="padding: 5px 7px; margin-right: 5px;">cv ↓</a>
                 ${chaosToggle}
             </div>
         `;
   } else {
     // Home & Project Page Layout
     const homeClass = isHome ? "link w--current" : "link";
-    leftContent = `<a href="index.html" aria-current="page" style="margin-right: 5px; text-wrap: pretty;" class="${homeClass}">ISAQUE<br />SENEDA</a>`;
+    leftContent = `<a href="${rootPath}index.html" aria-current="page" style="margin-right: 5px; text-wrap: pretty;" class="${homeClass}">ISAQUE<br />SENEDA</a>`;
 
     if (projectName) {
       centerContent = `<a href="#" class="link projectname">${projectName}</a>`;
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     rightContent = `
             <div style="display: flex; align-items: center;">
                 ${darkModeToggle}
-                <a href="about.html" class="about-header-btn" style="padding: 5px 7px; margin-right: 5px;">about</a>
+                <a href="${rootPath}about.html" class="about-header-btn" style="padding: 5px 7px; margin-right: 5px;">about</a>
                 ${chaosToggle}
             </div>
         `;
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
   headerContainer.innerHTML = `
       <img
         id="isaac-img"
-        src="images/cv-mini.png"
+        src="${rootPath}images/cv-mini.png"
         style="
           margin: 20px;
           z-index: 99;
@@ -131,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 3. Handle Chaos Toggle
   const chaosBtn = document.getElementById("chaos-toggle-btn");
-  const chaosAudio = new Audio("audio/chaos.mp3");
+  const chaosAudio = new Audio(rootPath + "audio/chaos.mp3");
   chaosAudio.loop = true;
 
   // Helper Functions for Chaos Mode
