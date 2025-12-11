@@ -117,7 +117,7 @@ const projects = [
     tags: ["📐 STRAT"],
   },
   {
-    href: "vibe-coded-apps.html",
+    href: "vibe.html",
     cssClass: "vibeapps",
     title: "VIBE CODED SANDBOX",
     subtitle: "WE PUT RANDOMNESS TO WORK",
