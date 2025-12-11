@@ -782,16 +782,24 @@
         gosh: "images/gosh-jersey-800.png",
         buma: "images/plugin.png",
         rounds: "images/hnkgm-min-thumb.png",
+        belipe: "images/vibe-os/belipe.svg",
       };
 
       // Internal Apps Data
       const internalApps = [
         {
-          title: "Gym Tracker",
+          title: "Belipe",
+          icon: "images/vibe-os/belipe.svg",
+          url: "belipe/index.html",
+          action:
+            "openApp('Belipe', 'belipe/index.html', 'images/vibe-os/belipe.svg')",
+          isSystem: false,
+        },
+        {
+          title: "Planks",
           icon: "gym/dumbbell.svg",
           url: "gym/index.html",
-          action:
-            "openApp('Gym Tracker', 'gym/index.html', 'gym/dumbbell.svg')",
+          action: "openApp('Planks', 'gym/index.html', 'gym/dumbbell.svg')",
           isSystem: false,
         },
         {
