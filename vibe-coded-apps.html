@@ -226,7 +226,7 @@
         width: 100%;
         height: 100%;
         border: none;
-        background: #fff;
+        background: #000; /* Fix white flash in dark mode */
         flex: 1;
       }
 
@@ -281,9 +281,10 @@
       .start-icon {
         width: 16px;
         height: 16px;
-        background: #0f0;
-        mask: url("images/favicon.png") center/contain no-repeat;
-        -webkit-mask: url("images/favicon.png") center/contain no-repeat;
+        background-image: url("images/vibe-os/start.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
       }
 
       .taskbar-divider {
@@ -550,6 +551,10 @@
           overflow: hidden;
         }
 
+        .start-menu {
+          width: 200px; /* Decrease width to prevent overflow */
+        }
+
         .desktop-icons {
           bottom: 60px;
           left: 10px;
@@ -593,25 +598,8 @@
     ></div>
 
     <!-- Desktop Icons -->
-    <div class="desktop-icons">
-      <!-- Trash (Bottom) -->
-      <div class="desktop-icon" onclick="openTrash()">
-        <img
-          src="images/trash.svg"
-          class="desktop-icon-img trash"
-          alt="Trash"
-        />
-        <div class="desktop-icon-text">Trash</div>
-      </div>
-
-      <!-- Gym App -->
-      <div
-        class="desktop-icon"
-        onclick="openApp('Gym Tracker', 'gym/index.html', 'gym/dumbbell.svg')"
-      >
-        <img src="gym/dumbbell.svg" class="desktop-icon-img" alt="Gym" />
-        <div class="desktop-icon-text">Gym Tracker</div>
-      </div>
+    <div class="desktop-icons" id="desktop-icons-container">
+      <!-- Icons will be injected by JS -->
     </div>
 
     <!-- Taskbar -->
@@ -636,31 +624,30 @@
           <!-- Dynamic Items will be injected here -->
 
           <div class="start-item" onclick="window.location.href='index.html'">
-            <img src="images/favicon.png" alt="Home" />
+            <img src="images/vibe-os/start.png" alt="Home" />
             <span>Home</span>
           </div>
           <div
             class="start-item"
-            onclick="openApp('About', 'about.html', 'images/profile.gif')"
+            onclick="openApp('About', 'about.html', 'images/vibe-os/about.png'); toggleStartMenu()"
           >
-            <img src="images/profile.gif" alt="About" />
+            <img src="images/vibe-os/about.png" alt="About" />
             <span>About</span>
           </div>
+          <div class="start-item" onclick="restartSystem()">
+            <img
+              src="images/vibe-os/restart.png"
+              alt="Restart"
+              style="width: 24px; height: 24px"
+            />
+            <span>Restart</span>
+          </div>
           <div class="start-item" onclick="showShutdown()">
-            <div
-              style="
-                width: 24px;
-                height: 24px;
-                border: 1px solid #0f0;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 12px;
-              "
-            >
-              IO
-            </div>
+            <img
+              src="images/vibe-os/shutdown.png"
+              alt="Shutdown"
+              style="width: 24px; height: 24px"
+            />
             <span>Shutdown</span>
           </div>
         </div>
@@ -773,16 +760,16 @@
 
       // Thumbnail Mapping
       const thumbnailMap = {
-        bphone: "images/phone.png",
-        ice: "images/ice-cover.png",
-        megatable: "images/megatable_thumb.png",
-        mysig: "images/mysigthumb.png",
-        barxp: "images/barxp.png",
-        fridge: "images/fridge.png",
-        blei: "images/feed-peek-logo-800.png",
-        wp: "images/wpopper-9917.png",
-        evolutionary: "images/evolutionary_thumb.png",
-        vibeapps: "images/webclip.png",
+        bphone: "images/vibe-os/phone.png",
+        ice: "images/vibe-os/our-ice.png",
+        megatable: "images/vibe-os/mega-table.png",
+        mysig: "images/vibe-os/my-sig.png",
+        barxp: "images/vibe-os/bar-xp.png",
+        fridge: "images/vibe-os/fridge.png",
+        blei: "images/vibe-os/feed-peek.png",
+        wp: "images/vibe-os/winepopper.png",
+        evolutionary: "images/vibe-os/evolutionary.png",
+        vibeapps: "images/vibe-os/vibe-coded-thumb.png",
         comboakounb: "images/0combo.png",
         bose: "images/bose_notch-04.png",
         tide: "images/fairphone-display-800_x_800.png",
@@ -797,20 +784,151 @@
         rounds: "images/hnkgm-min-thumb.png",
       };
 
+      // Internal Apps Data
+      const internalApps = [
+        {
+          title: "Gym Tracker",
+          icon: "gym/dumbbell.svg",
+          url: "gym/index.html",
+          action:
+            "openApp('Gym Tracker', 'gym/index.html', 'gym/dumbbell.svg')",
+          isSystem: false,
+        },
+        {
+          title: "Trash",
+          icon: "images/vibe-os/trash.svg",
+          action: "openTrash()",
+          isSystem: true,
+        },
+      ];
+
+      // Populate Desktop Icons
+      function populateDesktopIcons() {
+        const container = document.getElementById("desktop-icons-container");
+        if (!container) return;
+        container.innerHTML = "";
+
+        // We want Trash at bottom, so it should be first in DOM because of flex-direction: column-reverse
+        // internalApps is [Gym, Trash], so we reverse to get [Trash, Gym]
+        [...internalApps].reverse().forEach((app) => {
+          const iconDiv = document.createElement("div");
+          iconDiv.className = "desktop-icon";
+          iconDiv.setAttribute("onclick", app.action);
+
+          const imgClass =
+            app.title === "Trash"
+              ? "desktop-icon-img trash"
+              : "desktop-icon-img";
+
+          iconDiv.innerHTML = `
+             <img src="${app.icon}" class="${imgClass}" alt="${app.title}" />
+             <div class="desktop-icon-text">${app.title}</div>
+           `;
+          container.appendChild(iconDiv);
+        });
+      }
+
+      // Project Name Mapping (Client Name -> Project Name)
+      const projectTitleMap = {
+        "phone.html": "The Boring Phone",
+        "ice.html": "Save Our Ice",
+        "megatable.html": "Mega Table",
+        "mysig.html": "My-Sig",
+        "barxp.html": "Bar Experience",
+        "fridge.html": "The Gaming Fridge",
+        "feed-peek.html": "Feed Peek",
+        "open-wine-like-magic.html": "Winepopper",
+        "evolutionary.html": "Evolutionary",
+        "vibe-coded-apps.html": "Vibe Coded Sandbox",
+        "journeys.html#2": "Audiovisual Journeys",
+      };
+
+      function openLeo() {
+        const id = "win-leo-" + Date.now();
+        const template = document.getElementById("window-template");
+        const clone = template.content.cloneNode(true);
+        const windowEl = clone.querySelector(".window");
+
+        windowEl.id = id;
+        windowEl.querySelector(".title-text").textContent =
+          "Vibe Coded Sandbox";
+        windowEl.querySelector(".window-icon").src =
+          "images/vibe-os/applications.png";
+
+        const content = windowEl.querySelector(".window-content");
+        content.innerHTML =
+          '<img src="images/vibe-os/leo.png" style="width: 100%; height: 100%; object-fit: cover;" alt="Leo">';
+
+        windowEl.style.zIndex = ++zIndexCounter;
+        windowEl.classList.add("active");
+
+        // Set Dimensions
+        const isMobile = window.innerWidth <= 768;
+        const height = isMobile ? "80vh" : "70vh";
+        windowEl.style.height = height;
+        windowEl.style.width = "450px";
+
+        // Random position offset
+        const offset = Math.random() * 50 - 25;
+        if (!isMobile) {
+          windowEl.style.top = `calc(50% + ${offset}px)`;
+          windowEl.style.left = `calc(50% + ${offset}px)`;
+          windowEl.style.transform = "translate(-50%, -50%)";
+        }
+
+        document.body.appendChild(windowEl);
+        addTaskbarItem(
+          id,
+          "Vibe Coded Sandbox",
+          "images/vibe-os/applications.png"
+        );
+
+        windowEl.addEventListener("mousedown", () => focusWindow(id));
+        windows[id] = windowEl;
+        focusWindow(id);
+        saveState();
+      }
+
       // Populate Start Menu from projects
       function populateStartMenu() {
         if (typeof projects === "undefined") return;
 
         const categories = {
-          Code: { icon: "📟", items: [] },
-          Creative: { icon: "✏️", items: [] },
-          Strategy: { icon: "📐", items: [] },
+          Applications: { icon: "💿", items: [] },
+          Code: { icon: "images/vibe-os/code.png", items: [] },
+          Creative: { icon: "images/vibe-os/creat.png", items: [] },
+          Strategy: { icon: "images/vibe-os/strat.png", items: [] },
         };
 
+        // Add Internal Apps to "Applications"
+        internalApps.forEach((app) => {
+          categories["Applications"].items.push({
+            title: app.title,
+            icon: app.icon,
+            action: app.action,
+          });
+        });
+
         projects.forEach((p) => {
-          if (p.tags.includes("📟 #####")) categories["Code"].items.push(p);
-          if (p.tags.includes("✏️ CREAT")) categories["Creative"].items.push(p);
-          if (p.tags.includes("📐 STRAT")) categories["Strategy"].items.push(p);
+          // Filter out the "VIBE CODED APPS" inception link
+          if (p.title === "APPLICATIONS") return;
+
+          // Override title with Project Name
+          const projectTitle = projectTitleMap[p.href] || p.title;
+          const projectItem = { ...p, title: projectTitle };
+
+          // Special handling for Vibe Coded Sandbox
+          if (p.href === "vibe-coded-apps.html") {
+            projectItem.icon = "images/vibe-os/applications.png";
+            projectItem.action = "openLeo()";
+          }
+
+          if (p.tags.includes("📟 #####"))
+            categories["Code"].items.push(projectItem);
+          if (p.tags.includes("✏️ CREAT"))
+            categories["Creative"].items.push(projectItem);
+          if (p.tags.includes("📐 STRAT"))
+            categories["Strategy"].items.push(projectItem);
         });
 
         const menuItems = document.getElementById("start-menu-items");
@@ -830,22 +948,45 @@
 
           const item = document.createElement("div");
           item.className = "start-item";
+
+          // Handle icon rendering (emoji vs image)
+          let iconHtml;
+          if (catName === "Applications") {
+            iconHtml = `<div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 16px;">${catData.icon}</div>`;
+          } else {
+            iconHtml = `<div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                    <img src="${catData.icon}" style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;" alt="${catName}">
+                  </div>`;
+          }
+
           item.innerHTML = `
-                  <div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 16px;">${
-                    catData.icon
-                  }</div>
+                  ${iconHtml}
                   <span>${catName}</span>
                   <div class="submenu-arrow"></div>
                   <div class="submenu">
                       ${catData.items
                         .map((p) => {
-                          const thumb =
-                            thumbnailMap[p.cssClass] || "images/favicon.png";
+                          let thumb, action;
+
+                          if (p.action) {
+                            // Internal App or Custom Action
+                            thumb =
+                              p.icon ||
+                              thumbnailMap[p.cssClass] ||
+                              "images/favicon.png";
+                            action = p.action;
+                          } else {
+                            // Project
+                            thumb =
+                              thumbnailMap[p.cssClass] || "images/favicon.png";
+                            action = `openApp('${p.title.replace(
+                              /'/g,
+                              "\\'"
+                            )}', '${p.href}', '${thumb}')`;
+                          }
+
                           return `
-                          <div class="start-item" onclick="openApp('${p.title.replace(
-                            /'/g,
-                            "\\'"
-                          )}', '${p.href}', '${thumb}')">
+                          <div class="start-item" onclick="${action}; toggleStartMenu()">
                               <img src="${thumb}" alt="">
                               <span>${p.title}</span>
                           </div>
@@ -854,6 +995,23 @@
                         .join("")}
                   </div>
               `;
+
+          // Add hover event to check overflow
+          item.addEventListener("mouseenter", (e) => {
+            const submenu = item.querySelector(".submenu");
+            if (submenu) {
+              // Reset first to measure correctly
+              submenu.style.top = "0";
+              submenu.style.bottom = "auto";
+
+              const rect = submenu.getBoundingClientRect();
+              if (rect.bottom > window.innerHeight) {
+                submenu.style.top = "auto";
+                submenu.style.bottom = "0";
+              }
+            }
+          });
+
           menuItems.appendChild(item);
         }
 
@@ -862,11 +1020,96 @@
       }
 
       // Run population
+      populateDesktopIcons();
       populateStartMenu();
+      loadState();
+
+      // Local Storage Logic (RAM)
+      function saveState() {
+        const state = [];
+        for (const id in windows) {
+          const win = windows[id];
+          const title = win.querySelector(".title-text").textContent;
+          const icon = win.querySelector(".window-icon").src;
+          const iframe = win.querySelector("iframe");
+          const url = iframe ? iframe.src : null;
+          const isTrash = title === "Trash";
+
+          state.push({
+            id: id,
+            title: title,
+            icon: icon,
+            url: url,
+            isTrash: isTrash,
+            style: {
+              top: win.style.top,
+              left: win.style.left,
+              width: win.style.width,
+              height: win.style.height,
+              zIndex: win.style.zIndex,
+              transform: win.style.transform,
+              display: win.style.display,
+            },
+            classList: Array.from(win.classList),
+          });
+        }
+        localStorage.setItem("vibeOS_ram", JSON.stringify(state));
+      }
+
+      function loadState() {
+        const saved = localStorage.getItem("vibeOS_ram");
+        if (saved) {
+          const state = JSON.parse(saved);
+          state.forEach((data) => {
+            if (data.isTrash) {
+              openTrash(data.id);
+            } else {
+              openApp(data.title, data.url, data.icon, data.id);
+            }
+            const win = windows[data.id];
+            if (win) {
+              Object.assign(win.style, data.style);
+              // Restore classes (minimized, maximized, active)
+              data.classList.forEach((c) => {
+                if (c !== "window") win.classList.add(c);
+              });
+
+              // Restore taskbar active state
+              if (
+                win.classList.contains("active") &&
+                !win.classList.contains("minimized")
+              ) {
+                const taskItem = document.getElementById("task-" + data.id);
+                if (taskItem) taskItem.classList.add("active");
+                win
+                  .querySelector(".window-header")
+                  .classList.add("active-window");
+                win
+                  .querySelector(".window-header")
+                  .classList.remove("inactive-window");
+              } else {
+                const taskItem = document.getElementById("task-" + data.id);
+                if (taskItem) taskItem.classList.remove("active");
+                win
+                  .querySelector(".window-header")
+                  .classList.remove("active-window");
+                win
+                  .querySelector(".window-header")
+                  .classList.add("inactive-window");
+              }
+            }
+          });
+        }
+      }
+
+      function restartSystem() {
+        localStorage.removeItem("vibeOS_ram");
+        window.location.reload();
+      }
 
       // Window Management
-      function openApp(title, url, icon) {
-        const id = "win-" + Date.now();
+      function openApp(title, url, icon, existingId = null) {
+        const id = existingId || "win-" + Date.now();
         const template = document.getElementById("window-template");
         const clone = template.content.cloneNode(true);
         const windowEl = clone.querySelector(".window");
@@ -885,13 +1128,13 @@
 
         // Set Dimensions
         const isMobile = window.innerWidth <= 768;
-        const height = isMobile ? "90vh" : "70vh";
+        const height = isMobile ? "80vh" : "70vh"; // Updated mobile height
         windowEl.style.height = height;
         windowEl.style.width = "450px"; // Default width
 
         // Random position offset
         const offset = Math.random() * 50 - 25;
-        if (!isMobile) {
+        if (!isMobile && !existingId) {
           windowEl.style.top = `calc(50% + ${offset}px)`;
           windowEl.style.left = `calc(50% + ${offset}px)`;
           windowEl.style.transform = "translate(-50%, -50%)";
@@ -909,21 +1152,25 @@
 
         windows[id] = windowEl;
         focusWindow(id);
+        saveState();
       }
 
-      function openTrash() {
-        const id = "win-trash-" + Date.now();
+      function openTrash(existingId = null) {
+        const trashApp = internalApps.find((app) => app.title === "Trash");
+        const iconPath = trashApp ? trashApp.icon : "images/vibe-os/trash.svg";
+
+        const id = existingId || "win-trash-" + Date.now();
         const template = document.getElementById("window-template");
         const clone = template.content.cloneNode(true);
         const windowEl = clone.querySelector(".window");
 
         windowEl.id = id;
         windowEl.querySelector(".title-text").textContent = "Trash";
-        windowEl.querySelector(".window-icon").src = "images/trash.svg";
+        windowEl.querySelector(".window-icon").src = iconPath;
 
         const content = windowEl.querySelector(".window-content");
         content.innerHTML =
-          '<img src="https://placehold.co/600x400/000000/00FF00/png?text=trash.jpg" class="trash-content" alt="Trash Content">';
+          '<img src="images/vibe-os/trash.png" class="trash-content" alt="Trash Content">';
 
         windowEl.style.zIndex = ++zIndexCounter;
         windowEl.classList.add("active");
@@ -932,18 +1179,19 @@
 
         // Random position offset
         const offset = Math.random() * 50 - 25;
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 768 && !existingId) {
           windowEl.style.top = `calc(50% + ${offset}px)`;
           windowEl.style.left = `calc(50% + ${offset}px)`;
           windowEl.style.transform = "translate(-50%, -50%)";
         }
 
         document.body.appendChild(windowEl);
-        addTaskbarItem(id, "Trash", "images/trash.svg");
+        addTaskbarItem(id, "Trash", iconPath);
 
         windowEl.addEventListener("mousedown", () => focusWindow(id));
         windows[id] = windowEl;
         focusWindow(id);
+        saveState();
       }
 
       function addTaskbarItem(id, title, icon) {
@@ -1012,6 +1260,8 @@
           win
             .querySelector(".window-header")
             .classList.remove("inactive-window");
+
+          saveState();
         }
       }
 
@@ -1040,6 +1290,7 @@
         windowEl.remove();
         delete windows[id];
         removeTaskbarItem(id);
+        saveState();
       }
 
       function minimizeWindow(windowEl) {
@@ -1047,6 +1298,7 @@
         const id = windowEl.id;
         const taskItem = document.getElementById("task-" + id);
         if (taskItem) taskItem.classList.remove("active");
+        saveState();
       }
 
       function maximizeWindow(windowEl) {
@@ -1071,6 +1323,7 @@
           windowEl.style.left = "0";
           windowEl.style.transform = "none";
         }
+        saveState();
       }
 
       // Drag functionality
@@ -1140,6 +1393,7 @@
           document.querySelectorAll("iframe").forEach((iframe) => {
             iframe.style.pointerEvents = "auto";
           });
+          saveState();
         }
       }
     </script>

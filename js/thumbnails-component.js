@@ -119,9 +119,9 @@ const projects = [
   {
     href: "vibe-coded-apps.html",
     cssClass: "vibeapps",
-    title: "VIBE CODED APPS",
-    subtitle: "WEIRD WEB EXPERIMENTS",
-    tags: ["MORE", "📟 #####"],
+    title: "VIBE CODED SANDBOX",
+    subtitle: "WE PUT RANDOMNESS TO WORK",
+    tags: ["📟 #####"],
   },
   {
     href: "journeys.html#2",

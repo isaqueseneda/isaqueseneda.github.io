@@ -1,6 +1,0 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" fill="#3a6ea5"/>
-  <!-- Pixel art cloud -->
-  <path d="M20 20 h10 v-5 h10 v5 h10 v10 h5 v10 h-5 v5 h-30 v-5 h-5 v-10 h5 v-10" fill="#fff" opacity="0.8"/>
-  <path d="M25 25 h20 v10 h-20 z" fill="#ddd"/>
-</svg>
