@@ -74,7 +74,7 @@
       /* Columns */
       .col-guidelines {
         grid-column: 1;
-        border-right: 1px solid #ccc;
+        border-right: 1px solid black;
         display: flex;
         flex-direction: column;
         background-color: #f5f5f5;
@@ -97,7 +97,7 @@
 
       .col-playlist {
         grid-column: 3;
-        border-left: 1px solid #ccc;
+        border-left: 1px solid black;
         display: flex;
         flex-direction: column;
         background-color: #f5f5f5;
@@ -347,8 +347,8 @@
       }
 
       .file-icon {
-        width: 32px; /* Compact size */
-        height: 32px;
+        width: 40px; /* Compact size */
+        height: 40px;
         object-fit: cover;
         margin-right: 10px;
         background-color: #ccc;
@@ -370,6 +370,8 @@
         color: #666;
         text-transform: uppercase;
         display: block;
+        line-height: 1;
+        margin-bottom: 6px;
       }
       html.dark-mode .file-tag {
         color: #888;
@@ -476,12 +478,61 @@
       .dialoguebox {
         text-align: center;
         color: black;
-        max-width: 500px; /* Increased width */
-        padding: 60px; /* Increased padding */
+        max-width: 800px; /* Increased width significantly */
+        width: 90%; /* Responsive width */
+        padding: 80px; /* Increased padding */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        background-color: white; /* Ensure background is white */
+        border: 1px solid black; /* Add border for definition */
+      }
+      html.dark-mode .dialoguebox {
+        background-color: #111;
+        border: 1px solid #333;
+      }
+
+      /* Audio Overlay Styles */
+      .audio-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000;
+        cursor: pointer;
+        z-index: 5;
+        transition: opacity 0.5s ease;
+      }
+
+      .audio-overlay-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0.6;
+      }
+
+      .audio-play-button {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .audio-overlay:hover .audio-play-button {
+        transform: scale(1.1);
+        background-color: rgba(255, 255, 255, 0.3);
       }
 
       #avbutton {
@@ -913,6 +964,12 @@
             `;
           container.appendChild(div);
         });
+
+        // Add spacer for scroll fade
+        const spacer = document.createElement("div");
+        spacer.style.height = "60px";
+        spacer.style.flexShrink = "0";
+        container.appendChild(spacer);
       }
 
       function renderPlaylist() {
@@ -939,7 +996,7 @@
           <div class="playlist-item-content">
             <img src="${item.thumbnail}" class="file-icon" alt="thumb">
             <div class="file-info-container">
-                <span class="file-tag">${item.type}</span>
+                <div class="file-tag">${item.type}</div>
                 <div class="file-title">${item.title}</div>
                 <div class="file-artist">${item.artist}</div>
             </div>
@@ -997,7 +1054,13 @@
           item.contentType === "spotify"
         ) {
           const iframe = document.createElement("iframe");
-          iframe.src = item.url;
+          let url = item.url;
+          // Removed origin hack which might cause Error 153 on local/restricted envs
+          // if (item.contentType === "youtube") {
+          //   const separator = url.includes("?") ? "&" : "?";
+          //   url += `${separator}origin=${window.location.origin}`;
+          // }
+          iframe.src = url;
           iframe.allow =
             "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
           iframe.allowFullscreen = true;
@@ -1025,17 +1088,65 @@
           const container = document.createElement("div");
           container.className = "audio-visualizer";
 
-          const img = document.createElement("img");
-          img.src = item.thumbnail;
-          img.className = "audio-artwork";
+          // Container for artwork + overlay
+          const artworkContainer = document.createElement("div");
+          artworkContainer.style.flex = "1";
+          artworkContainer.style.position = "relative";
+          artworkContainer.style.width = "100%";
+          artworkContainer.style.overflow = "hidden";
+          artworkContainer.style.backgroundColor = "#000";
+          artworkContainer.style.minHeight = "0"; // Allow shrinking
+          artworkContainer.style.cursor = "pointer"; // Indicate clickable
 
           const audio = document.createElement("audio");
           audio.src = item.url;
           audio.controls = true;
           audio.className = "audio-controls";
-          audio.autoplay = true;
+          audio.autoplay = false;
 
-          container.appendChild(img);
+          // Overlay
+          const overlay = document.createElement("div");
+          overlay.className = "audio-overlay";
+          // Click handled by container now
+
+          const overlayImg = document.createElement("img");
+          overlayImg.src = item.thumbnail;
+          overlayImg.className = "audio-overlay-image";
+
+          const playBtn = document.createElement("div");
+          playBtn.className = "audio-play-button";
+          playBtn.innerHTML = `<svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" style="margin-left: 4px"><path d="M8 5V19L19 12L8 5Z" /></svg>`;
+
+          overlay.appendChild(overlayImg);
+          overlay.appendChild(playBtn);
+
+          // Background Image (underneath overlay)
+          const bgImg = document.createElement("img");
+          bgImg.src = item.thumbnail;
+          bgImg.className = "audio-artwork";
+          bgImg.style.width = "100%";
+          bgImg.style.height = "100%";
+          bgImg.style.objectFit = "contain";
+
+          artworkContainer.appendChild(bgImg);
+          artworkContainer.appendChild(overlay);
+
+          // Click anywhere on artwork container to toggle play/pause
+          artworkContainer.onclick = function () {
+            if (audio.paused) {
+              if (overlay.style.display !== "none") {
+                overlay.style.opacity = 0;
+                setTimeout(() => {
+                  overlay.style.display = "none";
+                }, 500);
+              }
+              audio.play();
+            } else {
+              audio.pause();
+            }
+          };
+
+          container.appendChild(artworkContainer);
           container.appendChild(audio);
           playerWrapper.appendChild(container);
         }
@@ -1057,6 +1168,45 @@
           slideIndex = (slideIndex + 1) % slides.length;
           slides[slideIndex].classList.add("active");
         }, 3000);
+      }
+
+      // Global Spacebar Listener
+      document.addEventListener("keydown", function (event) {
+        if (
+          event.code === "Space" &&
+          event.target.tagName !== "INPUT" &&
+          event.target.tagName !== "TEXTAREA"
+        ) {
+          event.preventDefault(); // Prevent scrolling
+          togglePlayback();
+        }
+      });
+
+      function togglePlayback() {
+        const item = avContent[currentIndex];
+        if (item.contentType === "audio") {
+          const audio = document.querySelector("#player-wrapper audio");
+          if (audio) {
+            if (audio.paused) {
+              // If overlay is there, hide it
+              const overlay = document.querySelector(".audio-overlay");
+              if (overlay && overlay.style.display !== "none") {
+                overlay.style.opacity = 0;
+                setTimeout(() => {
+                  overlay.style.display = "none";
+                }, 500);
+              }
+              audio.play();
+            } else {
+              audio.pause();
+            }
+          }
+        } else if (item.contentType === "local-video") {
+          const video = document.querySelector("#player-wrapper video");
+          if (video) {
+            video.paused ? video.play() : video.pause();
+          }
+        }
       }
 
       // Intro Overlay Logic
