@@ -2503,7 +2503,7 @@ img {
   padding: 10px;
   box-sizing: border-box;
   border-bottom: 1px solid BLACK;
-  min-height: 12em;
+  /* min-height: 12em; */
   justify-content: space-between;
 }
 
