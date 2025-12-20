@@ -104,11 +104,41 @@
       <!-- <div class="projectbar100 textset grey">
         <img src="images/phone-board.webp" alt="" class="image-5" />
       </div> -->
-      <div class="projectbar100 textset black">
-        <video width="100%" height="700px" controls>
-          <source src="videos/ice-3.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div class="projectbar100 textset black" style="padding: 0">
+        <div class="video-wrapper">
+          <video
+            id="iceVideo"
+            width="100%"
+            height="700px"
+            controls
+            style="object-fit: cover; width: 100%"
+          >
+            <source src="videos/ice-3.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div
+            class="video-overlay"
+            onclick="this.style.opacity = 0; setTimeout(() => { this.style.display = 'none'; document.getElementById('iceVideo').play(); }, 500);"
+          >
+            <img
+              src="images/ice-thumb.png"
+              alt="Our Ice Video Thumbnail"
+              class="video-thumbnail"
+            />
+            <div class="video-play-button">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+                style="margin-left: 4px"
+              >
+                <path d="M8 5V19L19 12L8 5Z" />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- <div class="projectbar100">
         <div class="projectblock50 wpdescription">
