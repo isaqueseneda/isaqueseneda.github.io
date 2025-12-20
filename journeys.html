@@ -38,7 +38,7 @@
       body.av {
         margin: 0;
         padding: 0;
-        height: 100vh;
+        height: 100dvh;
         display: flex;
         flex-direction: column;
         background-color: #f5f5f5; /* Light mode default */
@@ -207,12 +207,6 @@
         border: none;
       }
 
-      .player-wrapper iframe[src*="spotify"] {
-        max-width: 600px;
-        max-height: 600px;
-        height: 80%;
-      }
-
       /* Audio Visualizer / Artwork */
       .audio-visualizer {
         position: relative;
@@ -272,13 +266,13 @@
       .info-title {
         font-size: 1.5em;
         font-weight: bold;
-        margin-bottom: 5px;
+        margin-bottom: 0px;
       }
 
       .info-artist {
         font-size: 1.1em;
         color: #444;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
       html.dark-mode .info-artist {
         color: #ddd;
@@ -462,7 +456,7 @@
       .dark-mode .dialoguebg.av {
         background-color: rgba(0, 0, 0, 0.95);
       }
-      .dark-mode .dialoguebox {
+      .dark-mode .dialoguebox2 {
         color: white !important;
       }
       .dark-mode #avbutton {
@@ -471,11 +465,11 @@
       }
 
       /* Fix arrows in dark mode */
-      html.dark-mode .dialoguebox img {
+      html.dark-mode .dialoguebox2 img {
         filter: invert(1);
       }
 
-      .dialoguebox {
+      .dialoguebox2 {
         text-align: center;
         color: black;
         max-width: 800px; /* Increased width significantly */
@@ -488,7 +482,7 @@
         background-color: white; /* Ensure background is white */
         border: 1px solid black; /* Add border for definition */
       }
-      html.dark-mode .dialoguebox {
+      html.dark-mode .dialoguebox2 {
         background-color: #111;
         border: 1px solid #333;
       }
@@ -582,7 +576,7 @@
 
         .info-bar {
           min-height: unset;
-          padding: 10px;
+          /* padding: 10px; */
         }
 
         .info-title {
@@ -610,7 +604,7 @@
   <body class="body av">
     <!-- Intro Overlay -->
     <div id="intro-overlay" class="dialoguebg av">
-      <div class="dialoguebox">
+      <div class="dialoguebox2">
         <div style="margin-bottom: 20px">
           <strong>WELCOME!</strong><br /><br />Here you can navigate through
           some of my music and films.
@@ -627,7 +621,7 @@
             id="avbutton"
             style="
               background: transparent;
-              border: 1px solid black;
+              border: 1px solid #ccc;
               padding: 10px 20px;
               cursor: pointer;
               font-family: inherit;
@@ -816,7 +810,6 @@
 
       const avContent = [
         {
-          id: 1,
           title: "THE GUAPORÉ AKODONT",
           type: "Short Film",
           artist: "Isaque Seneda",
@@ -826,7 +819,15 @@
           thumbnail: "images/webclip.png", // Placeholder
         },
         {
-          id: 2,
+          title: "I SEE YOU OUT THE WINDOW",
+          type: "Music",
+          artist: "DO FUTURO",
+          contentType: "audio",
+          url: "44/files/DO-FUTURO-i-see-you-out-the-window-1.mp3",
+          thumbnail: "44/files/DO-FUTURO-i-see-you-out-the-window-1.jpg",
+          description: "i see you out the window",
+        },
+        {
           title: "UNBURDEN",
           type: "Album",
           artist: "Isaque Seneda",
@@ -837,7 +838,6 @@
           thumbnail: "images/webclip.png",
         },
         {
-          id: 3,
           title: "SHOW ME THE WAY",
           type: "Music Video",
           artist: "Isaque Seneda",
@@ -847,7 +847,6 @@
           thumbnail: "images/webclip.png",
         },
         {
-          id: 4,
           title: "FALL 2",
           type: "Music Video",
           artist: "Isaque Seneda",
@@ -857,7 +856,6 @@
           thumbnail: "images/webclip.png",
         },
         {
-          id: 5,
           title: "AA",
           type: "Music Video",
           artist: "Isaque Seneda",
@@ -867,7 +865,6 @@
           thumbnail: "images/webclip.png",
         },
         {
-          id: 6,
           title: "MOMO’s",
           type: "Music Video",
           artist: "Isaque Seneda",
@@ -877,7 +874,6 @@
           thumbnail: "images/webclip.png",
         },
         {
-          id: 7,
           title: "DOWNTOWN SAO PAULO",
           type: "Photography",
           artist: "Isaque Seneda",
@@ -895,7 +891,6 @@
           thumbnail: "images/blei3.png",
         },
         {
-          id: 8,
           title: "HANDBALL",
           type: "Short Film",
           artist: "Isaque Seneda",
@@ -905,7 +900,6 @@
           thumbnail: "images/webclip.png",
         },
         {
-          id: 9,
           title: "LIGHTS ON SILENCE",
           type: "Graduation Project",
           artist: "Isaque Seneda",
@@ -915,7 +909,6 @@
           thumbnail: "images/webclip.png",
         },
         {
-          id: 10,
           title: "RAW 2",
           type: "Experiment",
           artist: "Isaque Seneda",
@@ -923,16 +916,6 @@
           url: "https://player.vimeo.com/video/448470733",
           description: "First experiment with magic lantern raw canon 7d.",
           thumbnail: "images/webclip.png",
-        },
-        {
-          id: 11,
-          title: "I SEE YOU OUT THE WINDOW",
-          type: "Music",
-          artist: "DO FUTURO",
-          contentType: "audio",
-          url: "44/files/DO-FUTURO-i-see-you-out-the-window-1.mp3",
-          thumbnail: "44/files/DO-FUTURO-i-see-you-out-the-window-1.jpg",
-          description: "i see you out the window",
         },
       ];
 
@@ -948,11 +931,7 @@
         container.innerHTML = "";
         rules.forEach((rule, index) => {
           const div = document.createElement("div");
-          div.className = `file-item guideline-item ${
-            index === currentGuidelineIndex && activeColumn === "guidelines"
-              ? "selected"
-              : ""
-          }`;
+          div.className = "file-item guideline-item";
           div.onclick = () => {
             activeColumn = "guidelines";
             currentGuidelineIndex = index;
@@ -977,14 +956,7 @@
         container.innerHTML = "";
         avContent.forEach((item, index) => {
           const div = document.createElement("div");
-          // 'active' is for the currently playing item
-          // 'selected' is for the keyboard focus
-          let classes = "file-item";
-          if (index === currentIndex) classes += " active";
-          if (index === currentIndex && activeColumn === "playlist")
-            classes += " selected";
-
-          div.className = classes;
+          div.className = "file-item";
           div.onclick = () => {
             activeColumn = "playlist";
             loadContent(index);
@@ -1004,6 +976,49 @@
         `;
           container.appendChild(div);
         });
+
+        // Add spacer for scroll fade
+        const spacer = document.createElement("div");
+        spacer.style.height = "60px";
+        spacer.style.flexShrink = "0";
+        container.appendChild(spacer);
+      }
+
+      function updateListStyles() {
+        // Guidelines
+        const guidelineItems = document.querySelectorAll(
+          "#guidelines-container .file-item"
+        );
+        guidelineItems.forEach((item, index) => {
+          if (
+            index === currentGuidelineIndex &&
+            activeColumn === "guidelines"
+          ) {
+            item.classList.add("selected");
+          } else {
+            item.classList.remove("selected");
+          }
+        });
+
+        // Playlist
+        const playlistItems = document.querySelectorAll(
+          "#playlist-items .file-item"
+        );
+        playlistItems.forEach((item, index) => {
+          // Active (playing)
+          if (index === currentIndex) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+
+          // Selected (focus)
+          if (index === currentIndex && activeColumn === "playlist") {
+            item.classList.add("selected");
+          } else {
+            item.classList.remove("selected");
+          }
+        });
       }
 
       function updateFocus() {
@@ -1015,9 +1030,7 @@
           .getElementById("col-playlist")
           .classList.toggle("focused", activeColumn === "playlist");
 
-        // Re-render lists to show selection
-        renderGuidelines();
-        renderPlaylist();
+        updateListStyles();
 
         // Scroll to view
         if (activeColumn === "guidelines") {
@@ -1152,7 +1165,7 @@
         }
 
         // Update Playlist UI (to show active item)
-        renderPlaylist();
+        updateListStyles();
 
         // Update URL Hash
         window.location.hash = `#${index + 1}`;

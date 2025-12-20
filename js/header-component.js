@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const path = window.location.pathname;
   const isHome = path.endsWith("index.html") || path === "/";
   const isAbout = path.endsWith("about.html");
+  const isVibe = path.endsWith("vibe.html");
+  const isJourneys = path.endsWith("journeys.html");
 
   // Check for project name in data attribute
   const projectName = headerContainer.getAttribute("data-project-name");
@@ -49,8 +51,12 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
   } else {
     // Home & Project Page Layout
-    const homeClass = isHome ? "link w--current" : "link";
-    leftContent = `<a href="${rootPath}index.html" aria-current="page" style="margin-right: 5px; text-wrap: pretty;" class="${homeClass}">ISAQUE<br />SENEDA</a>`;
+    if (isVibe || isJourneys) {
+      leftContent = `<a href="${rootPath}index.html" class="link">&#60;-BACK</a>`;
+    } else {
+      const homeClass = isHome ? "link w--current" : "link";
+      leftContent = `<a href="${rootPath}index.html" aria-current="page" style="margin-right: 5px; text-wrap: pretty;" class="${homeClass}">ISAQUE<br />SENEDA</a>`;
+    }
 
     if (projectName) {
       centerContent = `<a href="#" class="link projectname">${projectName}</a>`;
