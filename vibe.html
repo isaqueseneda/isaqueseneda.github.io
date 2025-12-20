@@ -476,7 +476,7 @@
         box-shadow: none;
       }
 
-      .start-item:hover .submenu {
+      .start-item:hover > .submenu {
         display: flex;
       }
 
@@ -586,6 +586,194 @@
         .start-btn {
           padding: 4px;
         }
+      }
+      /* Light Mode Overrides */
+      html:not(.dark-mode) body {
+        background-color: #fff;
+        background-image: linear-gradient(
+            0deg,
+            transparent 24%,
+            rgba(0, 0, 0, 0.1) 25%,
+            rgba(0, 0, 0, 0.1) 26%,
+            transparent 27%,
+            transparent 74%,
+            rgba(0, 0, 0, 0.1) 75%,
+            rgba(0, 0, 0, 0.1) 76%,
+            transparent 77%,
+            transparent
+          ),
+          linear-gradient(
+            90deg,
+            transparent 24%,
+            rgba(0, 0, 0, 0.1) 25%,
+            rgba(0, 0, 0, 0.1) 26%,
+            transparent 27%,
+            transparent 74%,
+            rgba(0, 0, 0, 0.1) 75%,
+            rgba(0, 0, 0, 0.1) 76%,
+            transparent 77%,
+            transparent
+          );
+      }
+
+      html:not(.dark-mode) .desktop-icon {
+        color: #000;
+        text-shadow: none;
+      }
+
+      html:not(.dark-mode) .desktop-icon:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      html:not(.dark-mode) .window-header .window-icon {
+        filter: none !important;
+      }
+
+      html:not(.dark-mode) .start-btn {
+        background: #fff;
+        color: #000;
+        border-color: #000;
+      }
+
+      html:not(.dark-mode) .start-btn:active,
+      html:not(.dark-mode) .start-btn.active {
+        background: #000;
+        color: #fff;
+      }
+
+      html:not(.dark-mode) .taskbar {
+        background: #fff;
+        border-top-color: #000;
+      }
+
+      html:not(.dark-mode) .taskbar-divider {
+        background: #000;
+      }
+
+      html:not(.dark-mode) .task-item {
+        background: #fff;
+        color: #000;
+        border-color: #000;
+      }
+
+      html:not(.dark-mode) .task-item.active {
+        background: #000;
+        color: #fff;
+      }
+
+      html:not(.dark-mode) .clock {
+        background: #fff;
+        color: #000;
+        border-color: #000;
+      }
+
+      html:not(.dark-mode) .taskbar-overflow {
+        background: #fff;
+        color: #000;
+        border-color: #000;
+      }
+
+      html:not(.dark-mode) .taskbar-overflow:hover {
+        background: #000;
+        color: #fff;
+      }
+
+      html:not(.dark-mode) .window {
+        background: #fff;
+        border-color: #000;
+      }
+
+      html:not(.dark-mode) .window-header {
+        background: #000;
+        color: #fff;
+        border-bottom-color: #000;
+      }
+
+      html:not(.dark-mode) .window-header.inactive-window {
+        background: #ccc;
+        color: #000;
+        border-bottom-color: #000;
+      }
+
+      html:not(.dark-mode) .window-btn {
+        background: #fff;
+        border-color: #000;
+        color: #000;
+      }
+
+      html:not(.dark-mode) .window-btn:hover {
+        background: #000;
+        color: #fff;
+      }
+
+      html:not(.dark-mode) .window-content {
+        background: #fff;
+        border-color: #000;
+      }
+
+      html:not(.dark-mode) .start-menu {
+        background: #fff;
+        border-color: #000;
+      }
+
+      html:not(.dark-mode) .start-sidebar {
+        background: #000;
+        color: #fff;
+      }
+
+      html:not(.dark-mode) .start-item {
+        color: #000;
+      }
+
+      html:not(.dark-mode) .start-item:hover {
+        background: #eee;
+      }
+
+      html:not(.dark-mode) .submenu {
+        background: #fff;
+        border-color: #000;
+      }
+
+      html:not(.dark-mode) .submenu-arrow {
+        border-left-color: #000;
+      }
+
+      html:not(.dark-mode) .shutdown-dialog {
+        background: #fff;
+        border-color: #000;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      html:not(.dark-mode) .shutdown-title {
+        color: #000;
+      }
+
+      html:not(.dark-mode) .shutdown-btn {
+        background: #fff;
+        border-color: #000;
+        color: #000;
+      }
+
+      html:not(.dark-mode) .shutdown-btn:hover {
+        background: #000;
+        color: #fff;
+        box-shadow: 0 0 15px #000;
+      }
+
+      html:not(.dark-mode) .shutdown-overlay {
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      html:not(.dark-mode) .window-content iframe {
+        background: #fff;
+      }
+
+      html:not(.dark-mode) .window-content img.trash-content {
+        background: #fff;
+      }
+
+      html:not(.dark-mode) .shutdown-dialog div[style] {
+        color: #000 !important;
       }
     </style>
   </head>
@@ -819,6 +1007,22 @@
           isSystem: false,
         },
         {
+          title: "MEGA TABLE",
+          icon: "images/vibe-os/mega-table.png",
+          url: "https://megatable.org/",
+          action:
+            "openApp('Mega Table', 'https://megatable.org/', 'images/vibe-os/mega-table.png')",
+          isSystem: false,
+        },
+        {
+          title: "MY-SIG",
+          icon: "images/vibe-os/my-sig.png",
+          url: "https://my-sig.org/",
+          action:
+            "openApp('MY-SIG', 'https://my-sig.org/', 'images/vibe-os/my-sig.png')",
+          isSystem: false,
+        },
+        {
           title: "PROCESSO44",
           icon: "images/favicon.png",
           url: "44/index.html",
@@ -925,126 +1129,147 @@
       function populateStartMenu() {
         if (typeof projects === "undefined") return;
 
-        const categories = {
-          Applications: { icon: "💿", items: [] },
-          Code: { icon: "images/vibe-os/code.png", items: [] },
-          Creative: { icon: "images/vibe-os/creat.png", items: [] },
-          Strategy: { icon: "images/vibe-os/strat.png", items: [] },
-        };
+        // Data buckets
+        const apps = [];
+        const codeProjects = [];
+        const creativeProjects = [];
+        const strategyProjects = [];
 
         // Add Internal Apps to "Applications"
         internalApps.forEach((app) => {
-          categories["Applications"].items.push({
+          apps.push({
             title: app.title,
             icon: app.icon,
             action: app.action,
           });
         });
 
+        // Sort projects into buckets
         projects.forEach((p) => {
-          // Filter out the "VIBE CODED SANDBOX" inception link
           if (p.title === "APPLICATIONS") return;
 
-          // Override title with Project Name
           const projectTitle = projectTitleMap[p.href] || p.title;
           const projectItem = { ...p, title: projectTitle };
 
-          // Special handling for Vibe Coded Sandbox
           if (p.href === "vibe.html") {
             projectItem.icon = "images/vibe-os/applications.png";
             projectItem.action = "openLeo()";
           }
 
-          if (p.tags.includes("📟 #####"))
-            categories["Code"].items.push(projectItem);
-          if (p.tags.includes("✏️ CREAT"))
-            categories["Creative"].items.push(projectItem);
-          if (p.tags.includes("📐 STRAT"))
-            categories["Strategy"].items.push(projectItem);
+          if (p.tags.includes("📟 #####")) codeProjects.push(projectItem);
+          if (p.tags.includes("✏️ CREAT")) creativeProjects.push(projectItem);
+          if (p.tags.includes("📐 STRAT")) strategyProjects.push(projectItem);
         });
 
         const menuItems = document.getElementById("start-menu-items");
-        const staticItems = Array.from(menuItems.children); // Save static items
+        const staticItems = Array.from(menuItems.children);
 
-        // Remove "Home" from static items if present (it's usually the first one)
+        // Remove Home if present
         const homeIndex = staticItems.findIndex(
           (item) => item.querySelector("span").textContent === "Home"
         );
         if (homeIndex > -1) staticItems.splice(homeIndex, 1);
 
-        menuItems.innerHTML = ""; // Clear
+        menuItems.innerHTML = "";
 
-        // Add Categories
-        for (const [catName, catData] of Object.entries(categories)) {
-          if (catData.items.length === 0) continue;
-
+        // Helper to create a menu item
+        function createMenuItem(label, icon, childrenOrAction) {
           const item = document.createElement("div");
           item.className = "start-item";
 
-          // Handle icon rendering (emoji vs image)
           let iconHtml;
-          if (catName === "Applications") {
-            iconHtml = `<div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 16px;">${catData.icon}</div>`;
-          } else {
+          // Check if icon is emoji or path
+          if (icon.startsWith("images/") || icon.includes("/")) {
             iconHtml = `<div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
-                    <img src="${catData.icon}" style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;" alt="${catName}">
+                    <img src="${icon}" style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;" alt="${label}">
                   </div>`;
+          } else {
+            iconHtml = `<div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 16px;">${icon}</div>`;
           }
 
-          item.innerHTML = `
-                  ${iconHtml}
-                  <span>${catName}</span>
-                  <div class="submenu-arrow"></div>
-                  <div class="submenu">
-                      ${catData.items
-                        .map((p) => {
-                          let thumb, action;
+          let content = `${iconHtml}<span>${label}</span>`;
 
-                          if (p.action) {
-                            // Internal App or Custom Action
-                            thumb =
-                              p.icon ||
-                              thumbnailMap[p.cssClass] ||
-                              "images/favicon.png";
-                            action = p.action;
-                          } else {
-                            // Project
-                            thumb =
-                              thumbnailMap[p.cssClass] || "images/favicon.png";
-                            action = `openApp('${p.title.replace(
-                              /'/g,
-                              "\\'"
-                            )}', '${p.href}', '${thumb}')`;
-                          }
+          if (Array.isArray(childrenOrAction)) {
+            // It has children -> Submenu
+            content += `<div class="submenu-arrow"></div><div class="submenu"></div>`;
+            item.innerHTML = content;
 
-                          return `
-                          <div class="start-item" onclick="${action}; toggleStartMenu()">
-                              <img src="${thumb}" alt="">
-                              <span>${p.title}</span>
-                          </div>
-                      `;
-                        })
-                        .join("")}
-                  </div>
-              `;
-
-          // Add hover event to check overflow
-          item.addEventListener("mouseenter", (e) => {
             const submenu = item.querySelector(".submenu");
-            if (submenu) {
-              // Reset first to measure correctly
+            childrenOrAction.forEach((child) => {
+              if (child.items) {
+                submenu.appendChild(
+                  createMenuItem(child.name, child.icon, child.items)
+                );
+              } else {
+                // Leaf item
+                let thumb, action;
+                if (child.action) {
+                  thumb =
+                    child.icon ||
+                    thumbnailMap[child.cssClass] ||
+                    "images/favicon.png";
+                  action = child.action;
+                } else {
+                  thumb = thumbnailMap[child.cssClass] || "images/favicon.png";
+                  action = `openApp('${child.title.replace(/'/g, "\\'")}', '${
+                    child.href
+                  }', '${thumb}')`;
+                }
+
+                const leaf = document.createElement("div");
+                leaf.className = "start-item";
+                leaf.setAttribute("onclick", `${action}; toggleStartMenu()`);
+                leaf.innerHTML = `<img src="${thumb}" alt=""><span>${child.title}</span>`;
+                submenu.appendChild(leaf);
+              }
+            });
+
+            // Hover logic for submenu position
+            item.addEventListener("mouseenter", () => {
               submenu.style.top = "0";
               submenu.style.bottom = "auto";
-
               const rect = submenu.getBoundingClientRect();
               if (rect.bottom > window.innerHeight) {
                 submenu.style.top = "auto";
                 submenu.style.bottom = "0";
               }
-            }
+            });
+          } else {
+            // Action
+          }
+          return item;
+        }
+
+        // 1. Applications
+        if (apps.length > 0) {
+          menuItems.appendChild(createMenuItem("Applications", "💿", apps));
+        }
+
+        // 2. Projects
+        const projectsSubmenu = [];
+        if (codeProjects.length > 0)
+          projectsSubmenu.push({
+            name: "Code",
+            icon: "images/vibe-os/code.png",
+            items: codeProjects,
+          });
+        if (creativeProjects.length > 0)
+          projectsSubmenu.push({
+            name: "Creative",
+            icon: "images/vibe-os/creat.png",
+            items: creativeProjects,
+          });
+        if (strategyProjects.length > 0)
+          projectsSubmenu.push({
+            name: "Strategy",
+            icon: "images/vibe-os/strat.png",
+            items: strategyProjects,
           });
 
-          menuItems.appendChild(item);
+        if (projectsSubmenu.length > 0) {
+          menuItems.appendChild(
+            createMenuItem("Projects", "📁", projectsSubmenu)
+          );
         }
 
         // Re-add static items
