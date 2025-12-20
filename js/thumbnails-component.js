@@ -126,7 +126,7 @@ const projects = [
   {
     href: "journeys.html#1",
     cssClass: "comboakounb",
-    title: "PROCESSO 44",
+    title: "PROCESSO44",
     // subtitle: "FILMMAKING + MUSIC ENDEAVORS",
     subtitle: "WE TOLD GRAND STORIES WITH BROKE GEAR",
     tags: ["MORE"],
