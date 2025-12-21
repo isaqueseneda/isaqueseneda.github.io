@@ -124,7 +124,7 @@ const projects = [
     tags: ["📟 #####"],
   },
   {
-    href: "journeys.html#1",
+    href: "journeys.html#2",
     cssClass: "comboakounb",
     title: "PROCESSO44",
     // subtitle: "FILMMAKING + MUSIC ENDEAVORS",
