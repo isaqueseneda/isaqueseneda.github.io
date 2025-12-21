@@ -241,6 +241,7 @@
         color: #111;
         max-height: 200px; /* Limit height so player stays visible */
         overflow-y: auto;
+        width: 100%;
       }
       html.dark-mode .info-bar {
         background-color: #1a1a1a;
@@ -256,7 +257,8 @@
         border: 1px solid #666;
         display: inline-block;
         padding: 2px 8px;
-        margin-bottom: 8px;
+        /* margin-bottom: 8px; */
+        white-space: nowrap;
       }
       html.dark-mode .info-tag {
         color: #aaa;
@@ -267,15 +269,23 @@
         font-size: 1.5em;
         font-weight: bold;
         margin-bottom: 0px;
+        line-height: 1;
+        text-wrap: balance;
       }
 
       .info-artist {
-        font-size: 1.1em;
+        font-size: 1.5em;
         color: #444;
-        margin-bottom: 5px;
+        /* margin-bottom: 5px; */
+        line-height: 1;
+        text-transform: uppercase;
+        border-left: 2px solid #ccc;
+        padding-left: 10px;
+        text-wrap: balance;
       }
       html.dark-mode .info-artist {
         color: #ddd;
+        border-left: 2px solid #484848;
       }
 
       .info-description {
@@ -583,6 +593,10 @@
           font-size: 1.2em;
         }
 
+        .info-artist {
+          font-size: 1.2em;
+        }
+
         .file-icon {
           width: 40px;
           height: 40px;
@@ -656,9 +670,19 @@
           <!-- Content injected via JS -->
         </div>
         <div class="info-bar">
-          <div class="info-tag" id="info-tag">Type</div>
-          <div class="info-title" id="info-title">Title</div>
-          <div class="info-artist" id="info-artist">Artist</div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              margin-bottom: 8px;
+              justify-content: start;
+            "
+          >
+            <span class="info-tag" id="info-tag">Type</span>
+            <span class="info-title" id="info-title">Title</span>
+            <span class="info-artist" id="info-artist">Artist</span>
+          </div>
           <div class="info-description" id="info-desc">Description</div>
         </div>
       </div>
@@ -830,7 +854,7 @@
         {
           title: "UNBURDEN",
           type: "Album",
-          artist: "Isaque Seneda",
+          artist: "DO FUTURO",
           contentType: "spotify",
           url: "https://open.spotify.com/embed/album/6xaZrtMEdxRkUc6lEOtWpK?utm_source=generator&theme=0",
           description:
@@ -840,7 +864,7 @@
         {
           title: "SHOW ME THE WAY",
           type: "Music Video",
-          artist: "Isaque Seneda",
+          artist: "DO FUTURO",
           contentType: "vimeo",
           url: "https://player.vimeo.com/video/530465586?h=d96f90b929&title=0&byline=0&portrait=0",
           description: "A music video for unburden.",
@@ -849,7 +873,7 @@
         {
           title: "FALL 2",
           type: "Music Video",
-          artist: "Isaque Seneda",
+          artist: "DO FUTURO",
           contentType: "vimeo",
           url: "https://player.vimeo.com/video/601039720?h=d96f90b929&title=0&byline=0&portrait=0",
           description: "A music video for unburden.",
@@ -858,7 +882,7 @@
         {
           title: "AA",
           type: "Music Video",
-          artist: "Isaque Seneda",
+          artist: "DO FUTURO",
           contentType: "vimeo",
           url: "https://player.vimeo.com/video/274861469?h=d96f90b929&title=0&byline=0&portrait=0",
           description: "A music video for the first single of DO FUTURO.",
@@ -901,7 +925,7 @@
         },
         {
           title: "LIGHTS ON SILENCE",
-          type: "Graduation Project",
+          type: "Audiovisual Project",
           artist: "Isaque Seneda",
           contentType: "youtube",
           url: "https://www.youtube.com/embed/K32qxqiB1H4",
@@ -910,7 +934,7 @@
         },
         {
           title: "RAW 2",
-          type: "Experiment",
+          type: "Audiovisual Project",
           artist: "Isaque Seneda",
           contentType: "vimeo",
           url: "https://player.vimeo.com/video/448470733",
