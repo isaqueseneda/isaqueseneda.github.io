@@ -613,6 +613,117 @@
           display: none !important;
         }
       }
+
+      /* Lyrics Popover Styles */
+      .lyrics-popover {
+        display: none;
+        position: fixed;
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 12px;
+        z-index: 1000;
+        width: 280px;
+        max-height: 350px;
+        overflow: visible;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        font-size: 0.85em;
+        font-family: "JetBrains Mono", monospace;
+        border-radius: 6px;
+        color: #111;
+      }
+
+      html.dark-mode .lyrics-popover {
+        background: #222;
+        border-color: #444;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .lyrics-popover-inner {
+        max-height: 300px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+
+      /* Popover Arrow */
+      .lyrics-popover::after {
+        content: "";
+        position: absolute;
+        bottom: -7px;
+        left: var(--arrow-left, 50%);
+        margin-left: -7px;
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        transform: rotate(45deg);
+        z-index: 1;
+      }
+
+      /* Arrow for bottom placement */
+      .lyrics-popover.bottom::after {
+        bottom: auto;
+        top: -7px;
+        border-bottom: none;
+        border-right: none;
+        border-top: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+      }
+
+      html.dark-mode .lyrics-popover::after {
+        background: #222;
+        border-color: #444;
+      }
+
+      /* Lyrics Title */
+      .lyrics-title {
+        font-size: 0.7em;
+        text-transform: uppercase;
+        color: #666;
+        margin: 0 0 8px 0;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 6px;
+      }
+
+      html.dark-mode .lyrics-title {
+        color: #aaa;
+        border-color: #444;
+      }
+
+      /* Lyrics Button Styles */
+      .lyrics-btn {
+        display: none;
+        background-color: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        cursor: pointer;
+        padding: 6px;
+        margin-left: 8px;
+        color: #64748b;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      html.dark-mode .lyrics-btn {
+        background-color: #333;
+        border-color: #444;
+        color: #aaa;
+      }
+
+      .lyrics-btn:hover {
+        background-color: #ddd;
+        color: #111;
+      }
+
+      html.dark-mode .lyrics-btn:hover {
+        background-color: #444;
+        color: #fff;
+      }
     </style>
   </head>
   <body class="body av">
@@ -645,6 +756,14 @@
             LET'S GO!
           </button>
         </div>
+      </div>
+    </div>
+
+    <!-- Lyrics Popover -->
+    <div id="lyrics-popover" class="lyrics-popover">
+      <div class="lyrics-title">Lyrics</div>
+      <div class="lyrics-popover-inner">
+        <div id="lyrics-content"></div>
       </div>
     </div>
 
@@ -682,6 +801,38 @@
             <span class="info-tag" id="info-tag">Type</span>
             <span class="info-title" id="info-title">Title</span>
             <span class="info-artist" id="info-artist">Artist</span>
+            <button id="lyrics-btn" class="lyrics-btn" title="Show Lyrics">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                ></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <line x1="10" y1="9" x2="8" y2="9"></line>
+                <path d="M9 22v-4h4v4" style="opacity: 0"></path>
+                <!-- Spacer -->
+                <path d="M19 15V9" style="display: none"></path>
+                <!-- Hidden note part -->
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="2"
+                  fill="currentColor"
+                  style="opacity: 0.8"
+                ></circle>
+                <path d="M18 18V14" style="opacity: 0.8"></path>
+              </svg>
+            </button>
           </div>
           <div class="info-description" id="info-desc">Description</div>
         </div>
@@ -867,6 +1018,24 @@
           url: "44/files/DO-FUTURO-i-see-you-out-the-window-1.mp3",
           thumbnail: "44/files/DO-FUTURO-i-see-you-out-the-window-1.jpg",
           description: "i see you out the window",
+          lyrics: `i see you out the window,
+without your sermon
+hug, tell me the wind brought
+a lover’s sovereign
+without farewell
+
+aaah hmmmm
+
+i see you in the mirror,
+and i remember,
+uh, hugs are out the window
+farewell.
+
+he, who hopped the far lands,
+shall never be mended. will i?
+
+will i be mended?
+will i be?`.trim(),
         },
         {
           title: "I SEE YOU OUT THE WINDOW (LIVE)",
@@ -1182,6 +1351,76 @@
         document.getElementById("info-artist").innerText = item.artist;
         document.getElementById("info-desc").innerText = item.description;
 
+        // Lyrics Button Logic
+        const lyricsBtn = document.getElementById("lyrics-btn");
+        const lyricsPopover = document.getElementById("lyrics-popover");
+
+        if (item.lyrics) {
+          lyricsBtn.style.display = "inline-flex";
+          lyricsBtn.onclick = (e) => {
+            e.stopPropagation();
+
+            // Toggle visibility
+            if (lyricsPopover.style.display === "block") {
+              lyricsPopover.style.display = "none";
+              return;
+            }
+
+            // Set content (trim to remove leading/trailing whitespace)
+            document.getElementById("lyrics-content").innerText =
+              item.lyrics.trim();
+
+            // Position and show
+            lyricsPopover.style.display = "block";
+
+            // Calculate position (above the button)
+            const btnRect = lyricsBtn.getBoundingClientRect();
+            const popoverRect = lyricsPopover.getBoundingClientRect();
+
+            // Position above the button, centered horizontally relative to button
+            let top = btnRect.top - popoverRect.height - 12; // 12px gap for arrow
+            let left = btnRect.left + btnRect.width / 2 - popoverRect.width / 2;
+
+            // Ensure it doesn't go off screen
+            if (left < 10) left = 10;
+            if (left + popoverRect.width > window.innerWidth - 10) {
+              left = window.innerWidth - popoverRect.width - 10;
+            }
+
+            // Adjust arrow position if popover is shifted
+            // We need to set the arrow's left position relative to the popover
+            // The arrow is ::after, so we can't easily change its style via JS directly on the element
+            // But we can use a CSS variable or just rely on centering if the popover is centered.
+            // If the popover hits the edge, the arrow (centered on popover) won't point to the button.
+            // Let's fix this by setting a custom property for arrow position
+            const arrowLeft = btnRect.left + btnRect.width / 2 - left;
+            lyricsPopover.style.setProperty("--arrow-left", `${arrowLeft}px`);
+
+            if (top < 10) {
+              // If not enough space above, show below?
+              // For now, let's just pin to top if it's too high, but that might cover the button.
+              // Ideally we'd flip it.
+              if (
+                btnRect.bottom + popoverRect.height + 12 <
+                window.innerHeight
+              ) {
+                top = btnRect.bottom + 12;
+                lyricsPopover.classList.add("bottom");
+              } else {
+                top = 10;
+              }
+            } else {
+              lyricsPopover.classList.remove("bottom");
+            }
+
+            lyricsPopover.style.top = `${top}px`;
+            lyricsPopover.style.left = `${left}px`;
+          };
+        } else {
+          lyricsBtn.style.display = "none";
+          if (lyricsPopover) lyricsPopover.style.display = "none";
+        }
+
         // Clear previous content
         playerWrapper.innerHTML = "";
         clearInterval(slideshowInterval);
@@ -1352,6 +1591,33 @@
       document.addEventListener("DOMContentLoaded", function () {
         const overlay = document.getElementById("intro-overlay");
         const btn = document.getElementById("avbutton");
+
+        // Lyrics Popover Logic
+        const lyricsPopover = document.getElementById("lyrics-popover");
+
+        // Close popover when clicking outside
+        document.addEventListener("click", (e) => {
+          const lyricsBtn = document.getElementById("lyrics-btn");
+          if (
+            lyricsPopover &&
+            lyricsPopover.style.display === "block" &&
+            !lyricsPopover.contains(e.target) &&
+            e.target !== lyricsBtn &&
+            !lyricsBtn.contains(e.target)
+          ) {
+            lyricsPopover.style.display = "none";
+          }
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (
+            e.key === "Escape" &&
+            lyricsPopover &&
+            lyricsPopover.style.display === "block"
+          ) {
+            lyricsPopover.style.display = "none";
+          }
+        });
 
         // Check LocalStorage
         if (localStorage.getItem("introShown") === "true") {
