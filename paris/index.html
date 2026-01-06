@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Seneda Paris" />
+    <link
+      rel="apple-touch-icon"
+      href="https://img.icons8.com/fluency/192/macaron.png"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Seneda Paris</title>
+
+    <style>
+      :root {
+        --primary: #2c3e50;
+        --accent: #c5a065;
+        --bg: #faf9f6;
+        --card-bg: #ffffff;
+        --soft-blue: #e8f4f8;
+        --soft-green: #e3f2e1;
+        --soft-red: #fadbd8;
+        --warning-bg: #fff3e0;
+        --warning-text: #e65100;
+
+        --font-main: "Nunito", sans-serif;
+        --font-head: "Playfair Display", serif;
+
+        --radius: 24px;
+        --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--primary);
+        font-family: var(--font-main);
+        margin: 0;
+        padding: 0;
+        padding-bottom: 110px;
+        padding-top: env(safe-area-inset-top);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-head);
+        margin: 0;
+      }
+      h1 {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 5px;
+      }
+      .subtitle {
+        font-size: 0.85rem;
+        color: #7f8c8d;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .view {
+        display: none;
+        padding: 24px;
+        animation: fadeIn 0.4s ease-out;
+      }
+      .view.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* LOGO */
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0 30px 0;
+      }
+      .app-logo {
+        width: 180px;
+        height: auto;
+      }
+
+      /* CARDS */
+      .card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(0, 0, 0, 0.02);
+        position: relative;
+      }
+      .clickable-card:active {
+        transform: scale(0.98);
+        transition: 0.1s;
+      }
+
+      /* SYNDROME CARD */
+      .syndrome-card {
+        background: linear-gradient(135deg, #fff 0%, #fcfbf9 100%);
+        border-left: 5px solid var(--accent);
+      }
+
+      /* ITINERARY LIST */
+      .date-header {
+        font-family: var(--font-head);
+        font-size: 1.4rem;
+        color: var(--accent);
+        margin-top: 35px;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px dashed #ccc;
+      }
+
+      .itinerary-item {
+        display: flex;
+        align-items: center;
+        background: white;
+        padding: 16px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+        box-shadow: var(--shadow);
+      }
+      .it-time {
+        font-weight: 800;
+        color: var(--accent);
+        width: 50px;
+        font-size: 0.85rem;
+        text-align: center;
+        line-height: 1.1;
+      }
+      .it-content {
+        flex: 1;
+        margin-left: 12px;
+      }
+      .it-title {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 3px;
+      }
+      .it-desc {
+        font-size: 0.8rem;
+        color: #7f8c8d;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 190px;
+      }
+      .it-arrow {
+        font-size: 1.2rem;
+        color: #ddd;
+      }
+
+      /* PROTOCOL GRID */
+      .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .proto-card {
+        background: white;
+        padding: 15px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        min-height: 150px;
+      }
+      .proto-icon {
+        font-size: 2rem;
+        margin-bottom: 8px;
+      }
+      .proto-title {
+        font-weight: 800;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        color: var(--primary);
+      }
+      .proto-desc {
+        font-size: 0.75rem;
+        color: #666;
+        line-height: 1.3;
+      }
+
+      /* MODAL STYLES */
+      #detail-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 2000;
+        display: flex;
+        align-items: flex-end;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.3s;
+      }
+      #detail-modal.open {
+        visibility: visible;
+        opacity: 1;
+      }
+      .modal-backdrop-click {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .modal-content {
+        position: relative;
+        background: #fafafa;
+        width: 100%;
+        height: 85vh;
+        border-radius: 30px 30px 0 0;
+        padding: 30px;
+        overflow-y: auto;
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+      }
+      #detail-modal.open .modal-content {
+        transform: translateY(0);
+      }
+
+      /* MINI TIMELINE IN MODAL */
+      .mini-timeline {
+        border-left: 2px solid #e0e0e0;
+        margin-left: 10px;
+        padding-left: 25px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .timeline-step {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      .timeline-step::before {
+        content: "";
+        position: absolute;
+        left: -31px;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+        border-radius: 50%;
+        border: 2px solid #fafafa;
+      }
+      .step-title {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--primary);
+      }
+      .step-desc {
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      /* ROLE BOXES */
+      .role-box {
+        background: var(--soft-blue);
+        padding: 15px;
+        border-radius: 14px;
+        margin-top: 15px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .role-box.dad {
+        background: #fff8e1;
+        color: #5d4037;
+      }
+      .role-box.mom {
+        background: #e1f5fe;
+        color: #01579b;
+      }
+
+      /* NAV */
+      .glass-nav {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85%;
+        max-width: 380px;
+        height: 65px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 50px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+      .nav-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        opacity: 0.4;
+        transition: 0.3s;
+      }
+      .nav-btn.active {
+        opacity: 1;
+        transform: scale(1.15);
+      }
+      .phrase-badge {
+        background: var(--primary);
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SETUP VIEW -->
+    <div
+      id="view-intro"
+      class="view active"
+      style="text-align: center; padding-top: 15vh"
+    >
+      <svg
+        class="app-logo"
+        viewBox="0 0 200 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style="margin-bottom: 20px"
+      >
+        <text
+          x="100"
+          y="40"
+          font-family="'Playfair Display', serif"
+          font-size="28"
+          fill="#2C3E50"
+          text-anchor="middle"
+          font-weight="bold"
+        >
+          Seneda
+        </text>
+        <text
+          x="100"
+          y="70"
+          font-family="'Nunito', sans-serif"
+          font-size="20"
+          fill="#C5A065"
+          text-anchor="middle"
+          letter-spacing="4"
+        >
+          PARIS
+        </text>
+        <path d="M100 75 L95 85 L105 85 Z" fill="#2C3E50" opacity="0.2" />
+      </svg>
+
+      <h1 style="font-size: 2.2rem">Bienvenue</h1>
+      <p style="color: #666; max-width: 250px; margin: 0 auto">
+        O guia de bolso para a nossa viagem.
+      </p>
+
+      <div style="margin-top: 60px">
+        <p class="subtitle">QUEM É VOCÊ?</p>
+        <div
+          style="
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+          "
+        >
+          <button
+            onclick="setRole('dad')"
+            style="
+              background: white;
+              border: none;
+              padding: 25px;
+              border-radius: 24px;
+              box-shadow: var(--shadow);
+            "
+          >
+            <div style="font-size: 3.5rem">👴</div>
+            <div
+              style="font-weight: bold; margin-top: 10px; color: var(--primary)"
+            >
+              Pai
+            </div>
+          </button>
+          <button
+            onclick="setRole('mom')"
+            style="
+              background: white;
+              border: none;
+              padding: 25px;
+              border-radius: 24px;
+              box-shadow: var(--shadow);
+            "
+          >
+            <div style="font-size: 3.5rem">👩</div>
+            <div
+              style="font-weight: bold; margin-top: 10px; color: var(--primary)"
+            >
+              Mãe
+            </div>
+          </button>
+        </div>
+        <p
+          onclick="setRole('admin')"
+          style="
+            margin-top: 40px;
+            opacity: 0.4;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+          "
+        >
+          ADMIN ACCESS
+        </p>
+      </div>
+    </div>
+
+    <!-- APP CONTAINER -->
+    <div id="app-container" style="display: none">
+      <!-- 1. HOME TAB -->
+      <div id="tab-home" class="view">
+        <div class="logo-container">
+          <svg
+            width="140"
+            height="60"
+            viewBox="0 0 140 60"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <text
+              x="70"
+              y="30"
+              font-family="'Playfair Display', serif"
+              font-size="24"
+              fill="#2C3E50"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              Seneda
+            </text>
+            <text
+              x="70"
+              y="50"
+              font-family="'Nunito', sans-serif"
+              font-size="14"
+              fill="#C5A065"
+              text-anchor="middle"
+              letter-spacing="3"
+            >
+              PARIS
+            </text>
+          </svg>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 25px">
+          <div id="phrase-box" class="phrase-badge"></div>
+          <h1 id="greeting" style="font-size: 1.8rem">...</h1>
+          <p
+            id="date-display"
+            style="color: #999; font-size: 0.9rem; margin-top: 5px"
+          >
+            ...
+          </p>
+        </div>
+
+        <div
+          class="card syndrome-card"
+          style="padding: 15px 20px; margin-bottom: 30px"
+        >
+          <h3
+            style="color: var(--primary); font-size: 1.1rem; margin-bottom: 5px"
+          >
+            🧠 Paris Tranquila
+          </h3>
+          <p
+            style="
+              font-size: 0.9rem;
+              color: #555;
+              line-height: 1.5;
+              margin-bottom: 0;
+            "
+          >
+            Para evitar a "Síndrome de Paris", nosso segredo é:
+            <strong>Devagar é melhor.</strong> Se cansarem, nós paramos.
+          </p>
+        </div>
+
+        <p class="subtitle" style="margin-left: 5px; margin-bottom: 10px">
+          AGORA
+        </p>
+        <div
+          id="now-card-container"
+          onclick="openDetail(currentEventId)"
+          class="card clickable-card"
+          style="
+            background: var(--primary);
+            color: white;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          "
+        >
+          <!-- JS Injected -->
+        </div>
+
+        <p
+          class="subtitle"
+          style="margin-left: 5px; margin-bottom: 10px; margin-top: 30px"
+        >
+          A SEGUIR
+        </p>
+        <div
+          id="next-scroll"
+          style="
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 20px;
+            padding-right: 20px;
+          "
+        >
+          <!-- JS Injected -->
+        </div>
+      </div>
+
+      <!-- 2. ITINERARY TAB -->
+      <div id="tab-itinerary" class="view">
+        <h1>Itinerário</h1>
+        <p class="subtitle">5 DIAS DE HISTÓRIA</p>
+        <div id="full-itinerary-list" style="padding-bottom: 80px">
+          <!-- JS Injected -->
+        </div>
+      </div>
+
+      <!-- 3. PROTOCOLS TAB -->
+      <div id="tab-health" class="view">
+        <h1>Protocolos</h1>
+        <p class="subtitle">ESCUDO DE IMUNIDADE</p>
+
+        <div
+          class="card"
+          style="background: var(--warning-bg); border: none; margin-top: 20px"
+        >
+          <h3 style="color: var(--warning-text); font-size: 1.1rem">
+            ⚡ Energia Vital
+          </h3>
+          <p style="margin-bottom: 0; color: #cc4400; font-size: 0.95rem">
+            O corpo gasta muita energia para se aquecer. Economize essa energia
+            para sua imunidade:
+            <strong>Use Uber/Táxi. Não ande no frio desnecessariamente.</strong>
+          </p>
+        </div>
+
+        <div class="grid-container">
+          <div class="proto-card">
+            <div class="proto-icon">💧</div>
+            <div class="proto-title">Garrafa d'Água</div>
+            <div class="proto-desc">
+              Tenha sempre uma na bolsa. O ar frio desidrata sem você perceber.
+            </div>
+          </div>
+          <div class="proto-card">
+            <div class="proto-icon">🕰️</div>
+            <div class="proto-title">Horários Alternativos</div>
+            <div class="proto-desc">
+              Almoçar cedo (12h) ou tarde (14h) para evitar restaurantes
+              lotados.
+            </div>
+          </div>
+          <div class="proto-card">
+            <div class="proto-icon">🛋️</div>
+            <div class="proto-title">Descanso</div>
+            <div class="proto-desc">
+              Fazer pausas estratégicas em bancos ou cafés a cada hora.
+            </div>
+          </div>
+          <div class="proto-card">
+            <div class="proto-icon">😷</div>
+            <div class="proto-title">Máscara PFF2</div>
+            <div class="proto-desc">Metrô, Táxi e Museus. Sem exceção.</div>
+          </div>
+          <div class="proto-card">
+            <div class="proto-icon">🧣</div>
+            <div class="proto-title">Balaclava</div>
+            <div class="proto-desc">
+              Cubra nariz e boca na rua. Crie uma bolsa de ar quente.
+            </div>
+          </div>
+          <div class="proto-card">
+            <div class="proto-icon">🍵</div>
+            <div class="proto-title">Gengibre & Mel</div>
+            <div class="proto-desc">Chá quente para a garganta.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. MAPS TAB -->
+      <div id="tab-maps" class="view">
+        <h1>Mapas</h1>
+        <p class="subtitle">LOCALIZAÇÃO</p>
+
+        <a
+          href="https://maps.apple.com/?q=8+rue+Caillaux,75013,Paris"
+          class="card clickable-card"
+          style="
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          "
+        >
+          <div style="font-size: 2rem">🏨</div>
+          <div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 5px">Hotel Novex</h3>
+            <div style="color: #666; font-size: 0.9rem">
+              8 rue Caillaux, 75013
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="https://maps.apple.com/?q=82+Rue+Baudricourt,75013+Paris"
+          class="card clickable-card"
+          style="
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          "
+        >
+          <div style="font-size: 2rem">🏠</div>
+          <div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 5px">
+              Casa do Isaque
+            </h3>
+            <div style="color: #666; font-size: 0.9rem">
+              82 Rue Baudricourt, 75013
+            </div>
+          </div>
+        </a>
+
+        <div class="card" style="margin-top: 40px; text-align: center">
+          <p style="margin-bottom: 10px">
+            Logado como: <strong id="user-display"></strong>
+          </p>
+          <button
+            onclick="resetApp()"
+            style="
+              background: #f1f2f6;
+              border: none;
+              padding: 12px 30px;
+              border-radius: 12px;
+              color: #ff4757;
+              font-weight: bold;
+            "
+          >
+            Sair / Resetar
+          </button>
+        </div>
+      </div>
+
+      <!-- NAV -->
+      <nav class="glass-nav">
+        <button class="nav-btn active" onclick="nav('home')">🏠</button>
+        <button class="nav-btn" onclick="nav('itinerary')">📅</button>
+        <button class="nav-btn" onclick="nav('health')">❤️</button>
+        <button class="nav-btn" onclick="nav('maps')">📍</button>
+      </nav>
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div id="detail-modal">
+      <div class="modal-backdrop-click" onclick="closeDetail()"></div>
+      <div class="modal-content">
+        <div
+          style="
+            width: 40px;
+            height: 5px;
+            background: #eee;
+            border-radius: 5px;
+            margin: 0 auto 20px auto;
+          "
+        ></div>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script>
+      // --- DATA ---
+      const phrases = {
+        6: { fr: "Bonsoir", pt: "Boa noite", phon: "bon-suar" },
+        7: {
+          fr: "Je voudrais un café",
+          pt: "Eu queria um café",
+          phon: "juh vu-dré un ca-fé",
+        },
+        8: { fr: "S'il vous plaît", pt: "Por favor", phon: "sil vu plé" },
+        9: {
+          fr: "L'addition, s'il vous plaît",
+          pt: "A conta, por favor",
+          phon: "la-di-ssion",
+        },
+        10: { fr: "Au revoir", pt: "Até logo", phon: "o re-vuar" },
+      };
+
+      const itinerary = [
+        // TERÇA 6
+        {
+          id: 1,
+          start: "2026-01-06T12:00",
+          end: "2026-01-06T23:00",
+          title: "Viagem",
+          duration: "11h",
+          desc: "Voo rumo à Europa.",
+          icon: "✈️",
+          mom: "Hidratação constante no avião.",
+          dad: "Tente cochilar. O fuso é de +4 horas.",
+          steps: [
+            { t: "Voo", d: "Beber água a cada hora" },
+            { t: "Pouso", d: "Apertar o cinto" },
+          ],
+        },
+        {
+          id: 2,
+          start: "2026-01-06T23:45",
+          end: "2026-01-07T01:30",
+          title: "Chegada em Orly",
+          duration: "1h 45m",
+          desc: "Desembarque e transporte.",
+          icon: "🛬",
+          mom: "Cachecol no rosto IMEDIATAMENTE ao sair.",
+          dad: "O Aeroporto de Orly foi aberto em 1932. Antes de Charles de Gaulle, era o principal de Paris. Nos anos 60, os franceses vinham aqui aos domingos só para ver os aviões dos terraços.",
+          steps: [
+            { t: "Desembarque", d: "Seguir placas 'Sortie'" },
+            { t: "Malas", d: "Esteira 4 ou 5" },
+            { t: "Uber", d: "Eu estarei coordenando" },
+            { t: "Hotel", d: "Check-in rápido" },
+          ],
+        },
+
+        // QUARTA 7
+        {
+          id: 3,
+          start: "2026-01-07T01:30",
+          end: "2026-01-07T10:00",
+          title: "Recuperação",
+          duration: "8h 30m",
+          desc: "Dormir até tarde.",
+          icon: "💤",
+          mom: "Tigela de água no quarto para umidade.",
+          dad: "Hoje o dia é leve para aclimatar.",
+        },
+        {
+          id: 4,
+          start: "2026-01-07T10:00",
+          end: "2026-01-07T12:00",
+          title: "Padaria & Café",
+          duration: "2h",
+          desc: "Croissant na vizinhança.",
+          icon: "🥐",
+          dad: "Estamos no 13º arrondissement. Historicamente operário, hoje é calmo. Vamos comer uma 'Tradition' (pão clássico).",
+          steps: [
+            { t: "Boulangerie", d: "Escolher croissants" },
+            { t: "Café", d: "Sentar e comer devagar" },
+          ],
+        },
+        {
+          id: 5,
+          start: "2026-01-07T12:00",
+          end: "2026-01-07T14:30",
+          title: "Quartier Latin",
+          duration: "2h 30m",
+          desc: "Panteão & Sorbonne.",
+          icon: "🏛️",
+          dad: "O 'Bairro Latino' tem esse nome porque as aulas na Idade Média eram apenas em Latim. É o centro intelectual da França há 800 anos.",
+          mom: "Caminhada lenta. Parar nos bancos do jardim.",
+          steps: [
+            {
+              t: "Panthéon",
+              d: "Onde descansam os heróis da França (Voltaire, Rousseau).",
+            },
+            {
+              t: "La Sorbonne",
+              d: "Fundada em 1257 por Robert de Sorbon para estudantes pobres. Uma das primeiras do mundo.",
+            },
+            {
+              t: "Jardin du Luxembourg",
+              d: "Criado em 1612 pela rainha Maria de Médici. Vamos sentar nas cadeiras verdes famosas.",
+            },
+          ],
+        },
+        {
+          id: 6,
+          start: "2026-01-07T14:30",
+          end: "2026-01-07T17:00",
+          title: "Descanso Hotel",
+          duration: "2h 30m",
+          desc: "Soneca essencial.",
+          icon: "🛌",
+          mom: "Hora de repor energias. Chá de gengibre.",
+        },
+        {
+          id: 7,
+          start: "2026-01-07T17:00",
+          end: "2026-01-07T18:30",
+          title: "Climb Up",
+          duration: "1h 30m",
+          desc: "Porte d'Italie.",
+          icon: "🧗",
+          dad: "Esta é a minha academia de escalada (Bouldering). Fica na Porte d'Italie, uma das antigas portas de entrada da muralha de Paris.",
+          steps: [
+            { t: "Caminhada", d: "Até a Avenue de la Porte d'Italie" },
+            { t: "Visita", d: "Ver onde o Isaque treina" },
+            { t: "Volta", d: "Uber ou caminhada leve" },
+          ],
+        },
+        {
+          id: 8,
+          start: "2026-01-07T19:00",
+          end: "2026-01-07T21:00",
+          title: "Chá no Isaque",
+          duration: "2h",
+          desc: "Visita à minha casa.",
+          icon: "🍵",
+          dad: "Noite tranquila em família.",
+        },
+
+        // QUINTA 8
+        {
+          id: 9,
+          start: "2026-01-08T10:30",
+          end: "2026-01-08T13:00",
+          title: "Le Bon Marché",
+          duration: "2h 30m",
+          desc: "O Shopping mais chique.",
+          icon: "🛍️",
+          dad: "Fundado em 1852 por Aristide Boucicaut. Ele INVENTOU o shopping moderno: preços fixos, entrada livre e trocas permitidas. O prédio é uma obra de arte.",
+          steps: [
+            { t: "Entrada", d: "Ver as escadas rolantes centrais" },
+            { t: "Passeio", d: "Ver vitrines (sem comprar nada caro!)" },
+          ],
+        },
+        {
+          id: 10,
+          start: "2026-01-08T13:00",
+          end: "2026-01-08T14:30",
+          title: "Grande Épicerie",
+          duration: "1h 30m",
+          desc: "Gastronomia fina.",
+          icon: "🍰",
+          mom: "Vamos comer um bolo, mas cuidado com o açúcar!",
+          steps: [
+            { t: "Vitrines", d: "Ver os queijos e pães incríveis" },
+            { t: "Bolo", d: "Café e doce na praça central" },
+          ],
+        },
+        {
+          id: 11,
+          start: "2026-01-08T15:00",
+          end: "2026-01-08T18:00",
+          title: "Descanso Tarde",
+          duration: "3h",
+          desc: "Hotel.",
+          icon: "💤",
+        },
+        {
+          id: 12,
+          start: "2026-01-08T19:00",
+          end: "2026-01-08T21:00",
+          title: "Sopa no Isaque",
+          duration: "2h",
+          desc: "Jantar caseiro.",
+          icon: "🍲",
+          dad: "Sopa quentinha para imunidade.",
+        },
+
+        // SEXTA 9
+        {
+          id: 13,
+          start: "2026-01-09T09:30",
+          end: "2026-01-09T11:30",
+          title: "O Louvre (Externo)",
+          duration: "2h",
+          desc: "Pirâmide & Tuileries.",
+          icon: "🖼️",
+          dad: "Construído em 1190 como fortaleza para proteger Paris. Virou palácio real e depois museu em 1793 durante a Revolução. Não vamos entrar na multidão, vamos ver a arquitetura.",
+          steps: [
+            {
+              t: "Arc du Carrousel",
+              d: "O arco menor, construído por Napoleão",
+            },
+            {
+              t: "Pirâmide",
+              d: "De vidro, moderna (1989), contraste com o antigo",
+            },
+            { t: "Jardin des Tuileries", d: "Jardim real para caminhada leve" },
+          ],
+        },
+        {
+          id: 14,
+          start: "2026-01-09T12:00",
+          end: "2026-01-09T14:00",
+          title: "Surpresa",
+          duration: "2h",
+          desc: "Almoço especial.",
+          icon: "🎁",
+          mom: "Prepare o estômago para algo gostoso.",
+        },
+        {
+          id: 15,
+          start: "2026-01-09T14:30",
+          end: "2026-01-09T16:00",
+          title: "Torre Eiffel",
+          duration: "1h 30m",
+          desc: "Vista do Trocadero.",
+          icon: "🗼",
+          dad: "A Dama de Ferro. Construída para a Feira Mundial de 1889. Era para ser temporária (20 anos), mas ficou porque servia como antena de rádio.",
+          steps: [
+            { t: "Trocadero", d: "Melhor vista panorâmica (sem degraus)" },
+            { t: "Fotos", d: "Hora da foto clássica" },
+          ],
+        },
+        {
+          id: 16,
+          start: "2026-01-09T16:30",
+          end: "2026-01-09T18:00",
+          title: "Universidade",
+          duration: "1h 30m",
+          desc: "Onde minha namorada estuda.",
+          icon: "🎓",
+        },
+        {
+          id: 17,
+          start: "2026-01-09T19:00",
+          end: "2026-01-09T22:00",
+          title: "Jantar de Despedida",
+          duration: "3h",
+          desc: "Au revoir!",
+          icon: "🍷",
+        },
+
+        // SÁBADO 10
+        {
+          id: 18,
+          start: "2026-01-10T10:00",
+          end: "2026-01-10T11:30",
+          title: "Checkout",
+          duration: "1h 30m",
+          desc: "Malas prontas.",
+          icon: "🧳",
+          mom: "Conferir remédios, passaportes e carregadores.",
+        },
+        {
+          id: 19,
+          start: "2026-01-10T12:00",
+          end: "2026-01-10T13:00",
+          title: "Ida para Orly",
+          duration: "1h",
+          desc: "Uber/Taxi.",
+          icon: "🚕",
+        },
+        {
+          id: 20,
+          start: "2026-01-10T15:40",
+          end: "2026-01-10T20:00",
+          title: "Voo de Volta",
+          duration: "11h",
+          desc: "Boa viagem!",
+          icon: "🛫",
+        },
+      ];
+
+      let userRole = localStorage.getItem("role");
+      let currentEventId = null;
+
+      function init() {
+        if (userRole) {
+          document.getElementById("view-intro").classList.remove("active");
+          document.getElementById("app-container").style.display = "block";
+          document.getElementById("tab-home").classList.add("active");
+          document.getElementById("user-display").innerText =
+            userRole.toUpperCase();
+
+          updateTimeLogic();
+          renderItinerary();
+          setInterval(updateTimeLogic, 60000);
+        }
+      }
+
+      function setRole(role) {
+        userRole = role;
+        localStorage.setItem("role", role);
+        init();
+      }
+
+      function updateTimeLogic() {
+        const now = new Date();
+        const day = now.getDate();
+        const phrase = phrases[day] || phrases["6"];
+        document.getElementById(
+          "phrase-box"
+        ).innerHTML = `${phrase.fr} <span style="opacity:0.7; font-weight:400">(${phrase.phon})</span>`;
+
+        const h = now.getHours();
+        let g = h >= 18 ? "Bonsoir" : "Bonjour";
+        document.getElementById("greeting").innerText = `${g}, Família!`;
+
+        const dateStr = now.toLocaleDateString("pt-BR", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+        });
+        document.getElementById("date-display").innerText =
+          dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+
+        let current = null;
+        let next = [];
+
+        for (let item of itinerary) {
+          const s = new Date(item.start);
+          const e = new Date(item.end);
+          if (now >= s && now <= e) current = item;
+          else if (now < s) next.push(item);
+        }
+
+        if (!current && next.length > 0) {
+          current = {
+            title: "Tempo Livre",
+            desc: "Descanso estratégico.",
+            icon: "✨",
+            dummy: true,
+          };
+        } else if (!current && next.length === 0) {
+          current = {
+            title: "Viagem Concluída",
+            desc: "Espero que tenham amado!",
+            icon: "❤️",
+            dummy: true,
+          };
+        }
+
+        currentEventId = current.dummy ? null : current.id;
+
+        const nowCard = document.getElementById("now-card-container");
+        nowCard.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                    <div>
+                        <div style="font-size:2.5rem; margin-bottom:5px;">${
+                          current.icon
+                        }</div>
+                        <h2 style="color:white; font-size:1.6rem; margin-bottom:5px;">${
+                          current.title
+                        }</h2>
+                        <p style="opacity:0.9; margin:0; font-size:0.95rem;">${
+                          current.desc
+                        }</p>
+                    </div>
+                    ${
+                      !current.dummy
+                        ? '<div style="background:rgba(255,255,255,0.2); width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;">›</div>'
+                        : ""
+                    }
+                </div>`;
+
+        if (current.dummy) nowCard.classList.remove("clickable-card");
+        else nowCard.classList.add("clickable-card");
+
+        const nextCont = document.getElementById("next-scroll");
+        nextCont.innerHTML = "";
+        next.slice(0, 5).forEach((i) => {
+          const t = new Date(i.start).toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+          nextCont.innerHTML += `
+                    <div onclick="openDetail(${i.id})" class="card clickable-card" style="min-width: 150px; margin-bottom:0; padding: 15px; display:flex; flex-direction:column; justify-content:center;">
+                        <div style="font-size:1.8rem; margin-bottom:5px;">${i.icon}</div>
+                        <div style="font-weight:bold; font-size:0.8rem; color:var(--accent);">${t}</div>
+                        <div style="font-weight:700; font-size:0.95rem; line-height:1.2;">${i.title}</div>
+                    </div>`;
+        });
+      }
+
+      function renderItinerary() {
+        const list = document.getElementById("full-itinerary-list");
+        list.innerHTML = "";
+        let lastDate = "";
+
+        itinerary.forEach((i) => {
+          const d = new Date(i.start);
+          const ds = d.toLocaleDateString("pt-BR", {
+            weekday: "short",
+            day: "numeric",
+            month: "short",
+          });
+          const ts = d.toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+
+          if (ds !== lastDate) {
+            list.innerHTML += `<div class="date-header">${ds.toUpperCase()}</div>`;
+            lastDate = ds;
+          }
+
+          list.innerHTML += `
+                    <div class="itinerary-item clickable-card" onclick="openDetail(${i.id})">
+                        <div class="it-time">${ts}</div>
+                        <div class="it-content">
+                            <div class="it-title">${i.icon} ${i.title}</div>
+                            <div class="it-desc">${i.desc}</div>
+                        </div>
+                        <div class="it-arrow">›</div>
+                    </div>`;
+        });
+      }
+
+      function openDetail(id) {
+        if (!id) return;
+        const item = itinerary.find((i) => i.id === id);
+        if (!item) return;
+
+        const modal = document.getElementById("detail-modal");
+        const body = document.getElementById("modal-body");
+        const dateStr = new Date(item.start).toLocaleDateString("pt-BR", {
+          weekday: "long",
+          day: "numeric",
+        });
+        const timeStr = new Date(item.start).toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        let roleContent = "";
+        if (userRole === "mom" && item.mom)
+          roleContent = `<div class="role-box mom"><div>👩</div><div><strong>Dica de Mãe:</strong><br>${item.mom}</div></div>`;
+        if ((userRole === "dad" || userRole === "admin") && item.dad)
+          roleContent = `<div class="role-box dad"><div>👴</div><div><strong>História & Contexto:</strong><br>${item.dad}</div></div>`;
+
+        let stepsHTML = "";
+        if (item.steps) {
+          stepsHTML = `<div class="mini-timeline">`;
+          item.steps.forEach((s) => {
+            stepsHTML += `
+                        <div class="timeline-step">
+                            <div class="step-title">${s.t}</div>
+                            <div class="step-desc">${s.d}</div>
+                        </div>`;
+          });
+          stepsHTML += `</div>`;
+        }
+
+        body.innerHTML = `
+                <div style="text-align:center; margin-bottom:25px;">
+                    <div style="font-size:4.5rem; margin-bottom:10px;">${
+                      item.icon
+                    }</div>
+                    <h2 style="font-size:2rem; line-height:1.2; color:var(--primary);">${
+                      item.title
+                    }</h2>
+                    <p style="color:var(--accent); font-weight:800; margin-top:5px; text-transform:uppercase; font-size:0.9rem;">${dateStr} • ${timeStr}</p>
+                    ${
+                      item.duration
+                        ? `<div style="display:inline-block; background:#eee; padding:4px 10px; border-radius:10px; font-size:0.8rem; margin-top:5px;">⏳ Duração: ${item.duration}</div>`
+                        : ""
+                    }
+                </div>
+                
+                <p style="font-size:1.1rem; line-height:1.6; color:#444;">${
+                  item.desc
+                }</p>
+                
+                ${stepsHTML}
+                
+                ${roleContent}
+                
+                <div style="margin-top:40px; text-align:center;">
+                    <button onclick="closeDetail()" style="background:#eee; border:none; padding:15px 40px; border-radius:30px; font-weight:bold; color:#666;">Fechar</button>
+                </div>
+            `;
+        modal.classList.add("open");
+      }
+
+      function closeDetail() {
+        document.getElementById("detail-modal").classList.remove("open");
+      }
+
+      function nav(tabId) {
+        document
+          .querySelectorAll(".nav-btn")
+          .forEach((b) => b.classList.remove("active"));
+        event.currentTarget.classList.add("active");
+        document
+          .querySelectorAll(".view")
+          .forEach((v) => v.classList.remove("active"));
+        document.getElementById("tab-" + tabId).classList.add("active");
+        window.scrollTo(0, 0);
+      }
+
+      function resetApp() {
+        localStorage.clear();
+        location.reload();
+      }
+
+      init();
+    </script>
+  </body>
+</html>
