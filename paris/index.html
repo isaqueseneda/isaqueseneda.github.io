@@ -121,9 +121,12 @@
         border: 1px solid rgba(0, 0, 0, 0.02);
         position: relative;
       }
+      .clickable-card {
+        cursor: pointer;
+        transition: transform 0.12s ease-out;
+      }
       .clickable-card:active {
         transform: scale(0.98);
-        transition: 0.1s;
       }
 
       /* SYNDROME CARD */
@@ -173,9 +176,11 @@
         font-size: 0.8rem;
         color: #7f8c8d;
         overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        max-width: 190px;
+        display: -webkit-box;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        line-height: 1.35;
       }
       .it-arrow {
         font-size: 1.2rem;
@@ -199,6 +204,7 @@
         align-items: center;
         justify-content: start;
         min-height: 150px;
+        cursor: pointer;
       }
       .proto-icon {
         font-size: 2rem;
@@ -350,6 +356,14 @@
         box-shadow: 0 4px 10px rgba(44, 62, 80, 0.3);
         margin-bottom: 10px;
         display: inline-block;
+      }
+
+      #next-scroll {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      #next-scroll::-webkit-scrollbar {
+        display: none;
       }
     </style>
   </head>
@@ -521,8 +535,57 @@
               margin-bottom: 0;
             "
           >
-            Para evitar a "Síndrome de Paris", nosso segredo é:
-            <strong>Devagar é melhor.</strong> Se cansarem, nós paramos.
+            A "Síndrome de Paris" não é sobre Paris ser ruim — é sobre
+            <strong
+              >choque de expectativa + cansaço + excesso de estímulo</strong
+            >: frio, filas, metrô cheio, barulho, pressa e a sensação de “não
+            estou entendendo nada”. Nosso plano é simples:
+            <strong>um foco por vez</strong>, pausas quentes frequentes, e
+            liberdade total para mudar de ideia. Se ficar pesado, a gente faz o
+            modo <strong>conforto</strong>: Uber, café, sentar, banho quente, e
+            volta pra base.
+          </p>
+        </div>
+
+        <div
+          class="card"
+          style="
+            background: #e1f5fe;
+            border-left: 5px solid #03a9f4;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+          "
+        >
+          <h3 style="color: #01579b; font-size: 1.1rem; margin-bottom: 5px">
+            🧊 Alerta: Neve & Black Ice
+          </h3>
+          <p
+            style="
+              font-size: 0.9rem;
+              color: #0277bd;
+              line-height: 1.5;
+              margin-bottom: 5px;
+            "
+          >
+            Está nevando! Cuidado com o <strong>Gelo Preto</strong> (Verglas):
+            uma camada de gelo transparente na calha que parece molhada, mas é
+            invisível e extremamente escorregadia.
+          </p>
+          <p
+            style="
+              font-size: 0.85rem;
+              color: #01579b;
+              line-height: 1.4;
+              margin-bottom: 0;
+              background: rgba(255, 255, 255, 0.5);
+              padding: 10px;
+              border-radius: 12px;
+            "
+          >
+            🐧 <strong>A regra do Pinguim:</strong> Para não cair, caminhe como
+            um pinguim! Mantenha o peso sobre a perna da frente, dê passos
+            curtos e aponte os pés levemente para fora. E
+            <strong>mãos fora dos bolsos</strong> para manter o equilíbrio!
           </p>
         </div>
 
@@ -594,14 +657,30 @@
         </div>
 
         <div class="grid-container">
-          <div class="proto-card">
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('water')"
+          >
             <div class="proto-icon">💧</div>
             <div class="proto-title">Garrafa d'Água</div>
             <div class="proto-desc">
               Tenha sempre uma na bolsa. O ar frio desidrata sem você perceber.
             </div>
           </div>
-          <div class="proto-card">
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('sanitizer')"
+          >
+            <div class="proto-icon">🧴</div>
+            <div class="proto-title">Álcool Gel</div>
+            <div class="proto-desc">
+              Mãos limpas no metrô e em museus. Pequeno, mas poderoso.
+            </div>
+          </div>
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('timing')"
+          >
             <div class="proto-icon">🕰️</div>
             <div class="proto-title">Horários Alternativos</div>
             <div class="proto-desc">
@@ -609,26 +688,70 @@
               lotados.
             </div>
           </div>
-          <div class="proto-card">
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('rest')"
+          >
             <div class="proto-icon">🛋️</div>
             <div class="proto-title">Descanso</div>
             <div class="proto-desc">
               Fazer pausas estratégicas em bancos ou cafés a cada hora.
             </div>
           </div>
-          <div class="proto-card">
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('warmers')"
+          >
+            <div class="proto-icon">🔥</div>
+            <div class="proto-title">Aquecedor de Mãos</div>
+            <div class="proto-desc">
+              Pacotinhos térmicos (hand warmers). Ajuda muito no frio e
+              economiza energia.
+            </div>
+          </div>
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('mask')"
+          >
             <div class="proto-icon">😷</div>
             <div class="proto-title">Máscara PFF2</div>
             <div class="proto-desc">Metrô, Táxi e Museus. Sem exceção.</div>
           </div>
-          <div class="proto-card">
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('cowl')"
+          >
             <div class="proto-icon">🧣</div>
-            <div class="proto-title">Balaclava</div>
+            <div class="proto-title">Balaclava / Cachecol (Cowl)</div>
             <div class="proto-desc">
               Cubra nariz e boca na rua. Crie uma bolsa de ar quente.
             </div>
           </div>
-          <div class="proto-card">
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('nasal')"
+          >
+            <div class="proto-icon">🌊</div>
+            <div class="proto-title">Spray Nasal (Soro)</div>
+            <div class="proto-desc">
+              Nas transições (rua ⇄ metrô ⇄ quarto). Ajuda a manter o nariz
+              úmido.
+            </div>
+          </div>
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('room')"
+          >
+            <div class="proto-icon">🌡️</div>
+            <div class="proto-title">Quarto: 20°C + Umidade</div>
+            <div class="proto-desc">
+              Evite ar seco demais. Conforto térmico sem “torrar” o nariz.
+            </div>
+          </div>
+          <div
+            class="proto-card clickable-card"
+            onclick="openProtocolDetail('tea')"
+          >
             <div class="proto-icon">🍵</div>
             <div class="proto-title">Gengibre & Mel</div>
             <div class="proto-desc">Chá quente para a garganta.</div>
@@ -773,7 +896,7 @@
           desc: "Desembarque e transporte.",
           icon: "🛬",
           mom: "Cachecol no rosto IMEDIATAMENTE ao sair.",
-          dad: "O Aeroporto de Orly foi aberto em 1932. Antes de Charles de Gaulle, era o principal de Paris. Nos anos 60, os franceses vinham aqui aos domingos só para ver os aviões dos terraços.",
+          dad: "Orly é um pedaço bem ‘clássico’ da história da aviação em Paris.<br><br><strong>Por que ele importa:</strong> antes do Charles de Gaulle virar o grande hub internacional, Orly foi o aeroporto mais ‘glamouroso’ e conhecido da cidade. A cultura de aviação era tão forte que, em décadas passadas, gente ia aos terraços só para assistir pousos e decolagens.<br><br><strong>Curiosidades úteis agora:</strong><ul><li>Depois de um voo longo, o corpo está mais sensível a frio + ar seco. A primeira rajada gelada na saída é onde a garganta começa a reclamar.</li><li>O melhor “hack” pós-voo não é correr: é fazer tudo no modo lento, com casaco e respiração protegida.</li><li>Se bater confusão, a regra é simples: eu coordeno Uber/saída e vocês só seguem as placas.</li></ul>",
           steps: [
             { t: "Desembarque", d: "Seguir placas 'Sortie'" },
             { t: "Malas", d: "Esteira 4 ou 5" },
@@ -792,7 +915,7 @@
           desc: "Dormir até tarde.",
           icon: "💤",
           mom: "Tigela de água no quarto para umidade.",
-          dad: "Hoje o dia é leve para aclimatar.",
+          dad: "Primeiro dia completo pós-voo é o mais perigoso para ‘modo zumbi’: o corpo está acordado no fuso errado. A regra é: café com calma, luz do dia (um pouco), e sem tentar ‘aproveitar tudo’.",
         },
         {
           id: 4,
@@ -802,7 +925,7 @@
           duration: "2h",
           desc: "Croissant na vizinhança.",
           icon: "🥐",
-          dad: "Estamos no 13º arrondissement. Historicamente operário, hoje é calmo. Vamos comer uma 'Tradition' (pão clássico).",
+          dad: "O café da manhã parisiense é um ritual — e padaria em Paris é quase um serviço público.<br><br><strong>Sobre a ‘Tradition’:</strong> quando você pede uma <em>baguette tradition</em>, em geral você está sinalizando: “quero a versão mais artesanal”, feita no dia e sem atalhos industriais. Ela costuma ter casca mais crocante e miolo mais irregular (bom sinal).<br><br><strong>Mini-guia do balcão:</strong><ul><li><em>Bonjour</em> primeiro (sempre).</li><li>Se quiser algo clássico: <em>un croissant</em> + <em>un café</em>.</li><li>Se quiser pão: <em>une baguette tradition</em> (ou só “une tradition”).</li></ul><strong>Trivia Paris:</strong> a cidade é cheia de micro-hábitos: comprar pão “na ida” e não “na volta” (porque esfria), e sempre comer sentado quando dá — o descanso faz parte da viagem.",
           steps: [
             { t: "Boulangerie", d: "Escolher croissants" },
             { t: "Café", d: "Sentar e comer devagar" },
@@ -816,7 +939,7 @@
           duration: "2h 30m",
           desc: "Panteão & Sorbonne.",
           icon: "🏛️",
-          dad: "O 'Bairro Latino' tem esse nome porque as aulas na Idade Média eram apenas em Latim. É o centro intelectual da França há 800 anos.",
+          dad: "O Quartier Latin é onde Paris fica ‘cerebral’.<br><br><strong>Por que chama ‘Latino’:</strong> durante séculos, o latim foi a língua acadêmica. A região virou sinônimo de estudantes, livrarias, debates e cafés onde as pessoas ficam horas conversando (o famoso ‘sentar e pensar’ parisiense).<br><br><strong>O que você vai sentir andando ali:</strong><ul><li>Ruas com cara de cidade antiga, mas com energia de campus.</li><li>Um “barulho” diferente: mais conversa, menos correria de turismo.</li><li>Muita vitrine de livros — Paris tem orgulho de ser uma cidade de leitura.</li></ul><strong>Trivia histórica (sem peso):</strong><ul><li>O Panthéon virou um grande símbolo de “memória nacional”: uma ideia de França como projeto cultural.</li><li>A Sorbonne é uma referência de ensino há muitos séculos — por isso esse bairro tem fama de ser a ‘mente’ da cidade.</li><li>O Jardin du Luxembourg é o lugar perfeito para o modo Paris real: sentar, olhar o movimento, e não fazer nada por 15 minutos.</li></ul>",
           mom: "Caminhada lenta. Parar nos bancos do jardim.",
           steps: [
             {
@@ -836,37 +959,48 @@
         {
           id: 6,
           start: "2026-01-07T14:30",
-          end: "2026-01-07T17:00",
-          title: "Descanso Hotel",
-          duration: "2h 30m",
-          desc: "Soneca essencial.",
-          icon: "🛌",
-          mom: "Hora de repor energias. Chá de gengibre.",
+          end: "2026-01-07T18:00",
+          title: "Climb Up (Descanso + Co-work)",
+          duration: "3h 30m",
+          desc: "Academia de escalada: descanso no quentinho e co-work.",
+          icon: "🧗",
+          mom: "Lugar quentinho, banheiro, água. Sentar bastante e não ficar no vento.",
+          dad: "Esse bloco é o nosso ‘reset’ do dia.<br><br><strong>Por que academia é perfeita para descansar:</strong><ul><li>Temperatura estável (sem vento)</li><li>Banheiro fácil</li><li>Água, sentar, e um lugar seguro para “esperar o corpo voltar”</li></ul><strong>O que é bouldering:</strong> escalada em paredes mais baixas com colchões grandes. Dá para participar ou só assistir — ninguém precisa “fazer esporte”.<br><br><strong>Porte d’Italie:</strong> o nome vem da ideia de “porta”/entrada de Paris. Hoje é um entroncamento de transporte (metrô/tram/avenidas), típico daqueles lugares onde Paris encontra o anel viário.",
+          steps: [
+            { t: "Chegar", d: "Uber/Táxi se estiver frio" },
+            { t: "Co-work", d: "Tomar um chá/água, sentar e trabalhar em paz" },
+            { t: "Pausa", d: "Alongar, banheiro, recuperar energia" },
+          ],
         },
         {
           id: 7,
-          start: "2026-01-07T17:00",
-          end: "2026-01-07T18:30",
-          title: "Climb Up",
-          duration: "1h 30m",
-          desc: "Porte d'Italie.",
-          icon: "🧗",
-          dad: "Esta é a minha academia de escalada (Bouldering). Fica na Porte d'Italie, uma das antigas portas de entrada da muralha de Paris.",
+          start: "2026-01-07T18:30",
+          end: "2026-01-07T19:30",
+          title: "Chá no Isaque",
+          duration: "1h",
+          desc: "Volta pra base: chá, aquecer, e recarregar.",
+          icon: "🍵",
+          dad: "Ritual de ‘descompressão’: depois de rua/museu/metro, chegar em casa e ficar 40–60min em silêncio muda o resto da noite.",
           steps: [
-            { t: "Caminhada", d: "Até a Avenue de la Porte d'Italie" },
-            { t: "Visita", d: "Ver onde o Isaque treina" },
-            { t: "Volta", d: "Uber ou caminhada leve" },
+            { t: "Chegar", d: "Tirar sapato/casaco e aquecer" },
+            { t: "Chá", d: "Gengibre + mel (opcional)" },
           ],
         },
         {
           id: 8,
-          start: "2026-01-07T19:00",
-          end: "2026-01-07T21:00",
-          title: "Chá no Isaque",
+          start: "2026-01-07T20:00",
+          end: "2026-01-07T22:00",
+          title: "Jantar Vietnamita (Pho)",
           duration: "2h",
-          desc: "Visita à minha casa.",
-          icon: "🍵",
-          dad: "Noite tranquila em família.",
+          desc: "Restaurante asiático no bairro: pho quentinho.",
+          icon: "🍜",
+          mom: "Escolher algo quente. Se o frio apertar, vamos de Uber e sentamos perto da porta menos possível.",
+          dad: "Jantar de conforto do jeito certo.<br><br><strong>Trivia do 13º:</strong> esta região é conhecida por uma grande concentração de mercados e restaurantes asiáticos. Não é “um cantinho turístico”: é vida de bairro mesmo — e isso deixa a noite mais tranquila.<br><br><strong>Por que pho é perfeito no inverno:</strong><ul><li>Caldo quente ajuda a aquecer por dentro</li><li>É hidratante (bom para garganta)</li><li>Você consegue comer devagar e sair satisfeito sem ficar “pesado”</li></ul><strong>Curiosidade cultural:</strong> em muitas culinárias asiáticas, sopa não é “entrada”: é refeição completa, pensada para reequilibrar o corpo no frio.",
+          steps: [
+            { t: "Chegar", d: "Mesa tranquila e sem pressa" },
+            { t: "Pho", d: "Caldo quente + hidratação + energia" },
+            { t: "Volta", d: "Caminhada leve se estiver ok; senão Uber" },
+          ],
         },
 
         // QUINTA 8
@@ -878,7 +1012,7 @@
           duration: "2h 30m",
           desc: "O Shopping mais chique.",
           icon: "🛍️",
-          dad: "Fundado em 1852 por Aristide Boucicaut. Ele INVENTOU o shopping moderno: preços fixos, entrada livre e trocas permitidas. O prédio é uma obra de arte.",
+          dad: "O Le Bon Marché é mais do que ‘loja chique’: é um capítulo importante da história do consumo moderno.<br><br><strong>O que ele ajudou a popularizar:</strong><ul><li>Preços fixos (antes era comum negociar)</li><li>Entrada livre e olhar sem obrigação de comprar</li><li>Política de trocas e foco em atendimento</li></ul><strong>Por que isso virou “Paris”:</strong> a cidade sempre vendeu a ideia de elegância como experiência — vitrines, luz, escadas, decoração. Mesmo sem comprar nada caro, é divertido ver como a cidade encena o “bom gosto”.<br><br><strong>Dica de energia:</strong> aqui é passeio de olhos. Se cansar, a gente transforma em pausa: sentar, banheiro, água.",
           steps: [
             { t: "Entrada", d: "Ver as escadas rolantes centrais" },
             { t: "Passeio", d: "Ver vitrines (sem comprar nada caro!)" },
@@ -893,6 +1027,7 @@
           desc: "Gastronomia fina.",
           icon: "🍰",
           mom: "Vamos comer um bolo, mas cuidado com o açúcar!",
+          dad: "Isso aqui é o parque de diversões de quem gosta de comida.<br><br><strong>Como olhar sem cansar:</strong><ul><li>Escolhe 1 setor para focar (queijos OU pães OU doces)</li><li>Faz o passeio lento e para quando achar algo bonito</li><li>Se o lugar estiver cheio, viramos o jogo: só vitrine + foto + pausa</li></ul><strong>Trivia francesa:</strong> a França é obcecada por origem/terroir (região, clima, método). Queijo e pão não são “um produto”: são identidade regional.<br><br><strong>Degustação inteligente:</strong> um docinho + café pode ser o suficiente para ter a sensação de “experiência parisiense” sem exagerar.",
           steps: [
             { t: "Vitrines", d: "Ver os queijos e pães incríveis" },
             { t: "Bolo", d: "Café e doce na praça central" },
@@ -906,6 +1041,7 @@
           duration: "3h",
           desc: "Hotel.",
           icon: "💤",
+          dad: "Paris cansa mais do que parece: ruído, decisões, fila, mudança de temperatura. Essa ‘janela’ é o que faz a noite ser boa em vez de um sofrimento.",
         },
         {
           id: 12,
@@ -927,7 +1063,7 @@
           duration: "2h",
           desc: "Pirâmide & Tuileries.",
           icon: "🖼️",
-          dad: "Construído em 1190 como fortaleza para proteger Paris. Virou palácio real e depois museu em 1793 durante a Revolução. Não vamos entrar na multidão, vamos ver a arquitetura.",
+          dad: "O Louvre é o exemplo perfeito de como Paris recicla história: fortaleza → palácio → museu.<br><br><strong>Linha do tempo (bem resumida):</strong><ul><li>Começou como fortificação medieval para defender a cidade</li><li>Virou residência/palácio em fases diferentes da monarquia</li><li>Com a Revolução Francesa, o museu vira símbolo de “arte para o público”</li></ul><strong>Por que ver por fora já vale:</strong><ul><li>A arquitetura mostra séculos diferentes encostados (é um ‘museu de pedra’)</li><li>A Pirâmide de vidro é um choque proposital: moderno vs antigo</li><li>As Tuileries são a pausa real: jardim amplo, bancos, e céu aberto</li></ul><strong>Trivia Paris:</strong> a cidade gosta de eixos e perspectivas longas — daqui dá para sentir o desenho urbano “em linha reta” que aparece em vários cartões-postais.",
           steps: [
             {
               t: "Arc du Carrousel",
@@ -949,6 +1085,7 @@
           desc: "Almoço especial.",
           icon: "🎁",
           mom: "Prepare o estômago para algo gostoso.",
+          dad: "Dica de sobrevivência gastronômica: em Paris, almoço costuma ser mais ‘certinho’ (12h–14h). Fora desse horário, alguns lugares lotam ou fecham a cozinha.",
         },
         {
           id: 15,
@@ -958,7 +1095,7 @@
           duration: "1h 30m",
           desc: "Vista do Trocadero.",
           icon: "🗼",
-          dad: "A Dama de Ferro. Construída para a Feira Mundial de 1889. Era para ser temporária (20 anos), mas ficou porque servia como antena de rádio.",
+          dad: "A Torre Eiffel é o maior “plot twist” da cidade.<br><br><strong>O que muita gente não sabe:</strong><ul><li>No começo, muita gente odiou (achavam feia e industrial demais)</li><li>Ela nasceu como peça de demonstração de engenharia na Feira Mundial</li><li>Era para ser temporária — mas a utilidade como comunicação/antena ajudou a manter</li></ul><strong>Por que o Trocadéro é perfeito:</strong><ul><li>Você vê a torre inteira sem esforço de entrar em filas</li><li>É o lugar clássico da foto, mas também dá para só sentar e olhar</li><li>A gente controla o tempo: 15–20min já resolve se estiver frio</li></ul><strong>Trivia de Paris:</strong> a cidade é cheia de monumentos que viraram “símbolo” muito depois de prontos. Paris adora brigar com o novo e depois abraçar.",
           steps: [
             { t: "Trocadero", d: "Melhor vista panorâmica (sem degraus)" },
             { t: "Fotos", d: "Hora da foto clássica" },
@@ -972,6 +1109,7 @@
           duration: "1h 30m",
           desc: "Onde minha namorada estuda.",
           icon: "🎓",
+          dad: "Paris é uma cidade universitária desde a Idade Média. A cultura de bibliotecas, cafés de estudo e campi espalhados é parte do ‘DNA’ da cidade.",
         },
         {
           id: 17,
@@ -981,6 +1119,7 @@
           duration: "3h",
           desc: "Au revoir!",
           icon: "🍷",
+          dad: "Última noite é para o que Paris faz melhor: sentar, conversar, comer devagar. Sem correria e sem agenda depois.",
         },
 
         // SÁBADO 10
@@ -993,6 +1132,7 @@
           desc: "Malas prontas.",
           icon: "🧳",
           mom: "Conferir remédios, passaportes e carregadores.",
+          dad: "Checklist final salva a viagem: documento + remédio + carregador + casaco na mão (não na mala). E sempre sair com folga: aeroporto é a hora errada de correr.",
         },
         {
           id: 19,
@@ -1002,6 +1142,7 @@
           duration: "1h",
           desc: "Uber/Taxi.",
           icon: "🚕",
+          dad: "Orly fica ao sul de Paris. Indo cedo, a gente evita estresse de trânsito e dá tempo de resolver fila/bagagem sem pressa.",
         },
         {
           id: 20,
@@ -1011,11 +1152,105 @@
           duration: "11h",
           desc: "Boa viagem!",
           icon: "🛫",
+          dad: "No voo de volta: hidratação + levantar 1–2 vezes. E se der, tentar alinhar o sono com o horário do Brasil para sofrer menos no dia seguinte.",
         },
       ];
 
       let userRole = localStorage.getItem("role");
       let currentEventId = null;
+
+      const protocols = {
+        water: {
+          icon: "💧",
+          title: "Garrafa d'Água",
+          summary:
+            "O frio e o ar seco aumentam a perda de água — inclusive pela respiração.",
+          science:
+            "Quando o ar está frio e seco, você perde mais água ao umidificar o ar que entra e ao respirar mais rápido andando. Além disso, mucosas (nariz/garganta) secas perdem eficiência na limpeza natural (muco + cílios), o que aumenta irritação e deixa a garganta mais sensível.",
+          how: "Pequenos goles ao longo do dia > beber muito de uma vez. O objetivo é manter garganta e mucosas confortáveis.",
+        },
+        sanitizer: {
+          icon: "🧴",
+          title: "Álcool Gel",
+          summary:
+            "Reduz a transferência de micróbios das superfícies para olhos/nariz/boca.",
+          science:
+            "Em locais cheios, muita transmissão acontece pelas mãos: você encosta em corrimão/maçaneta/celular e depois toca no rosto. Soluções alcoólicas (idealmente ~60% ou mais) desorganizam a camada lipídica de muitos vírus e reduzem a carga microbiana nas mãos.",
+          how: "Usar após metrô/táxi/museu e antes de comer. Evitar passar no rosto/olhos. Se ressecar, usar hidratante à noite.",
+        },
+        timing: {
+          icon: "🕰️",
+          title: "Horários Alternativos",
+          summary:
+            "Menos fila = menos estresse, menos exposição e mais conforto térmico.",
+          science:
+            "Crowd-control é saúde: menos aglomeração reduz a chance de pegar infecções respiratórias e diminui o estresse (que piora sono e recuperação). Também reduz tempo parado no frio — parado, o corpo esfria mais rápido.",
+          how: "Almoçar 12h ou 14h e escolher lugares com mesa tranquila. Se lotar, trocamos de plano sem culpa.",
+        },
+        rest: {
+          icon: "🛋️",
+          title: "Descanso",
+          summary:
+            "Pausas curtas diminuem sobrecarga e ajudam imunidade/recuperação.",
+          science:
+            "Cansaço aumenta percepção de dor, irritação, e piora tolerância ao frio. Descanso e sono ajudam a regular hormônios de estresse e sustentam a resposta imune. Em viagem, a sobrecarga sensorial (barulho, decisões, língua) também pesa.",
+          how: "Pausa a cada ~60–90 min: sentar 10–15 min em local quente. Água + banheiro + respirar devagar.",
+        },
+        warmers: {
+          icon: "🔥",
+          title: "Aquecedor de Mãos",
+          summary:
+            "Manter extremidades aquecidas reduz desconforto e economiza energia.",
+          science:
+            "No frio, o corpo faz vasoconstrição (reduz fluxo nas mãos/pés) para proteger órgãos centrais. Isso deixa dedos doloridos e aumenta a sensação de ‘frio insuportável’. Aquecedores externos diminuem esse estresse térmico.",
+          how: "Usar no bolso/luva. Não encostar direto na pele por muito tempo (pode irritar/queimar).",
+        },
+        mask: {
+          icon: "😷",
+          title: "Máscara PFF2",
+          summary:
+            "Filtra aerossóis e reduz risco em ambientes fechados e cheios.",
+          science:
+            "Em metrô, táxi e museus, o principal risco são partículas/aerossóis respiratórios em locais fechados. Uma PFF2 bem ajustada reduz o que você inala e também o que você exala, diminuindo transmissão.",
+          how: "Ajuste no nariz e bochechas. Se estiver úmida, trocar. Guardar em saco limpo.",
+        },
+        cowl: {
+          icon: "🧣",
+          title: "Balaclava / Cachecol (Cowl)",
+          summary:
+            "Aquece e umidifica o ar inspirado, protegendo garganta e vias aéreas.",
+          science:
+            "Respirar ar frio e seco irrita a mucosa do nariz e garganta. Cobrir nariz e boca cria uma ‘microcâmara’ que retém calor e umidade da expiração — o ar que entra fica menos agressivo.",
+          how: "Na rua, usar cobrindo nariz e boca. Em locais internos, abaixar para conforto.",
+        },
+        nasal: {
+          icon: "🌊",
+          title: "Spray Nasal (Soro)",
+          summary:
+            "Especialmente nos momentos de transição (frio → quente → seco): protege a mucosa.",
+          science:
+            "O nariz é um filtro: ele aquece, umidifica e captura partículas. Quando a mucosa resseca (ar frio/vento + aquecimento interno), ela perde eficiência e fica mais irritada, o que facilita dor de garganta e sangramento nasal em algumas pessoas. Spray de soro fisiológico ajuda a reidratar a mucosa e a manter o muco funcional.",
+          how: "Usar soro isotônico (não medicamentoso) 1–3x/dia, principalmente após metrô/rua e antes de dormir. Se usar spray medicamentoso, evitar uso prolongado sem orientação.",
+        },
+        room: {
+          icon: "🌡️",
+          title: "Quarto: 20°C + Umidade",
+          summary:
+            "O aquecimento pode secar o ar. O alvo é conforto: nem frio demais, nem ‘forno seco’.",
+          science:
+            "Ar muito seco resseca nariz e garganta e piora tosse/irritação. Aquecimento forte reduz umidade relativa. Uma faixa confortável para muita gente é manter o quarto por volta de ~19–21°C e uma umidade moderada (nem seco demais, nem úmido demais).",
+          how: "Se estiver seco: reduzir aquecimento, deixar um copo de água/toalha úmida no quarto (solução simples), ou umidificador (se tiver). Ventilar um pouco para não ficar abafado.",
+        },
+        tea: {
+          icon: "🍵",
+          title: "Gengibre & Mel",
+          summary:
+            "Conforto de garganta: calor + hidratação + efeito calmante.",
+          science:
+            "Líquidos quentes aliviam sensação de irritação e ajudam hidratação local. Mel pode reduzir tosse por efeito demulcente (uma ‘camada’ calmante) e gengibre é associado a sensação de aquecimento e alívio de náusea em algumas pessoas.",
+          how: "Chá quente (não fervendo) e mel a gosto. Se houver restrição de açúcar, ajustar.",
+        },
+      };
 
       function init() {
         if (userRole) {
@@ -1222,6 +1457,47 @@
                     <button onclick="closeDetail()" style="background:#eee; border:none; padding:15px 40px; border-radius:30px; font-weight:bold; color:#666;">Fechar</button>
                 </div>
             `;
+        modal.classList.add("open");
+      }
+
+      function openProtocolDetail(key) {
+        const p = protocols[key];
+        if (!p) return;
+
+        const modal = document.getElementById("detail-modal");
+        const body = document.getElementById("modal-body");
+
+        body.innerHTML = `
+                <div style="text-align:center; margin-bottom:25px;">
+                    <div style="font-size:4.5rem; margin-bottom:10px;">${p.icon}</div>
+                    <h2 style="font-size:2rem; line-height:1.2; color:var(--primary);">${p.title}</h2>
+                    <p style="color:var(--accent); font-weight:800; margin-top:8px; text-transform:uppercase; font-size:0.85rem;">PROTOCOLO • POR QUÊ FUNCIONA</p>
+                </div>
+
+                <div class="card" style="margin-bottom:16px; padding:16px;">
+                  <div style="font-weight:800; margin-bottom:6px; color:var(--primary);">Resumo</div>
+                  <div style="color:#444; line-height:1.6; font-size:1rem;">${p.summary}</div>
+                </div>
+
+                <div class="card" style="margin-bottom:16px; padding:16px; background: var(--soft-blue); border: none;">
+                  <div style="font-weight:800; margin-bottom:6px; color:var(--primary);">A ciência (versão humana)</div>
+                  <div style="color:#2c3e50; line-height:1.65; font-size:1rem;">${p.science}</div>
+                </div>
+
+                <div class="card" style="margin-bottom:16px; padding:16px;">
+                  <div style="font-weight:800; margin-bottom:6px; color:var(--primary);">Como usar na prática</div>
+                  <div style="color:#444; line-height:1.6; font-size:1rem;">${p.how}</div>
+                </div>
+
+                <div style="opacity:0.65; font-size:0.85rem; line-height:1.5; margin-top:10px;">
+                  Nota: isso é um guia prático de viagem, não orientação médica.
+                </div>
+
+                <div style="margin-top:30px; text-align:center;">
+                    <button onclick="closeDetail()" style="background:#eee; border:none; padding:15px 40px; border-radius:30px; font-weight:bold; color:#666;">Fechar</button>
+                </div>
+            `;
+
         modal.classList.add("open");
       }
 
