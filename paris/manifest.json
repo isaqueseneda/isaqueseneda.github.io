@@ -1,0 +1,21 @@
+{
+  "name": "Kléber Passeios",
+  "short_name": "Paris",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#faf9f6",
+  "theme_color": "#2c3e50",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/fluency/192/macaron.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://img.icons8.com/fluency/512/macaron.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
