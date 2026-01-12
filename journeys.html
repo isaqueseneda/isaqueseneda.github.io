@@ -702,7 +702,7 @@
         border-radius: 6px;
         cursor: pointer;
         padding: 6px;
-        margin-left: 8px;
+        margin-left: 0;
         color: #64748b;
         align-items: center;
         justify-content: center;
@@ -723,6 +723,37 @@
       html.dark-mode .lyrics-btn:hover {
         background-color: #444;
         color: #fff;
+      }
+
+      .copy-tooltip {
+        position: absolute;
+        background: #333;
+        color: #fff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 8px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+        z-index: 1000;
+        text-transform: none;
+        font-weight: normal;
+      }
+
+      .copy-tooltip.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      html.dark-mode .copy-tooltip {
+        background: #f1f5f9;
+        color: #111;
       }
     </style>
   </head>
@@ -801,38 +832,85 @@
             <span class="info-tag" id="info-tag">Type</span>
             <span class="info-title" id="info-title">Title</span>
             <span class="info-artist" id="info-artist">Artist</span>
-            <button id="lyrics-btn" class="lyrics-btn" title="Show Lyrics">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                ></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-                <line x1="10" y1="9" x2="8" y2="9"></line>
-                <path d="M9 22v-4h4v4" style="opacity: 0"></path>
-                <!-- Spacer -->
-                <path d="M19 15V9" style="display: none"></path>
-                <!-- Hidden note part -->
-                <circle
-                  cx="18"
-                  cy="18"
-                  r="2"
-                  fill="currentColor"
-                  style="opacity: 0.8"
-                ></circle>
-                <path d="M18 18V14" style="opacity: 0.8"></path>
-              </svg>
-            </button>
+            <div
+              style="
+                margin-left: auto;
+                display: flex;
+                gap: 4px;
+                align-items: center;
+              "
+            >
+              <button id="lyrics-btn" class="lyrics-btn" title="Show Lyrics">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  ></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <line x1="10" y1="9" x2="8" y2="9"></line>
+                  <path d="M9 22v-4h4v4" style="opacity: 0"></path>
+                  <!-- Spacer -->
+                  <path d="M19 15V9" style="display: none"></path>
+                  <!-- Hidden note part -->
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="2"
+                    fill="currentColor"
+                    style="opacity: 0.8"
+                  ></circle>
+                  <path d="M18 18V14" style="opacity: 0.8"></path>
+                </svg>
+              </button>
+              <div style="position: relative; display: flex">
+                <button id="share-btn" class="lyrics-btn" title="Share">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                    ></path>
+                    <path
+                      d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                    ></path>
+                  </svg>
+                </button>
+                <div id="copy-tooltip" class="copy-tooltip">Copied!</div>
+              </div>
+              <button id="download-btn" class="lyrics-btn" title="Download">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </button>
+            </div>
           </div>
           <div class="info-description" id="info-desc">Description</div>
         </div>
@@ -1444,6 +1522,47 @@ will i be?`.trim(),
         } else {
           lyricsBtn.style.display = "none";
           if (lyricsPopover) lyricsPopover.style.display = "none";
+        }
+
+        // Share Button Logic
+        const shareBtn = document.getElementById("share-btn");
+        if (shareBtn) {
+          shareBtn.style.display = "inline-flex";
+          shareBtn.onclick = (e) => {
+            e.stopPropagation();
+            navigator.clipboard.writeText(window.location.href).then(() => {
+              const tooltip = document.getElementById("copy-tooltip");
+              if (tooltip) {
+                tooltip.classList.add("show");
+                setTimeout(() => {
+                  tooltip.classList.remove("show");
+                }, 2000);
+              }
+            });
+          };
+        }
+
+        // Download Button Logic
+        const downloadBtn = document.getElementById("download-btn");
+        if (downloadBtn) {
+          const isStream = ["youtube", "vimeo", "spotify"].includes(
+            item.contentType
+          );
+          if (!isStream && item.url) {
+            downloadBtn.style.display = "inline-flex";
+            downloadBtn.onclick = (e) => {
+              e.stopPropagation();
+              const link = document.createElement("a");
+              link.href = item.url;
+              link.target = "_blank";
+              link.download = item.url.split("/").pop();
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            };
+          } else {
+            downloadBtn.style.display = "none";
+          }
         }
 
         // Clear previous content
