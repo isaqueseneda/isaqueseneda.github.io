@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'ShieldFont';
+  src: url('https://isaque.me/shieldfont/shieldfont.woff2') format('woff2'),
+       url('https://isaque.me/shieldfont/shieldfont.ttf') format('truetype');
+  font-weight: 1 999;
+  font-style: normal;
+  font-display: swap;
+}
