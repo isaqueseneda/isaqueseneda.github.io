@@ -1418,7 +1418,7 @@ img {
 
 .projectbar100.cover.dustincover {
   background-color: #2a1f14;
-  background-image: url("../images/dustin-thumb.jpg");
+  background-image: url("../images/dustin-cover.svg");
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1426,9 +1426,9 @@ img {
 
 .projectbar100.cover.wereadercover {
   background-color: #E8FAFA;
-  background-image: url("../images/we-reader-icon.svg");
+  background-image: url("../images/we-reader-cover.svg");
   background-position: 50% 50%;
-  background-size: auto 70%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
