@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MY-Hangs · Pitch</title>
+<meta name="description" content="MY-Hangs — keep the SIG warm between camps." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --canvas:#08080a; --surface:#131318; --surface2:#1a1a20; --surface3:#22222b;
+    --line:#2a2a33; --lineS:#3a3a45; --ink:#f4f4f7; --dim:#a2a2ae; --faint:#6d6d78;
+    --teal:#2dd4bf; --pink:#ec4899; --purple:#a855f7; --amber:#f59e0b; --sky:#38bdf8;
+    --grad:linear-gradient(120deg,#2dd4bf 0%,#ec4899 52%,#a855f7 100%);
+    --gradSoft:linear-gradient(120deg,rgba(45,212,191,.16),rgba(236,72,153,.16) 52%,rgba(168,85,247,.16));
+    --disp:"Poppins",ui-sans-serif,system-ui,sans-serif;
+    --body:"Inter",ui-sans-serif,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--canvas);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow:hidden}
+  h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.02}
+  a{color:inherit}
+  .brand{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .wrap{position:relative;height:100vh;width:100vw;overflow:hidden}
+  .aura{position:absolute;inset:0;opacity:.7;pointer-events:none;
+    background:radial-gradient(50% 45% at 15% 10%,rgba(45,212,191,.18),transparent 60%),radial-gradient(45% 40% at 88% 20%,rgba(168,85,247,.20),transparent 60%),radial-gradient(50% 45% at 60% 100%,rgba(236,72,153,.15),transparent 60%)}
+  .bar{position:absolute;top:0;left:0;right:0;height:4px;background:rgba(255,255,255,.05);z-index:20}
+  .bar > i{display:block;height:100%;background:var(--grad);transition:width .3s ease;width:5%}
+  .top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;z-index:20}
+  .logo{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:800;font-size:18px}
+  .logo svg{display:block}
+  .zone{position:absolute;top:0;height:100%;z-index:10;background:transparent;border:0;cursor:pointer}
+  .zoneL{left:0;width:25%;cursor:w-resize}
+  .zoneR{right:0;width:75%;cursor:e-resize}
+  .stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:64px 24px;z-index:1}
+  .slide{display:none;width:100%;max-width:1000px;animation:fu .45s cubic-bezier(.22,1,.36,1) both}
+  .slide.active{display:block}
+  @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .foot{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;z-index:20}
+  .dots{display:flex;gap:6px;flex-wrap:wrap;max-width:70%}
+  .dot{height:6px;width:8px;border-radius:9999px;background:var(--surface3);border:0;cursor:pointer;transition:all .2s;padding:0}
+  .dot.on{width:26px;background:var(--grad)}
+  .count{font-size:12px;color:var(--faint)}
+  .kick{font-family:var(--body);text-transform:uppercase;letter-spacing:.2em;font-size:13px;font-weight:700;color:var(--faint);margin-bottom:16px}
+  h2.big{font-size:clamp(2rem,5.5vw,3.5rem);font-weight:800}
+  h1.huge{font-size:clamp(3rem,10vw,7rem);font-weight:800}
+  .lede{color:var(--dim);font-size:clamp(1.05rem,2.2vw,1.5rem);line-height:1.5;margin-top:1.5rem;max-width:44ch}
+  .pill{display:inline-flex;align-items:center;gap:.35rem;border:1px solid var(--line);background:var(--surface2);color:var(--dim);border-radius:9999px;padding:.25rem .7rem;font-size:.8rem;font-weight:600}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px}
+  .grid3{display:grid;gap:20px;grid-template-columns:1fr}
+  @media(min-width:760px){.grid3{grid-template-columns:repeat(3,1fr)}.two{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}}
+  .two{display:block}
+  .frame{border:1px solid var(--lineS);background:var(--surface);border-radius:18px;padding:8px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .frame .tb{display:flex;align-items:center;gap:6px;padding:6px 8px}
+  .frame .tb i{height:8px;width:8px;border-radius:9999px;background:var(--surface3);display:inline-block}
+  .frame .tb b{margin-left:8px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .frame .scr{background:var(--canvas);border-radius:12px;padding:16px;font-size:14px}
+  .av{display:inline-grid;place-items:center;border-radius:9999px;font-weight:800;color:#0a0a0a;font-size:10px;height:24px;width:24px;box-shadow:0 0 0 2px var(--canvas)}
+  .row{display:flex;align-items:center;gap:6px;margin:6px 0}
+  .cell{height:12px;flex:1;border-radius:3px}
+  .muted{color:var(--dim)}.faint{color:var(--faint)}
+  .btnG{border-radius:9px;padding:8px;text-align:center;font-weight:700;color:#fff;background:var(--grad)}
+  .tg{border-radius:9px;padding:8px;text-align:center;font-weight:700;color:#fff;background:linear-gradient(120deg,#2AABEE,#229ED9)}
+  .step{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:18px;margin-bottom:14px}
+  .num{display:grid;place-items:center;height:38px;width:38px;border-radius:9999px;font-weight:800;color:#0a0a0a;background:var(--grad);flex:0 0 auto}
+  .stepnum{display:grid;place-items:center;height:36px;width:36px;border-radius:9999px;font-weight:800;color:#0a0a0a;background:var(--grad)}
+  @media(prefers-reduced-motion:reduce){.slide{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="aura"></div>
+  <div class="bar"><i id="prog"></i></div>
+  <div class="top">
+    <span class="logo">
+      <svg width="26" height="26" viewBox="0 0 40 40" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#2dd4bf"/><stop offset=".52" stop-color="#ec4899"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs><path d="M20 3c-7.2 0-13 5.6-13 12.6C7 24.8 20 37 20 37s13-12.2 13-21.4C33 8.6 27.2 3 20 3Z" fill="url(#lg)"/><circle cx="20" cy="15.5" r="5" fill="#0a0a0a"/></svg>
+      MY<span style="color:var(--faint)">-</span><span class="brand">Hangs</span>
+    </span>
+    <a href="mysig.html" class="pill" style="text-decoration:none">✕ MY-SIG</a>
+  </div>
+
+  <button class="zone zoneL" onclick="go(-1)" aria-label="Previous"></button>
+  <button class="zone zoneR" onclick="go(1)" aria-label="Next"></button>
+
+  <div class="stage" id="stage">
+
+    <!-- 1 TITLE -->
+    <section class="slide active" style="text-align:center">
+      <div style="display:flex;justify-content:center;margin-bottom:1.5rem">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 3c-7.2 0-13 5.6-13 12.6C7 24.8 20 37 20 37s13-12.2 13-21.4C33 8.6 27.2 3 20 3Z" fill="url(#lg)"/><circle cx="20" cy="15.5" r="5" fill="#0a0a0a"/></svg>
+      </div>
+      <h1 class="huge">MY<span style="color:var(--faint)">-</span><span class="brand">Hangs</span></h1>
+      <p class="lede" style="margin:1.5rem auto 0;text-align:center">Keep the SIG warm <span style="color:#fff">between camps.</span></p>
+      <div style="margin-top:2.5rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <span class="pill" style="color:var(--teal);border-color:#2dd4bf55">🚀 Beta at MY-Camp 2026</span>
+        <span class="pill">Open Mic · the Y</span>
+      </div>
+    </section>
+
+    <!-- 2 PROBLEM -->
+    <section class="slide">
+      <div class="kick">The gap</div>
+      <h2 class="big">Two camps a year.<br><span style="color:var(--faint)">Then… silence.</span></h2>
+      <div style="margin-top:3rem;position:relative;height:90px">
+        <div style="position:absolute;left:0;right:0;top:50%;height:4px;transform:translateY(-50%);border-radius:9999px;background:var(--surface3)"></div>
+        <div style="position:absolute;left:8%;top:50%;transform:translate(-50%,-50%);text-align:center"><div style="height:48px;width:48px;border-radius:9999px;display:grid;place-items:center;font-size:20px;background:var(--grad);margin:auto">🐣</div><div style="margin-top:8px;font-size:14px;font-weight:600">Easter</div></div>
+        <div style="position:absolute;left:92%;top:50%;transform:translate(-50%,-50%);text-align:center"><div style="height:48px;width:48px;border-radius:9999px;display:grid;place-items:center;font-size:20px;background:var(--grad);margin:auto">⛺</div><div style="margin-top:8px;font-size:14px;font-weight:600">Camp</div></div>
+        <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);text-align:center"><div class="faint" style="font-size:14px">~350 days of</div><div class="muted" style="font-size:18px;font-weight:700">nothing</div></div>
+      </div>
+      <p class="lede" style="margin-top:3rem">We love each other for one week, twice a year — then scatter across a continent with no easy way to meet in between.</p>
+    </section>
+
+    <!-- 3 STORY -->
+    <section class="slide">
+      <div class="two">
+        <div>
+          <div class="kick">How it started</div>
+          <h2 class="big">A weekend in the<br><span class="brand">south of Germany.</span></h2>
+          <p class="lede">I spent hours hunting down everyone who lived near one city and pulled them together for a weekend.</p>
+          <p class="lede" style="margin-top:1rem">One <span style="color:#fff">total newbie</span> wandered in, had the time of their life, and left asking: <span style="color:#fff">“when's the next camp?”</span></p>
+        </div>
+        <div style="font-size:120px;text-align:center">🏰</div>
+      </div>
+    </section>
+
+    <!-- 4 INSIGHT -->
+    <section class="slide" style="text-align:center">
+      <div class="kick">The insight</div>
+      <h2 class="big">You don't <span style="color:var(--faint)">recruit</span> people to a community.<br>You let them <span class="brand">taste it.</span></h2>
+      <div class="card" style="margin:3rem auto 0;max-width:44rem;font-size:1.25rem;color:var(--dim)">
+        So let's be generous <span style="color:#fff">and</span> selfish at once — help new people find the SIG, purely by <span style="color:#fff">travelling with our friends.</span>
+      </div>
+    </section>
+
+    <!-- 5 REASONS -->
+    <section class="slide">
+      <div class="kick">Why it exists</div>
+      <h2 class="big">Three reasons. <span class="brand">That's the whole thing.</span></h2>
+      <div style="margin-top:2.5rem">
+        <div class="step"><span class="stepnum brand" style="color:#0a0a0a">1</span><span style="font-size:28px">📍</span><div><div style="font-size:1.4rem;font-weight:700">Locals</div><div class="muted" style="font-size:1.1rem">A map of where people actually live.</div></div></div>
+        <div class="step"><span class="stepnum">2</span><span style="font-size:28px">🗓️</span><div><div style="font-size:1.4rem;font-weight:700">Who's where, when</div><div class="muted" style="font-size:1.1rem">Availability across time — ideas, not just pins.</div></div></div>
+        <div class="step"><span class="stepnum">3</span><span style="font-size:28px">🎒</span><div><div style="font-size:1.4rem;font-weight:700">Turn overlap into hangs</div><div class="muted" style="font-size:1.1rem">Combine it all into real meet-ups.</div></div></div>
+      </div>
+    </section>
+
+    <!-- 6 WHAT -->
+    <section class="slide">
+      <div class="kick">What it is</div>
+      <h2 class="big">One small layer. <span class="brand">Three moves.</span></h2>
+      <div class="grid3" style="margin-top:2.5rem">
+        <div class="card"><div style="height:56px;width:56px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:#8b5cf61f;border:1px solid #8b5cf655">🗺️</div><h3 style="margin-top:1rem;font-size:1.4rem">The Map</h3><p class="muted" style="margin-top:.4rem">Who's where — and, with ideas, who's around when.</p></div>
+        <div class="card"><div style="height:56px;width:56px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:#2dd4bf1f;border:1px solid #2dd4bf55">🤝</div><h3 style="margin-top:1rem;font-size:1.4rem">Ideas → Hangs</h3><p class="muted" style="margin-top:.4rem">Float a plan; overlaps become real meet-ups.</p></div>
+        <div class="card"><div style="height:56px;width:56px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:#ec48991f;border:1px solid #ec489955">🛏</div><h3 style="margin-top:1rem;font-size:1.4rem">The Couch</h3><p class="muted" style="margin-top:.4rem">Offer a bed or find one — turn a hang into a trip.</p></div>
+      </div>
+    </section>
+
+    <!-- 7 USE CASES -->
+    <section class="slide">
+      <div class="kick">One tool</div>
+      <h2 class="big">Use it for <span class="brand">anything.</span></h2>
+      <div class="grid3" style="margin-top:2.5rem">
+        <div class="card"><div style="font-size:36px">🍻</div><h3 style="margin-top:.6rem;font-size:1.25rem">Local hangs</h3><p class="muted" style="margin-top:.25rem">An evening or a day with whoever's around.</p></div>
+        <div class="card"><div style="font-size:36px">💼</div><h3 style="margin-top:.6rem;font-size:1.25rem">Business trip + locals</h3><p class="muted" style="margin-top:.25rem">In town for work? See who's near.</p></div>
+        <div class="card"><div style="font-size:36px">🌴</div><h3 style="margin-top:.6rem;font-size:1.25rem">A workation month</h3><p class="muted" style="margin-top:.25rem">Post up somewhere and gather the crew.</p></div>
+      </div>
+      <p class="lede" style="margin-top:2rem">Hangs are <span style="color:#fff">open to any SIG member</span> to join (joining ≠ your couch). Private, invite-only hangs? That's the API + MCP.</p>
+    </section>
+
+    <!-- 8 SCREENS -->
+    <section class="slide">
+      <div class="kick">The build — already clickable</div>
+      <h2 class="big">These screens are <span class="brand">real.</span></h2>
+      <div class="grid3" style="margin-top:2rem">
+        <div class="frame"><div class="tb"><i></i><i></i><i></i><b>Map</b></div><div class="scr" style="height:220px;position:relative;background:radial-gradient(circle at 30% 40%,#14202a,#0c0c10 70%)"><span class="av" style="position:absolute;left:30%;top:35%;background:#8b5cf6">LF</span><span class="av" style="position:absolute;left:55%;top:55%;background:#2dd4bf">IS</span><span style="position:absolute;left:45%;top:30%">📍</span><span style="position:absolute;left:70%;top:65%">📍</span></div></div>
+        <div class="frame"><div class="tb"><i></i><i></i><i></i><b>Idea</b></div><div class="scr" style="height:220px"><div class="row"><span class="av" style="background:#2dd4bf">IS</span><b>Isaque</b> <span class="faint" style="font-size:11px">@isaque</span></div><div class="muted" style="font-size:12px">📍 Berlin · Aug · ◌ planning</div><div class="row"><span class="pill" style="color:#2dd4bf;background:#2dd4bf1f;border:0">▲ 3</span><span class="av" style="background:#f59e0b">TK</span><span class="av" style="background:#818cf8;margin-left:-8px">MH</span></div></div></div>
+        <div class="frame"><div class="tb"><i></i><i></i><i></i><b>Hang</b></div><div class="scr" style="height:220px"><div style="height:70px;border-radius:10px;display:grid;place-items:center;font-size:28px;background:radial-gradient(120% 120% at 30% 0%,#2dd4bf44,transparent 60%),var(--surface2)">🏰</div><div style="margin-top:8px;font-weight:700">Bucharest weekend</div><div class="muted" style="font-size:12px">4 going · 🛏 1 bed</div><div class="tg" style="margin-top:8px;font-size:12px">✈ Join Telegram</div></div></div>
+      </div>
+      <p class="lede" style="margin-top:1.5rem">A working prototype wired to real data objects, ready to drop into MY-SIG.</p>
+    </section>
+
+    <!-- 9 HOW A HANG -->
+    <section class="slide">
+      <div class="kick">How a hang works</div>
+      <h2 class="big">From idea to IRL in <span class="brand">five taps.</span></h2>
+      <div style="margin-top:2.5rem;display:flex;flex-direction:column;gap:12px" class="hh"></div>
+    </section>
+
+    <!-- 10 WALK INTRO -->
+    <section class="slide" style="text-align:center">
+      <div class="kick">A real example, screen by screen</div>
+      <h2 class="big">Isaque plans a weekend in <span class="brand">Bucharest.</span></h2>
+      <p class="lede" style="margin:1.5rem auto 0;text-align:center">He's never been. <span style="color:#fff">Tudor</span> lives there; Mihai and Radu might be around. Here's every screen.</p>
+      <div style="margin-top:2rem;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;align-items:center">
+        <span class="pill">💭 idea</span>→<span class="pill">▲ upvotes + replies</span>→<span class="pill">🗓️ the matrix</span>→<span class="pill">✈ Telegram</span>
+      </div>
+    </section>
+
+    <!-- 11 WALK 1 -->
+    <section class="slide">
+      <div class="two">
+        <div class="frame"><div class="tb"><i></i><i></i><i></i><b>Ideas · Float an idea</b></div><div class="scr">
+          <div class="kick" style="margin-bottom:6px">What are you thinking?</div>
+          <div style="border:1px solid var(--line);border-radius:10px;padding:10px" class="muted">Bucharest, late August — first time, who's around?</div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap"><span class="pill">📍 Bucharest</span><span class="pill">🗓️ August</span><span class="pill" style="color:#a855f7;border-color:#a855f755">◌ planning</span></div>
+          <div class="btnG" style="margin-top:14px">Float it 💭</div>
+        </div></div>
+        <div><div style="display:flex;align-items:center;gap:12px"><span class="num">1</span><span class="kick" style="margin:0">Step 1 of 4 · Bucharest</span></div><h2 class="big" style="margin-top:1rem;font-size:clamp(1.8rem,4vw,2.6rem)">Float a <span class="brand">loose idea.</span></h2><p class="lede">No commitment — just a signal. A place and a rough window, that's it.</p></div>
+      </div>
+    </section>
+
+    <!-- 12 WALK 2 -->
+    <section class="slide">
+      <div class="two">
+        <div class="frame"><div class="tb"><i></i><i></i><i></i><b>Ideas · Bucharest</b></div><div class="scr">
+          <div class="row"><span class="av" style="background:#2dd4bf">IS</span><b>Isaque</b> <span class="faint" style="font-size:11px">📍 Bucharest · Aug</span></div>
+          <div class="row"><span class="pill" style="color:#2dd4bf;background:#2dd4bf1f;border:0">▲ 3</span><span class="av" style="background:#f59e0b">TK</span><span class="av" style="background:#818cf8;margin-left:-8px">MH</span><span class="av" style="background:#fb7185;margin-left:-8px">RD</span><span class="faint" style="font-size:11px">Tudor, Mihai, Radu</span></div>
+          <div style="border-top:1px solid var(--line);margin-top:8px;padding-top:8px;font-size:12px">
+            <div class="row" style="align-items:flex-start"><span class="av" style="background:#f59e0b">TK</span><div><b>Tudor</b> <span class="faint">@tudor</span><div class="muted">Local! My place is open 🛏</div><span style="color:#2dd4bf">🗓️ can do 21–24 Aug</span></div></div>
+            <div class="row" style="align-items:flex-start"><span class="av" style="background:#818cf8">MH</span><div><b>Mihai</b> <span class="faint">@mihai</span><div class="muted">I can do the 22nd.</div></div></div>
+          </div>
+        </div></div>
+        <div><div style="display:flex;align-items:center;gap:12px"><span class="num">2</span><span class="kick" style="margin:0">Step 2 of 4 · Bucharest</span></div><h2 class="big" style="margin-top:1rem;font-size:clamp(1.8rem,4vw,2.6rem)">It <span class="brand">takes shape.</span></h2><p class="lede">People upvote and reply — with <span style="color:#fff">their own</span> dates. Tudor offers a couch. Nobody can hijack the idea: each reply only adds that person's availability.</p></div>
+      </div>
+    </section>
+
+    <!-- 13 WALK 3 -->
+    <section class="slide">
+      <div class="two">
+        <div class="frame"><div class="tb"><i></i><i></i><i></i><b>Combine → who's free</b></div><div class="scr">
+          <div style="font-weight:700;margin-bottom:8px">Bucharest weekend</div>
+          <div id="mx"></div>
+          <div class="faint" style="font-size:11px;display:flex;gap:14px;margin-top:6px"><span>22 Aug</span><span>23 Aug</span><span>24 Aug</span></div>
+        </div></div>
+        <div><div style="display:flex;align-items:center;gap:12px"><span class="num">3</span><span class="kick" style="margin:0">Step 3 of 4 · Bucharest</span></div><h2 class="big" style="margin-top:1rem;font-size:clamp(1.8rem,4vw,2.6rem)">See the <span class="brand">overlap.</span></h2><p class="lede">Green = confirmed, amber = maybe. Pick where the greens line up — it becomes a real hang and everyone's pulled in.</p></div>
+      </div>
+    </section>
+
+    <!-- 14 WALK 4 -->
+    <section class="slide">
+      <div class="two">
+        <div class="frame"><div class="tb"><i></i><i></i><i></i><b>Bucharest weekend · the hang</b></div><div class="scr">
+          <div style="font-size:22px">🏰</div><div style="font-weight:700">Bucharest weekend</div>
+          <div class="muted" style="font-size:12px">organized by you · 4 going · 22–24 Aug</div>
+          <div style="color:#ec4899;font-size:12px;margin-top:2px">🛏 Tudor's couch</div>
+          <div class="row" style="margin-top:8px"><span class="av" style="background:#2dd4bf">IS</span><span class="av" style="background:#f59e0b;margin-left:-8px">TK</span><span class="av" style="background:#818cf8;margin-left:-8px">MH</span><span class="av" style="background:#fb7185;margin-left:-8px">RD</span></div>
+          <div class="tg" style="margin-top:10px">✈ Join the Telegram chat</div>
+        </div></div>
+        <div><div style="display:flex;align-items:center;gap:12px"><span class="num">4</span><span class="kick" style="margin:0">Step 4 of 4 · Bucharest</span></div><h2 class="big" style="margin-top:1rem;font-size:clamp(1.8rem,4vw,2.6rem)">The plan moves to <span style="color:#2AABEE">Telegram.</span></h2><p class="lede">MY-Hangs finds the people and the overlap. The real chatter — where to meet, what to bring — lives in the <span style="color:#fff">group chat.</span> One tap in.</p></div>
+      </div>
+    </section>
+
+    <!-- 15 AGENT -->
+    <section class="slide">
+      <div class="kick">The part that's a bit magic</div>
+      <h2 class="big">Point your <span class="brand">AI agent</span> at it.</h2>
+      <p class="lede">MY-Hangs ships with an API and an MCP server. So you can just ask your assistant:</p>
+      <div class="card" style="margin-top:1.5rem;font-size:1.15rem">“Who from the SIG is around <b style="color:#fff">Heidelberg</b> the weekend of the 8th, and does anyone have a <b style="color:#fff">couch</b>?”</div>
+      <div style="margin-top:2rem;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <span class="card" style="padding:12px 16px">🤖 Your agent</span>→
+        <span class="card" style="padding:12px 16px">🔌 MY-Hangs MCP + API</span>→
+        <span class="card" style="padding:12px 16px">🗺️ Who's around, free &amp; organizing</span>
+      </div>
+      <p class="lede" style="margin-top:2rem">An open layer for the SIG — humans <span style="color:#fff">and</span> their agents welcome.</p>
+    </section>
+
+    <!-- 16 CLOUT -->
+    <section class="slide">
+      <div class="two">
+        <div>
+          <div class="kick">Belonging, made visible</div>
+          <h2 class="big" style="font-size:clamp(1.8rem,4vw,2.6rem)">Every camp you show up to becomes <span class="brand">quiet cred.</span></h2>
+          <p class="lede">Your profile counts the MY-SIG events you've attended — not to gate-keep, but to give newcomers a warm reason to come to their first one.</p>
+        </div>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:12px"><span style="height:56px;width:56px;border-radius:9999px;background:linear-gradient(135deg,#ec4899,#f43f5e);display:inline-block"></span><div><div style="font-size:1.1rem;font-weight:700">Lena F.</div><div><span class="brand" style="font-size:1.4rem;font-weight:800">9</span> <span class="faint">MY-events</span></div></div></div>
+          <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:6px">
+            <span class="pill">⛺ Camp '25</span><span class="pill">🎃 Hall '24</span><span class="pill">🐣 Easter '24</span><span class="pill">🎆 NY '25</span><span class="pill">⛺ Camp '24</span><span class="pill">🎃 Hall '23</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17 FUNNEL -->
+    <section class="slide">
+      <div class="kick">Why it recruits</div>
+      <h2 class="big">The hang is the <span class="brand">front door.</span></h2>
+      <div style="margin-top:2.5rem;display:flex;flex-direction:column;align-items:center;gap:8px" id="fn"></div>
+      <p class="lede" style="margin:2rem auto 0;text-align:center">Altruistic by design. Selfish in practice. Both, on purpose.</p>
+    </section>
+
+    <!-- 18 LAUNCH -->
+    <section class="slide" style="text-align:center">
+      <div style="display:flex;justify-content:center;margin-bottom:1rem"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 3c-7.2 0-13 5.6-13 12.6C7 24.8 20 37 20 37s13-12.2 13-21.4C33 8.6 27.2 3 20 3Z" fill="url(#lg)"/><circle cx="20" cy="15.5" r="5" fill="#0a0a0a"/></svg></div>
+      <div class="kick">Launch</div>
+      <h2 class="huge" style="font-size:clamp(2.5rem,8vw,5rem)">Be at the <span class="brand">first hang.</span></h2>
+      <div style="margin:2.5rem auto 0;max-width:32rem;display:flex;flex-direction:column;gap:12px">
+        <div class="card"><div class="kick" style="margin:0">Beta live</div><div class="brand" style="font-size:1.8rem;font-weight:800;margin-top:4px">MY-Camp 2026</div></div>
+        <div class="card"><div class="kick" style="margin:0">Public launch</div><div style="font-size:1.8rem;font-weight:800;margin-top:4px">September 2026</div></div>
+      </div>
+      <p class="faint" style="margin-top:1.5rem;font-size:.85rem">my-sig.org · MY-Hangs</p>
+    </section>
+
+  </div>
+
+  <div class="foot">
+    <div class="dots" id="dots"></div>
+    <div class="count" id="count"></div>
+  </div>
+</div>
+
+<script>
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var n = slides.length, i = 0;
+  var dotsEl = document.getElementById('dots');
+  var countEl = document.getElementById('count');
+  var progEl = document.getElementById('prog');
+
+  // build "how a hang" steps (slide 9)
+  (function(){
+    var steps = [["📍","Post a hang","Any city, any length."],["📬","Locals get pinged","By app + email."],["🎒","People pile in","Going / interested."],["🗓️","See who's around","A live timeline."],["✨","You hang out","IRL. That's it."]];
+    var host = document.querySelector('.hh');
+    steps.forEach(function(s,ix){var d=document.createElement('div');d.className='step';d.innerHTML='<span class="stepnum">'+(ix+1)+'</span><span style="font-size:24px">'+s[0]+'</span><div><div style="font-weight:700">'+s[1]+'</div><div class="muted">'+s[2]+'</div></div>';host.appendChild(d);});
+  })();
+
+  // build matrix (slide 13)
+  (function(){
+    var rows=[["Tudor",["c","c","c"]],["Mihai",["p","c","c"]],["Radu",["p","p","c"]],["You",["c","c","c"]]];
+    var mx=document.getElementById('mx');
+    rows.forEach(function(r){var d=document.createElement('div');d.className='row';var h='<span style="width:44px;font-size:12px" class="muted">'+r[0]+'</span>';r[1].forEach(function(c){h+='<span class="cell" style="background:'+(c==='c'?'#2dd4bf':'rgba(245,158,11,.55)')+'"></span>';});d.innerHTML=h;mx.appendChild(d);});
+  })();
+
+  // build funnel (slide 17)
+  (function(){
+    var rows=[["100%","#8b5cf6","Curious person near a city"],["78%","#38bdf8","Joins one low-stakes hang"],["54%","#2dd4bf","Feels the belonging"],["32%","#ec4899","Shows up at a camp"]];
+    var fn=document.getElementById('fn');
+    rows.forEach(function(r,ix){var wrap=document.createElement('div');wrap.style.width='100%';wrap.style.textAlign='center';wrap.innerHTML='<div style="margin:auto;display:flex;align-items:center;justify-content:center;border-radius:12px;padding:12px;color:#0a0a0a;font-weight:700;width:'+r[0]+';background:'+r[1]+'">'+r[2]+'</div>'+(ix<rows.length-1?'<span class="faint" style="font-size:20px">↓</span>':'');fn.appendChild(wrap);});
+  })();
+
+  for (var d=0; d<n; d++){ (function(k){var b=document.createElement('button');b.className='dot';b.onclick=function(){show(k)};dotsEl.appendChild(b);})(d); }
+
+  function show(x){ i=Math.max(0,Math.min(n-1,x)); slides.forEach(function(s,ix){s.classList.toggle('active',ix===i);}); Array.prototype.forEach.call(dotsEl.children,function(dd,ix){dd.classList.toggle('on',ix===i);}); countEl.textContent=(i+1)+' / '+n+' · ← → to move'; progEl.style.width=((i+1)/n*100)+'%'; }
+  function go(dir){ show(i+dir); }
+  window.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(1);} else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(-1);} else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(n-1);} });
+  show(0);
+</script>
+</body>
+</html>
