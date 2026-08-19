@@ -231,7 +231,7 @@ img {
   display: flex;
   color: #000;
   text-decoration: none;
-  background-color: #f0efe9;
+  background-color: #fff;
   background-size: auto 52%;
   background-position: 50% 52%;
   background-repeat: no-repeat;
@@ -239,7 +239,7 @@ img {
 }
 
 .thumb.shieldfont:hover {
-  background-color: #e3e2dc;
+  background-color: #d2d2d2;
 }
 
 .thumb.evolutionary {
