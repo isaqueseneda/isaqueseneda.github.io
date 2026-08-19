@@ -232,7 +232,7 @@ img {
   color: #000;
   text-decoration: none;
   background-color: #f0efe9;
-  background-size: auto 62%;
+  background-size: auto 52%;
   background-position: 50% 52%;
   background-repeat: no-repeat;
   background-image: url("../images/shieldfont-cards.png");
@@ -1438,7 +1438,7 @@ img {
   background-color: #f0efe9;
   background-image: url("../images/shieldfont-cards.png");
   background-position: 50% 50%;
-  background-size: contain;
+  background-size: auto 33%;
   background-repeat: no-repeat;
 }
 

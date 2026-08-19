@@ -32,7 +32,7 @@ const projects = [
     title: "SHIELDFONT",
     // subtitle: "THE FONT THAT PROTECTS HUMAN WRITING FROM AI",
     subtitle: "WE BUILT A TYPEFACE THAT POISONS AI SCRAPERS",
-    tags: ["🏆", "📐 STRAT", "✏️ CREAT", "📟 #####"],
+    tags: ["📐 STRAT", "✏️ CREAT", "📟 #####"],
   },
   {
     href: "phone.html",
