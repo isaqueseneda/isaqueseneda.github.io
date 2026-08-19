@@ -27,18 +27,19 @@ const projects = [
   //   tags: ["📐 STRAT", "PRODUCT"],
   // },
   {
+    href: "shieldfont.html",
+    cssClass: "shieldfont",
+    title: "SHIELDFONT",
+    // subtitle: "THE FONT THAT PROTECTS HUMAN WRITING FROM AI",
+    subtitle: "WE BUILT A TYPEFACE THAT POISONS AI SCRAPERS",
+    tags: ["🏆", "📐 STRAT", "✏️ CREAT", "📟 #####"],
+  },
+  {
     href: "phone.html",
     cssClass: "bphone",
     title: "HEINEKEN",
     // subtitle: "THE FRESHEST UPGRADE COMES STRAIGHT FROM 2005",
     subtitle: "WE MADE SMARTPHONES OBSOLETE WITH 2005 TECH",
-    tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
-  },
-  {
-    href: "ice.html",
-    cssClass: "ice",
-    title: "ROGERS",
-    subtitle: "WE SMUGGLED CANADA'S ICE INTO THE NHL FINALS",
     tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
   },
   {
@@ -56,6 +57,14 @@ const projects = [
     // subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
     subtitle: "WE MADE AN APP THAT WANTS YOU GONE CAMPING",
     tags: ["📐 STRAT", "📟 #####"],
+  },
+
+  {
+    href: "ice.html",
+    cssClass: "ice",
+    title: "ROGERS",
+    subtitle: "WE SMUGGLED CANADA'S ICE INTO THE NHL FINALS",
+    tags: ["🏆", "📐 STRAT", "✏️ CREAT"],
   },
 
   {

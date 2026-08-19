@@ -224,6 +224,24 @@ img {
   background-color: #d2d2d2;
 }
 
+.thumb.shieldfont {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #000;
+  text-decoration: none;
+  background-color: #f0efe9;
+  background-size: auto 48%;
+  background-position: 50% 54%;
+  background-repeat: no-repeat;
+  background-image: url("../images/shieldfont-intro.png");
+}
+
+.thumb.shieldfont:hover {
+  background-color: #e3e2dc;
+}
+
 .thumb.evolutionary {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1413,6 +1431,14 @@ img {
   background-image: url("../images/ice-cover.png");
   background-position: 50% 50%;
   background-size: auto 75%;
+  background-repeat: no-repeat;
+}
+
+.projectbar100.cover.shieldfontcover {
+  background-color: #f0efe9;
+  background-image: url("../images/shieldfont-intro.png");
+  background-position: 50% 50%;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
