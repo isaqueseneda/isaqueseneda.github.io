@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MY-HANGS — Come hang in Paris: Isaque turns 30</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --background: #f8fafc;
+      --foreground: #0f172a;
+      --card: #ffffff;
+      --surface-2: #f1f5f9;
+      --surface-3: #e2e8f0;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --ink: #0f172a;
+      --ink-dim: #64748b;
+      --ink-faint: #94a3b8;
+      --primary: #0f172a;
+      --primary-fg: #f8fafc;
+      --teal: #0d9488;
+      --teal-soft: #ccfbf1;
+      --amber: #d97706;
+      --amber-soft: #fef3c7;
+      --green: #16a34a;
+      --green-soft: #dcfce7;
+      --radius-sm: 6px;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.5;
+      padding-bottom: 96px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-bar {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .app-bar-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .app-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .app-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--teal-soft);
+      color: var(--teal);
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 16px 0;
+    }
+
+    .invite-eyebrow {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--teal);
+      margin-top: 12px;
+      margin-bottom: 8px;
+    }
+    .invite-heading {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .invite-subtitle {
+      text-align: center;
+      font-size: 16px;
+      color: var(--ink-dim);
+      max-width: 580px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+
+    .hang-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .hang-cover {
+      height: 140px;
+      background: radial-gradient(120% 140% at 20% 0%, #0d948833 0%, #f1f5f9 60%, #e2e8f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .hang-emoji {
+      font-size: 64px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
+    }
+    .hang-body {
+      padding: 28px;
+    }
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .pill {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--ink-dim);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .pill-teal { background: var(--teal-soft); color: var(--teal); border-color: #99f6e4; }
+    .pill-amber { background: var(--amber-soft); color: var(--amber); border-color: #fde68a; }
+
+    .hang-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .hang-desc {
+      font-size: 15px;
+      color: var(--ink-dim);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      white-space: pre-line;
+    }
+
+    .host-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avatar-sm {
+      width: 34px;
+      height: 34px;
+      font-size: 12px;
+      background: #334155;
+      border-radius: 999px;
+      color: white;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .card-header {
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--ink-dim);
+      margin-top: 4px;
+    }
+
+    .accom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 540px) {
+      .accom-grid { grid-template-columns: 1fr; }
+    }
+    .accom-option {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .accom-option h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .accom-option p {
+      font-size: 13px;
+      color: var(--ink-dim);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .accom-tag {
+      font-size: 11px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--teal);
+    }
+
+    /* Confirmed Crew */
+    .confirmed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .confirmed-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .confirmed-meta h5 {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .confirmed-meta span {
+      font-size: 11px;
+      color: var(--ink-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .confirmed-badge {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-soft);
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-left: 4px;
+    }
+
+    .itin-row {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .itin-row:last-child { border-bottom: none; }
+    .itin-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      width: 140px;
+      flex-shrink: 0;
+    }
+    .itin-info h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .itin-info p {
+      font-size: 13px;
+      color: var(--ink-dim);
+      line-height: 1.5;
+    }
+
+    .rsvp-card {
+      background: var(--primary);
+      color: var(--primary-fg);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+    .rsvp-card input, .rsvp-card select {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 8px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: white;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .btn {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .btn-teal {
+      background: var(--teal);
+      color: #042f2e;
+    }
+    .btn-teal:hover {
+      background: #14b8a6;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      color: var(--ink);
+    }
+    .btn-outline:hover {
+      background: var(--surface-2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation (Admin Link Removed) -->
+  <header class="app-bar">
+    <div class="app-bar-inner">
+      <div class="app-brand">
+        <span>🎒 MY-HANGS</span>
+        <span class="app-badge">PARIS 30TH</span>
+      </div>
+      <div>
+        <a href="#rsvp" class="btn btn-teal" style="padding: 8px 14px; font-size: 13px;">RSVP</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="invite-eyebrow">Paris Meet-Up · Oct 16–18</div>
+    <h1 class="invite-heading">Come hang in Paris: Isaque turns 30.</h1>
+    <p class="invite-subtitle">
+      A simple weekend in Paris with friends from throughout Europe. Canal drinks Friday, morning 5K Saturday if you run, big long-table dinner Saturday night, and Sunday park brunch.
+    </p>
+
+    <!-- Main Card -->
+    <div class="hang-card">
+      <div class="hang-cover">
+        <span class="hang-emoji">🎂</span>
+      </div>
+      <div class="hang-body">
+        <div class="pill-group">
+          <span class="pill pill-teal">🎉 Birthday Hang</span>
+          <span class="pill">📍 Paris, France</span>
+          <span class="pill pill-amber">🗓️ Oct 16 – 18, 2026</span>
+          <span class="pill" id="crew-count-badge">👥 2 Confirmed</span>
+        </div>
+
+        <h2 class="hang-title">The 30th Birthday Weekend</h2>
+        <p class="hang-desc">
+          Turning 30 next month. Doing a weekend in Paris October 16 to 18.
+
+          Plan is simple: canal drinks Friday night, easy 5K Saturday morning if you run, big long-table dinner Saturday night, and Sunday brunch in the park.
+
+          For places to sleep: we're booking out whole 6-bed dorms in a hostel nearby so everyone can bunk together for around 40 euros a night. If you'd rather grab your own hotel or crash with other friends, that works too.
+
+          Checking who's actually free to pull up that weekend. If five of us show up it's on.
+        </p>
+
+        <!-- Host Card -->
+        <div class="host-box">
+          <div class="avatar">IS</div>
+          <div>
+            <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--ink-dim);">Hosted by</div>
+            <div style="font-size: 15px; font-weight: 700;">Isaque Seneda</div>
+            <div style="font-size: 13px; color: var(--ink-dim);">Paris, France</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="btn btn-teal" onclick="document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'})">
+            RSVP →
+          </button>
+          <button class="btn btn-outline" onclick="downloadIcs()">
+            📅 Add to Calendar (.ics)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCOMMODATION (2 TIERS ONLY) -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">🛏️ Where to Sleep</h3>
+        <p class="card-desc">Two clear options. Pick whatever fits your budget and plans.</p>
+      </div>
+
+      <div class="accom-grid">
+        <div class="accom-option">
+          <div>
+            <h4>Option 1: 6-Bed Shared Hostel Dorms</h4>
+            <p>We're booking out private 6-person rooms at a hostel in Belleville / Canal Saint-Martin so we can all bunk together as a squad.</p>
+          </div>
+          <span class="accom-tag">~€40 / NIGHT · SQUAD ROOM</span>
+        </div>
+
+        <div class="accom-option">
+          <div>
+            <h4>Option 2: Your Own Hotel / Airbnb / Friends</h4>
+            <p>Grab your own private room or crash with friends you already have in Paris. Just pull up to the hangs.</p>
+          </div>
+          <span class="accom-tag">INDEPENDENT · FLEXIBLE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIRMED CREW: ONLY ISAQUE AND LEA-LINE -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">👥 Confirmed Crew</h3>
+        <p class="card-desc">Showing friends who have confirmed so far:</p>
+      </div>
+
+      <div class="confirmed-grid" id="confirmedGrid">
+        <div class="confirmed-card">
+          <div class="avatar-sm" style="background: var(--primary);">IS</div>
+          <div class="confirmed-meta">
+            <h5>Isaque Seneda <span class="confirmed-badge">HOST</span></h5>
+            <span>PARIS</span>
+          </div>
+        </div>
+        <div class="confirmed-card">
+          <div class="avatar-sm" style="background: var(--teal); color: #042f2e;">LL</div>
+          <div class="confirmed-meta">
+            <h5>Léa-Line <span class="confirmed-badge">IN</span></h5>
+            <span>PARIS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRAM -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">⏱️ Weekend Schedule</h3>
+        <p class="card-desc">October 16–18, 2026</p>
+      </div>
+
+      <div class="itin-row">
+        <div class="itin-time">FRI · 18:00 – LATE</div>
+        <div class="itin-info">
+          <h4>Canal Saint-Martin Drinks</h4>
+          <p>Drop bags at the dorms, meet by the canal for wine and bread.</p>
+        </div>
+      </div>
+
+      <div class="itin-row">
+        <div class="itin-time">SAT · 09:30 – 11:00</div>
+        <div class="itin-info">
+          <h4>Morning 5K &amp; Coffee</h4>
+          <p>Easy social run with Founders Running Club along the Seine or park. Coffee for non-runners.</p>
+        </div>
+      </div>
+
+      <div class="itin-row">
+        <div class="itin-time">SAT · 14:00 – 17:30</div>
+        <div class="itin-info">
+          <h4>Afternoon Drift &amp; Bouldering</h4>
+          <p>Arkose bouldering or walking through the Marais.</p>
+        </div>
+      </div>
+
+      <div class="itin-row">
+        <div class="itin-time">SAT · 20:30 – LATE</div>
+        <div class="itin-info">
+          <h4>The 30th Birthday Dinner</h4>
+          <p>Long table dinner in a classic Parisian bistro. Big feast, toasts, good wine.</p>
+        </div>
+      </div>
+
+      <div class="itin-row">
+        <div class="itin-time">SUN · 11:30 – 15:30</div>
+        <div class="itin-info">
+          <h4>Park Brunch</h4>
+          <p>Coffee, pastries, lawn blankets at Buttes-Chaumont before departures.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RSVP -->
+    <div class="rsvp-card" id="rsvp">
+      <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">💌 RSVP</h3>
+      <p style="font-size: 13px; color: #94a3b8; margin-bottom: 20px;">
+        Let me know if you can make it so we can lock down the hostel rooms.
+      </p>
+
+      <form id="rsvpForm" onsubmit="handlePublicRsvp(event)">
+        <label style="font-size: 12px; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 4px;">Your Name</label>
+        <input type="text" id="p-name" name="name" placeholder="Name" required />
+
+        <label style="font-size: 12px; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 4px;">City You're Coming From</label>
+        <input type="text" id="p-city" name="city" placeholder="e.g. Amsterdam / London / Zurich" required />
+
+        <label style="font-size: 12px; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 4px;">Will you pull up? (Oct 16–18)</label>
+        <select id="p-avail" name="attendance">
+          <option value="yes">Yes, I'm pulling up</option>
+          <option value="maybe">Maybe / checking trains &amp; flights</option>
+          <option value="no">Can't make this one</option>
+        </select>
+
+        <label style="font-size: 12px; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 4px;">Sleeping preference</label>
+        <select id="p-accom" name="accommodation">
+          <option value="hostel">Bunk in the 6-person shared hostel dorm (~€40/night)</option>
+          <option value="own">Booking my own hotel / Airbnb / staying with friends</option>
+        </select>
+
+        <!-- PRIVACY TOGGLE: DEFAULT TICKED -->
+        <div style="margin: 14px 0 18px;">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #cbd5e1; cursor: pointer;">
+            <input type="checkbox" id="p-public" name="showPublic" checked style="width: 16px; height: 16px; margin: 0; accent-color: var(--teal);" />
+            Show my name publicly on the confirmed guest list
+          </label>
+          <p style="font-size: 11px; color: #94a3b8; margin-top: 4px; padding-left: 24px;">
+            If unchecked, you will be shown anonymously as "Guest" on this page.
+          </p>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn btn-teal" style="width: 100%; padding: 12px; font-size: 15px; margin-top: 8px;">
+          Send RSVP →
+        </button>
+      </form>
+    </div>
+
+  </main>
+
+  <script>
+    /* ==========================================================================
+       FORM BACKEND CONFIGURATION (Formspree / Formspark / Basin / Web3Forms)
+       ========================================================================== */
+    const FORM_ENDPOINT = ""; // <-- Paste your Formspree/Formspark/Basin endpoint here
+
+    async function handlePublicRsvp(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const name = document.getElementById('p-name').value.trim();
+      const city = document.getElementById('p-city').value.trim();
+      const avail = document.getElementById('p-avail').value;
+      const accom = document.getElementById('p-accom').value;
+      const isPublic = document.getElementById('p-public').checked;
+
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+
+      const payload = {
+        name,
+        city,
+        attendance: avail,
+        accommodation: accom,
+        showPublic: isPublic,
+        timestamp: new Date().toISOString()
+      };
+
+      if (FORM_ENDPOINT) {
+        try {
+          await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch (err) {
+          console.warn("Form endpoint note:", err);
+        }
+      }
+
+      // Local storage persistence
+      try {
+        const existing = JSON.parse(localStorage.getItem('my_hangs_rsvps') || '[]');
+        existing.push(payload);
+        localStorage.setItem('my_hangs_rsvps', JSON.stringify(existing));
+      } catch (_) {}
+
+      // Add to confirmed crew if attending
+      if (avail === 'yes') {
+        const displayName = isPublic ? name : "Guest";
+        const displayInitials = isPublic ? (name.slice(0, 2).toUpperCase()) : "👤";
+        const grid = document.getElementById('confirmedGrid');
+        const newCard = document.createElement('div');
+        newCard.className = 'confirmed-card';
+        newCard.style.borderColor = 'var(--teal)';
+        newCard.innerHTML = `
+          <div class="avatar-sm" style="background: var(--teal); color: #042f2e;">${displayInitials}</div>
+          <div class="confirmed-meta">
+            <h5>${displayName} <span class="confirmed-badge">NEW</span></h5>
+            <span>${city.toUpperCase()}</span>
+          </div>
+        `;
+        grid.appendChild(newCard);
+
+        const badge = document.getElementById('crew-count-badge');
+        if (badge) {
+          badge.textContent = `👥 ${grid.children.length} Confirmed`;
+        }
+      }
+
+      btn.disabled = false;
+      btn.textContent = "RSVP Sent ✓";
+      alert(avail === 'yes'
+        ? `Got it, ${isPublic ? name : 'Guest'}! You're added to the confirmed crew.`
+        : `Got it, ${name}! Thanks for letting me know.`);
+    }
+
+    function downloadIcs() {
+      const ics = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//MY-HANGS//Isaque 30th Birthday Paris//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VEVENT",
+        "SUMMARY:🎂 Isaque's 30th Birthday in Paris",
+        "DESCRIPTION:Weekend in Paris with friends from throughout Europe. 6-person shared hostel dorms, canal drinks, Saturday dinner, Sunday brunch.",
+        "LOCATION:Paris, France",
+        "DTSTART:20261016T160000Z",
+        "DTEND:20261018T200000Z",
+        "STATUS:CONFIRMED",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = window.URL.createObjectURL(blob);
+      a.setAttribute('download', 'isaque-30th-birthday-paris.ics');
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>
