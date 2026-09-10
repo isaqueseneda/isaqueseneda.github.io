@@ -223,6 +223,29 @@
       border: 1px solid rgba(74,222,128,0.25);
       padding: 1px 5px; border-radius: 4px; margin-left: 4px;
     }
+    .maybe-badge {
+      color: var(--amber);
+      background: var(--amber-soft);
+      border-color: rgba(251,191,36,0.3);
+    }
+    .crew-section-label {
+      grid-column: 1 / -1;
+      color: var(--ink-faint);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+    .rsvp-status {
+      color: var(--green);
+      font-size: 12px;
+      line-height: 1.45;
+      min-height: 18px;
+      margin-top: 10px;
+    }
+    .rsvp-status.error { color: #fca5a5; }
     .live-dot {
       display: inline-block; width: 7px; height: 7px; border-radius: 50%;
       background: var(--green); margin-right: 6px;
@@ -372,8 +395,8 @@
 
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">👥 Confirmed Crew <span style="font-size: 11px; font-weight: 600; color: var(--ink-faint); font-family: 'JetBrains Mono', monospace;"><span class="live-dot"></span>LIVE</span></h3>
-        <p class="card-desc">Everyone who confirmed shows up here instantly:</p>
+        <h3 class="card-title">👥 Live RSVP Board <span style="font-size: 11px; font-weight: 600; color: var(--ink-faint); font-family: 'JetBrains Mono', monospace;"><span class="live-dot"></span>LIVE</span></h3>
+        <p class="card-desc">Confirmed guests and people checking their travel show up here instantly:</p>
       </div>
       <div class="confirmed-grid" id="confirmedGrid"></div>
     </div>
@@ -460,6 +483,7 @@
         <button type="submit" id="submitBtn" class="btn btn-teal" style="width: 100%; padding: 12px; font-size: 15px; margin-top: 8px;">
           Send RSVP →
         </button>
+        <p id="rsvpStatus" class="rsvp-status" role="status" aria-live="polite"></p>
       </form>
     </div>
 
@@ -489,23 +513,35 @@
           </div>
         </div>`);
 
-      // Confirmed from DB (attendance === 'yes')
+      // Confirmed guests first, followed by people still checking travel.
       const confirmed = rsvps.filter(r => (r.attendance || '').toLowerCase() === 'yes');
-      confirmed.forEach(r => {
+      const maybes = rsvps.filter(r => (r.attendance || '').toLowerCase() === 'maybe');
+
+      function insertGuest(r, badge, badgeClass = '') {
         const displayName = r.showPublic ? (r.name || 'Guest') : 'Guest';
         const di = r.showPublic ? initials(r.name) : '👤';
+        const city = r.showPublic && r.city ? r.city : 'PRIVATE';
         grid.insertAdjacentHTML('beforeend', `
           <div class="confirmed-card">
-            <div class="avatar-sm">${di}</div>
+            <div class="avatar-sm">${escapeHtml(di)}</div>
             <div class="confirmed-meta">
-              <h5>${escapeHtml(displayName)} <span class="confirmed-badge">IN</span></h5>
-              <span>${(r.city || 'EUROPE').toUpperCase()}</span>
+              <h5>${escapeHtml(displayName)} <span class="confirmed-badge ${badgeClass}">${badge}</span></h5>
+              <span>${escapeHtml(city.toUpperCase())}</span>
             </div>
           </div>`);
-      });
+      }
+
+      confirmed.forEach(r => insertGuest(r, 'IN'));
+
+      if (maybes.length) {
+        grid.insertAdjacentHTML('beforeend', '<div class="crew-section-label">Checking travel</div>');
+        maybes.forEach(r => insertGuest(r, 'MAYBE', 'maybe-badge'));
+      }
 
       const badge = document.getElementById('crew-count-badge');
-      if (badge) badge.textContent = `👥 ${1 + confirmed.length} Confirmed`;
+      if (badge) {
+        badge.textContent = `👥 ${1 + confirmed.length} Confirmed${maybes.length ? ` · ${maybes.length} Maybe` : ''}`;
+      }
     }
 
     function escapeHtml(s) {
@@ -514,11 +550,16 @@
 
     async function loadCrew() {
       try {
-        const res = await fetch(API);
+        const res = await fetch(`${API}?t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error(`RSVP list request failed (${res.status})`);
         const data = await res.json();
         renderCrew(data.rsvps || []);
       } catch (err) {
         console.warn("Could not load crew:", err);
+        renderCrew([]);
       }
     }
 
@@ -530,9 +571,12 @@
       const avail = document.getElementById('p-avail').value;
       const accom = document.getElementById('p-accom').value;
       const isPublic = document.getElementById('p-public').checked;
+      const status = document.getElementById('rsvpStatus');
 
       btn.disabled = true;
       btn.textContent = "Sending...";
+      status.className = 'rsvp-status';
+      status.textContent = '';
 
       const payload = {
         name, city, attendance: avail, accommodation: accom,
@@ -540,23 +584,32 @@
       };
 
       try {
-        await fetch(FORM_ENDPOINT, {
+        const res = await fetch(FORM_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(payload)
         });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.success !== true) {
+          throw new Error(data.error || `RSVP request failed (${res.status})`);
+        }
+
+        await loadCrew();
+        btn.textContent = "RSVP Sent ✓";
+        status.textContent = avail === 'yes'
+          ? `Got it, ${isPublic ? name : 'Guest'} — you're on the confirmed crew.`
+          : avail === 'maybe'
+            ? `Got it, ${isPublic ? name : 'Guest'} — you're live under “Checking travel.”`
+            : `Got it, ${name}. Thanks for letting me know.`;
+        setTimeout(() => { btn.textContent = "Send RSVP →"; }, 2500);
       } catch (err) {
-        console.warn("Endpoint note:", err);
+        console.warn("RSVP submission failed:", err);
+        btn.textContent = "Try RSVP again";
+        status.className = 'rsvp-status error';
+        status.textContent = "Your RSVP was not saved. Please try again in a moment.";
+      } finally {
+        btn.disabled = false;
       }
-
-      btn.disabled = false;
-      btn.textContent = "RSVP Sent ✓";
-      alert(avail === 'yes'
-        ? `Got it, ${isPublic ? name : 'Guest'}! You're added to the confirmed crew.`
-        : `Got it, ${name}! Thanks for letting me know.`);
-
-      await loadCrew();
-      btn.textContent = "Send RSVP →";
     }
 
     function downloadIcs() {
