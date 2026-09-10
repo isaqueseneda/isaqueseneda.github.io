@@ -396,7 +396,7 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">👥 Live RSVP Board <span style="font-size: 11px; font-weight: 600; color: var(--ink-faint); font-family: 'JetBrains Mono', monospace;"><span class="live-dot"></span>LIVE</span></h3>
-        <p class="card-desc">Confirmed guests and people checking their travel show up here instantly:</p>
+        <p class="card-desc">Yes and maybe responses appear here instantly. No responses always stay private.</p>
       </div>
       <div class="confirmed-grid" id="confirmedGrid"></div>
     </div>
@@ -447,7 +447,7 @@
     <div class="rsvp-card" id="rsvp">
       <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">💌 RSVP</h3>
       <p style="font-size: 13px; color: var(--ink-faint); margin-bottom: 20px;">
-        Let me know if you can make it so we can lock down the hostel rooms.
+        This is just a headcount for now. Half down? Choose maybe. A clear no helps too—and stays private.
       </p>
 
       <form id="rsvpForm" onsubmit="handlePublicRsvp(event)">
@@ -459,9 +459,9 @@
 
         <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">Will you pull up? (Oct 16–18)</label>
         <select id="p-avail" name="attendance">
-          <option value="yes">Yes, I'm pulling up</option>
-          <option value="maybe">Maybe / checking trains &amp; flights</option>
-          <option value="no">Can't make this one</option>
+          <option value="yes">Yes — I'm pulling up</option>
+          <option value="maybe">Maybe — I'm half down / checking travel</option>
+          <option value="no">No — can't make this one (kept private)</option>
         </select>
 
         <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">Sleeping preference</label>
@@ -470,13 +470,13 @@
           <option value="own">Booking my own hotel / Airbnb / staying with friends</option>
         </select>
 
-        <div style="margin: 14px 0 18px;">
+        <div id="publicityField" style="margin: 14px 0 18px;">
           <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-dim); cursor: pointer;">
             <input type="checkbox" id="p-public" name="showPublic" checked style="width: 16px; height: 16px; margin: 0; accent-color: var(--teal);" />
-            Show my name publicly on the confirmed guest list
+            Show my name on the live RSVP board
           </label>
           <p style="font-size: 11px; color: var(--ink-faint); margin-top: 4px; padding-left: 24px;">
-            If unchecked, you will be shown anonymously as "Guest" on this page.
+            Yes and maybe can appear by name or as “Guest.” Responses marked “No” are never published.
           </p>
         </div>
 
@@ -492,6 +492,32 @@
   <script>
     const API = "https://isaque-rsvp-api.vercel.app/api/rsvp";
     const FORM_ENDPOINT = API;
+    const attendanceSelect = document.getElementById('p-avail');
+    const publicityField = document.getElementById('publicityField');
+    const publicityCheckbox = document.getElementById('p-public');
+    let lastPublicPreference = publicityCheckbox.checked;
+
+    function syncPublicityQuestion() {
+      const isDeclining = attendanceSelect.value === 'no';
+
+      if (isDeclining) {
+        lastPublicPreference = publicityCheckbox.checked;
+        publicityCheckbox.checked = false;
+        publicityCheckbox.disabled = true;
+        publicityField.hidden = true;
+        return;
+      }
+
+      publicityField.hidden = false;
+      publicityCheckbox.disabled = false;
+      publicityCheckbox.checked = lastPublicPreference;
+    }
+
+    publicityCheckbox.addEventListener('change', () => {
+      lastPublicPreference = publicityCheckbox.checked;
+    });
+    attendanceSelect.addEventListener('change', syncPublicityQuestion);
+    syncPublicityQuestion();
 
     function initials(name) {
       if (!name) return "👤";
@@ -570,7 +596,7 @@
       const city = document.getElementById('p-city').value.trim();
       const avail = document.getElementById('p-avail').value;
       const accom = document.getElementById('p-accom').value;
-      const isPublic = document.getElementById('p-public').checked;
+      const isPublic = avail !== 'no' && publicityCheckbox.checked;
       const status = document.getElementById('rsvpStatus');
 
       btn.disabled = true;
@@ -600,7 +626,7 @@
           ? `Got it, ${isPublic ? name : 'Guest'} — you're on the confirmed crew.`
           : avail === 'maybe'
             ? `Got it, ${isPublic ? name : 'Guest'} — you're live under “Checking travel.”`
-            : `Got it, ${name}. Thanks for letting me know.`;
+            : `Got it, ${name}. Thanks — your “no” stays private and helps me plan.`;
         setTimeout(() => { btn.textContent = "Send RSVP →"; }, 2500);
       } catch (err) {
         console.warn("RSVP submission failed:", err);
