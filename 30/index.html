@@ -9,43 +9,46 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --background: #f8fafc;
-      --foreground: #0f172a;
-      --card: #ffffff;
-      --surface-2: #f1f5f9;
-      --surface-3: #e2e8f0;
-      --border: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --ink: #0f172a;
-      --ink-dim: #64748b;
-      --ink-faint: #94a3b8;
-      --primary: #0f172a;
-      --primary-fg: #f8fafc;
-      --teal: #0d9488;
-      --teal-soft: #ccfbf1;
-      --amber: #d97706;
-      --amber-soft: #fef3c7;
-      --green: #16a34a;
-      --green-soft: #dcfce7;
+      --background: #0a0e17;
+      --foreground: #f1f5f9;
+      --card: #111827;
+      --surface-2: #1a2333;
+      --surface-3: #253048;
+      --border: #232e46;
+      --border-strong: #33415e;
+      --ink: #f1f5f9;
+      --ink-dim: #94a3b8;
+      --ink-faint: #64748b;
+      --primary: #f8fafc;
+      --primary-fg: #0f172a;
+      --teal: #2dd4bf;
+      --teal-soft: rgba(45, 212, 191, 0.12);
+      --amber: #fbbf24;
+      --amber-soft: rgba(251, 191, 36, 0.12);
+      --green: #4ade80;
+      --green-soft: rgba(74, 222, 128, 0.12);
       --radius-sm: 6px;
       --radius: 12px;
       --radius-lg: 16px;
-      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+      --shadow-md: 0 8px 24px -4px rgb(0 0 0 / 0.5);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--background);
+      background: radial-gradient(1200px 600px at 50% -10%, #14203a 0%, var(--background) 60%);
       color: var(--foreground);
       line-height: 1.5;
       padding-bottom: 96px;
+      min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
 
     .app-bar {
-      background: var(--card);
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
@@ -77,13 +80,10 @@
       border-radius: 999px;
       background: var(--teal-soft);
       color: var(--teal);
+      border: 1px solid rgba(45, 212, 191, 0.25);
     }
 
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 28px 16px 0;
-    }
+    .container { max-width: 760px; margin: 0 auto; padding: 28px 16px 0; }
 
     .invite-eyebrow {
       text-align: center;
@@ -102,6 +102,7 @@
       letter-spacing: -0.03em;
       line-height: 1.2;
       margin-bottom: 12px;
+      color: var(--ink);
     }
     .invite-subtitle {
       text-align: center;
@@ -117,30 +118,21 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-md);
       margin-bottom: 24px;
     }
     .hang-cover {
       height: 140px;
-      background: radial-gradient(120% 140% at 20% 0%, #0d948833 0%, #f1f5f9 60%, #e2e8f0 100%);
+      background:
+        radial-gradient(120% 140% at 20% 0%, rgba(45,212,191,0.25) 0%, rgba(30,41,59,0.6) 60%, #0f172a 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid var(--border);
     }
-    .hang-emoji {
-      font-size: 64px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
-    }
-    .hang-body {
-      padding: 28px;
-    }
-    .pill-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
+    .hang-emoji { font-size: 64px; filter: drop-shadow(0 4px 16px rgba(45,212,191,0.4)); }
+    .hang-body { padding: 28px; }
+    .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
     .pill {
       font-size: 12px;
       font-weight: 600;
@@ -148,59 +140,33 @@
       border-radius: 999px;
       background: var(--surface-2);
       color: var(--ink-dim);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       display: inline-flex;
       align-items: center;
       gap: 5px;
     }
-    .pill-teal { background: var(--teal-soft); color: var(--teal); border-color: #99f6e4; }
-    .pill-amber { background: var(--amber-soft); color: var(--amber); border-color: #fde68a; }
+    .pill-teal { background: var(--teal-soft); color: var(--teal); border-color: rgba(45,212,191,0.3); }
+    .pill-amber { background: var(--amber-soft); color: var(--amber); border-color: rgba(251,191,36,0.3); }
 
-    .hang-title {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .hang-desc {
-      font-size: 15px;
-      color: var(--ink-dim);
-      line-height: 1.65;
-      margin-bottom: 24px;
-      white-space: pre-line;
-    }
+    .hang-title { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .hang-desc { font-size: 15px; color: var(--ink-dim); line-height: 1.65; margin-bottom: 24px; white-space: pre-line; }
 
     .host-box {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 12px;
+      padding-top: 20px; border-top: 1px solid var(--border);
       margin-bottom: 24px;
     }
     .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      background: var(--primary);
-      color: white;
-      font-weight: 700;
-      font-size: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 44px; height: 44px; border-radius: 999px;
+      background: linear-gradient(135deg, #2dd4bf, #0d9488);
+      color: #042f2e; font-weight: 800; font-size: 15px;
+      display: flex; align-items: center; justify-content: center;
     }
     .avatar-sm {
-      width: 34px;
-      height: 34px;
-      font-size: 12px;
-      background: #334155;
-      border-radius: 999px;
-      color: white;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 34px; height: 34px; font-size: 12px;
+      background: var(--surface-3); color: var(--ink);
+      border-radius: 999px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
 
@@ -212,124 +178,76 @@
       box-shadow: var(--shadow);
       margin-bottom: 24px;
     }
-    .card-header {
-      margin-bottom: 16px;
-    }
+    .card-header { margin-bottom: 16px; }
     .card-title {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+      display: flex; align-items: center; gap: 8px;
     }
-    .card-desc {
-      font-size: 13px;
-      color: var(--ink-dim);
-      margin-top: 4px;
-    }
+    .card-desc { font-size: 13px; color: var(--ink-dim); margin-top: 4px; }
 
     .accom-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 14px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px;
     }
-    @media (max-width: 540px) {
-      .accom-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 540px) { .accom-grid { grid-template-columns: 1fr; } }
     .accom-option {
       background: var(--surface-2);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
       padding: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
-    .accom-option h4 {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .accom-option p {
-      font-size: 13px;
-      color: var(--ink-dim);
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-    .accom-tag {
-      font-size: 11px;
-      font-weight: 700;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--teal);
-    }
+    .accom-option h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .accom-option p { font-size: 13px; color: var(--ink-dim); line-height: 1.5; margin-bottom: 14px; }
+    .accom-tag { font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: var(--teal); }
 
-    /* Confirmed Crew */
     .confirmed-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-      margin-top: 16px;
+      gap: 12px; margin-top: 16px;
     }
     .confirmed-card {
       background: var(--surface-2);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-strong);
       border-radius: 8px;
       padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      display: flex; align-items: center; gap: 12px;
     }
-    .confirmed-meta h5 {
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.2;
-    }
+    .confirmed-meta h5 { font-size: 13px; font-weight: 700; line-height: 1.2; }
     .confirmed-meta span {
-      font-size: 11px;
-      color: var(--ink-dim);
+      font-size: 11px; color: var(--ink-dim);
       font-family: 'JetBrains Mono', monospace;
     }
     .confirmed-badge {
-      font-size: 9px;
-      font-weight: 700;
-      color: var(--green);
+      font-size: 9px; font-weight: 700; color: var(--green);
       background: var(--green-soft);
-      padding: 1px 5px;
-      border-radius: 4px;
-      margin-left: 4px;
+      border: 1px solid rgba(74,222,128,0.25);
+      padding: 1px 5px; border-radius: 4px; margin-left: 4px;
+    }
+    .live-dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); margin-right: 6px;
+      box-shadow: 0 0 8px rgba(74,222,128,0.8);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
-    .itin-row {
-      display: flex;
-      gap: 16px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .itin-row { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
     .itin-row:last-child { border-bottom: none; }
     .itin-time {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--teal);
-      width: 140px;
-      flex-shrink: 0;
+      font-size: 11px; font-weight: 700; color: var(--teal);
+      width: 140px; flex-shrink: 0;
     }
-    .itin-info h4 {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .itin-info p {
-      font-size: 13px;
-      color: var(--ink-dim);
-      line-height: 1.5;
-    }
+    .itin-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .itin-info p { font-size: 13px; color: var(--ink-dim); line-height: 1.5; }
 
     .rsvp-card {
-      background: var(--primary);
-      color: var(--primary-fg);
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      color: var(--foreground);
       border-radius: var(--radius-lg);
       padding: 28px;
       box-shadow: var(--shadow-md);
@@ -338,47 +256,33 @@
       width: 100%;
       padding: 11px 14px;
       border-radius: 8px;
-      background: #1e293b;
-      border: 1px solid #334155;
-      color: white;
+      background: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      color: var(--ink);
       font-size: 14px;
       margin-bottom: 12px;
-    }
-    .btn {
       font-family: inherit;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 11px 20px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-decoration: none;
+    }
+    .rsvp-card select option { background: #1a2333; color: #f1f5f9; }
+    .btn {
+      font-family: inherit; font-size: 14px; font-weight: 600;
+      padding: 11px 20px; border-radius: 8px; border: none;
+      cursor: pointer; display: inline-flex; align-items: center;
+      justify-content: center; gap: 8px; text-decoration: none;
       transition: all 0.15s ease;
     }
-    .btn-teal {
-      background: var(--teal);
-      color: #042f2e;
-    }
-    .btn-teal:hover {
-      background: #14b8a6;
-    }
+    .btn-teal { background: var(--teal); color: #042f2e; }
+    .btn-teal:hover { background: #5eead4; }
     .btn-outline {
       background: transparent;
       border: 1px solid var(--border-strong);
       color: var(--ink);
     }
-    .btn-outline:hover {
-      background: var(--surface-2);
-    }
+    .btn-outline:hover { background: var(--surface-2); }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation (Admin Link Removed) -->
   <header class="app-bar">
     <div class="app-bar-inner">
       <div class="app-brand">
@@ -399,7 +303,6 @@
       A simple weekend in Paris with friends from throughout Europe. Canal drinks Friday, morning 5K Saturday if you run, big long-table dinner Saturday night, and Sunday park brunch.
     </p>
 
-    <!-- Main Card -->
     <div class="hang-card">
       <div class="hang-cover">
         <span class="hang-emoji">🎂</span>
@@ -423,11 +326,10 @@
           Checking who's actually free to pull up that weekend. If five of us show up it's on.
         </p>
 
-        <!-- Host Card -->
         <div class="host-box">
           <div class="avatar">IS</div>
           <div>
-            <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--ink-dim);">Hosted by</div>
+            <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--ink-faint);">Hosted by</div>
             <div style="font-size: 15px; font-weight: 700;">Isaque Seneda</div>
             <div style="font-size: 13px; color: var(--ink-dim);">Paris, France</div>
           </div>
@@ -444,7 +346,6 @@
       </div>
     </div>
 
-    <!-- ACCOMMODATION (2 TIERS ONLY) -->
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">🛏️ Where to Sleep</h3>
@@ -459,7 +360,6 @@
           </div>
           <span class="accom-tag">~€40 / NIGHT · SQUAD ROOM</span>
         </div>
-
         <div class="accom-option">
           <div>
             <h4>Option 2: Your Own Hotel / Airbnb / Friends</h4>
@@ -470,32 +370,14 @@
       </div>
     </div>
 
-    <!-- CONFIRMED CREW: ONLY ISAQUE AND LEA-LINE -->
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">👥 Confirmed Crew</h3>
-        <p class="card-desc">Showing friends who have confirmed so far:</p>
+        <h3 class="card-title">👥 Confirmed Crew <span style="font-size: 11px; font-weight: 600; color: var(--ink-faint); font-family: 'JetBrains Mono', monospace;"><span class="live-dot"></span>LIVE</span></h3>
+        <p class="card-desc">Everyone who confirmed shows up here instantly:</p>
       </div>
-
-      <div class="confirmed-grid" id="confirmedGrid">
-        <div class="confirmed-card">
-          <div class="avatar-sm" style="background: var(--primary);">IS</div>
-          <div class="confirmed-meta">
-            <h5>Isaque Seneda <span class="confirmed-badge">HOST</span></h5>
-            <span>PARIS</span>
-          </div>
-        </div>
-        <div class="confirmed-card">
-          <div class="avatar-sm" style="background: var(--teal); color: #042f2e;">LL</div>
-          <div class="confirmed-meta">
-            <h5>Léa-Line <span class="confirmed-badge">IN</span></h5>
-            <span>PARIS</span>
-          </div>
-        </div>
-      </div>
+      <div class="confirmed-grid" id="confirmedGrid"></div>
     </div>
 
-    <!-- PROGRAM -->
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">⏱️ Weekend Schedule</h3>
@@ -509,15 +391,13 @@
           <p>Drop bags at the dorms, meet by the canal for wine and bread.</p>
         </div>
       </div>
-
       <div class="itin-row">
         <div class="itin-time">SAT · 09:30 – 11:00</div>
         <div class="itin-info">
           <h4>Morning 5K &amp; Coffee</h4>
-          <p>Easy social run with Founders Running Club along the Seine or park. Coffee for non-runners.</p>
+          <p>Easy social run along the Seine or the park. Coffee for non-runners.</p>
         </div>
       </div>
-
       <div class="itin-row">
         <div class="itin-time">SAT · 14:00 – 17:30</div>
         <div class="itin-info">
@@ -525,7 +405,6 @@
           <p>Arkose bouldering or walking through the Marais.</p>
         </div>
       </div>
-
       <div class="itin-row">
         <div class="itin-time">SAT · 20:30 – LATE</div>
         <div class="itin-info">
@@ -533,7 +412,6 @@
           <p>Long table dinner in a classic Parisian bistro. Big feast, toasts, good wine.</p>
         </div>
       </div>
-
       <div class="itin-row">
         <div class="itin-time">SUN · 11:30 – 15:30</div>
         <div class="itin-info">
@@ -543,40 +421,38 @@
       </div>
     </div>
 
-    <!-- RSVP -->
     <div class="rsvp-card" id="rsvp">
       <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">💌 RSVP</h3>
-      <p style="font-size: 13px; color: #94a3b8; margin-bottom: 20px;">
+      <p style="font-size: 13px; color: var(--ink-faint); margin-bottom: 20px;">
         Let me know if you can make it so we can lock down the hostel rooms.
       </p>
 
       <form id="rsvpForm" onsubmit="handlePublicRsvp(event)">
-        <label style="font-size: 12px; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 4px;">Your Name</label>
+        <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">Your Name</label>
         <input type="text" id="p-name" name="name" placeholder="Name" required />
 
-        <label style="font-size: 12px; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 4px;">City You're Coming From</label>
+        <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">City You're Coming From</label>
         <input type="text" id="p-city" name="city" placeholder="e.g. Amsterdam / London / Zurich" required />
 
-        <label style="font-size: 12px; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 4px;">Will you pull up? (Oct 16–18)</label>
+        <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">Will you pull up? (Oct 16–18)</label>
         <select id="p-avail" name="attendance">
           <option value="yes">Yes, I'm pulling up</option>
           <option value="maybe">Maybe / checking trains &amp; flights</option>
           <option value="no">Can't make this one</option>
         </select>
 
-        <label style="font-size: 12px; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 4px;">Sleeping preference</label>
+        <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">Sleeping preference</label>
         <select id="p-accom" name="accommodation">
           <option value="hostel">Bunk in the 6-person shared hostel dorm (~€40/night)</option>
           <option value="own">Booking my own hotel / Airbnb / staying with friends</option>
         </select>
 
-        <!-- PRIVACY TOGGLE: DEFAULT TICKED -->
         <div style="margin: 14px 0 18px;">
-          <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #cbd5e1; cursor: pointer;">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-dim); cursor: pointer;">
             <input type="checkbox" id="p-public" name="showPublic" checked style="width: 16px; height: 16px; margin: 0; accent-color: var(--teal);" />
             Show my name publicly on the confirmed guest list
           </label>
-          <p style="font-size: 11px; color: #94a3b8; margin-top: 4px; padding-left: 24px;">
+          <p style="font-size: 11px; color: var(--ink-faint); margin-top: 4px; padding-left: 24px;">
             If unchecked, you will be shown anonymously as "Guest" on this page.
           </p>
         </div>
@@ -590,10 +466,61 @@
   </main>
 
   <script>
-    /* ==========================================================================
-       FORM BACKEND CONFIGURATION (Formspree / Formspark / Basin / Web3Forms)
-       ========================================================================== */
-    const FORM_ENDPOINT = "https://isaque-rsvp-api.vercel.app/api/rsvp"; // <-- Paste your Formspree/Formspark/Basin endpoint here
+    const API = "https://isaque-rsvp-api.vercel.app/api/rsvp";
+    const FORM_ENDPOINT = API;
+
+    function initials(name) {
+      if (!name) return "👤";
+      const parts = name.trim().split(/\s+/);
+      return ((parts[0][0] || "") + (parts[1] ? parts[1][0] : "")).toUpperCase();
+    }
+
+    function renderCrew(rsvps) {
+      const grid = document.getElementById('confirmedGrid');
+      grid.innerHTML = "";
+
+      // Host card always first
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="confirmed-card">
+          <div class="avatar-sm" style="background: linear-gradient(135deg, #2dd4bf, #0d9488); color: #042f2e;">IS</div>
+          <div class="confirmed-meta">
+            <h5>Isaque Seneda <span class="confirmed-badge">HOST</span></h5>
+            <span>PARIS</span>
+          </div>
+        </div>`);
+
+      // Confirmed from DB (attendance === 'yes')
+      const confirmed = rsvps.filter(r => (r.attendance || '').toLowerCase() === 'yes');
+      confirmed.forEach(r => {
+        const displayName = r.showPublic ? (r.name || 'Guest') : 'Guest';
+        const di = r.showPublic ? initials(r.name) : '👤';
+        grid.insertAdjacentHTML('beforeend', `
+          <div class="confirmed-card">
+            <div class="avatar-sm">${di}</div>
+            <div class="confirmed-meta">
+              <h5>${escapeHtml(displayName)} <span class="confirmed-badge">IN</span></h5>
+              <span>${(r.city || 'EUROPE').toUpperCase()}</span>
+            </div>
+          </div>`);
+      });
+
+      const badge = document.getElementById('crew-count-badge');
+      if (badge) badge.textContent = `👥 ${1 + confirmed.length} Confirmed`;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    async function loadCrew() {
+      try {
+        const res = await fetch(API);
+        const data = await res.json();
+        renderCrew(data.rsvps || []);
+      } catch (err) {
+        console.warn("Could not load crew:", err);
+      }
+    }
 
     async function handlePublicRsvp(e) {
       e.preventDefault();
@@ -608,54 +535,18 @@
       btn.textContent = "Sending...";
 
       const payload = {
-        name,
-        city,
-        attendance: avail,
-        accommodation: accom,
-        showPublic: isPublic,
-        timestamp: new Date().toISOString()
+        name, city, attendance: avail, accommodation: accom,
+        showPublic: isPublic, timestamp: new Date().toISOString()
       };
 
-      if (FORM_ENDPOINT) {
-        try {
-          await fetch(FORM_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-        } catch (err) {
-          console.warn("Form endpoint note:", err);
-        }
-      }
-
-      // Local storage persistence
       try {
-        const existing = JSON.parse(localStorage.getItem('my_hangs_rsvps') || '[]');
-        existing.push(payload);
-        localStorage.setItem('my_hangs_rsvps', JSON.stringify(existing));
-      } catch (_) {}
-
-      // Add to confirmed crew if attending
-      if (avail === 'yes') {
-        const displayName = isPublic ? name : "Guest";
-        const displayInitials = isPublic ? (name.slice(0, 2).toUpperCase()) : "👤";
-        const grid = document.getElementById('confirmedGrid');
-        const newCard = document.createElement('div');
-        newCard.className = 'confirmed-card';
-        newCard.style.borderColor = 'var(--teal)';
-        newCard.innerHTML = `
-          <div class="avatar-sm" style="background: var(--teal); color: #042f2e;">${displayInitials}</div>
-          <div class="confirmed-meta">
-            <h5>${displayName} <span class="confirmed-badge">NEW</span></h5>
-            <span>${city.toUpperCase()}</span>
-          </div>
-        `;
-        grid.appendChild(newCard);
-
-        const badge = document.getElementById('crew-count-badge');
-        if (badge) {
-          badge.textContent = `👥 ${grid.children.length} Confirmed`;
-        }
+        await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn("Endpoint note:", err);
       }
 
       btn.disabled = false;
@@ -663,6 +554,9 @@
       alert(avail === 'yes'
         ? `Got it, ${isPublic ? name : 'Guest'}! You're added to the confirmed crew.`
         : `Got it, ${name}! Thanks for letting me know.`);
+
+      await loadCrew();
+      btn.textContent = "Send RSVP →";
     }
 
     function downloadIcs() {
@@ -691,6 +585,8 @@
       a.click();
       document.body.removeChild(a);
     }
+
+    loadCrew();
   </script>
 </body>
 </html>
