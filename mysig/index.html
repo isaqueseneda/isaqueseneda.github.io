@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MySIG — A New Phase · Comprehensive Brand Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0C14;
+  --ink: #FFFFFF;
+  --dim: #A4B2C8;
+  --faint: #637289;
+  --line: rgba(255, 255, 255, 0.12);
+  --card: rgba(255, 255, 255, 0.05);
+  
+  /* Brand colors sampled directly from artwork */
+  --purple: #8045E4;
+  --purple-light: #A578FC;
+  --purple-glow: rgba(128, 69, 228, 0.35);
+  --coral: #FF3D4E;
+  --coral-glow: rgba(255, 61, 78, 0.28);
+  --cyan: #00E5FF;
+  --magenta: #FF2A85;
+  --yellow: #F7D046;
+  --green: #2ECC71;
+  
+  --sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --display: 'Syne', sans-serif;
+  --headline: 'Bricolage Grotesque', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient studio glow matching purple + coral + cyan palette */
+.ambient {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 10% 16%, rgba(128, 69, 228, 0.35), transparent 45%),
+    radial-gradient(ellipse at 90% 80%, rgba(255, 61, 78, 0.22), transparent 42%),
+    radial-gradient(ellipse at 50% 95%, rgba(0, 229, 255, 0.15), transparent 45%);
+}
+
+.topline {
+  position: fixed; z-index: 40; left: 0; top: 0; width: 100%; height: 3px; background: rgba(255, 255, 255, 0.08);
+}
+.topline i {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--purple), var(--coral), var(--cyan));
+  transition: width .3s ease;
+}
+
+header {
+  position: fixed; z-index: 40; left: 0; right: 0; top: 0; padding: 22px 34px;
+  display: flex; justify-content: space-between; align-items: center;
+  font: 12px var(--mono); letter-spacing: .12em; color: var(--dim);
+}
+header .brand { display: flex; gap: 12px; align-items: center; }
+header img { width: 28px; height: 28px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+.pill-badge {
+  display: inline-block; padding: 4px 12px; border-radius: 99px; font-size: 10px; font-weight: 600;
+  background: rgba(128, 69, 228, 0.2); color: var(--purple-light); border: 1px solid rgba(128, 69, 228, 0.4);
+  text-transform: uppercase; letter-spacing: 0.14em;
+}
+
+.dots { position: fixed; z-index: 40; left: 34px; bottom: 24px; display: flex; gap: 6px; }
+.dots button {
+  width: 6px; height: 6px; border: 0; border-radius: 99px; padding: 0;
+  background: rgba(255, 255, 255, 0.2); cursor: pointer; transition: all .25s;
+}
+.dots button.on { width: 22px; background: linear-gradient(90deg, var(--purple-light), var(--coral)); }
+
+.hint { position: fixed; z-index: 40; right: 34px; bottom: 24px; color: var(--faint); font: 10px var(--mono); letter-spacing: .1em; }
+
+.zone { position: fixed; top: 0; bottom: 0; z-index: 20; border: 0; background: transparent; }
+.zone.left { left: 0; width: 18%; cursor: w-resize; }
+.zone.right { right: 0; width: 82%; cursor: e-resize; }
+
+.slide {
+  position: fixed; z-index: 10; inset: 0; display: flex; flex-direction: column; justify-content: center;
+  padding: 8vh 9vw 7vh; opacity: 0; pointer-events: none; transition: opacity .25s ease;
+}
+.slide.active { opacity: 1; pointer-events: auto; }
+
+.kicker {
+  margin-bottom: 2vh; color: var(--cyan); font: 600 11px var(--mono);
+  letter-spacing: .24em; text-transform: uppercase;
+}
+h1, h2, h3 { font-family: var(--display); }
+h1 { font-size: clamp(48px, 7.6vw, 108px); line-height: .98; letter-spacing: -.04em; }
+h2 { font-size: clamp(32px, 4.8vw, 70px); line-height: 1.04; letter-spacing: -.03em; }
+p.sub {
+  margin-top: 2.2vh; max-width: 40em; color: var(--dim);
+  font-size: clamp(16px, 1.4vw, 21px); line-height: 1.58;
+}
+b, strong { color: var(--ink); }
+.accent { color: var(--coral); }
+
+.up { opacity: 1; transform: none; }
+.active .up { animation: rise .4s ease-out; }
+@keyframes rise { from { opacity: .2; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Cards & Layouts */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 3.2vh; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 3vh; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 3vh; }
+
+.card {
+  padding: 24px 26px; border: 1px solid var(--line); border-radius: 18px;
+  background: var(--card); backdrop-filter: blur(8px); transition: border-color .25s ease;
+}
+.card:hover { border-color: rgba(255, 255, 255, 0.25); }
+.card p { color: var(--dim); font-size: 14px; line-height: 1.58; margin-top: 8px; }
+.tag { font: 10px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--coral); margin-bottom: 6px; }
+
+/* Rotator */
+.rotator {
+  display: flex; align-items: baseline; gap: .25em;
+  font: 800 clamp(48px, 8.8vw, 124px)/1 var(--display); letter-spacing: -.045em;
+}
+.rotator b { color: var(--purple-light); }
+.rotator span { border-bottom: 4px solid var(--coral); transition: opacity .2s, transform .2s; }
+.rotator .alt-style { font-family: var(--headline); color: var(--cyan); border-bottom-color: var(--cyan); }
+
+/* Languages */
+.languages { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 3vh; max-width: 960px; }
+.language {
+  padding: 12px 20px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--card); font: 700 clamp(16px, 1.7vw, 24px) var(--headline);
+}
+.language small { margin-left: 8px; color: var(--faint); font: 10px var(--mono); }
+
+/* Curve */
+.curve-row { display: flex; align-items: center; gap: 4vw; margin-top: 3vh; flex-wrap: wrap; }
+.curve-box { flex: 1.2; min-width: 480px; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); }
+.curve-copy { flex: 1; min-width: 280px; color: var(--dim); font-size: 15px; line-height: 1.6; }
+.curve-copy h3 { color: var(--ink); font-size: 22px; margin-bottom: 10px; }
+
+/* Product/Merch showcase presentation */
+.product-hero {
+  display: grid; grid-template-columns: minmax(340px, 1.15fr) minmax(280px, 0.85fr);
+  gap: 3.5vw; align-items: center; margin-top: 3vh;
+}
+.product-frame {
+  position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6); background: #000;
+}
+.product-frame img { width: 100%; height: auto; display: block; }
+.product-details h3 { font-size: clamp(24px, 2.5vw, 36px); margin-bottom: 12px; color: var(--ink); }
+.product-details p { color: var(--dim); font-size: 15px; line-height: 1.6; margin-bottom: 16px; }
+
+/* 2-up showcase */
+.duo-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 3vh; }
+.duo-card {
+  border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: var(--card);
+  display: flex; flex-direction: column;
+}
+.duo-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+.duo-info { padding: 18px 22px; }
+.duo-info h4 { font-family: var(--display); font-size: 18px; margin-bottom: 6px; }
+.duo-info p { font-size: 13px; color: var(--dim); line-height: 1.5; }
+
+/* Posters */
+.poster {
+  overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #06080D;
+  transition: transform .25s ease;
+}
+.poster:hover { transform: scale(1.025); border-color: var(--coral); }
+.poster img { display: block; width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+.caption { padding: 8px 12px; color: var(--dim); font: 10px var(--mono); display: flex; justify-content: space-between; }
+
+/* Moodboard reference grid */
+.moodboard-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 1.7vh;
+}
+.mood-tile {
+  position: relative; min-width: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+  background: #080A10; display: flex; flex-direction: column; transition: border-color .25s ease;
+}
+.mood-tile:hover { border-color: var(--coral); }
+.mood-tile-img {
+  width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #10131C;
+}
+.mood-tile-img img {
+  width: 100%; height: 100%; object-fit: contain; padding: 3px; display: block;
+}
+.mood-tile-desc {
+  min-height: 27px; padding: 4px 7px; font-family: var(--mono); font-size: 8px; color: var(--dim);
+  background: rgba(10, 14, 22, 0.95); display: flex; justify-content: space-between; align-items: center; gap: 5px;
+}
+.mood-tile-desc b { color: var(--ink); font-weight: 600; }
+
+/* Logo showcase tile: seamless native background #10131C matching the artwork */
+.logo-tile-wrap {
+  height: 168px; display: flex; align-items: center; justify-content: center;
+  background: #10131C; border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px; margin-bottom: 16px; padding: 18px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+@media(max-width: 900px) {
+  .slide { padding: 8vh 6vw; }
+  .grid2, .grid3, .grid4, .duo-showcase, .product-hero, .curve-row { grid-template-columns: 1fr; flex-direction: column; }
+  .moodboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .curve-box { min-width: 0; }
+  .hint { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient"></div>
+<div class="topline"><i id="progress"></i></div>
+
+<header>
+  <div class="brand">
+    <img src="M.png" alt="MySIG Mark">
+    <span>MySIG</span>
+    <span class="pill-badge">Identity Direction · 2027</span>
+  </div>
+  <div class="counter" id="counter">1 / 17</div>
+</header>
+
+<div class="dots" id="dots"></div>
+<div class="hint">← → · SPACE · CLICK TO NAVIGATE</div>
+
+<button class="zone left" aria-label="Previous slide"></button>
+<button class="zone right" aria-label="Next slide"></button>
+
+<!-- =========================================================
+     SLIDE 1: Cover
+     ========================================================= -->
+<section class="slide active">
+  <div class="up d1" style="display:flex;align-items:center;gap:20px;margin-bottom:3.5vh">
+    <img src="my-sig-clean.png" alt="MySIG logotype" style="height:clamp(54px,7.5vw,92px);width:auto;display:block;filter:drop-shadow(0 12px 30px rgba(128,69,228,0.4))">
+    <span class="pill-badge" style="font-size:11px;padding:6px 14px;color:var(--cyan);border-color:rgba(0,229,255,0.45);background:rgba(0,229,255,0.12)">
+      NEW PHASE PROPOSITION
+    </span>
+  </div>
+  <h1 class="up d2" style="font-size:clamp(54px,8.4vw,120px)">Still here.</h1>
+  <p class="sub up d3" style="font-size:clamp(22px,2.4vw,34px);color:var(--ink);font-weight:600">
+    Still ours. Ready for a new phase.
+  </p>
+  <p class="sub up d4" style="color:var(--dim);margin-top:1.5vh">
+    The community, camps, and friendships are untouched. Now we build the visual identity this culture actually deserves.
+  </p>
+</section>
+
+<!-- =========================================================
+     SLIDE 2: The Reframe · Recursive Acronym
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">The Concept</p>
+  <h2 class="up d2">What if MY means<br><span class="accent">My Youth?</span></h2>
+  <div class="grid2">
+    <div class="card up d3">
+      <div class="tag">A RECURSIVE ACRONYM (LIKE WINE)</div>
+      <h3 style="font-size:22px;margin:6px 0;color:var(--ink)">MY = My Youth, Infinitely.</h3>
+      <p>
+        Like <i>WINE is Not an Emulator</i> or <i>GNU's Not Unix</i>: a self-referential acronym where the definition loops back on itself. A fractal loop that belongs to whoever steps into it.
+      </p>
+    </div>
+    <div class="card up d4">
+      <div class="tag" style="color:var(--cyan)">THE FRACTAL PRINCIPLE</div>
+      <h3 style="font-size:22px;margin:6px 0;color:var(--ink)">Self-Similar At Every Scale.</h3>
+      <p>
+        Two friends playing chess at 3am, a 40-person regional weekend, or 3,000+ members gathered across Europe: the same culture, replicating naturally everywhere.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 3: Kinetic Rotator · The Possessive Pronoun
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">The Pronoun Revolution</p>
+  <div class="rotator up d2">
+    <b>my</b>
+    <span id="rotword">friends</span>
+  </div>
+  <p class="sub up d3" style="margin-top:3.5vh">
+    Say it out loud: <b>"My SIG"</b>. It was never an institutional permission slip. It is a <b>possessive</b>.
+  </p>
+  <p class="sub up d4" style="font-family:var(--headline);font-size:clamp(24px,3vw,38px);color:var(--coral);margin-top:1.5vh;font-weight:700">
+    My space. My camp. My friends. My found family.
+  </p>
+</section>
+
+<!-- =========================================================
+     SLIDE 4: European Multilingual Welcome
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">European Culture · Always International</p>
+  <h2 class="up d2">Many languages.<br>One open door.</h2>
+  <div class="languages up d3">
+    <div class="language">HELLO<small>EN</small></div>
+    <div class="language" style="border-color:rgba(128,69,228,0.5)">BONJOUR<small>FR</small></div>
+    <div class="language">HALLO<small>DE</small></div>
+    <div class="language" style="border-color:rgba(255,61,78,0.5)">CIAO<small>IT</small></div>
+    <div class="language">OLÁ<small>PT</small></div>
+    <div class="language" style="border-color:rgba(0,229,255,0.5)">HEJ<small>SV</small></div>
+    <div class="language">CZEŚĆ<small>PL</small></div>
+    <div class="language">HOI<small>NL</small></div>
+    <div class="language">SVEIKI<small>LV</small></div>
+    <div class="language" style="border-color:rgba(46,204,113,0.5)">AHOJ<small>CZ</small></div>
+    <div class="language">SZIA<small>HU</small></div>
+  </div>
+  <p class="sub up d4">
+    Like the classic macOS welcome screen, our camps cross borders effortlessly. Our visual voice should sound as international as our dinner tables.
+  </p>
+</section>
+
+<!-- =========================================================
+     SLIDE 5: Normal Distribution · Core & Orbit
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">Intellectual Core · Open Orbit</p>
+  <h2 class="up d2">Top 2% at the heart.<br>Room for the universe.</h2>
+  <div class="curve-row">
+    <div class="curve-box up d3">
+      <svg viewBox="0 0 540 210" style="width:100%;height:auto;display:block">
+        <defs>
+          <linearGradient id="tail" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FF3D4E" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#8045E4" stop-opacity=".15"/>
+          </linearGradient>
+          <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#8045E4"/>
+            <stop offset="78%" stop-color="#FF3D4E"/>
+            <stop offset="100%" stop-color="#00E5FF"/>
+          </linearGradient>
+        </defs>
+        <line x1="20" y1="180" x2="520" y2="180" stroke="rgba(255,255,255,0.2)"/>
+        <!-- Top 2% filled tail -->
+        <path d="M405 117 C430 167 458 178 520 180 L520 180 L405 180 Z" fill="url(#tail)"/>
+        <!-- Bell curve stroke -->
+        <path d="M20 180 C112 180 128 34 270 34 C412 34 428 180 520 180" fill="none" stroke="url(#line)" stroke-width="4"/>
+        <line x1="405" y1="35" x2="405" y2="180" stroke="#00E5FF" stroke-dasharray="5 5" stroke-width="2"/>
+        <text x="405" y="23" text-anchor="middle" fill="#00E5FF" font-family="JetBrains Mono" font-size="12" font-weight="600">TOP 2%</text>
+        <!-- Orbiting companions -->
+        <circle cx="452" cy="88" r="5.5" fill="#8045E4"/>
+        <circle cx="482" cy="115" r="5" fill="#2ECC71"/>
+        <circle cx="502" cy="77" r="4.5" fill="#FF2A85"/>
+        <text x="460" y="58" fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="600">+1s & PARTNERS</text>
+        <text x="20" y="202" fill="#A4B2C8" font-family="JetBrains Mono" font-size="10">GAUSSIAN POPULATION CURVE</text>
+      </svg>
+    </div>
+    <div class="curve-copy up d4">
+      <h3>Keep the spark. Widen the circle.</h3>
+      <p style="margin-bottom:12px">
+        We never abandon high intellectual caliber: the top 2% is our gravitational center.
+      </p>
+      <p>
+        But we reject isolationism. Partners, creatives, and lifelong friends orbit within the community. A universe, not a walled bunker.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 6: Reference Moodboard · Marks, Mascot & Form
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">Reference Board 01 · Identity, Logos & Character</p>
+  <h2 class="up d2">Marks, character &amp; shapes.</h2>
+  <div class="moodboard-grid up d3">
+    <div class="mood-tile"><div class="mood-tile-img"><img src="original-logo-bright.png" alt="Original My-SIG legacy logo, shown in white for contrast"></div><div class="mood-tile-desc"><span><b>Original</b> · legacy logo</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="logo.png" alt="Current app icon"></div><div class="mood-tile-desc"><span><b>Current app</b> · monogram</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/new_v2_sig.jpeg" alt="Original mascot illustration"></div><div class="mood-tile-desc"><span><b>Little Guy</b> · mascot origin</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/miami_ad_school_m.jpg" alt="Miami Ad School fluid M reference"></div><div class="mood-tile-desc"><span><b>Miami Ad School</b> · fluid M</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="my-my-my.png" alt="Curvy purple my-my-my logotype"></div><div class="mood-tile-desc"><span><b>my-my-my</b> · curvy form</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="my-sig.png" alt="My-SIG horizontal wordmark"></div><div class="mood-tile-desc"><span><b>my-sig</b> · wordmark</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="my-birth.jpg" alt="Stacked M and Y ribbon study"></div><div class="mood-tile-desc"><span><b>my-birth</b> · stacked M/Y</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="M.png" alt="M/Y app badge exploration"></div><div class="mood-tile-desc"><span><b>M badge</b> · app icon study</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="hiuygtfrdeswa.png" alt="Cyan and magenta liquid my exploration"></div><div class="mood-tile-desc"><span><b>Liquid my</b> · cyan / magenta</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 22.56.58.png" alt="sMoosh curvy type reference"></div><div class="mood-tile-desc"><span><b>sMoosh®</b> · curvy / tactile</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 22.56.44.png" alt="Kurt Schwitters DADA typography"></div><div class="mood-tile-desc"><span><b>Kurt Schwitters</b> · DADA type</span></div></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 7: Reference Moodboard · Posters, Editorial & Color
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">Reference Board 02 · Poster Art & Visual Direction</p>
+  <h2 class="up d2">Worlds, palettes &amp; layouts.</h2>
+  <div class="moodboard-grid up d3">
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 22.56.08.png" alt="Pasta playful editorial yellow reference"></div><div class="mood-tile-desc"><span><b>Pasta</b> · playful yellow editorial</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 22.57.09.png" alt="Goo School geometric system reference"></div><div class="mood-tile-desc"><span><b>Goo School</b> · geometric system</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 22.57.38.png" alt="Young Pin Design Award dynamic poster reference"></div><div class="mood-tile-desc"><span><b>Young Pin</b> · dynamic poster</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 22.58.45.png" alt="Olive Young fresh collage reference"></div><div class="mood-tile-desc"><span><b>Olive Young</b> · fresh collage</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 23.01.17.png" alt="Reference image 23.01.17"></div><div class="mood-tile-desc"><span><b>Visual reference</b> · 23:01:17</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 23.01.52.png" alt="High energy vibrant red reference"></div><div class="mood-tile-desc"><span><b>High energy</b> · vibrant red</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 23.02.32.png" alt="Technical structured logo reference"></div><div class="mood-tile-desc"><span><b>Technical mark</b> · structured logo</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 23.04.08.png" alt="Reference image 23.04.08"></div><div class="mood-tile-desc"><span><b>Visual reference</b> · 23:04:08</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 23.04.35.png" alt="Unmute cyber wireframe poster reference"></div><div class="mood-tile-desc"><span><b>Unmute</b> · cyber wireframe</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 23.04.44.png" alt="Reference image 23.04.44"></div><div class="mood-tile-desc"><span><b>Visual reference</b> · 23:04:44</span></div></div>
+    <div class="mood-tile"><div class="mood-tile-img"><img src="refs/Screenshot 2026-10-08 at 23.04.57.png" alt="Zagreb Design editorial grid reference"></div><div class="mood-tile-desc"><span><b>Zagreb Design</b> · editorial grid</span></div></div>
+  </div>
+  <p class="sub up d4" style="margin-top:1.4vh;font-size:12px;color:var(--faint)">All poster and visual-direction references shown together; originals remain in <code>refs/</code>.</p>
+</section>
+<!-- =========================================================
+     SLIDE 8: Logo Evolution (my-my-my integration)
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">The Mark · Evolution</p>
+  <h2 class="up d2">From rigid crest to fluid logotype.</h2>
+  <div class="grid3 up d3">
+    <div class="card" style="text-align:center">
+      <div class="logo-tile-wrap">
+        <img src="original-logo-bright.png" style="max-height:115px;max-width:125px;filter:drop-shadow(0 4px 16px rgba(255,255,255,0.15))" alt="2007 Original Logo">
+      </div>
+      <div class="tag">2007 LEGACY</div>
+      <h4 style="font-family:var(--display);font-size:18px">Original Crest</h4>
+      <p>The institutional shield that started it all in Holte.</p>
+    </div>
+
+    <div class="card" style="text-align:center;border-color:rgba(0,229,255,0.35)">
+      <div class="logo-tile-wrap">
+        <img src="logo.png" style="max-height:110px;border-radius:24%;box-shadow:0 10px 28px rgba(0,0,0,0.6)" alt="Current App Monogram">
+      </div>
+      <div class="tag" style="color:var(--cyan)">CURRENT APP</div>
+      <h4 style="font-family:var(--display);font-size:18px">M over Y Monogram</h4>
+      <p>The intertwined M and Y. It never spelled Mensa anyway.</p>
+    </div>
+
+    <div class="card" style="text-align:center;border-color:rgba(128,69,228,0.5)">
+      <div class="logo-tile-wrap" style="border-color:rgba(128,69,228,0.4)">
+        <img src="my-my-my-nobg.png" style="max-height:118px;width:auto;display:block;filter:drop-shadow(0 6px 16px rgba(128,69,228,0.38))" alt="Curvy Fluid 'my' Logotype">
+      </div>
+      <div class="tag" style="color:var(--purple-light)">ORGANIC VECTOR LOGO</div>
+      <h4 style="font-family:var(--display);font-size:18px">Curvy Fluid 'my'</h4>
+      <p>Continuous organic purple curves. Playful, irreverent, and unmistakably ours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 9: The Full Identity Lockup System
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">The Signature System</p>
+  <h2 class="up d2">The logo's fluid motion: horizontal to vertical.</h2>
+  <div class="grid3 up d3">
+    <div class="card" style="text-align:center;border-color:rgba(255,61,78,0.35)">
+      <div class="logo-tile-wrap">
+        <img src="my-sig.png" style="max-height:85px;max-width:94%;height:auto" alt="Full horizontal My-SIG">
+      </div>
+      <div class="tag" style="color:var(--coral)">FULL WORDMARK</div>
+      <h4 style="font-family:var(--display);font-size:18px">Horizontal Motion</h4>
+      <p>The flowing <b>my</b> form travels into the red <b>sig</b> wordmark.</p>
+    </div>
+
+    <div class="card" style="text-align:center;border-color:rgba(128,69,228,0.4)">
+      <div class="logo-tile-wrap">
+        <img src="my-birth.jpg" style="max-height:130px;width:auto" alt="Stacked m over y">
+      </div>
+      <div class="tag" style="color:var(--purple-light)">VERTICAL MONOGRAM</div>
+      <h4 style="font-family:var(--display);font-size:18px">Vertical Motion</h4>
+      <p>The same ribbon folds down: the M curves directly into the Y.</p>
+    </div>
+
+    <div class="card" style="text-align:center;border-color:rgba(0,229,255,0.4)">
+      <div class="logo-tile-wrap">
+        <img src="hiuygtfrdeswa.png" style="max-height:132px;width:auto" alt="Cosmic liquid my">
+      </div>
+      <div class="tag" style="color:var(--cyan)">HIGH ENERGY EXPLORATION</div>
+      <h4 style="font-family:var(--display);font-size:18px">Liquid Cosmic Spark</h4>
+      <p>Liquid purple form splitting with neon cyan & magenta kinetic sparks. Dynamic energy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 10: The Mascot &amp; "Little Guy" Plushie
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">The Mascot · "Little Guy"</p>
+  <div class="product-hero up d2">
+    <div class="product-frame">
+      <img src="v2-02-mascot-plushie.jpg" alt="Official MySIG Little Guy Designer Plushie">
+    </div>
+    <div class="product-details">
+      <div class="pill-badge" style="margin-bottom:14px">OFFICIAL MASCOT · THE LITTLE GUY</div>
+      <h3>Warmth, wit & tactile joy.</h3>
+      <p>
+        The purple curvy M with the white Y in its chest comes alive: retro rubber-hose eyes, cartoon smile, white gloves, and custom packaging box.
+      </p>
+      <p>
+        A mascot that grounds high-IQ intellectual rigor in self-deprecating humor and genuine approachable warmth.
+      </p>
+      <div style="display:flex;gap:12px;margin-top:20px;align-items:center">
+        <img src="refs/new_v2_sig.jpeg" style="width:60px;height:60px;border-radius:12px;border:1px solid var(--line)" alt="2D mascot reference">
+        <span style="font:11px var(--mono);color:var(--faint)">2D Vector Origin &rarr; 3D Designer Art Toy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 11: Physical Applications · Tote Bag &amp; Badges
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">Merchandise & Identification</p>
+  <h2 class="up d2">In the wild: tote & camp credentials.</h2>
+  <div class="duo-showcase up d3">
+    <div class="duo-card">
+      <img src="v2-03-tote-bag.jpg" alt="MySIG Heavy-Cotton Tote Bag">
+      <div class="duo-info">
+        <div class="tag">EUROPEAN FESTIVAL MERCH</div>
+        <h4>Heavy Cotton Canvas Tote</h4>
+        <p>Screenprinted modular multilingual flags (Bonjour, Hallo, Ciao) with the purple mascot patch.</p>
+      </div>
+    </div>
+    <div class="duo-card">
+      <img src="v2-05-camp-badge-lanyard.jpg" alt="MY-CAMP 2027 VIP Attendee Badge and Lanyard">
+      <div class="duo-info">
+        <div class="tag" style="color:var(--cyan)">CONFERENCE CREDENTIALS</div>
+        <h4>MY-Camp 2027 Badge & Woven Lanyard</h4>
+        <p>Heavy acrylic badge with holographic top 2% bell curve foil stamp, QR networking, and jacquard lanyard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 12: Digital Experience · Web &amp; Platform
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">Digital Experience</p>
+  <div class="product-hero up d2">
+    <div class="product-frame">
+      <img src="v2-04-website-desktop.jpg" alt="MySIG Modern Web Experience on Apple Studio Display">
+    </div>
+    <div class="product-details">
+      <div class="pill-badge" style="margin-bottom:14px;background:rgba(0,229,255,0.18);color:var(--cyan);border-color:rgba(0,229,255,0.35)">
+        AWARDS-GRADE UI/UX
+      </div>
+      <h3>The front door to the community.</h3>
+      <p>
+        Modernist editorial grid, rotating kinetic headlines (*My Friends / My Camp / My Space*), international language switcher, and interactive camp map preview.
+      </p>
+      <p>
+        Proud, bold, and welcoming. Replacing dusty forum aesthetics with world-class digital design.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 13: Environmental &amp; Civic Presence · Venue Entrance
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">Environmental Branding</p>
+  <div class="product-hero up d2">
+    <div class="product-frame">
+      <img src="v2-06-venue-flag-entrance.jpg" alt="Lakeside Camp Venue Entrance with MySIG Flags">
+    </div>
+    <div class="product-details">
+      <div class="pill-badge" style="margin-bottom:14px;background:rgba(255,61,78,0.18);color:var(--coral);border-color:rgba(255,61,78,0.35)">
+        VENUE WAYFINDING
+      </div>
+      <h3>Arriving at camp.</h3>
+      <p>
+        Tall vertical teardrop and feather flags lining the lakeside boardwalk entrance in sunflower yellow, cobalt blue, and iris purple.
+      </p>
+      <p>
+        Welcoming young thinkers from across Europe with bold civic confidence.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 14: The Balance Sheet · What Stays
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">The Real Balance Sheet</p>
+  <h2 class="up d2">Name the loss.<br>Keep sight of what stays.</h2>
+  <div class="grid2 up d3">
+    <div class="card" style="border-color:rgba(255,61,78,0.35)">
+      <div class="tag" style="color:var(--coral)">WHAT CHANGED</div>
+      <ul style="list-style:none;color:var(--dim);font-size:15px;line-height:2;margin-top:10px">
+        <li>&times; &nbsp;I-SIG recognition by Mensa International</li>
+        <li>&times; &nbsp;Promotion through its official channels</li>
+        <li>&times; &nbsp;Use of the Mensa name in MY-SIG promotions</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(46,204,113,0.4)">
+      <div class="tag" style="color:var(--green)">WHAT CARRIES ON (STILL OURS)</div>
+      <ul style="list-style:none;color:var(--ink);font-size:15px;line-height:2;margin-top:10px">
+        <li>&check; &nbsp;<b>3,000+ members today</b>; 5,000+ active over the years</li>
+        <li>&check; &nbsp;<b>All annual camps & traditions</b> (MY-Camp, Easter, NY)</li>
+        <li>&check; &nbsp;<b>MY-Foundation and our self-owned platform</b></li>
+        <li>&check; &nbsp;<b>The people, friendships and MySIG name</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 15: Event Continuity · The Camps Live On
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">The Calendar Lives On</p>
+  <h2 class="up d2">The gatherings continue.</h2>
+  <div class="grid3 up d3">
+    <div class="card">
+      <h3 style="color:var(--yellow);font-size:28px">MY-Camp</h3>
+      <div class="tag" style="margin-top:4px;color:var(--coral)">SUMMER · THE BIG ONE</div>
+      <p>Our flagship week in nature: lake campfires, physics debates, astronomy, and 200+ kindred spirits.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--cyan);font-size:28px">MY-Easter</h3>
+      <div class="tag" style="margin-top:4px;color:var(--cyan)">SPRING REUNION</div>
+      <p>Reconnecting after winter, planning projects, and welcoming newcomers into the fold.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--green);font-size:28px">MY-NY</h3>
+      <div class="tag" style="margin-top:4px;color:var(--green)">NEW YEAR'S EVE</div>
+      <p>Mulled wine, board games, and ringing in the new year with people who get you.</p>
+    </div>
+  </div>
+  <p class="sub up d4" style="font-size:14px;color:var(--faint)">
+    The point isn't that nothing changes. It's that we can carry our traditions forward ourselves.
+  </p>
+</section>
+
+<!-- =========================================================
+     SLIDE 16: Town Hall Invitation · The Canvas
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">Bring It To The Town Hall</p>
+  <h1 class="up d2">MySIG = <span class="accent">?</span></h1>
+  <p class="sub up d3" style="font-size:clamp(20px,2vw,28px);line-height:1.5">
+    “My Youth” is one proposition. Keep it, debate it, refine it, or bring a better one.
+  </p>
+  <div class="up d4" style="margin-top:4vh;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+    <div style="font:600 13px var(--mono);letter-spacing:0.18em;color:var(--purple-light);background:rgba(128,69,228,0.2);padding:12px 22px;border-radius:12px;border:1px solid rgba(128,69,228,0.4)">
+      TOWN HALL · OPEN DISCUSSION
+    </div>
+    <div style="font:700 clamp(24px,3vw,36px) var(--headline);color:var(--coral)">
+      Nothing is decided yet.
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 17: By the Way · MY-HANGS
+     ========================================================= -->
+<section class="slide">
+  <p class="kicker up d1">By The Way · Staying Connected Year-Round</p>
+  <h2 class="up d2">MY-Hangs keeps us together between camps.</h2>
+  <div class="product-hero up d3">
+    <div class="product-frame">
+      <img src="my-hangs-app.png" alt="MY-Hangs Live Interface showing member-organised local meetups">
+    </div>
+    <div class="product-details">
+      <div class="pill-badge" style="margin-bottom:14px;background:rgba(46,204,113,0.18);color:var(--green);border-color:rgba(46,204,113,0.35)">
+        YEAR-ROUND COMMUNITY FABRIC
+      </div>
+      <h3>More than a summer gathering.</h3>
+      <p>
+        Find members nearby, post casual local hangs in your city, browse community events, and crash on each other's couches across Europe.
+      </p>
+      <p>
+        Camps bring us together twice a year. MY-Hangs makes sure we stay in each other's lives every single week.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+const slides = [...document.querySelectorAll('.slide')];
+const dots = document.getElementById('dots');
+const counter = document.getElementById('counter');
+const progress = document.getElementById('progress');
+let current = 0;
+
+slides.forEach((_, n) => {
+  const b = document.createElement('button');
+  b.setAttribute('aria-label', `Slide ${n + 1}`);
+  b.addEventListener('click', () => show(n));
+  dots.appendChild(b);
+});
+
+function show(n) {
+  current = (n + slides.length) % slides.length;
+  slides.forEach(s => s.classList.remove('active'));
+  slides[current].classList.add('active');
+  [...dots.children].forEach((d, k) => d.classList.toggle('on', k === current));
+  counter.textContent = `${current + 1} / ${slides.length}`;
+  progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+  history.replaceState(null, '', `#s=${current + 1}`);
+}
+
+function go(delta) { show(current + delta); }
+
+document.querySelector('.zone.left').addEventListener('click', () => go(-1));
+document.querySelector('.zone.right').addEventListener('click', () => go(1));
+
+addEventListener('keydown', e => {
+  if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); go(1); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); go(-1); }
+  else if (e.key === 'Home') show(0);
+  else if (e.key === 'End') show(slides.length - 1);
+});
+
+let startX = null;
+addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+addEventListener('touchend', e => {
+  if (startX === null) return;
+  const dx = e.changedTouches[0].clientX - startX;
+  if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
+  startX = null;
+}, { passive: true });
+
+// Kinetic rotator
+const words = [
+  ['friends', false],
+  ['family', true],
+  ['space', false],
+  ['camp', false],
+  ['SIG', false],
+  ['Youth', true]
+];
+let wordIndex = 0;
+setInterval(() => {
+  const el = document.getElementById('rotword');
+  if (!el) return;
+  wordIndex = (wordIndex + 1) % words.length;
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(-8px)';
+  setTimeout(() => {
+    el.textContent = words[wordIndex][0];
+    el.classList.toggle('alt-style', words[wordIndex][1]);
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  }, 180);
+}, 1600);
+
+const requested = Number((location.hash.match(/s=(\d+)/) || [])[1]);
+show(requested > 0 ? requested - 1 : 0);
+</script>
+</body>
+</html>
