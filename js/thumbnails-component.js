@@ -53,7 +53,7 @@ const projects = [
   {
     href: "mysig.html",
     cssClass: "mysig",
-    title: "MY-SIG (MENSA INTERNATIONAL)",
+    title: "MY-SIG",
     // subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
     subtitle: "WE MADE AN APP THAT WANTS YOU GONE CAMPING",
     tags: ["📐 STRAT", "📟 #####"],
@@ -98,7 +98,7 @@ const projects = [
   // {
   //   href: "mysig.html",
   //   cssClass: "mysig",
-  //   title: "MENSA INTERNATIONAL",
+  //   title: "MY-SIG",
   //   subtitle: "A SMART DASHBOARD FOR A CAMP WITH LESS CLICKS",
   //   tags: ["📟 #####"],
   // },
