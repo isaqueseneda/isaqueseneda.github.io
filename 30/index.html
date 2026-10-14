@@ -374,6 +374,7 @@
           lines: [
             ['pin', `<a href="${GYM_MAP}" target="_blank" rel="noopener">Climb Up Porte d’Italie</a>, 18 Av. de la Porte d’Italie (13th)`],
             ['sofa', 'Climbing and sauna are optional. If you just come to hang, there’s no entry fee: it’s like a big, roomy café with space to chat. Maybe grab a drink.'],
+            ['climb', 'Want to climb? You can rent shoes there for €2–4.'],
             ['bag', 'Bring comfy clothes, a power bank, and your own snacks: the food there is pricey.', 'bring']
           ] },
         { key: 'after', time: '23:00', until: 'until late', icon: 'beer', title: 'Drinks after',
@@ -429,7 +430,7 @@
           <label class="tog"><input type="checkbox" id="gClimb"><span>${icon('climb')}Climb</span></label>
           <label class="tog"><input type="checkbox" id="gSauna"><span>${icon('steam')}Sauna</span></label>
         </div>
-        <div class="sub-q" id="shoesQ" hidden><span>Need climbing shoes?<small style="display:block;color:var(--muted);font-size:13px">You can rent a pair there for €4</small></span><div class="yn sm" role="radiogroup" aria-label="Need climbing shoes?">${radio('shoes', 'yes', 'Yes')}${radio('shoes', 'no', 'No')}</div></div>
+        <div class="sub-q" id="shoesQ" hidden><span>Need climbing shoes?<small style="display:block;color:var(--muted);font-size:13px">You can rent a pair there for €2–4</small></span><div class="yn sm" role="radiogroup" aria-label="Need climbing shoes?">${radio('shoes', 'yes', 'Yes')}${radio('shoes', 'no', 'No')}</div></div>
         <p class="tip" id="saunaTip" hidden>For the sauna, bring a swimsuit, a towel and flip-flops.</p>
       </div>`;
       return '';
