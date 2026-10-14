@@ -2,670 +2,632 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MY-HANGS — Come hang in Paris: Isaque turns 30</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Isaque turns 30 in Paris</title>
+  <meta name="description" content="Weekend in Paris, 16 to 18 October. Tell Isaque which parts you're coming to." />
+  <meta name="theme-color" content="#0e1424" />
+  <meta property="og:title" content="Isaque turns 30 in Paris" />
+  <meta property="og:description" content="Friday 16 to Sunday 18 October. Tap to RSVP." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --background: #0a0e17;
-      --foreground: #f1f5f9;
-      --card: #111827;
-      --surface-2: #1a2333;
-      --surface-3: #253048;
-      --border: #232e46;
-      --border-strong: #33415e;
-      --ink: #f1f5f9;
-      --ink-dim: #94a3b8;
-      --ink-faint: #64748b;
-      --primary: #f8fafc;
-      --primary-fg: #0f172a;
+      color-scheme: dark;
+      --bg: #0e1424;
+      --bg-2: #131b2f;
+      --surface: #182139;
+      --surface-2: #1f2a46;
+      --line: #27324f;
+      --line-strong: #3a4769;
+      --ink: #eef2f8;
+      --dim: #9aa6bf;
+      --faint: #6b7896;
       --teal: #2dd4bf;
-      --teal-soft: rgba(45, 212, 191, 0.12);
-      --amber: #fbbf24;
-      --amber-soft: rgba(251, 191, 36, 0.12);
-      --green: #4ade80;
-      --green-soft: rgba(74, 222, 128, 0.12);
-      --radius-sm: 6px;
-      --radius: 12px;
-      --radius-lg: 16px;
-      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4);
-      --shadow-md: 0 8px 24px -4px rgb(0 0 0 / 0.5);
+      --teal-ink: #042f2e;
+      --teal-soft: rgba(45, 212, 191, 0.14);
+      --gold: #f2c46d;
+      --gold-soft: rgba(242, 196, 109, 0.14);
+      --danger: #fda4af;
+      --tg: #2aabee;
+      --r-sm: 9px;
+      --r: 14px;
+      --r-lg: 20px;
+      --display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+      --text: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(1200px 600px at 50% -10%, #14203a 0%, var(--background) 60%);
-      color: var(--foreground);
-      line-height: 1.5;
-      padding-bottom: 96px;
+      font: 15px/1.45 var(--text);
+      color: var(--ink);
+      background: var(--bg);
+      background-image: radial-gradient(900px 420px at 85% -120px, rgba(242,196,109,0.10), transparent 70%),
+                        radial-gradient(700px 380px at 0% 0%, rgba(45,212,191,0.10), transparent 70%);
+      background-repeat: no-repeat;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
+      padding-bottom: calc(96px + env(safe-area-inset-bottom));
     }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .wrap { max-width: 520px; margin: 0 auto; padding: 0 16px; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-    .app-bar {
-      background: rgba(17, 24, 39, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    .app-bar-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-    }
-    .app-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 17px;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-    }
-    .app-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--teal-soft);
-      color: var(--teal);
-      border: 1px solid rgba(45, 212, 191, 0.25);
-    }
+    /* Tabs */
+    .top { position: sticky; top: 0; z-index: 20; background: rgba(14,20,36,0.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 52px; }
+    .tabs { display: inline-flex; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+    .tabs a { text-decoration: none; font-size: 13px; font-weight: 600; color: var(--dim); padding: 6px 14px; border-radius: 999px; }
+    .tabs a[aria-current="page"] { background: var(--surface-2); color: var(--ink); }
+    .top-tg { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--tg); text-decoration: none; padding: 6px 4px; }
+    .top-tg svg { width: 16px; height: 16px; }
 
-    .container { max-width: 760px; margin: 0 auto; padding: 28px 16px 0; }
+    /* Hero */
+    .hero { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; padding: 22px 0 16px; }
+    .big30 {
+      font-family: var(--display); font-weight: 800; font-size: 104px; line-height: 0.8; letter-spacing: -0.06em;
+      color: var(--gold);
+      text-shadow: 0 0 40px rgba(242,196,109,0.25);
+      font-variation-settings: "opsz" 96;
+    }
+    .hello { font-size: 14px; color: var(--teal); font-weight: 600; margin-bottom: 4px; }
+    .hero h1 { font-family: var(--display); font-weight: 700; font-size: 25px; line-height: 1.1; letter-spacing: -0.02em; }
+    .hero .when { color: var(--dim); font-size: 14px; margin-top: 6px; }
 
-    .invite-eyebrow {
-      text-align: center;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--teal);
-      margin-top: 12px;
-      margin-bottom: 8px;
+    .tg {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+      background: var(--tg); color: #fff; border-radius: var(--r); padding: 12px 14px;
+      box-shadow: 0 8px 24px -10px rgba(42,171,238,0.7);
     }
-    .invite-heading {
-      text-align: center;
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 12px;
-      color: var(--ink);
-    }
-    .invite-subtitle {
-      text-align: center;
-      font-size: 16px;
-      color: var(--ink-dim);
-      max-width: 580px;
-      margin: 0 auto 28px;
-      line-height: 1.6;
-    }
+    .tg svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .tg b { display: block; font-size: 15px; }
+    .tg span { display: block; font-size: 12.5px; opacity: 0.85; }
+    .tg:active { transform: translateY(1px); }
 
-    .hang-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 24px;
-    }
-    .hang-cover {
-      height: 140px;
-      background:
-        radial-gradient(120% 140% at 20% 0%, rgba(45,212,191,0.25) 0%, rgba(30,41,59,0.6) 60%, #0f172a 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid var(--border);
-    }
-    .hang-emoji { font-size: 64px; filter: drop-shadow(0 4px 16px rgba(45,212,191,0.4)); }
-    .hang-body { padding: 28px; }
-    .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .pill {
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--surface-2);
-      color: var(--ink-dim);
-      border: 1px solid var(--border-strong);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .pill-teal { background: var(--teal-soft); color: var(--teal); border-color: rgba(45,212,191,0.3); }
-    .pill-amber { background: var(--amber-soft); color: var(--amber); border-color: rgba(251,191,36,0.3); }
+    /* The plan (letter) */
+    .letter { margin-top: 10px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); }
+    .letter summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; font-weight: 600; font-size: 14px; }
+    .letter summary::-webkit-details-marker { display: none; }
+    .letter summary small { color: var(--faint); font-weight: 500; font-size: 12.5px; margin-left: 6px; }
+    .letter summary .chev { transition: transform .2s; color: var(--dim); }
+    .letter[open] summary .chev { transform: rotate(180deg); }
+    .letter-body { padding: 2px 14px 14px; font-size: 14px; color: var(--dim); }
+    .letter-body h4 { color: var(--ink); font-size: 13px; font-weight: 700; margin: 12px 0 4px; }
+    .letter-body ul { list-style: none; }
+    .letter-body li { padding: 3px 0 3px 64px; position: relative; }
+    .letter-body li .t { position: absolute; left: 0; top: 3px; color: var(--teal); font-weight: 600; font-variant-numeric: tabular-nums; font-size: 13px; }
+    .letter-body li li { padding-left: 14px; }
+    .letter-body p { margin-top: 6px; }
+    .letter-body strong { color: var(--ink); font-weight: 600; }
+    .letter-body ol { padding-left: 18px; }
+    .letter-body ol li { padding: 3px 0; }
 
-    .hang-title { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
-    .hang-desc { font-size: 15px; color: var(--ink-dim); line-height: 1.65; margin-bottom: 24px; white-space: pre-line; }
+    /* Blocks */
+    .block { margin-top: 26px; }
+    legend.block-h { display: block; padding: 0; }
+    .block-h { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: -0.015em; margin-bottom: 4px; }
+    .block-sub { color: var(--faint); font-size: 13px; margin-bottom: 12px; }
+    fieldset { border: 0; min-width: 0; }
 
-    .host-box {
-      display: flex; align-items: center; gap: 12px;
-      padding-top: 20px; border-top: 1px solid var(--border);
-      margin-bottom: 24px;
+    .field { display: block; margin-bottom: 8px; }
+    .field span { display: block; font-size: 12.5px; color: var(--dim); margin-bottom: 4px; }
+    .field input, textarea {
+      width: 100%; background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--r-sm);
+      padding: 11px 12px; font-size: 16px; color: var(--ink);
     }
-    .avatar {
-      width: 44px; height: 44px; border-radius: 999px;
-      background: linear-gradient(135deg, #2dd4bf, #0d9488);
-      color: #042f2e; font-weight: 800; font-size: 15px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .avatar-sm {
-      width: 34px; height: 34px; font-size: 12px;
-      background: var(--surface-3); color: var(--ink);
-      border-radius: 999px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
+    .field input:focus, textarea:focus { border-color: var(--teal); outline: none; box-shadow: 0 0 0 3px var(--teal-soft); }
+    .field input::placeholder, textarea::placeholder { color: var(--faint); }
+    .private { display: flex; gap: 6px; align-items: center; font-size: 12.5px; color: var(--faint); margin-top: 2px; }
 
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      margin-bottom: 24px;
-    }
-    .card-header { margin-bottom: 16px; }
-    .card-title {
-      font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .card-desc { font-size: 13px; color: var(--ink-dim); margin-top: 4px; }
+    /* Event list */
+    .day-h { display: flex; align-items: baseline; gap: 8px; margin: 14px 0 6px; font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--gold); }
+    .day-h small { font-family: var(--text); font-weight: 500; color: var(--faint); font-size: 12px; }
+    .ev { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); margin-bottom: 6px; transition: border-color .15s, background .15s; }
+    .ev[data-a="yes"] { border-color: rgba(45,212,191,0.45); background: linear-gradient(0deg, var(--teal-soft), var(--teal-soft)), var(--surface); }
+    .ev[data-a="no"] { opacity: 0.72; }
+    .ev-row { display: grid; grid-template-columns: 42px 1fr auto; gap: 10px; align-items: center; padding: 10px 10px 10px 12px; }
+    .ev-time { font-size: 12.5px; font-weight: 600; color: var(--dim); font-variant-numeric: tabular-nums; }
+    .ev-title { font-weight: 600; font-size: 14.5px; line-height: 1.25; }
+    .ev-sub { font-size: 12.5px; color: var(--faint); line-height: 1.3; margin-top: 2px; }
 
-    .accom-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px;
-    }
-    @media (max-width: 540px) { .accom-grid { grid-template-columns: 1fr; } }
-    .accom-option {
-      background: var(--surface-2);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-sm);
-      padding: 18px;
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .accom-option h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-    .accom-option p { font-size: 13px; color: var(--ink-dim); line-height: 1.5; margin-bottom: 14px; }
-    .accom-tag { font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: var(--teal); }
+    .yn { display: inline-flex; background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: 999px; padding: 2px; }
+    .yn label { position: relative; cursor: pointer; }
+    .yn input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+    .yn span { display: block; min-width: 44px; text-align: center; padding: 7px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--dim); }
+    .yn input:checked + span { background: var(--ink); color: var(--bg); }
+    .yn input[value="yes"]:checked + span { background: var(--teal); color: var(--teal-ink); }
+    .yn input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 1px; }
+    .yn.sm span { min-width: 40px; padding: 5px 9px; font-size: 12.5px; }
 
-    .confirmed-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px; margin-top: 16px;
-    }
-    .confirmed-card {
-      background: var(--surface-2);
-      border: 1px solid var(--border-strong);
-      border-radius: 8px;
-      padding: 12px 14px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .confirmed-meta h5 { font-size: 13px; font-weight: 700; line-height: 1.2; }
-    .confirmed-meta span {
-      font-size: 11px; color: var(--ink-dim);
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .confirmed-badge {
-      font-size: 9px; font-weight: 700; color: var(--green);
-      background: var(--green-soft);
-      border: 1px solid rgba(74,222,128,0.25);
-      padding: 1px 5px; border-radius: 4px; margin-left: 4px;
-    }
-    .maybe-badge {
-      color: var(--amber);
-      background: var(--amber-soft);
-      border-color: rgba(251,191,36,0.3);
-    }
-    .crew-section-label {
-      grid-column: 1 / -1;
-      color: var(--ink-faint);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      margin-top: 4px;
-      text-transform: uppercase;
-    }
-    .rsvp-status {
-      color: var(--green);
-      font-size: 12px;
-      line-height: 1.45;
-      min-height: 18px;
-      margin-top: 10px;
-    }
-    .rsvp-status.error { color: #fca5a5; }
-    .live-dot {
-      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--green); margin-right: 6px;
-      box-shadow: 0 0 8px rgba(74,222,128,0.8);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
+    .follow { border-top: 1px dashed var(--line-strong); margin: 0 12px; padding: 10px 0 12px; }
+    .follow[hidden] { display: none; }
+    .follow-q { font-size: 13px; color: var(--dim); margin-bottom: 8px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { position: relative; }
+    .chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+    .chip span { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 999px; border: 1px solid var(--line-strong); font-size: 13px; font-weight: 500; color: var(--dim); background: var(--bg-2); }
+    .chip input:checked + span { border-color: var(--teal); color: var(--ink); background: var(--teal-soft); }
+    .chip input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 1px; }
+    .follow .field { margin: 8px 0 0; }
+    .follow .field input { padding: 9px 11px; font-size: 15px; }
+    .sub-q { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; font-size: 13px; color: var(--dim); }
+    .sub-q[hidden] { display: none; }
+    .tip { font-size: 12.5px; color: var(--gold); margin-top: 8px; }
+    .tip[hidden] { display: none; }
 
-    .itin-row { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
-    .itin-row:last-child { border-bottom: none; }
-    .itin-time {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px; font-weight: 700; color: var(--teal);
-      width: 140px; flex-shrink: 0;
-    }
-    .itin-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-    .itin-info p { font-size: 13px; color: var(--ink-dim); line-height: 1.5; }
+    /* Days in Paris */
+    .strip { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin: 10px 0 4px; }
+    .dcell { position: relative; }
+    .dcell input { position: absolute; opacity: 0; inset: 0; cursor: pointer; z-index: 1; }
+    .dcell span { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 58px; border-radius: 10px; border: 1px solid var(--line-strong); background: var(--bg-2); color: var(--faint); transition: background .15s, color .15s, border-color .15s; }
+    .dcell b { font-family: var(--display); font-size: 19px; font-weight: 700; color: var(--dim); line-height: 1.1; }
+    .dcell small { font-size: 11px; font-weight: 600; }
+    .dcell.wk span { border-color: rgba(242,196,109,0.45); }
+    .dcell input:checked + span { background: var(--teal); border-color: var(--teal); color: var(--teal-ink); }
+    .dcell input:checked + span b { color: var(--teal-ink); }
+    .dcell.wk input:checked + span { background: var(--gold); border-color: var(--gold); color: #3b2a06; }
+    .dcell.wk input:checked + span b { color: #3b2a06; }
+    .dcell input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 1px; }
+    .strip-legend { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; font-size: 11.5px; color: var(--faint); }
+    .strip-legend .wk-l { grid-column: 3 / 6; text-align: center; border-top: 2px solid var(--gold); padding-top: 3px; border-radius: 1px; }
+    .strip-legend .wk-l { color: var(--gold); }
+    .guess { font-size: 12.5px; color: var(--teal); min-height: 18px; margin-top: 4px; }
 
-    .rsvp-card {
-      background: var(--card);
-      border: 1px solid var(--border-strong);
-      color: var(--foreground);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-md);
+    .switch { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); margin-top: 8px; font-size: 14px; cursor: pointer; }
+    .switch small { display: block; color: var(--faint); font-size: 12px; }
+    .switch input { appearance: none; -webkit-appearance: none; width: 42px; height: 24px; border-radius: 999px; background: var(--line-strong); position: relative; flex-shrink: 0; cursor: pointer; transition: background .15s; }
+    .switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--ink); transition: transform .15s; }
+    .switch input:checked { background: var(--teal); }
+    .switch input:checked::after { transform: translateX(18px); background: #fff; }
+    .switch[hidden], #daysInner[hidden], #missYou[hidden] { display: none; }
+
+    .miss { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; color: var(--dim); font-size: 14px; }
+
+    textarea { min-height: 64px; resize: vertical; font-size: 15px; }
+
+    /* Dock */
+    .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: rgba(14,20,36,0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); padding: 10px 0 calc(10px + env(safe-area-inset-bottom)); }
+    .dock .wrap { display: flex; align-items: center; gap: 12px; }
+    .dock-status { flex: 1; font-size: 13px; color: var(--dim); line-height: 1.3; }
+    .dock-status.err { color: var(--danger); }
+    .send { border: 0; border-radius: 999px; padding: 12px 22px; background: var(--teal); color: var(--teal-ink); font-weight: 700; font-size: 15px; cursor: pointer; white-space: nowrap; }
+    .send:disabled { opacity: 0.55; cursor: progress; }
+    .send.muted { background: var(--surface-2); color: var(--dim); }
+
+    /* Done */
+    .done { margin-top: 22px; background: var(--surface); border: 1px solid rgba(45,212,191,0.45); border-radius: var(--r-lg); padding: 18px; }
+    .done[hidden] { display: none; }
+    .done h2 { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -0.015em; }
+    .done p { color: var(--dim); font-size: 14px; margin-top: 4px; }
+    .done ul { list-style: none; margin: 12px 0 14px; display: grid; gap: 4px; font-size: 14px; }
+    .done li::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); margin-right: 8px; vertical-align: middle; }
+    .ghost { margin-top: 10px; width: 100%; background: transparent; border: 1px solid var(--line-strong); border-radius: 999px; padding: 10px; color: var(--ink); font-weight: 600; cursor: pointer; }
+
+    /* Who's in town */
+    .board { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; }
+    .board-row { display: grid; grid-template-columns: 76px repeat(8, 1fr); gap: 4px; align-items: center; padding: 4px 0; font-size: 13px; }
+    .board-row .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink); }
+    .board-row.head { color: var(--faint); font-size: 11px; text-align: center; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 2px; }
+    .board-row.head .wk-h { color: var(--gold); }
+    .board-row.count { color: var(--dim); font-size: 11.5px; text-align: center; border-top: 1px solid var(--line); margin-top: 2px; padding-top: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto; background: var(--line); }
+    .dot.on { background: var(--teal); }
+    .dot.on.wk { background: var(--gold); }
+    .board-empty { color: var(--faint); font-size: 13px; padding: 6px 0; }
+
+    footer { margin-top: 30px; color: var(--faint); font-size: 12.5px; text-align: center; }
+    footer a { color: var(--dim); }
+
+    @media (min-width: 480px) {
+      .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .big30 { font-size: 120px; }
     }
-    .rsvp-card input, .rsvp-card select {
-      width: 100%;
-      padding: 11px 14px;
-      border-radius: 8px;
-      background: var(--surface-2);
-      border: 1px solid var(--border-strong);
-      color: var(--ink);
-      font-size: 14px;
-      margin-bottom: 12px;
-      font-family: inherit;
+    @media (max-width: 360px) {
+      .big30 { font-size: 84px; }
+      .hero h1 { font-size: 22px; }
+      .ev-row { grid-template-columns: 36px 1fr auto; gap: 8px; }
+      .yn span { min-width: 38px; padding: 7px 8px; }
     }
-    .rsvp-card select option { background: #1a2333; color: #f1f5f9; }
-    .btn {
-      font-family: inherit; font-size: 14px; font-weight: 600;
-      padding: 11px 20px; border-radius: 8px; border: none;
-      cursor: pointer; display: inline-flex; align-items: center;
-      justify-content: center; gap: 8px; text-decoration: none;
-      transition: all 0.15s ease;
-    }
-    .btn-teal { background: var(--teal); color: #042f2e; }
-    .btn-teal:hover { background: #5eead4; }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border-strong);
-      color: var(--ink);
-    }
-    .btn-outline:hover { background: var(--surface-2); }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
 <body>
-
-  <header class="app-bar">
-    <div class="app-bar-inner">
-      <div class="app-brand">
-        <span>🎒 MY-HANGS</span>
-        <span class="app-badge">PARIS 30TH</span>
-      </div>
-      <div>
-        <a href="#rsvp" class="btn btn-teal" style="padding: 8px 14px; font-size: 13px;">RSVP</a>
-      </div>
+  <header class="top">
+    <div class="wrap">
+      <nav class="tabs" aria-label="Page">
+        <a href="./" aria-current="page">RSVP</a>
+        <a href="archive/">Archive</a>
+      </nav>
+      <a class="top-tg" href="https://t.me/+42YGzk_Ejfo3OTI8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.8c.9-.3 1.7.2 1.4 1.5Z"/></svg>
+        Chat
+      </a>
     </div>
   </header>
 
-  <main class="container">
-
-    <div class="invite-eyebrow">Paris Meet-Up · Oct 16–18</div>
-    <h1 class="invite-heading">Come hang in Paris: Isaque turns 30.</h1>
-    <p class="invite-subtitle">
-      An open invitation to the broader MY-SIG community: come hang in Paris with friends from throughout Europe. Canal drinks Friday, morning 5K Saturday if you run, big long-table dinner Saturday night, and Sunday park brunch.
-    </p>
-
-    <div class="hang-card">
-      <div class="hang-cover">
-        <span class="hang-emoji">🎂</span>
+  <main class="wrap">
+    <section class="hero">
+      <div class="big30" aria-hidden="true">30</div>
+      <div>
+        <p class="hello" id="hello">Hi there,</p>
+        <h1>Isaque's birthday weekend in Paris</h1>
+        <p class="when">Friday 16 to Sunday 18 October</p>
       </div>
-      <div class="hang-body">
-        <div class="pill-group">
-          <span class="pill pill-teal">🎉 Birthday Hang</span>
-          <span class="pill">📍 Paris, France</span>
-          <span class="pill pill-amber">🗓️ Oct 16 – 18, 2026</span>
-          <span class="pill" id="crew-count-badge">👥 2 Confirmed</span>
+    </section>
+
+    <a class="tg" href="https://t.me/+42YGzk_Ejfo3OTI8" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.8c.9-.3 1.7.2 1.4 1.5Z"/></svg>
+      <div><b>Join the group chat on Telegram</b><span>Meeting points, live updates and questions</span></div>
+    </a>
+
+    <details class="letter" id="letter">
+      <summary><span>Read the plan <small>Schedule and what to bring</small></span><span class="chev" aria-hidden="true">▾</span></summary>
+      <div class="letter-body">
+        <p>Hello cousins. Here's the plan:</p>
+        <h4>Friday</h4>
+        <ul>
+          <li><span class="t">18:00</span>Drop bags at the hostel or your place, then meet by Canal Saint-Martin for drinks. <strong>I'll bring food, and there will be pizza.</strong></li>
+        </ul>
+        <h4>Saturday</h4>
+        <ul>
+          <li><span class="t">9:30</span>5K run (optional)</li>
+          <li><span class="t">10:30</span>Coffee and drinks after the run. Join even if you didn't run.</li>
+          <li><span class="t">12:00</span>Walk to açaí bowls, plus a quick food run to stock up on snacks and takeout for the day.</li>
+          <li><span class="t">13–23h</span>Basecamp at the climbing gym, with a sauna. <strong>Climbing is 100% optional.</strong> It's a chill space with not-so-loud music, where you can talk, eat and order drinks at the bar. It should feel like a camp venue.</li>
+          <li><span class="t">23:00</span>Move to a nearby bar in the 13th to keep the night going.</li>
+        </ul>
+        <h4>Sunday</h4>
+        <ul>
+          <li><span class="t">11:30</span>Big park brunch until about 16:00: bakery haul, blankets, Spikeball, and relaxed hangs before departures.</li>
+        </ul>
+        <h4>What to pack and know</h4>
+        <ol>
+          <li><strong>Sauna:</strong> bring a swimsuit, a towel, and flip-flops if you have them.</li>
+          <li><strong>Food on Saturday:</strong> there's no seated dinner. We grab takeout beforehand, bring snacks and drinks, and buy drinks at the bar. The gym sells food too, but it's pricey.</li>
+          <li><strong>Gear:</strong> comfy shoes and clothes you can move or lounge in, a small backpack, and a power bank.</li>
+          <li><strong>Lockers:</strong> the gym is a public venue, but you can lock your things in a locker and relax like at camp.</li>
+        </ol>
+        <p>Can't wait to hang with my favourite cousins in Paris! Drop any questions in the chat.</p>
+      </div>
+    </details>
+
+    <form id="form" novalidate>
+      <fieldset class="block">
+        <legend class="block-h">You</legend>
+        <p class="block-sub">So I can reach you on the day.</p>
+        <label class="field"><span>Name</span><input id="name" name="name" autocomplete="name" required /></label>
+        <div class="two">
+          <label class="field"><span>Email</span><input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" /></label>
+          <label class="field"><span>Phone (WhatsApp)</span><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" /></label>
         </div>
+        <p class="private"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm-3 8V7a3 3 0 0 1 6 0v3H9Z"/></svg>Only Isaque sees your email and phone.</p>
+      </fieldset>
 
-        <h2 class="hang-title">The 30th Birthday Weekend</h2>
-        <p class="hang-desc">
-          Turning 30 next month. Doing a weekend in Paris October 16 to 18.
+      <section class="block" aria-labelledby="evH">
+        <h2 class="block-h" id="evH">Which parts are you coming to?</h2>
+        <p class="block-sub">Yes or no for each. Come to as much or as little as you like.</p>
+        <div id="events"></div>
+      </section>
 
-          Plan is simple: canal drinks Friday night, easy 5K Saturday morning if you run, big long-table dinner Saturday night, and Sunday brunch in the park.
-
-          For places to sleep: we're booking out whole 6-bed dorms in a hostel nearby so everyone can bunk together for around 40 euros a night. If you'd rather grab your own hotel or crash with other friends, that works too.
-
-          People are already pulling up. The RSVP is just to get the headcount straight — yes, half down, or out all help.
-        </p>
-
-        <div class="host-box">
-          <div class="avatar">IS</div>
-          <div>
-            <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--ink-faint);">Hosted by</div>
-            <div style="font-size: 15px; font-weight: 700;">Isaque Seneda</div>
-            <div style="font-size: 13px; color: var(--ink-dim);">Paris, France</div>
+      <section class="block" id="daysBlock" aria-labelledby="daysH" hidden>
+        <h2 class="block-h" id="daysH">Which days are you in Paris?</h2>
+        <div id="missYou" class="miss" hidden>Sad to miss you this time. Send your answers anyway so I know, and come say hi in the chat.</div>
+        <div id="daysInner">
+          <label class="switch"><span>I live in Paris</span><input type="checkbox" id="local" /></label>
+          <div id="travel">
+            <div class="strip" id="strip" role="group" aria-label="Days in Paris, Wednesday 14 to Wednesday 21 October" title="October"></div>
+            <div class="strip-legend"><span class="wk-l">The weekend</span></div>
+            <p class="guess" id="guess" aria-live="polite"></p>
+            <label class="switch" id="showDaysRow"><span>Show my days on the public list<small>Only your first name and the days. You can change this later.</small></span><input type="checkbox" id="showDays" checked /></label>
           </div>
         </div>
+      </section>
 
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <button class="btn btn-teal" onclick="document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'})">
-            RSVP →
-          </button>
-          <button class="btn btn-outline" onclick="downloadIcs()">
-            📅 Add to Calendar (.ics)
-          </button>
-        </div>
-      </div>
-    </div>
+      <section class="block">
+        <label class="field"><span>Anything else? (optional)</span><textarea id="note" maxlength="500" placeholder="Bringing a friend, arriving late, questions…"></textarea></label>
+      </section>
+    </form>
 
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">🛏️ Where to Sleep</h3>
-        <p class="card-desc">Two clear options. Pick whatever fits your budget and plans.</p>
-      </div>
+    <section class="done" id="done" hidden aria-live="polite">
+      <h2 id="doneH">Saved. See you in Paris!</h2>
+      <p id="doneP"></p>
+      <ul id="doneList"></ul>
+      <a class="tg" href="https://t.me/+42YGzk_Ejfo3OTI8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.8c.9-.3 1.7.2 1.4 1.5Z"/></svg>
+        <div><b>Join the group chat on Telegram</b><span>Everything on the day happens there</span></div>
+      </a>
+      <button type="button" class="ghost" id="editBtn">Change my answers</button>
+    </section>
 
-      <div class="accom-grid">
-        <div class="accom-option">
-          <div>
-            <h4>Option 1: 6-Bed Shared Hostel Dorms</h4>
-            <p>We're booking out private 6-person rooms at a hostel in Belleville / Canal Saint-Martin so we can all bunk together as a squad.</p>
-          </div>
-          <span class="accom-tag">~€40 / NIGHT · SQUAD ROOM</span>
-        </div>
-        <div class="accom-option">
-          <div>
-            <h4>Option 2: Your Own Hotel / Airbnb / Friends</h4>
-            <p>Grab your own private room or crash with friends you already have in Paris. Just pull up to the hangs.</p>
-          </div>
-          <span class="accom-tag">INDEPENDENT · FLEXIBLE</span>
-        </div>
-      </div>
-    </div>
+    <section class="block" aria-labelledby="boardH">
+      <h2 class="block-h" id="boardH">Who's in Paris when</h2>
+      <p class="block-sub">People who chose to share their days.</p>
+      <div class="board" id="board"><p class="board-empty">Loading…</p></div>
+    </section>
 
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">👥 Live RSVP Board <span style="font-size: 11px; font-weight: 600; color: var(--ink-faint); font-family: 'JetBrains Mono', monospace;"><span class="live-dot"></span>LIVE</span></h3>
-        <p class="card-desc">Yes and maybe responses appear here instantly. No responses always stay private.</p>
-      </div>
-      <div class="confirmed-grid" id="confirmedGrid"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">⏱️ Weekend Schedule</h3>
-        <p class="card-desc">October 16–18, 2026</p>
-      </div>
-
-      <div class="itin-row">
-        <div class="itin-time">FRI · 18:00 – LATE</div>
-        <div class="itin-info">
-          <h4>Canal Saint-Martin Drinks</h4>
-          <p>Drop bags at the dorms, meet by the canal for wine and bread.</p>
-        </div>
-      </div>
-      <div class="itin-row">
-        <div class="itin-time">SAT · 09:30 – 11:30</div>
-        <div class="itin-info">
-          <h4>Morning 5K &amp; Açaí Bowls</h4>
-          <p>Easy social run, then refuel with Brazilian açaí bowls and coffee together.</p>
-        </div>
-      </div>
-      <div class="itin-row">
-        <div class="itin-time">SAT · 14:00 – 18:30</div>
-        <div class="itin-info">
-          <h4>Bouldering, Hangs &amp; Pizza</h4>
-          <p>Climbing gym session + communal lounge chill. Pizza delivery, bar drinks, and good vibes.</p>
-        </div>
-      </div>
-      <div class="itin-row">
-        <div class="itin-time">SAT · 20:30 – LATE</div>
-        <div class="itin-info">
-          <h4>The 30th Birthday Dinner &amp; Night Out</h4>
-          <p>Long table dinner in a classic Parisian bistro. Big feast, toasts, wine, and drinks into the night.</p>
-        </div>
-      </div>
-      <div class="itin-row">
-        <div class="itin-time">SUN · 11:30 – 16:00</div>
-        <div class="itin-info">
-          <h4>Big Park Brunch &amp; Spikeball</h4>
-          <p>Pastries and bread from local bakeries, lawn blankets, Spikeball matches, and lazy afternoon park hangs.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="rsvp-card" id="rsvp">
-      <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">💌 RSVP</h3>
-      <p style="font-size: 13px; color: var(--ink-faint); margin-bottom: 20px;">
-        This is just a headcount for now. Half down? Choose maybe. A clear no helps too—and stays private.
-      </p>
-
-      <form id="rsvpForm" onsubmit="handlePublicRsvp(event)">
-        <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">Your Name</label>
-        <input type="text" id="p-name" name="name" placeholder="Name" required />
-
-        <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">City You're Coming From</label>
-        <input type="text" id="p-city" name="city" placeholder="e.g. Amsterdam / London / Zurich" required />
-
-        <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">Will you pull up? (Oct 16–18)</label>
-        <select id="p-avail" name="attendance">
-          <option value="yes">Yes — I'm pulling up</option>
-          <option value="maybe">Maybe — I'm half down / checking travel</option>
-          <option value="no">No — can't make this one (kept private)</option>
-        </select>
-
-        <label style="font-size: 12px; font-weight: 600; color: var(--ink-dim); display: block; margin-bottom: 4px;">Sleeping preference</label>
-        <select id="p-accom" name="accommodation">
-          <option value="hostel">Bunk in the 6-person shared hostel dorm (~€40/night)</option>
-          <option value="own">Booking my own hotel / Airbnb / staying with friends</option>
-        </select>
-
-        <div id="publicityField" style="margin: 14px 0 18px;">
-          <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-dim); cursor: pointer;">
-            <input type="checkbox" id="p-public" name="showPublic" checked style="width: 16px; height: 16px; margin: 0; accent-color: var(--teal);" />
-            Show my name on the live RSVP board
-          </label>
-          <p style="font-size: 11px; color: var(--ink-faint); margin-top: 4px; padding-left: 24px;">
-            Yes and maybe can appear by name or as “Guest.” Responses marked “No” are never published.
-          </p>
-        </div>
-
-        <button type="submit" id="submitBtn" class="btn btn-teal" style="width: 100%; padding: 12px; font-size: 15px; margin-top: 8px;">
-          Send RSVP →
-        </button>
-        <p id="rsvpStatus" class="rsvp-status" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-
+    <footer>
+      Looking for the first invite page? It's in the <a href="archive/">archive</a>.
+    </footer>
   </main>
 
+  <div class="dock" id="dock">
+    <div class="wrap">
+      <p class="dock-status" id="status" role="status" aria-live="polite"></p>
+      <button type="submit" form="form" class="send" id="send">Send answers</button>
+    </div>
+  </div>
+
   <script>
-    const API = "https://isaque-rsvp-api.vercel.app/api/rsvp";
-    const FORM_ENDPOINT = API;
-    const attendanceSelect = document.getElementById('p-avail');
-    const publicityField = document.getElementById('publicityField');
-    const publicityCheckbox = document.getElementById('p-public');
-    let lastPublicPreference = publicityCheckbox.checked;
+  (function () {
+    const API = 'https://isaque-rsvp-api.vercel.app/api/rsvp';
+    const STORE = 'bday30-v2';
 
-    function syncPublicityQuestion() {
-      const isDeclining = attendanceSelect.value === 'no';
+    const EVENTS = [
+      { key: 'fri', day: '2026-10-16', time: '18:00', title: 'Drinks by the canal', sub: "Canal Saint-Martin. I'll bring food, and there's pizza." },
+      { key: 'run', day: '2026-10-17', time: '9:30', title: '5K run', sub: 'Easy pace, coffee after' },
+      { key: 'acai', day: '2026-10-17', time: '12:00', title: 'Açaí bowls', sub: 'Plus a food run for the day' },
+      { key: 'climb', day: '2026-10-17', time: '13:00', title: 'Climbing gym basecamp', sub: 'Until 23:00. Climbing is optional.' },
+      { key: 'after', day: '2026-10-17', time: '23:00', title: 'Drinks after', sub: 'A bar nearby, in the 13th' },
+      { key: 'brunch', day: '2026-10-18', time: '11:30', title: 'Park brunch', sub: 'Bakery haul, blankets, Spikeball' }
+    ];
+    const DAY_NAMES = { '2026-10-16': ['Friday', '16 Oct'], '2026-10-17': ['Saturday', '17 Oct'], '2026-10-18': ['Sunday', '18 Oct'] };
+    const FOOD = [['vegetarian', 'Vegetarian'], ['vegan', 'Vegan'], ['gluten-free', 'Gluten-free'], ['lactose-free', 'Lactose-free'], ['halal', 'Halal'], ['no-pork', 'No pork']];
+    const DAYS = [];
+    for (let d = 14; d <= 21; d++) DAYS.push('2026-10-' + d);
+    const WEEKDAY = ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed'];
+    const WEEKEND = new Set(['2026-10-16', '2026-10-17', '2026-10-18']);
 
-      if (isDeclining) {
-        lastPublicPreference = publicityCheckbox.checked;
-        publicityCheckbox.checked = false;
-        publicityCheckbox.disabled = true;
-        publicityField.hidden = true;
-        return;
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const store = {
+      get() { try { return JSON.parse(localStorage.getItem(STORE) || 'null'); } catch (e) { return null; } },
+      set(v) { try { localStorage.setItem(STORE, JSON.stringify(v)); } catch (e) {} }
+    };
+
+    // ---- Personal link: everything lives in the #hash, never sent to a server ----
+    function readLink() {
+      const m = location.hash.match(/[#&]i=([A-Za-z0-9_-]+)/);
+      if (!m) return null;
+      try {
+        const b64 = m[1].replace(/-/g, '+').replace(/_/g, '/');
+        const bin = atob(b64 + '==='.slice((b64.length + 3) % 4));
+        const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+        return JSON.parse(new TextDecoder().decode(bytes));
+      } catch (e) { return null; }
+    }
+
+    // ---- Build the event rows ----
+    function radio(name, value, label, cls) {
+      return `<label><input type="radio" name="${name}" value="${value}"${cls ? ` data-${cls}` : ''}><span>${label}</span></label>`;
+    }
+    let html = '';
+    let lastDay = '';
+    for (const ev of EVENTS) {
+      if (ev.day !== lastDay) {
+        html += `<h3 class="day-h">${DAY_NAMES[ev.day][0]} <small>${DAY_NAMES[ev.day][1]}</small></h3>`;
+        lastDay = ev.day;
       }
-
-      publicityField.hidden = false;
-      publicityCheckbox.disabled = false;
-      publicityCheckbox.checked = lastPublicPreference;
-    }
-
-    publicityCheckbox.addEventListener('change', () => {
-      lastPublicPreference = publicityCheckbox.checked;
-    });
-    attendanceSelect.addEventListener('change', syncPublicityQuestion);
-    syncPublicityQuestion();
-
-    function initials(name) {
-      if (!name) return "👤";
-      const parts = name.trim().split(/\s+/);
-      return ((parts[0][0] || "") + (parts[1] ? parts[1][0] : "")).toUpperCase();
-    }
-
-    function renderCrew(rsvps) {
-      const grid = document.getElementById('confirmedGrid');
-      grid.innerHTML = "";
-
-      // Host card always first
-      grid.insertAdjacentHTML('beforeend', `
-        <div class="confirmed-card">
-          <div class="avatar-sm" style="background: linear-gradient(135deg, #2dd4bf, #0d9488); color: #042f2e;">IS</div>
-          <div class="confirmed-meta">
-            <h5>Isaque Seneda <span class="confirmed-badge">HOST</span></h5>
-            <span>PARIS</span>
+      let follow = '';
+      if (ev.key === 'fri') {
+        follow = `<div class="follow" data-for="fri" hidden>
+          <p class="follow-q">Any food restrictions? Pick any that apply.</p>
+          <div class="chips">${FOOD.map(([v, l]) => `<label class="chip"><input type="checkbox" name="food" value="${v}"><span>${l}</span></label>`).join('')}</div>
+          <label class="field"><span class="sr">Allergies or other food notes</span><input id="foodNote" maxlength="200" placeholder="Allergies or anything else (optional)"></label>
+        </div>`;
+      }
+      if (ev.key === 'climb') {
+        follow = `<div class="follow" data-for="climb" hidden>
+          <p class="follow-q">At the gym, you'll…</p>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" id="gChill"><span>Chill in the lounge</span></label>
+            <label class="chip"><input type="checkbox" id="gClimb"><span>Climb</span></label>
+            <label class="chip"><input type="checkbox" id="gSauna"><span>Sauna</span></label>
           </div>
-        </div>`);
-
-      // Confirmed guests first, followed by people still checking travel.
-      const confirmed = rsvps.filter(r => (r.attendance || '').toLowerCase() === 'yes');
-      const maybes = rsvps.filter(r => (r.attendance || '').toLowerCase() === 'maybe');
-
-      function insertGuest(r, badge, badgeClass = '') {
-        const displayName = r.showPublic ? (r.name || 'Guest') : 'Guest';
-        const di = r.showPublic ? initials(r.name) : '👤';
-        const city = r.showPublic && r.city ? r.city : 'PRIVATE';
-        grid.insertAdjacentHTML('beforeend', `
-          <div class="confirmed-card">
-            <div class="avatar-sm">${escapeHtml(di)}</div>
-            <div class="confirmed-meta">
-              <h5>${escapeHtml(displayName)} <span class="confirmed-badge ${badgeClass}">${badge}</span></h5>
-              <span>${escapeHtml(city.toUpperCase())}</span>
-            </div>
-          </div>`);
+          <div class="sub-q" id="shoesQ" hidden><span>Need climbing shoes?</span><div class="yn sm" role="radiogroup" aria-label="Need climbing shoes?">${radio('shoes', 'yes', 'Yes')}${radio('shoes', 'no', 'No')}</div></div>
+          <p class="tip" id="saunaTip" hidden>Bring a swimsuit, a towel and flip-flops.</p>
+        </div>`;
       }
+      html += `<div class="ev" id="ev-${ev.key}" role="group" aria-labelledby="t-${ev.key}">
+        <div class="ev-row">
+          <span class="ev-time">${ev.time}</span>
+          <div><div class="ev-title" id="t-${ev.key}">${ev.title}</div><div class="ev-sub">${ev.sub}</div></div>
+          <div class="yn">${radio('ev-' + ev.key, 'yes', 'Yes')}${radio('ev-' + ev.key, 'no', 'No')}</div>
+        </div>${follow}
+      </div>`;
+    }
+    $('events').innerHTML = html;
 
-      confirmed.forEach(r => insertGuest(r, 'IN'));
+    $('strip').innerHTML = DAYS.map((d, i) =>
+      `<label class="dcell${WEEKEND.has(d) ? ' wk' : ''}"><input type="checkbox" name="day" value="${d}" aria-label="${WEEKDAY[i]} ${+d.slice(8)} October"><span><small>${WEEKDAY[i]}</small><b>${+d.slice(8)}</b></span></label>`
+    ).join('');
 
-      if (maybes.length) {
-        grid.insertAdjacentHTML('beforeend', '<div class="crew-section-label">Checking travel</div>');
-        maybes.forEach(r => insertGuest(r, 'MAYBE', 'maybe-badge'));
-      }
+    // ---- State helpers ----
+    const answer = (key) => (document.querySelector(`input[name="ev-${key}"]:checked`) || {}).value || null;
+    const setRadio = (name, v) => { const el = document.querySelector(`input[name="${name}"][value="${v}"]`); if (el) el.checked = true; };
+    const dayBoxes = () => [...document.querySelectorAll('input[name="day"]')];
+    let daysTouched = false;
+    let person = { id: '' };
 
-      const badge = document.getElementById('crew-count-badge');
-      if (badge) {
-        badge.textContent = `👥 ${1 + confirmed.length} Confirmed${maybes.length ? ` · ${maybes.length} Maybe` : ''}`;
-      }
+    function guessDays() {
+      const yesDays = EVENTS.filter((e) => answer(e.key) === 'yes').map((e) => e.day).sort();
+      if (!yesDays.length) return [];
+      const from = yesDays[0], to = yesDays[yesDays.length - 1];
+      return DAYS.filter((d) => d >= from && d <= to);
     }
 
-    function escapeHtml(s) {
-      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    }
-
-    async function loadCrew() {
-      try {
-        const res = await fetch(`${API}?t=${Date.now()}`, {
-          cache: 'no-store',
-          headers: { 'Accept': 'application/json' }
-        });
-        if (!res.ok) throw new Error(`RSVP list request failed (${res.status})`);
-        const data = await res.json();
-        renderCrew(data.rsvps || []);
-      } catch (err) {
-        console.warn("Could not load crew:", err);
-        renderCrew([]);
+    function sync() {
+      for (const ev of EVENTS) {
+        const a = answer(ev.key);
+        const box = $('ev-' + ev.key);
+        if (a) box.dataset.a = a; else delete box.dataset.a;
+        const f = box.querySelector('.follow');
+        if (f) f.hidden = a !== 'yes';
       }
+      $('shoesQ').hidden = !$('gClimb').checked;
+      $('saunaTip').hidden = !$('gSauna').checked;
+
+      const answered = EVENTS.filter((e) => answer(e.key)).length;
+      const anyYes = EVENTS.some((e) => answer(e.key) === 'yes');
+      const allNo = answered === EVENTS.length && !anyYes;
+      $('daysBlock').hidden = !anyYes && !allNo;
+      $('missYou').hidden = !allNo;
+      $('daysInner').hidden = !anyYes;
+      $('travel').hidden = $('local').checked;
+
+      if (anyYes && !daysTouched && !$('local').checked) {
+        const g = new Set(guessDays());
+        dayBoxes().forEach((b) => { b.checked = g.has(b.value); });
+        $('guess').textContent = g.size ? 'Filled in from your answers. Tap a day to change it.' : '';
+      }
+      $('showDaysRow').hidden = !dayBoxes().some((b) => b.checked);
+
+      const left = EVENTS.length - answered;
+      const status = $('status');
+      status.classList.remove('err');
+      status.textContent = left ? `${left} of ${EVENTS.length} still to answer` : 'All answered. Ready to send.';
+      $('send').classList.toggle('muted', left > 0);
     }
 
-    async function handlePublicRsvp(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      const name = document.getElementById('p-name').value.trim();
-      const city = document.getElementById('p-city').value.trim();
-      const avail = document.getElementById('p-avail').value;
-      const accom = document.getElementById('p-accom').value;
-      const isPublic = avail !== 'no' && publicityCheckbox.checked;
-      const status = document.getElementById('rsvpStatus');
+    $('form').addEventListener('input', (e) => { if (e.target.matches('.field input')) sync(); });
+    $('form').addEventListener('change', (e) => {
+      if (e.target.name === 'day') { daysTouched = true; $('guess').textContent = ''; }
+      sync();
+    });
 
-      btn.disabled = true;
-      btn.textContent = "Sending...";
-      status.className = 'rsvp-status';
-      status.textContent = '';
+    // ---- Fill from storage or personal link ----
+    function fill(saved) {
+      if (!saved) return;
+      $('name').value = saved.name || '';
+      $('email').value = saved.email || '';
+      $('phone').value = saved.phone || '';
+      for (const [k, v] of Object.entries(saved.events || {})) setRadio('ev-' + k, v);
+      document.querySelectorAll('input[name="food"]').forEach((b) => { b.checked = (saved.food || []).includes(b.value); });
+      $('foodNote').value = saved.foodNote || '';
+      const c = saved.climbing || {};
+      $('gChill').checked = !!c.chill; $('gClimb').checked = !!c.climb; $('gSauna').checked = !!c.sauna;
+      if (c.shoes) setRadio('shoes', c.shoes);
+      $('local').checked = !!saved.local;
+      if (Array.isArray(saved.days) && saved.days.length) {
+        daysTouched = true;
+        dayBoxes().forEach((b) => { b.checked = saved.days.includes(b.value); });
+      }
+      $('showDays').checked = saved.showDays !== false;
+      $('note').value = saved.note || '';
+    }
 
-      const payload = {
-        name, city, attendance: avail, accommodation: accom,
-        showPublic: isPublic, timestamp: new Date().toISOString()
+    const fromLink = readLink();
+    const saved = store.get();
+    if (fromLink && fromLink.id) {
+      person = { id: String(fromLink.id), name: fromLink.n || '', email: fromLink.e || '', phone: fromLink.p || '', local: fromLink.l === 1 };
+      // Strip the private details from the address bar so a forwarded link stays generic.
+      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    } else if (saved && saved.person) {
+      person = saved.person;
+    }
+    if (saved && saved.answers && (!fromLink || saved.person?.id === person.id)) {
+      fill(saved.answers);
+    } else {
+      $('name').value = person.name || '';
+      $('email').value = person.email || '';
+      $('phone').value = person.phone || '';
+      $('local').checked = !!person.local;
+    }
+    const firstName = (n) => String(n || '').trim().split(/\s+/)[0];
+    if (person.name) $('hello').textContent = `Hi ${firstName(person.name)},`;
+    sync();
+
+    // ---- Submit ----
+    function collect() {
+      const events = {};
+      EVENTS.forEach((e) => { events[e.key] = answer(e.key); });
+      return {
+        v: 2,
+        id: person.id || '',
+        name: $('name').value.trim(),
+        email: $('email').value.trim(),
+        phone: $('phone').value.trim(),
+        events,
+        food: [...document.querySelectorAll('input[name="food"]:checked')].map((b) => b.value),
+        foodNote: $('foodNote').value.trim(),
+        climbing: { chill: $('gChill').checked, climb: $('gClimb').checked, sauna: $('gSauna').checked, shoes: (document.querySelector('input[name="shoes"]:checked') || {}).value || null },
+        local: $('local').checked,
+        days: $('local').checked ? [] : dayBoxes().filter((b) => b.checked).map((b) => b.value),
+        showDays: $('showDays').checked,
+        note: $('note').value.trim()
       };
+    }
 
+    function fail(msg, focusEl) {
+      const s = $('status');
+      s.classList.add('err');
+      s.textContent = msg;
+      if (focusEl) { focusEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(() => focusEl.focus({ preventScroll: true }), 300); }
+    }
+
+    $('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = collect();
+      if (!data.name) return fail('Add your name first.', $('name'));
+      if (!data.email && !data.phone) return fail('Add an email or a phone number.', $('email'));
+      if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return fail('That email looks incomplete.', $('email'));
+      const missing = EVENTS.find((ev) => !data.events[ev.key]);
+      if (missing) return fail(`Answer yes or no for “${missing.title}”.`, document.querySelector(`input[name="ev-${missing.key}"]`));
+
+      const btn = $('send');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      $('status').classList.remove('err'); $('status').textContent = '';
       try {
-        const res = await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || data.success !== true) {
-          throw new Error(data.error || `RSVP request failed (${res.status})`);
-        }
-
-        await loadCrew();
-        btn.textContent = "RSVP Sent ✓";
-        status.textContent = avail === 'yes'
-          ? `Got it, ${isPublic ? name : 'Guest'} — you're on the confirmed crew.`
-          : avail === 'maybe'
-            ? `Got it, ${isPublic ? name : 'Guest'} — you're live under “Checking travel.”`
-            : `Got it, ${name}. Thanks — your “no” stays private and helps me plan.`;
-        setTimeout(() => { btn.textContent = "Send RSVP →"; }, 2500);
+        const res = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || body.success !== true) throw new Error(body.error || `Request failed (${res.status})`);
+        store.set({ person: { ...person, name: data.name, email: data.email, phone: data.phone }, answers: data, sentAt: new Date().toISOString() });
+        showDone(data);
+        loadBoard();
       } catch (err) {
-        console.warn("RSVP submission failed:", err);
-        btn.textContent = "Try RSVP again";
-        status.className = 'rsvp-status error';
-        status.textContent = "Your RSVP was not saved. Please try again in a moment.";
+        fail(`Not saved: ${err.message} Check your connection and send again.`);
       } finally {
-        btn.disabled = false;
+        btn.disabled = false; btn.textContent = 'Send answers';
+      }
+    });
+
+    function showDone(data) {
+      if (data.name) $('hello').textContent = `Hi ${firstName(data.name)},`;
+      const going = EVENTS.filter((ev) => data.events[ev.key] === 'yes');
+      $('doneH').textContent = going.length ? `Saved. See you in Paris, ${firstName(data.name)}!` : `Saved. Thanks, ${firstName(data.name)}.`;
+      $('doneP').textContent = going.length ? "You're down for:" : "Sad to miss you this time. You can change your answers any time.";
+      $('doneList').innerHTML = going.map((ev) => `<li>${DAY_NAMES[ev.day][0].slice(0, 3)} ${ev.time}, ${esc(ev.title)}</li>`).join('');
+      $('form').hidden = true; $('dock').hidden = true;
+      $('done').hidden = false;
+      $('done').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    $('editBtn').addEventListener('click', () => {
+      $('done').hidden = true; $('form').hidden = false; $('dock').hidden = false;
+      $('form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ---- Public board: first names and days only ----
+    async function loadBoard() {
+      const board = $('board');
+      try {
+        const res = await fetch(`${API}?t=${Date.now()}`, { cache: 'no-store', headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(res.status);
+        const list = ((await res.json()).inTown || []).sort((a, b) => (a.days[0] || '').localeCompare(b.days[0] || '') || a.name.localeCompare(b.name));
+        if (!list.length) { board.innerHTML = '<p class="board-empty">Nobody has shared their days yet. Be the first.</p>'; return; }
+        const counts = DAYS.map((d) => list.filter((p) => p.days.includes(d)).length);
+        board.innerHTML =
+          `<div class="board-row head"><span></span>${DAYS.map((d, i) => `<span class="${WEEKEND.has(d) ? 'wk-h' : ''}">${WEEKDAY[i].slice(0, 2)}<br>${+d.slice(8)}</span>`).join('')}</div>` +
+          list.map((p) => `<div class="board-row"><span class="nm">${esc(p.name)}</span>${DAYS.map((d) => `<span class="dot${p.days.includes(d) ? ' on' : ''}${WEEKEND.has(d) ? ' wk' : ''}"></span>`).join('')}</div>`).join('') +
+          `<div class="board-row count"><span style="text-align:left">In town</span>${counts.map((c) => `<span>${c || ''}</span>`).join('')}</div>`;
+      } catch (e) {
+        board.innerHTML = '<p class="board-empty">The list could not load. Refresh to try again.</p>';
       }
     }
+    loadBoard();
 
-    function downloadIcs() {
-      const ics = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//MY-HANGS//Isaque 30th Birthday Paris//EN",
-        "CALSCALE:GREGORIAN",
-        "METHOD:PUBLISH",
-        "BEGIN:VEVENT",
-        "SUMMARY:🎂 Isaque's 30th Birthday in Paris",
-        "DESCRIPTION:Weekend in Paris with friends from throughout Europe. 6-person shared hostel dorms, canal drinks, Saturday dinner, Sunday brunch.",
-        "LOCATION:Paris, France",
-        "DTSTART:20261016T160000Z",
-        "DTEND:20261018T200000Z",
-        "STATUS:CONFIRMED",
-        "END:VEVENT",
-        "END:VCALENDAR"
-      ].join("\r\n");
-
-      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
-      const a = document.createElement('a');
-      a.href = window.URL.createObjectURL(blob);
-      a.setAttribute('download', 'isaque-30th-birthday-paris.ics');
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
-
-    loadCrew();
+    if (saved && saved.sentAt && saved.answers && (!fromLink || saved.person?.id === person.id)) showDone(saved.answers);
+  })();
   </script>
 </body>
 </html>
