@@ -373,7 +373,7 @@
         { key: 'climb', time: '13:00', until: 'to 23:00', icon: 'climb', title: 'Climbing gym basecamp',
           lines: [
             ['pin', `<a href="${GYM_MAP}" target="_blank" rel="noopener">Climb Up Porte d’Italie</a>, 18 Av. de la Porte d’Italie (13th)`],
-            ['sofa', 'Climbing is 100% optional. It’s a chill space to talk, eat and order drinks, with a sauna and lockers. Camp vibes.'],
+            ['sofa', 'Climbing and sauna are optional. If you just come to hang, there’s no entry fee: it’s like a big, roomy café with space to chat. Maybe grab a drink.'],
             ['bag', 'Bring comfy clothes, a power bank, and your own snacks: the food there is pricey.', 'bring']
           ] },
         { key: 'after', time: '23:00', until: 'until late', icon: 'beer', title: 'Drinks after',
@@ -425,7 +425,7 @@
       if (key === 'climb') return `<div class="follow" data-for="climb" hidden>
         <p class="follow-q">At the gym, you'll…</p>
         <div class="toggles">
-          <label class="tog"><input type="checkbox" id="gChill"><span>${icon('sofa')}Chill in the lounge</span></label>
+          <label class="tog"><input type="checkbox" id="gChill"><span>${icon('sofa')}Just hang (free)</span></label>
           <label class="tog"><input type="checkbox" id="gClimb"><span>${icon('climb')}Climb</span></label>
           <label class="tog"><input type="checkbox" id="gSauna"><span>${icon('steam')}Sauna</span></label>
         </div>
