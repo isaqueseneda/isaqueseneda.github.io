@@ -87,9 +87,10 @@
     .stops .stop:last-child::before { bottom: auto; height: 26px; }
     .station { position: relative; z-index: 1; width: 18px; height: 18px; margin: 4px 0 0 6px; border-radius: 50%; background: #fff; border: 4px solid var(--c); transition: background .15s; }
     .stop[data-a="yes"] .station { background: var(--c); box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--c); }
+    .stop[data-a="maybe"] .station { background: linear-gradient(90deg, var(--c) 50%, #fff 50%); box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--c); }
     .stop[data-a="no"] .body > :not(.stop-top):not(.follow) { opacity: 0.45; }
 
-    .stop-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 30px; }
+    .stop-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 10px; min-height: 30px; }
     .time { font-size: 19px; font-weight: 750; font-stretch: 75%; color: var(--c); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
     .time small { font-size: 14px; font-weight: 500; color: var(--muted); margin-left: 4px; font-stretch: 87%; }
     .stop h3 { display: flex; align-items: center; gap: 7px; font-size: 19px; line-height: 1.2; font-weight: 700; margin-top: 2px; }
@@ -106,9 +107,11 @@
     .yn label { position: relative; cursor: pointer; }
     .yn label + label { border-left: 1.5px solid var(--rule-2); }
     .yn input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-    .yn span { display: block; min-width: 50px; text-align: center; padding: 6px 10px; font-size: 15px; font-weight: 650; color: var(--ink-2); background: #fff; transition: background .12s, color .12s; }
+    .yn span { display: block; min-width: 46px; text-align: center; padding: 6px 9px; font-size: 15px; font-weight: 650; color: var(--ink-2); background: #fff; transition: background .12s, color .12s; }
     .yn input:checked + span { background: var(--ink); color: #fff; }
     .yn input[value="yes"]:checked + span { background: var(--c); }
+    /* Maybe sits in between: a light tint of the day colour, not a third solid fill. */
+    .yn input[value="maybe"]:checked + span { background: #eef0f5; color: var(--c); background: color-mix(in srgb, var(--c) 13%, #fff); box-shadow: inset 0 0 0 1.5px var(--c); }
     .yn input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: -4px; }
     .yn.sm span { min-width: 42px; padding: 4px 8px; font-size: 14px; }
     .stop.needs .yn { border-color: var(--error); box-shadow: 0 0 0 3px rgba(180,35,24,0.15); }
@@ -148,6 +151,12 @@
     .dstop.f input:checked ~ i { background: var(--fri); border-color: var(--fri); }
     .dstop.s input:checked ~ i { background: var(--sat); border-color: var(--sat); }
     .dstop.u input:checked ~ i { background: var(--sun); border-color: var(--sun); }
+    /* A day suggested only by a "maybe": half-filled station. */
+    .dstop.soft input:checked ~ i { background: linear-gradient(90deg, var(--ink) 50%, #fff 50%); }
+    .dstop.soft.f input:checked ~ i { background: linear-gradient(90deg, var(--fri) 50%, #fff 50%); }
+    .dstop.soft.s input:checked ~ i { background: linear-gradient(90deg, var(--sat) 50%, #fff 50%); }
+    .dstop.soft.u input:checked ~ i { background: linear-gradient(90deg, var(--sun) 50%, #fff 50%); }
+    .dstop.soft input:checked ~ i::after { display: none; }
     .dstop input:focus-visible ~ i { outline: 2px solid var(--ink); outline-offset: 2px; }
     .dstop small { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1; }
     .dstop b { font-size: 17px; font-weight: 750; font-stretch: 75%; color: var(--muted); line-height: 1.2; }
@@ -201,6 +210,8 @@
     .done li { display: grid; grid-template-columns: 14px 64px 1fr; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--rule); font-size: 15.5px; }
     .done li i { width: 12px; height: 12px; border-radius: 50%; }
     .done li span { color: var(--muted); font-size: 14px; font-stretch: 87%; }
+    .done li em { font-style: normal; color: var(--muted); font-size: 14px; margin-left: 6px; }
+    .done li i.half { background: linear-gradient(90deg, currentColor 50%, #fff 50%) !important; border: 2px solid currentColor; }
     .ghost { margin-top: 10px; width: 100%; background: #fff; border: 1.5px solid var(--rule-2); border-radius: 9px; padding: 11px; font-weight: 650; cursor: pointer; }
 
     /* Who's in Paris when */
@@ -221,7 +232,7 @@
     footer { margin-top: 36px; color: var(--muted); font-size: 14px; }
 
     @media (max-width: 359px) {
-      .yn span { min-width: 42px; padding: 6px 7px; }
+      .yn span { min-width: 40px; padding: 6px 6px; font-size: 14px; }
       .brow { grid-template-columns: 66px repeat(8, 1fr); }
     }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -269,7 +280,7 @@
       <div><b>Join the group chat on Telegram</b><span>Meeting points, live updates and questions</span></div>
     </a>
 
-    <p class="letter">Here's the plan. <strong>Tap yes or no at each stop</strong>, so I know who to expect where. Come to as much or as little as you like.</p>
+    <p class="letter">Here's the plan. <strong>Tap yes, maybe or no at each stop</strong>, so I know who to expect where. Come to as much or as little as you like.</p>
 
     <form id="form" novalidate>
       <div id="agenda"></div>
@@ -432,7 +443,7 @@
             <div class="body">
               <div class="stop-top">
                 <span class="time">${s.time}${s.until ? `<small>${s.until}</small>` : ''}</span>
-                <div class="yn" aria-label="Coming to ${esc(s.title)}?">${radio('ev-' + s.key, 'yes', 'Yes')}${radio('ev-' + s.key, 'no', 'No')}</div>
+                <div class="yn" role="radiogroup" aria-label="Coming to ${esc(s.title)}?">${radio('ev-' + s.key, 'yes', 'Yes')}${radio('ev-' + s.key, 'maybe', 'Maybe')}${radio('ev-' + s.key, 'no', 'No')}</div>
               </div>
               <h3 id="t-${s.key}">${icon(s.icon)}${s.title}</h3>
               ${s.lines.map(([ic, text, kind]) => `<p class="meta${kind ? ' ' + kind : ''}">${icon(ic)}<span>${text}</span></p>`).join('')}
@@ -454,10 +465,16 @@
     let daysTouched = false;
     let person = { id: '' };
 
+    const isOn = (a) => a === 'yes' || a === 'maybe';
+    // Yes days are firm; maybe days are still suggested, but marked as soft.
+    function span(list) {
+      const days = list.map((e) => e.day).sort();
+      return days.length ? DAYS.filter((d) => d >= days[0] && d <= days[days.length - 1]) : [];
+    }
     function guessDays() {
-      const yes = EVENTS.filter((e) => answer(e.key) === 'yes').map((e) => e.day).sort();
-      if (!yes.length) return [];
-      return DAYS.filter((d) => d >= yes[0] && d <= yes[yes.length - 1]);
+      const firm = new Set(span(EVENTS.filter((e) => answer(e.key) === 'yes')));
+      const all = span(EVENTS.filter((e) => isOn(answer(e.key))));
+      return { all, soft: new Set(all.filter((d) => !firm.has(d))) };
     }
 
     function syncNudge() {
@@ -475,13 +492,13 @@
         const box = $('ev-' + ev.key);
         if (a) { box.dataset.a = a; box.classList.remove('needs'); } else delete box.dataset.a;
         const f = box.querySelector('.follow');
-        if (f) f.hidden = a !== 'yes';
+        if (f) f.hidden = !isOn(a);
       }
       $('shoesQ').hidden = !$('gClimb').checked;
       $('saunaTip').hidden = !$('gSauna').checked;
 
       const answered = EVENTS.filter((e) => answer(e.key)).length;
-      const anyYes = EVENTS.some((e) => answer(e.key) === 'yes');
+      const anyYes = EVENTS.some((e) => isOn(answer(e.key)));
       const allNo = answered === EVENTS.length && !anyYes;
       $('daysBlock').hidden = !anyYes && !allNo;
       $('missYou').hidden = !allNo;
@@ -489,9 +506,14 @@
       $('travel').hidden = $('local').checked;
 
       if (anyYes && !daysTouched && !$('local').checked) {
-        const g = new Set(guessDays());
-        dayBoxes().forEach((b) => { b.checked = g.has(b.value); });
-        $('guess').textContent = g.size ? 'Filled in from your answers. Tap a day to change it.' : '';
+        const g = guessDays();
+        dayBoxes().forEach((b) => {
+          b.checked = g.all.includes(b.value);
+          b.parentElement.classList.toggle('soft', g.soft.has(b.value));
+        });
+        $('guess').textContent = !g.all.length ? ''
+          : g.soft.size ? 'Filled in from your answers. Half-filled days come from a maybe. Tap a day to change it.'
+          : 'Filled in from your answers. Tap a day to change it.';
       }
       $('showDaysRow').hidden = !dayBoxes().some((b) => b.checked);
 
@@ -504,7 +526,10 @@
 
     $('form').addEventListener('input', (e) => { if (e.target.matches('#email, #phone')) syncNudge(); });
     $('form').addEventListener('change', (e) => {
-      if (e.target.name === 'day') { daysTouched = true; $('guess').textContent = ''; }
+      if (e.target.name === 'day') {
+        daysTouched = true; $('guess').textContent = '';
+        dayBoxes().forEach((b) => b.parentElement.classList.remove('soft'));
+      }
       sync();
     });
 
@@ -586,7 +611,7 @@
       const missing = EVENTS.find((ev) => !data.events[ev.key]);
       if (missing) {
         $('ev-' + missing.key).classList.add('needs');
-        return fail(`Yes or no for “${missing.title}”?`, document.querySelector(`input[name="ev-${missing.key}"]`));
+        return fail(`Yes, maybe or no for “${missing.title}”?`, document.querySelector(`input[name="ev-${missing.key}"]`));
       }
       if (!data.name) return fail('Add your name.', $('name'));
       if (!data.email && !data.phone) return fail('Add an email or a phone number.', $('email'));
@@ -596,14 +621,20 @@
       const btn = $('send');
       btn.disabled = true; btn.textContent = 'Sending…';
       try {
-        const res = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+        // Give up after 25 seconds so the button never stays stuck on "Sending…".
+        const ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+        const timer = ctrl && setTimeout(() => ctrl.abort(), 25000);
+        const res = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data), signal: ctrl ? ctrl.signal : undefined })
+          .finally(() => timer && clearTimeout(timer));
         const body = await res.json().catch(() => ({}));
         if (!res.ok || body.success !== true) throw new Error(body.error || `The server answered ${res.status}.`);
         store.set({ person: { ...person, name: data.name, email: data.email, phone: data.phone, telegram: data.telegram }, answers: data, sentAt: new Date().toISOString() });
         showDone(data);
         loadBoard();
       } catch (err) {
-        fail(`Not saved. ${err.message} Check your connection and send again.`);
+        fail(err.name === 'AbortError'
+          ? 'Not saved: the server took too long to answer. Tap Send answers again.'
+          : `Not saved. ${err.message} Check your connection and send again.`);
       } finally {
         btn.disabled = false; btn.textContent = 'Send answers';
       }
@@ -611,10 +642,13 @@
 
     function showDone(data) {
       greet(data.name);
-      const going = EVENTS.filter((ev) => data.events[ev.key] === 'yes');
+      const going = EVENTS.filter((ev) => isOn(data.events[ev.key]));
       $('doneH').textContent = going.length ? `Saved. See you in Paris, ${firstName(data.name)}.` : `Saved. Thanks, ${firstName(data.name)}.`;
       $('doneP').textContent = going.length ? "Your stops:" : 'Sad to miss you this time. You can change your answers any time.';
-      $('doneList').innerHTML = going.map((ev) => `<li><i style="background:${ev.color}"></i><span>${ev.dayName.slice(0, 3)} ${ev.time}</span>${esc(ev.title)}</li>`).join('');
+      $('doneList').innerHTML = going.map((ev) => {
+        const maybe = data.events[ev.key] === 'maybe';
+        return `<li><i class="${maybe ? 'half' : ''}" style="background:${ev.color};color:${ev.color}"></i><span>${ev.dayName.slice(0, 3)} ${ev.time}</span><div>${esc(ev.title)}${maybe ? '<em>maybe</em>' : ''}</div></li>`;
+      }).join('');
       $('form').hidden = true; $('dock').hidden = true; $('done').hidden = false;
       document.querySelector('.letter').hidden = true;
       $('done').scrollIntoView({ behavior: 'smooth', block: 'start' });
