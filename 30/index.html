@@ -146,21 +146,32 @@
     .dstop { position: relative; display: flex; flex-direction: column; align-items: center; cursor: pointer; padding-bottom: 2px; }
     .dstop input { position: absolute; opacity: 0; inset: 0; cursor: pointer; z-index: 2; }
     .dstop i { position: relative; z-index: 1; width: 30px; height: 30px; border-radius: 50%; background: #fff; border: 3px solid var(--rule-2); transition: background .12s, border-color .12s; display: grid; place-items: center; }
-    .dstop input:checked ~ i { background: var(--ink); border-color: var(--ink); }
-    .dstop input:checked ~ i::after { content: ""; width: 9px; height: 5px; border: solid #fff; border-width: 0 0 2.5px 2.5px; transform: translateY(-1px) rotate(-45deg); }
-    .dstop.f input:checked ~ i { background: var(--fri); border-color: var(--fri); }
-    .dstop.s input:checked ~ i { background: var(--sat); border-color: var(--sat); }
-    .dstop.u input:checked ~ i { background: var(--sun); border-color: var(--sun); }
-    /* A day suggested only by a "maybe": half-filled station. */
-    .dstop.soft input:checked ~ i { background: linear-gradient(90deg, var(--ink) 50%, #fff 50%); }
-    .dstop.soft.f input:checked ~ i { background: linear-gradient(90deg, var(--fri) 50%, #fff 50%); }
-    .dstop.soft.s input:checked ~ i { background: linear-gradient(90deg, var(--sat) 50%, #fff 50%); }
-    .dstop.soft.u input:checked ~ i { background: linear-gradient(90deg, var(--sun) 50%, #fff 50%); }
-    .dstop.soft input:checked ~ i::after { display: none; }
+    /* Each day carries a level: yes (here for sure), maybe (half), base (lives in Paris, hatched). */
+    .dstop[data-lv="yes"] i { background: var(--ink); border-color: var(--ink); }
+    .dstop[data-lv="yes"] i::after { content: ""; width: 9px; height: 5px; border: solid #fff; border-width: 0 0 2.5px 2.5px; transform: translateY(-1px) rotate(-45deg); }
+    .dstop.f[data-lv="yes"] i { background: var(--fri); border-color: var(--fri); }
+    .dstop.s[data-lv="yes"] i { background: var(--sat); border-color: var(--sat); }
+    .dstop.u[data-lv="yes"] i { background: var(--sun); border-color: var(--sun); }
+    .dstop[data-lv="maybe"] i { --h: var(--ink); background: linear-gradient(90deg, var(--h) 50%, #fff 50%); border-color: var(--h); }
+    .dstop.f[data-lv="maybe"] i { --h: var(--fri); }
+    .dstop.s[data-lv="maybe"] i { --h: var(--sat); }
+    .dstop.u[data-lv="maybe"] i { --h: var(--sun); }
+    .dstop[data-lv="base"] i, .k.base, .bdot.base { background: repeating-linear-gradient(135deg, #c3c9d5 0 2px, #f4f5f8 2px 5px); border-color: #b3bbc9; }
     .dstop input:focus-visible ~ i { outline: 2px solid var(--ink); outline-offset: 2px; }
     .dstop small { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1; }
     .dstop b { font-size: 17px; font-weight: 750; font-stretch: 75%; color: var(--muted); line-height: 1.2; }
-    .dstop input:checked ~ b { color: var(--ink); }
+    .dstop[data-lv="yes"] b, .dstop[data-lv="maybe"] b { color: var(--ink); }
+    .rail.readonly .dstop { cursor: default; }
+    .rail.readonly .dstop input { pointer-events: none; }
+
+    /* Legend shared by the day row and the public list */
+    .legend { display: grid; grid-template-columns: repeat(2, max-content); gap: 6px 22px; margin-top: 12px; font-size: 13px; color: var(--ink-2); }
+    @media (min-width: 480px) { .legend { grid-template-columns: repeat(4, max-content); } }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+    .k { width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--ink); background: #fff; display: inline-block; flex-shrink: 0; }
+    .k.yes { background: var(--ink); }
+    .k.maybe { background: linear-gradient(90deg, var(--ink) 50%, #fff 50%); }
+    .k.none { border-color: var(--rule-2); }
     .guess { font-size: 14px; color: var(--ink-2); min-height: 20px; margin-top: 8px; }
 
     .switch { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 15.5px; cursor: pointer; }
@@ -222,11 +233,11 @@
     .brow.head b { display: block; font-size: 14px; color: var(--ink-2); font-stretch: 75%; }
     .brow.count { font-size: 13px; color: var(--ink-2); text-align: center; border-top: 1px solid var(--rule); padding-top: 7px; font-weight: 600; }
     .brow.count span:first-child { text-align: left; font-weight: 500; color: var(--muted); }
-    .bdot { width: 11px; height: 11px; border-radius: 50%; margin: 0 auto; background: var(--rule); }
-    .bdot.on { background: var(--ink); }
-    .bdot.on.f { background: var(--fri); }
-    .bdot.on.s { background: var(--sat); }
-    .bdot.on.u { background: var(--sun); }
+    .bdot { --h: var(--ink); width: 13px; height: 13px; border-radius: 50%; margin: 0 auto; background: #fff; border: 2px solid var(--rule-2); }
+    .bdot.f { --h: var(--fri); } .bdot.s { --h: var(--sat); } .bdot.u { --h: var(--sun); }
+    .bdot.yes { background: var(--h); border-color: var(--h); }
+    .bdot.maybe { background: linear-gradient(90deg, var(--h) 50%, #fff 50%); border-color: var(--h); }
+    .board .legend { margin: 0 0 10px; }
     .empty { font-size: 15px; color: var(--muted); padding: 8px 0; }
 
     footer { margin-top: 36px; color: var(--muted); font-size: 14px; }
@@ -294,8 +305,9 @@
           <label class="switch"><span>I live in Paris</span><input type="checkbox" id="local" /></label>
           <div id="travel">
             <div class="rail" id="rail" role="group" aria-label="Days in Paris, Wednesday 14 to Wednesday 21 October"></div>
+            <div class="legend" aria-hidden="true"><span><i class="k yes"></i>Here for sure</span><span><i class="k maybe"></i>Maybe</span><span><i class="k base"></i>Lives in Paris</span><span><i class="k none"></i>Not there</span></div>
             <p class="guess" id="guess" aria-live="polite"></p>
-            <label class="switch" id="showDaysRow"><span>Show my days on the public list<small>Only your first name and the days.</small></span><input type="checkbox" id="showDays" checked /></label>
+            <label class="switch" id="showDaysRow"><span>Show my days on the public list<small>Only your first name and the days, as above.</small></span><input type="checkbox" id="showDays" checked /></label>
           </div>
         </div>
       </section>
@@ -472,6 +484,20 @@
       const days = list.map((e) => e.day).sort();
       return days.length ? DAYS.filter((d) => d >= days[0] && d <= days[days.length - 1]) : [];
     }
+    const LEVEL_WORDS = { yes: 'here for sure', maybe: 'maybe', base: 'lives in Paris', '': 'not there' };
+    const WEEKEND_DAYS = ['2026-10-16', '2026-10-17', '2026-10-18'];
+    // Same rules as the server: yes = here for sure, maybe = only a maybe, base = lives in Paris.
+    function dayLevels(g) {
+      const levels = {};
+      if ($('local').checked) {
+        const yes = new Set(EVENTS.filter((e) => answer(e.key) === 'yes').map((e) => e.day));
+        const on = new Set(EVENTS.filter((e) => isOn(answer(e.key))).map((e) => e.day));
+        DAYS.forEach((d) => { levels[d] = WEEKEND_DAYS.includes(d) && yes.has(d) ? 'yes' : WEEKEND_DAYS.includes(d) && on.has(d) ? 'maybe' : 'base'; });
+        return levels;
+      }
+      dayBoxes().filter((b) => b.checked).forEach((b) => { levels[b.value] = g.soft.has(b.value) ? 'maybe' : 'yes'; });
+      return levels;
+    }
     function guessDays() {
       const firm = new Set(span(EVENTS.filter((e) => answer(e.key) === 'yes')));
       const all = span(EVENTS.filter((e) => isOn(answer(e.key))));
@@ -504,19 +530,21 @@
       $('daysBlock').hidden = !anyYes && !allNo;
       $('missYou').hidden = !allNo;
       $('daysInner').hidden = !anyYes;
-      $('travel').hidden = $('local').checked;
-
-      if (anyYes && !daysTouched && !$('local').checked) {
-        const g = guessDays();
-        dayBoxes().forEach((b) => {
-          b.checked = g.all.includes(b.value);
-          b.parentElement.classList.toggle('soft', g.soft.has(b.value));
-        });
-        $('guess').textContent = !g.all.length ? ''
-          : g.soft.size ? 'Filled in from your answers. Half-filled days come from a maybe. Tap a day to change it.'
-          : 'Filled in from your answers. Tap a day to change it.';
-      }
-      $('showDaysRow').hidden = !dayBoxes().some((b) => b.checked);
+      const local = $('local').checked;
+      const g = guessDays();
+      if (anyYes && !daysTouched && !local) dayBoxes().forEach((b) => { b.checked = g.all.includes(b.value); });
+      const levels = dayLevels(g);
+      $('rail').classList.toggle('readonly', local);
+      dayBoxes().forEach((b) => {
+        b.disabled = local;
+        b.parentElement.dataset.lv = levels[b.value] || '';
+        b.setAttribute('aria-label', `${b.parentElement.querySelector('small').textContent} ${+b.value.slice(8)} October: ${LEVEL_WORDS[levels[b.value] || '']}`);
+      });
+      const hasMaybe = Object.values(levels).includes('maybe');
+      $('guess').textContent = !anyYes ? ''
+        : local ? 'You live here, so the other days show as your baseline. The weekend follows your answers above.'
+        : (daysTouched ? 'Tap a day to change it.' : 'Filled in from your answers. Tap a day to change it.') + (hasMaybe ? ' Half-filled days come from a maybe.' : '');
+      $('showDaysRow').hidden = !Object.keys(levels).length;
 
       [...$('pbar').children].forEach((el, i) => el.classList.toggle('on', !!answer(EVENTS[i].key)));
       const left = EVENTS.length - answered;
@@ -527,10 +555,7 @@
 
     $('form').addEventListener('input', (e) => { if (e.target.matches('#email, #phone')) syncNudge(); });
     $('form').addEventListener('change', (e) => {
-      if (e.target.name === 'day') {
-        daysTouched = true; $('guess').textContent = '';
-        dayBoxes().forEach((b) => b.parentElement.classList.remove('soft'));
-      }
+      if (e.target.name === 'day') daysTouched = true;
       sync();
     });
 
@@ -666,13 +691,16 @@
       try {
         const res = await fetch(`${API}?t=${Date.now()}`, { cache: 'no-store', headers: { Accept: 'application/json' } });
         if (!res.ok) throw new Error(res.status);
-        const list = ((await res.json()).inTown || []).sort((a, b) => (a.days[0] || '').localeCompare(b.days[0] || '') || a.name.localeCompare(b.name));
+        const list = ((await res.json()).inTown || []).sort((a, b) => (a.local === true) - (b.local === true) || (a.days[0] || '').localeCompare(b.days[0] || '') || a.name.localeCompare(b.name));
         if (!list.length) { board.innerHTML = '<p class="empty">Nobody has shared their days yet. Be the first.</p>'; return; }
-        const counts = DAYS.map((d) => list.filter((p) => p.days.includes(d)).length);
+        // Older entries only have a list of days: those count as "here for sure".
+        const lv = (p) => p.levels || Object.fromEntries((p.days || []).map((d) => [d, 'yes']));
+        const counts = DAYS.map((d) => list.filter((p) => lv(p)[d]).length);
         board.innerHTML =
+          '<div class="legend"><span><i class="k yes"></i>Here for sure</span><span><i class="k maybe"></i>Maybe</span><span><i class="k base"></i>Lives in Paris</span><span><i class="k none"></i>Not there</span></div>' +
           `<div class="brow head"><span></span>${DAYS.map((d, i) => `<span>${WEEKDAY[i]}<b>${+d.slice(8)}</b></span>`).join('')}</div>` +
-          list.map((p) => `<div class="brow"><span class="nm">${esc(p.name)}</span>${DAYS.map((d) => `<i class="bdot${p.days.includes(d) ? ' on' : ''} ${DAY_CLASS[d] || ''}"></i>`).join('')}</div>`).join('') +
-          `<div class="brow count"><span>In town</span>${counts.map((c) => `<span>${c || ''}</span>`).join('')}</div>`;
+          list.map((p) => `<div class="brow"><span class="nm">${esc(p.name)}</span>${DAYS.map((d) => { const l = lv(p)[d] || ''; return `<i class="bdot ${l} ${DAY_CLASS[d] || ''}" title="${LEVEL_WORDS[l]}"></i>`; }).join('')}</div>`).join('') +
+          `<div class="brow count"><span>Around</span>${counts.map((c) => `<span>${c || ''}</span>`).join('')}</div>`;
       } catch (e) {
         board.innerHTML = '<p class="empty">The list didn’t load. Refresh the page to try again.</p>';
       }
