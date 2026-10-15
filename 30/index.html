@@ -258,6 +258,7 @@
     <symbol id="i-climb" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="5"/><path d="M14 7.5v7.5M11 18.5h2"/></symbol>
     <symbol id="i-beer" viewBox="0 0 24 24"><path d="M5.5 8h9.5v11.5a2 2 0 0 1-2 2H7.5a2 2 0 0 1-2-2V8Z"/><path d="M15 10.5h2.2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H15M5.5 8a3 3 0 0 1 3-3 3 3 0 0 1 5 .5A2.5 2.5 0 0 1 15 8M9 12v6M11.5 12v6"/></symbol>
     <symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 2.8a5 5 0 0 0-4.7 6.8A4.3 4.3 0 0 0 9 17.8h6a4.3 4.3 0 0 0 1.7-8.2A5 5 0 0 0 12 2.8Z"/><path d="M12 11v10.5M12 15l-2.2-2M12 13.5l2-1.8"/></symbol>
+    <symbol id="i-rain" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 18 0Z"/><path d="M12 12v6.5a2 2 0 0 1-4 0"/><path d="M12 3v0"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s-6.5-5.8-6.5-11.5a6.5 6.5 0 0 1 13 0c0 5.7-6.5 11.5-6.5 11.5Z"/><circle cx="12" cy="10" r="2.3"/></symbol>
     <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.1 12.5a1 1 0 0 1-1 .9H7.1a1 1 0 0 1-1-.9L5 8Z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></symbol>
     <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4.5 9h12v5.5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5V9Z"/><path d="M16.5 10.5h1.3a2.5 2.5 0 0 1 0 5h-1.6M8 3.5c-.8 1 .8 2-.1 3M11.5 3.5c-.8 1 .8 2-.1 3"/></symbol>
@@ -360,14 +361,16 @@
     const API = 'https://isaque-rsvp-api.vercel.app/api/rsvp';
     const STORE = 'bday30-v2';
     const GYM_MAP = 'https://maps.google.com/?q=Climb+Up+Porte+d%27Italie,+18+Avenue+de+la+Porte+d%27Italie,+75013+Paris';
-    const CANAL_MAP = 'https://maps.google.com/?q=Canal+Saint-Martin,+Paris';
+    const SEINE_MAP = 'https://maps.google.com/?q=Port+de+la+Bourdonnais,+75007+Paris';
+    const MINUIT_MAP = 'https://maps.google.com/?q=Minuit+Express,+111+Avenue+de+la+Bourdonnais,+75007+Paris';
     const icon = (id) => `<svg class="i"><use href="#i-${id}"/></svg>`;
 
     const PLAN = [
       { day: '2026-10-16', name: 'Friday', date: '16 October', cls: 'f', color: 'var(--fri)', stops: [
-        { key: 'fri', time: '18:00', until: 'until late', icon: 'glass', title: 'Drinks by the canal',
+        { key: 'fri', time: '18:00', until: 'until late', icon: 'glass', title: 'Drinks by the Seine',
           lines: [
-            ['pin', `<a href="${CANAL_MAP}" target="_blank" rel="noopener">Canal Saint-Martin</a>. Exact spot in the chat.`],
+            ['pin', `On the <a href="${SEINE_MAP}" target="_blank" rel="noopener">Seine quay</a> right by the Eiffel Tower. Exact spot in the chat.`],
+            ['rain', `Later in the evening we move to the Mensa bar night at <a href="${MINUIT_MAP}" target="_blank" rel="noopener">Minuit Express</a>, 111 Av. de la Bourdonnais (7th), a few minutes’ walk away. If it rains, we go there straight away.`],
             ['pizza', "I'll bring food, and there will be pizza.", 'hl'],
             ['bag', 'Drop your bags at the hostel or your place first.']
           ] }
