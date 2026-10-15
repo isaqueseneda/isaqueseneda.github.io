@@ -273,6 +273,11 @@
     .prog li[data-a="maybe"] .pd { background: linear-gradient(90deg, var(--c) 50%, #fff 50%); }
     .prog li[data-a="no"] > :not(.pd) { opacity: 0.45; }
     .prog li[data-a="no"] .pd { border-color: var(--rule-2); }
+    .pd.num, .prog li.ext .pd.num { display: grid; place-items: center; width: 22px; height: 22px; margin: 0; border-width: 2.5px; font-size: 11.5px; font-weight: 800; font-stretch: 100%; line-height: 1; color: var(--c); }
+    .prog li.ext .pd.num { width: 20px; height: 20px; margin: 1px 0 0 1px; border-width: 2px; font-size: 11px; }
+    .prog li[data-a="yes"] .pd.num { color: #fff; }
+    .prog li[data-a="maybe"] .pd.num { background: color-mix(in srgb, var(--c) 22%, #fff); }
+    .prog li[data-a="no"] .pd.num { color: var(--muted); }
     .pt { font-size: 15.5px; font-weight: 750; font-stretch: 75%; color: var(--c); padding-top: 1px; }
     .prog li.ext .pt { font-weight: 600; font-size: 14.5px; }
     .pn { font-size: 15.5px; font-weight: 650; line-height: 1.25; }
@@ -610,12 +615,15 @@
       return PLAN.map((d) => `
         <div class="prog-day" style="--c:${d.color}">
           <h3>${d.name} ${+d.date.slice(0, 2)}</h3>
-          <ol class="prog">${d.rows.map((r) => {
-            const key = r.place ? `<span class="mapkey ${PLACES[r.place].cls}" title="Pin ${PLACES[r.place].n} on the map">${PLACES[r.place].n}</span>` : '';
+          <ol class="prog">${d.rows.map((r, i) => {
+            // The map number sits inside the station circle. A row at the same place as the
+            // row before it (the gym at 15:00 and 18:00) shows a plain dot, not the number twice.
+            const prev = d.rows[i - 1];
+            const n = r.place && !(prev && prev.place === r.place) ? PLACES[r.place].n : '';
             if (r.note) return `<li class="note"><span class="pmetro" title="Pin M on the map">M</span><span class="pl">${r.note}</span></li>`;
             const a = answers ? (answers[r.key || r.ext] || '') : '';
             return `<li class="${r.ext ? 'ext' : ''}"${a ? ` data-a="${a}"` : ''}>
-              <span class="pd" aria-hidden="true"></span><span class="pt">${r.time}${key}</span>
+              <span class="pd${n ? ' num' : ''}"${n ? ` title="Pin ${n} on the map"` : ' aria-hidden="true"'}>${n}</span><span class="pt">${r.time}</span>
               <div><div class="pn">${r.title}${tagHTML(r)}</div><div class="pl">${r.pline || r.line}</div></div>
               ${a && r.key ? `<span class="pm">${MARK[a]}</span>` : '<span></span>'}
             </li>`;
