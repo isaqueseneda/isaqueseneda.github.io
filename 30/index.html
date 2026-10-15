@@ -10,6 +10,7 @@
   <meta property="og:description" content="Friday 16 to Sunday 18 October. Tap to RSVP." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -217,12 +218,6 @@
     .done { padding: 30px 0 4px; }
     .done h2 { font-size: 30px; line-height: 1; font-weight: 850; font-stretch: 125%; letter-spacing: -0.03em; }
     .done p { color: var(--ink-2); margin-top: 8px; }
-    .done ul { list-style: none; margin: 14px 0 18px; }
-    .done li { display: grid; grid-template-columns: 14px 64px 1fr; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--rule); font-size: 15.5px; }
-    .done li i { width: 12px; height: 12px; border-radius: 50%; }
-    .done li span { color: var(--muted); font-size: 14px; font-stretch: 87%; }
-    .done li em { font-style: normal; color: var(--muted); font-size: 14px; margin-left: 6px; }
-    .done li i.half { background: linear-gradient(90deg, currentColor 50%, #fff 50%) !important; border: 2px solid currentColor; }
     .ghost { margin-top: 10px; width: 100%; background: #fff; border: 1.5px solid var(--rule-2); border-radius: 9px; padding: 11px; font-weight: 650; cursor: pointer; }
 
     /* Who's in Paris when */
@@ -240,6 +235,86 @@
     .board .legend { margin: 0 0 10px; }
     .empty { font-size: 15px; color: var(--muted); padding: 8px 0; }
 
+
+    /* Short muted line under each stop title */
+    .stop .line { font-size: 14.5px; color: var(--muted); line-height: 1.35; margin-top: 3px; }
+    .tag { display: inline-block; font-size: 12px; font-weight: 700; line-height: 1; padding: 4px 7px 3px; border-radius: 4px; border: 1.5px solid var(--c); color: var(--c); margin-left: 8px; vertical-align: 3px; font-stretch: 100%; letter-spacing: 0.01em; }
+    .stop h3 > span { min-width: 0; }
+
+    /* Extensions: lighter sub-stops that follow their parent's answer */
+    .stop.ext { padding-top: 12px; }
+    .stop.ext .station { width: 12px; height: 12px; margin: 6px 0 0 9px; border-width: 3px; }
+    .stop.ext[data-a] .station { box-shadow: none; }
+    .stop.ext[data-a="yes"] .station { background: var(--c); }
+    .stop.ext[data-a="maybe"] .station { background: linear-gradient(90deg, var(--c) 50%, #fff 50%); }
+    .stop.ext[data-a="no"] .body { opacity: 0.45; }
+    .stop.ext .stop-top { min-height: 0; }
+    .stop.ext .time { font-size: 16px; }
+    .stop.ext h3 { font-size: 16.5px; font-weight: 650; }
+    .stop.ext h3 svg { width: 17px; height: 17px; }
+    .stop.note { padding: 10px 0 0; align-items: center; }
+    .metro-badge, .pmetro { position: relative; z-index: 1; display: grid; place-items: center; width: 22px; height: 22px; margin-left: 4px; border-radius: 50%; background: #fff; border: 2px solid var(--ink); color: var(--ink); font-size: 11px; font-weight: 800; }
+    .stop.note .line { margin: 0; font-size: 14px; color: var(--ink-2); }
+
+    /* Weekend program (bottom of the page and after sending) */
+    .program { margin-top: 6px; }
+    .prog-day { margin-top: 16px; }
+    .prog-day h3 { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; font-stretch: 112%; color: var(--c); }
+    .prog-day h3::before { content: ""; width: 22px; height: 6px; border-radius: 3px; background: var(--c); }
+    .prog { list-style: none; margin-top: 4px; }
+    .prog li { position: relative; display: grid; grid-template-columns: 22px 46px 1fr auto; gap: 0 8px; padding: 7px 0; align-items: start; }
+    .prog li::before { content: ""; position: absolute; left: 9px; top: 0; bottom: 0; width: 4px; background: var(--c); }
+    .prog li:first-child::before { top: 14px; }
+    .prog li:last-child::before { bottom: auto; height: 14px; }
+    .prog li:only-child::before { display: none; }
+    .pd { position: relative; z-index: 1; width: 16px; height: 16px; margin: 3px 0 0 3px; border-radius: 50%; border: 3px solid var(--c); background: #fff; }
+    .prog li.ext .pd { width: 10px; height: 10px; border-width: 2.5px; margin: 6px 0 0 6px; }
+    .prog li[data-a="yes"] .pd { background: var(--c); }
+    .prog li[data-a="maybe"] .pd { background: linear-gradient(90deg, var(--c) 50%, #fff 50%); }
+    .prog li[data-a="no"] > :not(.pd) { opacity: 0.45; }
+    .prog li[data-a="no"] .pd { border-color: var(--rule-2); }
+    .pt { font-size: 15.5px; font-weight: 750; font-stretch: 75%; color: var(--c); padding-top: 1px; }
+    .prog li.ext .pt { font-weight: 600; font-size: 14.5px; }
+    .pn { font-size: 15.5px; font-weight: 650; line-height: 1.25; }
+    .prog li.ext .pn { font-weight: 550; font-size: 15px; }
+    .pl { display: block; font-size: 13.5px; color: var(--muted); line-height: 1.35; margin-top: 1px; }
+    .pm { font-size: 13px; font-weight: 650; color: var(--c); padding-top: 2px; }
+    .prog li[data-a="no"] .pm { color: var(--muted); }
+    .prog li.note { grid-template-columns: 22px 1fr; align-items: center; padding: 5px 0; }
+    .prog li.note .pmetro { width: 20px; height: 20px; margin-left: 1px; font-size: 10px; }
+    .prog li.note .pl { margin: 0; color: var(--ink-2); }
+    .prog .tag { font-size: 11px; padding: 3px 5px 2px; margin-left: 6px; vertical-align: 2px; }
+    .pt .mapkey { display: grid; width: 19px; margin: 4px 0 0; }
+    .mapkey { display: inline-grid; place-items: center; min-width: 19px; height: 19px; padding: 0 4px; margin-left: 6px; border-radius: 999px; background: var(--c); color: #fff; font-size: 11px; font-weight: 800; vertical-align: 2px; font-stretch: 87%; }
+    .mapkey.metro { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+    .done-legend { margin-top: 10px; }
+    .done .program { margin-bottom: 20px; }
+
+    /* Map */
+    .map-wrap { position: relative; margin-top: 14px; border-radius: 12px; overflow: hidden; border: 1px solid var(--rule); }
+    #map { height: 380px; background: var(--wash); font-family: var(--font); }
+    /* Quiet, light base map so the day-coloured pins carry the information */
+    #map .leaflet-tile-pane { filter: grayscale(1) brightness(1.08) contrast(0.88); opacity: 0.85; }
+    .map-cover { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 900; background: var(--ink); color: #fff; border: 0; padding: 9px 16px; border-radius: 999px; font-size: 14px; font-weight: 650; box-shadow: 0 2px 8px rgba(11,31,75,0.3); cursor: pointer; white-space: nowrap; }
+    .map-done { position: absolute; top: 10px; right: 10px; z-index: 900; background: var(--ink); color: #fff; border: 0; border-radius: 999px; padding: 7px 14px; font-weight: 650; font-size: 14px; cursor: pointer; }
+    .mk { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--c); color: #fff; font: 800 12px/1 var(--font); border: 2.5px solid #fff; box-shadow: 0 1px 4px rgba(11,31,75,0.45); }
+    .mk.f { --c: var(--fri); } .mk.s { --c: var(--sat); } .mk.u { --c: var(--sun); }
+    .mk.metro { background: #fff; color: var(--ink); border-color: var(--ink); }
+    .mk.hostel { background: var(--ink); }
+    .leaflet-tooltip.mk-label { font: 650 12px/1.2 var(--font); color: var(--ink); background: rgba(255,255,255,0.94); border: 0; border-radius: 4px; box-shadow: 0 1px 3px rgba(11,31,75,0.25); padding: 2px 6px; white-space: nowrap; }
+    .leaflet-tooltip.mk-label::before { display: none; }
+    .leaflet-container:not(.labels-on) .mk-label { display: none; }
+    .leaflet-popup-content { font: 14px/1.4 var(--font); color: var(--ink); margin: 10px 14px; }
+    .leaflet-popup-content b { display: block; font-size: 15px; }
+    .leaflet-popup-content span { color: var(--ink-2); }
+    .leaflet-popup-content a { display: inline-block; margin-top: 4px; font-weight: 600; }
+    .map-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 13.5px; color: var(--ink-2); }
+    .map-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .map-legend i { width: 13px; height: 13px; border-radius: 50%; display: inline-grid; place-items: center; font-style: normal; font-size: 8px; font-weight: 800; }
+    .map-legend .lg-metro { background: #fff; border: 2px solid var(--ink); color: var(--ink); width: 16px; height: 16px; }
+    .map-legend .lg-hostel { background: var(--ink); color: #fff; width: 16px; height: 16px; }
+    .map-note { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+    .map-fail { padding: 20px; color: var(--muted); font-size: 14px; }
     footer { margin-top: 36px; color: var(--muted); font-size: 14px; }
 
     @media (max-width: 359px) {
@@ -329,7 +404,8 @@
     <section class="done" id="done" hidden aria-live="polite">
       <h2 id="doneH">Saved.</h2>
       <p id="doneP"></p>
-      <ul id="doneList"></ul>
+      <div class="legend done-legend" aria-hidden="true"><span><i class="k yes"></i>Yes</span><span><i class="k maybe"></i>Maybe</span><span><i class="k none"></i>No</span></div>
+      <div class="program" id="doneProgram"></div>
       <a class="tg" href="https://t.me/+42YGzk_Ejfo3OTI8" target="_blank" rel="noopener">
         <svg class="i"><use href="#i-tg"/></svg>
         <div><b>Join the group chat on Telegram</b><span>Everything on the day happens there</span></div>
@@ -341,6 +417,27 @@
       <h2 class="sec-h" id="boardH">Who's in Paris when</h2>
       <p class="sec-sub">People who chose to share their days.</p>
       <div class="board" id="board"><p class="empty">Loading…</p></div>
+    </section>
+
+    <section class="sec" id="programSec" aria-labelledby="progH">
+      <h2 class="sec-h" id="progH">The weekend program</h2>
+      <p class="sec-sub">Every stop at a glance. Numbers match the pins on the map.</p>
+      <div class="program" id="program"></div>
+    </section>
+
+    <section class="sec" aria-labelledby="mapH">
+      <h2 class="sec-h" id="mapH">Where it all happens</h2>
+      <p class="sec-sub">Roughly where everything is. Tap a pin for its name and time; pinch to zoom.</p>
+      <div class="map-wrap">
+        <div id="map" role="region" aria-label="Map of the weekend's places"></div>
+        <button type="button" class="map-cover" id="mapCover" hidden>Move the map</button>
+        <button type="button" class="map-done" id="mapDone" hidden>Done</button>
+      </div>
+      <div class="map-legend" aria-hidden="true">
+        <span><i style="background:var(--fri)"></i>Friday</span><span><i style="background:var(--sat)"></i>Saturday</span><span><i style="background:var(--sun)"></i>Sunday</span>
+        <span><i class="lg-metro">M</i>Metro</span><span><i class="lg-hostel">H</i>Hostel</span>
+      </div>
+      <p class="map-note">Not on the map yet: the bar after the gym and Sunday’s park. Both are to be confirmed.</p>
     </section>
 
     <footer>Looking for the first invite page? It's in the <a href="archive/">archive</a>.</footer>
@@ -360,51 +457,71 @@
   (function () {
     const API = 'https://isaque-rsvp-api.vercel.app/api/rsvp';
     const STORE = 'bday30-v2';
-    const GYM_MAP = 'https://maps.google.com/?q=Climb+Up+Porte+d%27Italie,+18+Avenue+de+la+Porte+d%27Italie,+75013+Paris';
-    const SEINE_MAP = 'https://maps.google.com/?q=Port+de+la+Bourdonnais,+75007+Paris';
-    const MINUIT_MAP = 'https://maps.google.com/?q=Minuit+Express,+111+Avenue+de+la+Bourdonnais,+75007+Paris';
     const icon = (id) => `<svg class="i"><use href="#i-${id}"/></svg>`;
+    const gmaps = (q) => 'https://maps.google.com/?q=' + encodeURIComponent(q);
 
+    // Places on the map. "n" is the number shown on the pin and in the program.
+    const PLACES = {
+      seine:    { n: '1', cls: 'f', lat: 48.8608, lng: 2.2950, name: 'Seine quay by the Eiffel Tower', when: 'Fri 18:00, drinks', q: 'Port de la Bourdonnais, 75007 Paris', dir: 'left', short: 'Seine quay' },
+      minuit:   { n: '2', cls: 'f', lat: 48.8550, lng: 2.3040, name: 'Minuit Express', when: 'Fri later, Mensa night (rain backup)', q: 'Minuit Express, 111 Avenue de la Bourdonnais, 75007 Paris', dir: 'right', short: 'Minuit Express' },
+      runStart: { n: '3', cls: 's', lat: 48.8636, lng: 2.3237, name: 'Run start: Bassin Octogonal, Tuileries', when: 'Sat 9:30, 5K run', q: 'Bassin Octogonal, Jardin des Tuileries, 75001 Paris', dir: 'top', short: 'Run start' },
+      runCafe:  { n: '4', cls: 's', lat: 48.8402, lng: 2.2735, name: 'Les Quais d’Annette K (run café, approx.)', when: 'Sat 10:30, coffee after the run', q: 'Les Quais d’Annette K, 75015 Paris', dir: 'right', short: 'Run café' },
+      acai:     { n: '5', cls: 's', lat: 48.8637, lng: 2.3488, name: 'Açaí near Étienne Marcel', when: 'Sat 12:30, açaí bowls', q: 'Métro Étienne Marcel, 75002 Paris', dir: 'right', short: 'Açaí' },
+      river:    { n: '6', cls: 's', lat: 48.8583, lng: 2.3375, name: 'Seine riverside, Pont des Arts', when: 'Sat after açaí, hang by the river', q: 'Pont des Arts, 75006 Paris', dir: 'right', short: 'Seine hang' },
+      metro:    { n: 'M', cls: 'metro', lat: 48.8221, lng: 2.3586, name: 'Maison Blanche metro (line 7)', when: 'Sat, walk to the gym from here', q: 'Maison Blanche, 75013 Paris', dir: 'left', short: 'Maison Blanche' },
+      gym:      { n: '7', cls: 's', lat: 48.8165, lng: 2.3603, name: 'Climb Up Porte d’Italie', when: 'Sat 15:00 hang (free), 18:00 climb or sauna', q: 'Climb Up Porte d’Italie, 18 Avenue de la Porte d’Italie, 75013 Paris', dir: 'left', short: 'Climb Up gym' },
+      hostel:   { n: 'H', cls: 'hostel', lat: 48.8132, lng: 2.3596, name: 'Hosho Paris Sud (hostel)', when: 'Right next to the gym, about 5 minutes on foot', q: 'Hosho Paris Sud, 10 rue Pierre Brossolette, 94270 Le Kremlin-Bicêtre', dir: 'bottom', short: 'Hostel' }
+    };
+    window.BDAY_PLACES = PLACES;
+    const placeLink = (id, text) => `<a href="${gmaps(PLACES[id].q)}" target="_blank" rel="noopener">${text}</a>`;
+
+    // The program. Rows with "key" are questions (the six answer keys never change).
+    // Rows with "ext" are extensions: they follow the answer of their parent stop.
     const PLAN = [
-      { day: '2026-10-16', name: 'Friday', date: '16 October', cls: 'f', color: 'var(--fri)', stops: [
-        { key: 'fri', time: '18:00', until: 'until late', icon: 'glass', title: 'Drinks by the Seine',
+      { day: '2026-10-16', name: 'Friday', date: '16 October', cls: 'f', color: 'var(--fri)', rows: [
+        { key: 'fri', time: '18:00', icon: 'glass', title: 'Drinks by the Seine', place: 'seine',
+          line: 'Bring your own drinks. I’ll bring some wine, cheese and food.',
           lines: [
-            ['pin', `On the <a href="${SEINE_MAP}" target="_blank" rel="noopener">Seine quay</a> right by the Eiffel Tower. Exact spot in the chat.`],
-            ['rain', `Later in the evening we move to the Mensa bar night at <a href="${MINUIT_MAP}" target="_blank" rel="noopener">Minuit Express</a>, 111 Av. de la Bourdonnais (7th), a few minutes’ walk away. If it rains, we go there straight away.`],
-            ['pizza', "I'll bring food, and there will be pizza.", 'hl'],
+            ['pin', `${placeLink('seine', 'Seine quay')} by the Eiffel Tower. Exact spot in the chat.`],
             ['bag', 'Drop your bags at the hostel or your place first.']
-          ] }
+          ] },
+        { ext: 'fri', time: 'later', icon: 'rain', title: 'Mensa night at Minuit Express', place: 'minuit',
+          line: 'Free venue, a few minutes’ walk. If it rains, we go straight there.',
+          lines: [['pin', `${placeLink('minuit', 'Minuit Express')}, 111 Av. de la Bourdonnais (7th)`]] }
       ] },
-      { day: '2026-10-17', name: 'Saturday', date: '17 October', cls: 's', color: 'var(--sat)', stops: [
-        { key: 'run', time: '9:30', icon: 'run', title: '5K run',
+      { day: '2026-10-17', name: 'Saturday', date: '17 October', cls: 's', color: 'var(--sat)', rows: [
+        { key: 'run', time: '9:30', icon: 'run', title: '5K run', place: 'runStart',
+          line: 'Just show up. With Founders Running Club, easy pace.',
+          lines: [['pin', `Starts at the ${placeLink('runStart', 'Bassin Octogonal')}, Tuileries (metro Concorde).`]] },
+        { ext: 'run', time: '10:30', icon: 'cup', title: 'Coffee after the run', place: 'runCafe',
+          line: 'At the café where the run ends, by the Seine in the 15th.' },
+        { key: 'acai', time: '12:30', icon: 'bowl', title: 'Açaí bowls', place: 'acai',
+          line: 'Near Étienne Marcel metro. Everyone pays their own.' },
+        { ext: 'acai', time: 'after', icon: 'tree', title: 'Hang by the Seine', place: 'river',
+          line: 'A walk and chill by the river.' },
+        { note: 'Then metro to Maison Blanche (line 7) and walk to the gym.', place: 'metro' },
+        { key: 'climb', time: '15:00', until: 'to 23:00', icon: 'sofa', title: 'Climbing gym basecamp', tag: 'Free', place: 'gym',
+          line: 'Come in and hang for free. Drinks at the bar are on you.',
           lines: [
-            ['pin', 'Meeting point in the chat. Easy pace, totally optional.'],
-            ['cup', 'Coffee after, at 10:30. Join even if you didn’t run.']
+            ['pin', `${placeLink('gym', 'Climb Up Porte d’Italie')}, 18 Av. de la Porte d’Italie (13th). Staying at ${placeLink('hostel', 'Hosho Paris Sud')}? It’s right next door.`],
+            ['bag', 'Bring comfy clothes and a power bank. Food there is pricey, so bring snacks.', 'bring']
           ] },
-        { key: 'acai', time: '12:00', icon: 'bowl', title: 'Açaí bowls',
-          lines: [
-            ['bag', 'We walk over, then do a quick food run: snacks and takeout for the day.']
-          ] },
-        { key: 'climb', time: '13:00', until: 'to 23:00', icon: 'climb', title: 'Climbing gym basecamp',
-          lines: [
-            ['pin', `<a href="${GYM_MAP}" target="_blank" rel="noopener">Climb Up Porte d’Italie</a>, 18 Av. de la Porte d’Italie (13th)`],
-            ['sofa', 'Climbing and sauna are optional. If you just come to hang, there’s no entry fee: it’s like a big, roomy café with space to chat. Maybe grab a drink.'],
-            ['climb', 'Want to climb? You can rent shoes there for €2–4.'],
-            ['bag', 'Bring comfy clothes, a power bank, and your own snacks: the food there is pricey.', 'bring']
-          ] },
+        { ext: 'climb', time: '18:00', icon: 'climb', title: 'Climbing and sauna', tag: 'Optional', tagSolid: false, place: 'gym',
+          line: 'You pay your own. We’re negotiating a group discount.' },
         { key: 'after', time: '23:00', until: 'until late', icon: 'beer', title: 'Drinks after',
-          lines: [
-            ['pin', 'A bar nearby in the 13th, to keep the night going.']
-          ] }
+          line: 'A bar nearby in the 13th, to be confirmed. Drinks on you.' }
       ] },
-      { day: '2026-10-18', name: 'Sunday', date: '18 October', cls: 'u', color: 'var(--sun)', stops: [
-        { key: 'brunch', time: '11:30', until: 'to 16:00', icon: 'tree', title: 'Park brunch',
+      { day: '2026-10-18', name: 'Sunday', date: '18 October', cls: 'u', color: 'var(--sun)', rows: [
+        { key: 'brunch', time: '11:30', until: 'to 16:00', icon: 'tree', title: 'Park picnic brunch + Spikeball',
+          line: 'Bring your own food: stop at a supermarket on the way.',
+          pline: 'Bring your own food. It may be cold, so dress warm. Park TBC.',
           lines: [
-            ['pin', 'A park, announced in the chat.'],
-            ['bag', 'Bakery haul, blankets and Spikeball. Bring a blanket if you have one.', 'bring']
+            ['pin', 'Park to be confirmed in the chat.'],
+            ['bag', 'A bit sporty, and it may be cold. Dress warm.', 'bring']
           ] }
       ] }
     ];
+    PLAN.forEach((d) => { d.stops = d.rows.filter((r) => r.key); });
     const EVENTS = PLAN.flatMap((d) => d.stops.map((s) => ({ ...s, day: d.day, dayName: d.name, cls: d.cls, color: d.color })));
     const FOOD = [['vegetarian', 'Vegetarian'], ['vegan', 'Vegan'], ['gluten-free', 'Gluten-free'], ['lactose-free', 'Lactose-free'], ['halal', 'Halal'], ['no-pork', 'No pork']];
     const DAYS = [];
@@ -450,24 +567,61 @@
       </div>`;
       return '';
     }
-    $('agenda').innerHTML = PLAN.map((d) => `
-      <section class="day" style="--c:${d.color}" aria-labelledby="dh-${d.cls}">
-        <div class="day-head"><span class="terminus" aria-hidden="true">${d.date.slice(0, 2)}</span><h2 id="dh-${d.cls}">${d.name}<small>${d.date}</small></h2></div>
-        <ol class="stops">${d.stops.map((s) => `
-          <li class="stop" id="ev-${s.key}" role="group" aria-labelledby="t-${s.key}">
+    const tagHTML = (r) => r.tag ? `<span class="tag">${r.tag}</span>` : '';
+    const metaHTML = (r) => (r.lines || []).map(([ic, text, kind]) => `<p class="meta${kind ? ' ' + kind : ''}">${icon(ic)}<span>${text}</span></p>`).join('');
+    function rowHTML(r, i, d) {
+      if (r.note) return `
+          <li class="stop note"><span class="metro-badge" aria-hidden="true">M</span><p class="line">${r.note}</p></li>`;
+      if (r.ext) return `
+          <li class="stop ext" data-parent="${r.ext}" id="x-${d.cls}-${i}">
+            <span class="station" aria-hidden="true"></span>
+            <div class="body">
+              <div class="stop-top"><span class="time">${r.time}</span></div>
+              <h3>${icon(r.icon)}<span>${r.title}</span>${tagHTML(r)}</h3>
+              <p class="line">${r.line}</p>
+              ${metaHTML(r)}
+            </div>
+          </li>`;
+      return `
+          <li class="stop" id="ev-${r.key}" role="group" aria-labelledby="t-${r.key}">
             <span class="station" aria-hidden="true"></span>
             <div class="body">
               <div class="stop-top">
-                <span class="time">${s.time}${s.until ? `<small>${s.until}</small>` : ''}</span>
-                <div class="yn" role="radiogroup" aria-label="Coming to ${esc(s.title)}?">${radio('ev-' + s.key, 'yes', 'Yes')}${radio('ev-' + s.key, 'maybe', 'Maybe')}${radio('ev-' + s.key, 'no', 'No')}</div>
+                <span class="time">${r.time}${r.until ? `<small>${r.until}</small>` : ''}</span>
+                <div class="yn" role="radiogroup" aria-label="Coming to ${esc(r.title)}?">${radio('ev-' + r.key, 'yes', 'Yes')}${radio('ev-' + r.key, 'maybe', 'Maybe')}${radio('ev-' + r.key, 'no', 'No')}</div>
               </div>
-              <h3 id="t-${s.key}">${icon(s.icon)}${s.title}</h3>
-              ${s.lines.map(([ic, text, kind]) => `<p class="meta${kind ? ' ' + kind : ''}">${icon(ic)}<span>${text}</span></p>`).join('')}
-              ${followUp(s.key)}
+              <h3 id="t-${r.key}">${icon(r.icon)}<span>${r.title}</span>${tagHTML(r)}</h3>
+              <p class="line">${r.line}</p>
+              ${metaHTML(r)}
+              ${followUp(r.key)}
             </div>
-          </li>`).join('')}
+          </li>`;
+    }
+    $('agenda').innerHTML = PLAN.map((d) => `
+      <section class="day" style="--c:${d.color}" aria-labelledby="dh-${d.cls}">
+        <div class="day-head"><span class="terminus" aria-hidden="true">${d.date.slice(0, 2)}</span><h2 id="dh-${d.cls}">${d.name}<small>${d.date}</small></h2></div>
+        <ol class="stops">${d.rows.map((r, i) => rowHTML(r, i, d)).join('')}
         </ol>
       </section>`).join('');
+
+    // ---- The weekend program: every row, with answers marked when there are any ----
+    const MARK = { yes: 'Yes', maybe: 'Maybe', no: 'No' };
+    function programHTML(answers) {
+      return PLAN.map((d) => `
+        <div class="prog-day" style="--c:${d.color}">
+          <h3>${d.name} ${+d.date.slice(0, 2)}</h3>
+          <ol class="prog">${d.rows.map((r) => {
+            const key = r.place ? `<span class="mapkey ${PLACES[r.place].cls}" title="Pin ${PLACES[r.place].n} on the map">${PLACES[r.place].n}</span>` : '';
+            if (r.note) return `<li class="note"><span class="pmetro" title="Pin M on the map">M</span><span class="pl">${r.note}</span></li>`;
+            const a = answers ? (answers[r.key || r.ext] || '') : '';
+            return `<li class="${r.ext ? 'ext' : ''}"${a ? ` data-a="${a}"` : ''}>
+              <span class="pd" aria-hidden="true"></span><span class="pt">${r.time}${key}</span>
+              <div><div class="pn">${r.title}${tagHTML(r)}</div><div class="pl">${r.pline || r.line}</div></div>
+              ${a && r.key ? `<span class="pm">${MARK[a]}</span>` : '<span></span>'}
+            </li>`;
+          }).join('')}</ol>
+        </div>`).join('');
+    }
 
     $('rail').innerHTML = DAYS.map((d, i) =>
       `<label class="dstop ${DAY_CLASS[d] || ''}"><input type="checkbox" name="day" value="${d}" aria-label="${WEEKDAY[i]} ${+d.slice(8)} October"><i></i><small>${WEEKDAY[i]}</small><b>${+d.slice(8)}</b></label>`
@@ -524,6 +678,13 @@
         const f = box.querySelector('.follow');
         if (f) f.hidden = !isOn(a);
       }
+      document.querySelectorAll('.stop.ext').forEach((x) => {
+        const a = answer(x.dataset.parent);
+        if (a) x.dataset.a = a; else delete x.dataset.a;
+      });
+      const live = {};
+      EVENTS.forEach((e) => { const a = answer(e.key); if (a) live[e.key] = a; });
+      $('program').innerHTML = programHTML(Object.keys(live).length ? live : null);
       $('shoesQ').hidden = !$('gClimb').checked;
       $('saunaTip').hidden = !$('gSauna').checked;
 
@@ -673,17 +834,14 @@
       greet(data.name);
       const going = EVENTS.filter((ev) => isOn(data.events[ev.key]));
       $('doneH').textContent = going.length ? `Saved. See you in Paris, ${firstName(data.name)}.` : `Saved. Thanks, ${firstName(data.name)}.`;
-      $('doneP').textContent = going.length ? "Your stops:" : 'Sad to miss you this time. You can change your answers any time.';
-      $('doneList').innerHTML = going.map((ev) => {
-        const maybe = data.events[ev.key] === 'maybe';
-        return `<li><i class="${maybe ? 'half' : ''}" style="background:${ev.color};color:${ev.color}"></i><span>${ev.dayName.slice(0, 3)} ${ev.time}</span><div>${esc(ev.title)}${maybe ? '<em>maybe</em>' : ''}</div></li>`;
-      }).join('');
-      $('form').hidden = true; $('dock').hidden = true; $('done').hidden = false;
+      $('doneP').textContent = going.length ? 'Your weekend, with your answers marked:' : 'Sad to miss you this time. You can change your answers any time.';
+      $('doneProgram').innerHTML = programHTML(data.events || {});
+      $('form').hidden = true; $('dock').hidden = true; $('done').hidden = false; $('programSec').hidden = true;
       document.querySelector('.letter').hidden = true;
       $('done').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     $('editBtn').addEventListener('click', () => {
-      $('done').hidden = true; $('form').hidden = false; $('dock').hidden = false;
+      $('done').hidden = true; $('form').hidden = false; $('dock').hidden = false; $('programSec').hidden = false;
       document.querySelector('.letter').hidden = false;
       $('agenda').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
@@ -712,6 +870,55 @@
 
     if (sameGuest && saved.sentAt) showDone(saved.answers);
   })();
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
+  <script>
+  // The map loads after the page; if Leaflet can't load, the program above still has every place.
+  window.addEventListener('load', function () {
+    var el = document.getElementById('map');
+    if (!window.L || !el || !window.BDAY_PLACES) { if (el) el.innerHTML = '<p class="map-fail">The map didn’t load. Every place is listed in the program above.</p>'; return; }
+    var PLACES = window.BDAY_PLACES;
+    var touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    var map = L.map(el, { scrollWheelZoom: false, dragging: !touch, touchZoom: true, doubleClickZoom: !touch, boxZoom: false, keyboard: true, zoomSnap: 0.5, tap: false });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var bounds = [];
+    Object.keys(PLACES).forEach(function (id) {
+      var p = PLACES[id];
+      var m = L.marker([p.lat, p.lng], {
+        icon: L.divIcon({ className: '', html: '<span class="mk ' + p.cls + '">' + p.n + '</span>', iconSize: [26, 26], iconAnchor: [13, 13], popupAnchor: [0, -12] }),
+        title: p.name, alt: p.name, keyboard: true, zIndexOffset: id === 'gym' ? 1000 : 0
+      }).addTo(map);
+      m.bindPopup('<b>' + p.n + '. ' + p.name + '</b><span>' + p.when + '</span><br><a href="https://maps.google.com/?q=' + encodeURIComponent(p.q) + '" target="_blank" rel="noopener">Open in Google Maps</a>');
+      m.bindTooltip(p.short || p.name, { permanent: true, direction: p.dir || 'right', offset: p.dir === 'left' ? [-12, 0] : p.dir === 'top' ? [0, -12] : p.dir === 'bottom' ? [0, 12] : [12, 0], className: 'mk-label' });
+      bounds.push([p.lat, p.lng]);
+    });
+    map.fitBounds(bounds, { paddingTopLeft: [24, 34], paddingBottomRight: [24, 52] });
+    // Labels are placed by their measured size, so re-place them once they are visible and the font has loaded.
+    function labels() {
+      el.classList.toggle('labels-on', map.getZoom() >= 11.5);
+      map.eachLayer(function (l) { if (l.getTooltip && l.getTooltip()) l.getTooltip().update(); });
+    }
+    map.on('zoomend', labels); labels();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(labels);
+    // Desktop: wheel zoom only after clicking into the map, so the page scrolls normally.
+    if (!touch) { map.on('click', function () { map.scrollWheelZoom.enable(); }); el.addEventListener('mouseleave', function () { map.scrollWheelZoom.disable(); }); return; }
+    // Phones: one finger keeps scrolling the page; pins are tappable and two fingers zoom.
+    // "Move the map" turns on one-finger panning until "Done".
+    var cover = document.getElementById('mapCover'), done = document.getElementById('mapDone');
+    cover.hidden = false;
+    cover.addEventListener('click', function () {
+      map.dragging.enable(); map.doubleClickZoom.enable();
+      cover.hidden = true; done.hidden = false;
+    });
+    done.addEventListener('click', function () {
+      map.dragging.disable(); map.doubleClickZoom.disable();
+      cover.hidden = false; done.hidden = true;
+    });
+  });
   </script>
 </body>
 </html>
