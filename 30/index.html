@@ -469,7 +469,7 @@
     const PLACES = {
       seine:    { n: '1', cls: 'f', lat: 48.8622, lng: 2.2941, name: 'Seine quay (Port Debilly, opposite Eiffel Tower)', when: 'Fri 18:00, drinks', q: 'Bateau Boréas, 3 Port Debilly, 75016 Paris', url: 'https://maps.app.goo.gl/PZWL6nuXuDuRVbBr8?g_st=ic', dir: 'left', short: 'Seine quay' },
       minuit:   { n: '2', cls: 'f', lat: 48.8550, lng: 2.3040, name: 'Minuit Express', when: 'Fri later, Mensa night (rain backup)', q: 'Minuit Express, 111 Avenue de la Bourdonnais, 75007 Paris', dir: 'right', short: 'Minuit Express' },
-      runStart: { n: '3', cls: 's', lat: 48.8636, lng: 2.3237, name: 'Run start: Bassin Octogonal, Tuileries', when: 'Sat 9:30, 5K run', q: 'Bassin Octogonal, Jardin des Tuileries, 75001 Paris', dir: 'top', short: 'Run start' },
+      runStart: { n: '3', cls: 's', lat: 48.8601, lng: 2.3146, name: 'Run start: Métro Invalides', when: 'Sat 9:30, 5K run', q: 'Métro Invalides, 75007 Paris', dir: 'top', short: 'Run start' },
       runCafe:  { n: '4', cls: 's', lat: 48.8402, lng: 2.2735, name: 'Les Quais d’Annette K (run café, approx.)', when: 'Sat 10:30, coffee after the run', q: 'Les Quais d’Annette K, 75015 Paris', dir: 'right', short: 'Run café' },
       acai:     { n: '5', cls: 's', lat: 48.8637, lng: 2.3488, name: 'Açaí near Étienne Marcel', when: 'Sat 12:30, açaí bowls', q: 'Métro Étienne Marcel, 75002 Paris', dir: 'right', short: 'Açaí' },
       river:    { n: '6', cls: 's', lat: 48.8583, lng: 2.3375, name: 'Seine riverside, Pont des Arts', when: 'Sat after açaí, hang by the river', q: 'Pont des Arts, 75006 Paris', dir: 'right', short: 'Seine hang' },
@@ -497,7 +497,7 @@
       { day: '2026-10-17', name: 'Saturday', date: '17 October', cls: 's', color: 'var(--sat)', rows: [
         { key: 'run', time: '9:30', icon: 'run', title: '5K run', place: 'runStart',
           line: 'Just show up. With Founders Running Club, easy pace.',
-          lines: [['pin', `Starts at the ${placeLink('runStart', 'Bassin Octogonal')}, Tuileries (metro Concorde).`]] },
+          lines: [['pin', `Starts at ${placeLink('runStart', 'Métro Invalides')} (moved from Tuileries due to protests).`]] },
         { ext: 'run', time: '10:30', icon: 'cup', title: 'Coffee after the run', place: 'runCafe',
           line: 'At the café where the run ends, by the Seine in the 15th.' },
         { key: 'acai', time: '12:30', icon: 'bowl', title: 'Açaí bowls', place: 'acai',
