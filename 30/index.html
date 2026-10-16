@@ -467,7 +467,7 @@
 
     // Places on the map. "n" is the number shown on the pin and in the program.
     const PLACES = {
-      seine:    { n: '1', cls: 'f', lat: 48.8608, lng: 2.2950, name: 'Seine quay by the Eiffel Tower', when: 'Fri 18:00, drinks', q: 'Port de la Bourdonnais, 75007 Paris', dir: 'left', short: 'Seine quay' },
+      seine:    { n: '1', cls: 'f', lat: 48.8622, lng: 2.2941, name: 'Seine quay (Port Debilly, opposite Eiffel Tower)', when: 'Fri 18:00, drinks', q: 'Bateau Boréas, 3 Port Debilly, 75016 Paris', url: 'https://maps.app.goo.gl/PZWL6nuXuDuRVbBr8?g_st=ic', dir: 'left', short: 'Seine quay' },
       minuit:   { n: '2', cls: 'f', lat: 48.8550, lng: 2.3040, name: 'Minuit Express', when: 'Fri later, Mensa night (rain backup)', q: 'Minuit Express, 111 Avenue de la Bourdonnais, 75007 Paris', dir: 'right', short: 'Minuit Express' },
       runStart: { n: '3', cls: 's', lat: 48.8636, lng: 2.3237, name: 'Run start: Bassin Octogonal, Tuileries', when: 'Sat 9:30, 5K run', q: 'Bassin Octogonal, Jardin des Tuileries, 75001 Paris', dir: 'top', short: 'Run start' },
       runCafe:  { n: '4', cls: 's', lat: 48.8402, lng: 2.2735, name: 'Les Quais d’Annette K (run café, approx.)', when: 'Sat 10:30, coffee after the run', q: 'Les Quais d’Annette K, 75015 Paris', dir: 'right', short: 'Run café' },
@@ -478,7 +478,7 @@
       hostel:   { n: 'H', cls: 'hostel', lat: 48.8132, lng: 2.3596, name: 'Hosho Paris Sud (hostel)', when: 'Right next to the gym, about 5 minutes on foot', q: 'Hosho Paris Sud, 10 rue Pierre Brossolette, 94270 Le Kremlin-Bicêtre', dir: 'bottom', short: 'Hostel' }
     };
     window.BDAY_PLACES = PLACES;
-    const placeLink = (id, text) => `<a href="${gmaps(PLACES[id].q)}" target="_blank" rel="noopener">${text}</a>`;
+    const placeLink = (id, text) => `<a href="${PLACES[id].url || gmaps(PLACES[id].q)}" target="_blank" rel="noopener">${text}</a>`;
 
     // The program. Rows with "key" are questions (the six answer keys never change).
     // Rows with "ext" are extensions: they follow the answer of their parent stop.
@@ -487,7 +487,7 @@
         { key: 'fri', time: '18:00', icon: 'glass', title: 'Drinks by the Seine', place: 'seine',
           line: 'Bring your own drinks. I’ll bring some wine, cheese and food.',
           lines: [
-            ['pin', `${placeLink('seine', 'Seine quay')} by the Eiffel Tower. Exact spot in the chat.`],
+            ['pin', `${placeLink('seine', 'Seine quay')} across from the Eiffel Tower (Port Debilly). Exact spot in the chat.`],
             ['bag', 'Drop your bags at the hostel or your place first.']
           ] },
         { ext: 'fri', time: 'later', icon: 'rain', title: 'Mensa night at Minuit Express', place: 'minuit',
@@ -900,7 +900,7 @@
         icon: L.divIcon({ className: '', html: '<span class="mk ' + p.cls + '">' + p.n + '</span>', iconSize: [26, 26], iconAnchor: [13, 13], popupAnchor: [0, -12] }),
         title: p.name, alt: p.name, keyboard: true, zIndexOffset: id === 'gym' ? 1000 : 0
       }).addTo(map);
-      m.bindPopup('<b>' + p.n + '. ' + p.name + '</b><span>' + p.when + '</span><br><a href="https://maps.google.com/?q=' + encodeURIComponent(p.q) + '" target="_blank" rel="noopener">Open in Google Maps</a>');
+      m.bindPopup('<b>' + p.n + '. ' + p.name + '</b><span>' + p.when + '</span><br><a href="' + (p.url || ('https://maps.google.com/?q=' + encodeURIComponent(p.q))) + '" target="_blank" rel="noopener">Open in Google Maps</a>');
       m.bindTooltip(p.short || p.name, { permanent: true, direction: p.dir || 'right', offset: p.dir === 'left' ? [-12, 0] : p.dir === 'top' ? [0, -12] : p.dir === 'bottom' ? [0, 12] : [12, 0], className: 'mk-label' });
       bounds.push([p.lat, p.lng]);
     });
