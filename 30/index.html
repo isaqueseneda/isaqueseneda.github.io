@@ -477,7 +477,8 @@
       gym:      { n: '7', cls: 's', lat: 48.8165, lng: 2.3603, name: 'Climb Up Porte d’Italie', when: 'Sat 15:00 hang (free), 18:00 climb or sauna', q: 'Climb Up Porte d’Italie, 18 Avenue de la Porte d’Italie, 75013 Paris', dir: 'left', short: 'Climb Up gym' },
       hostel:   { n: 'H', cls: 'hostel', lat: 48.8132, lng: 2.3596, name: 'Hosho Paris Sud (hostel)', when: 'Right next to the gym, about 5 minutes on foot', q: 'Hosho Paris Sud, 10 rue Pierre Brossolette, 94270 Le Kremlin-Bicêtre', dir: 'bottom', short: 'Hostel' },
       bar:      { n: '8', cls: 's', lat: 48.8194, lng: 2.3591, name: 'Bar La Liberté (Porte d’Italie)', when: 'Sat 23:00, drinks after the gym', q: 'Le Liberté, Boulevard Kellermann, 75013 Paris', dir: 'right', short: 'Bar La Liberté' },
-      park:     { n: '9', cls: 'u', lat: 48.8186, lng: 2.3376, name: 'Parc de la Cité Internationale (Spikeball + picnic)', when: 'Sun 11:30, picnic & Spikeball', q: 'Grande Pelouse, Cité Internationale Universitaire de Paris, 75014 Paris', url: 'https://maps.app.goo.gl/LNfRE9vaGwSxdGcS8?g_st=ic', dir: 'top', short: 'Cité Universitaire' }
+      park:     { n: '9', cls: 'u', lat: 48.8186, lng: 2.3376, name: 'Parc de la Cité Internationale (Spikeball + picnic)', when: 'Sun 11:30, picnic & Spikeball', q: 'Grande Pelouse, Cité Internationale Universitaire de Paris, 75014 Paris', url: 'https://maps.app.goo.gl/LNfRE9vaGwSxdGcS8?g_st=ic', dir: 'top', short: 'Cité Universitaire' },
+      korean:   { n: '10', cls: 'u', lat: 48.8196, lng: 2.3413, name: 'Comptoir Coréen - Cité (Korean lunch)', when: 'Sun ~13:00, lunch (open until 15:00)', q: 'Comptoir Coréen - Cité, 9G Boulevard Jourdan, 75014 Paris', url: 'https://maps.app.goo.gl/NLe4ZrRos6HaR3TJ7?g_st=ic', dir: 'top', short: 'Comptoir Coréen' }
     };
     window.BDAY_PLACES = PLACES;
     const placeLink = (id, text) => `<a href="${PLACES[id].url || gmaps(PLACES[id].q)}" target="_blank" rel="noopener">${text}</a>`;
@@ -524,13 +525,16 @@
       ] },
       { day: '2026-10-18', name: 'Sunday', date: '18 October', cls: 'u', color: 'var(--sun)', rows: [
         { key: 'brunch', time: '11:30', until: 'to 16:00', icon: 'tree', title: 'Park picnic brunch + Spikeball', place: 'park',
-          line: `At ${placeLink('park', 'Parc de la Cité Internationale')}. Bring picnic food or get brunch at the café in front.`,
-          pline: `At ${placeLink('park', 'Parc de la Cité Internationale')}. Picnic, café brunch, and Spikeball on the lawn.`,
+          line: `At ${placeLink('park', 'Parc de la Cité Internationale')}. Bring picnic food, café brunch in front, or Korean lunch nearby.`,
+          pline: `At ${placeLink('park', 'Parc de la Cité Internationale')}. Picnic, café brunch, Korean lunch, and Spikeball on the lawn.`,
           lines: [
             ['pin', `At ${placeLink('park', 'Parc de la Cité Internationale')} (Grande Pelouse). We’ll be playing Spikeball on the lawn.`],
             ['cup', 'There’s a pretty good brunch at the café right in front of the park.'],
-            ['bag', 'Bring food or eat at the café. A bit sporty, and it may be cold, so dress warm.', 'bring']
-          ] }
+            ['bowl', `Around 13:00 we can head to ${placeLink('korean', 'Comptoir Coréen')}, a 4-minute walk away on Bd Jourdan. Open until 15:00—we can go in waves.`],
+            ['bag', 'Bring food or eat nearby. A bit sporty, and it may be cold, so dress warm.', 'bring']
+          ] },
+        { ext: 'brunch', time: '13:00', icon: 'bowl', title: 'Korean lunch at Comptoir Coréen', place: 'korean',
+          line: `A 4-minute walk from the lawn (open until 15:00). We can head over in waves; everyone pays their own.` }
       ] }
     ];
     PLAN.forEach((d) => { d.stops = d.rows.filter((r) => r.key); });
