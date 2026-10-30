@@ -339,7 +339,7 @@ function initStudio() {
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.position.z = w < 640 ? 15 : 11;
-    camera.lookAt(0, w < 640 ? 1.5 : -0.1, 0); // phones: shells sit below the caption
+    camera.lookAt(0, -0.1, 0);   // no caption over this shot, so the pair stays centred
     camera.updateProjectionMatrix();
   };
   new ResizeObserver(resize).observe(el);
@@ -414,7 +414,7 @@ const MODES = {
   nc: { rank: 2, read: "Noise Cancellation: nearly silent, as advertised",
         note: "Noise cancelling working as advertised. The street fades to almost nothing. Enjoy it while it lasts." },
   ocean: { rank: 3, read: null,
-           note: "SeaShells Mode: noise cancelling that works, plus a hum wandering on top. Working as designed." },
+           note: "SeaShells Mode: noise cancelling still works, but a low hum drifts underneath it, mostly in one ear. That's the bug owners describe." },
 };
 
 function normalise(buf, target) {
@@ -437,6 +437,8 @@ function loopSource(ctx, buf) {
 const rand = (lo, hi) => lo + Math.random() * (hi - lo);
 
 async function buildAudio() {
+  // iPhones mute web audio on silent unless the page asks for media playback
+  if (navigator.audioSession) navigator.audioSession.type = "playback";
   const ctx = new (window.AudioContext || window.webkitAudioContext)();
   audio.ctx = ctx;
   const [roomBuf, streetBuf] = await Promise.all([loadLoop(ctx, "audio/roomtone.wav"), loadLoop(ctx, "audio/street.wav")]);
@@ -738,7 +740,7 @@ async function squeal() {
   osc.connect(g).connect(audio.fx, 0, ear);
   osc.start(now); vib.start(now);
   osc.stop(now + 1.6); vib.stop(now + 1.6);
-  demoNote.textContent = `That squeak was your ${ear ? "right" : "left"} ear tip shifting. The fix is to push them in harder, forever.`;
+  demoNote.textContent = soundNote("squeal", ear ? "right" : "left");
 }
 
 squealBtn.addEventListener("click", () => {
@@ -793,7 +795,7 @@ async function crackle() {
   const ear = Math.random() < 0.5 ? 0 : 1;
   src.connect(band).connect(soften).connect(g).connect(audio.fx, 0, ear);
   src.start(now);
-  demoNote.textContent = `Crackling in your ${ear ? "right" : "left"} ear. Owners compare it to distant rain. Support says there's nothing to compare it to.`;
+  demoNote.textContent = soundNote("crackle", ear ? "right" : "left");
 }
 document.getElementById("crackle").addEventListener("click", crackle);
 
@@ -898,9 +900,108 @@ const REPORTED = {
     src.start(t0); src.stop(t + 0.2);
   }, () => `That's you, breathing, amplified. One owner could "hear myself breathing with this noise". Some customers find it calming.`],
 };
-Object.entries(REPORTED).forEach(([id, [build, note]]) => {
-  document.getElementById(`fx-${id}`).addEventListener("click", () => playReported(build, note));
+Object.entries(REPORTED).forEach(([id, [build]]) => {
+  document.getElementById(`fx-${id}`).addEventListener("click", () => playReported(build, ear => soundNote(`fx-${id}`, ear)));
 });
+
+/* ---------- What each sound is: owners' words, from the saved threads in research/ ---------- */
+const TIPS = {
+  ocean: {
+    name: "SeaShells Mode: the ocean hum",
+    what: "Our simulation of the most reported sound. Noise cancelling keeps working, and a low hum drifts underneath it, mostly in one ear. It's built in your browser from owners' descriptions, not recorded from AirPods.",
+    when: "Most noticeable in a quiet room, with noise cancelling on and nothing playing.",
+    quote: "To me it sounds like I'm putting my ear to a seashell.",
+    source: "An owner on Reddit",
+  },
+  "fx-hiss": {
+    name: "Hiss",
+    what: "A steady white noise, like a quiet fan, distant rain or a waterfall.",
+    when: "With noise cancelling, Transparency or Adaptive on, worst in a quiet room. Owners say only Off mode stops it.",
+    quote: "It's a white noise. Similar to a very quiet fan running.",
+    source: "An owner on the MacRumors Forums",
+  },
+  crackle: {
+    name: "Crackling",
+    what: "Static or crackling that comes and goes.",
+    when: "Mostly with noise cancelling on and nothing playing.",
+    quote: "a static-like sound or a crackling issue when using the earbuds, particularly when Active Noise Cancellation is on but no media is playing.",
+    source: "MacRumors, December 2025",
+  },
+  squeal: {
+    name: "Squeaky seal",
+    what: "A squeal that can build into a screech, like a microphone too close to a speaker.",
+    when: "When the fit shifts in your ear, or while you adjust them. One owner got it on a flight.",
+    quote: "the seashell sound to get louder and louder until it becomes a loud screech, like a really bad feedback loop",
+    source: "An owner on Reddit",
+  },
+  "fx-whistle": {
+    name: "Whistle",
+    what: "A high-pitched whistle over a sea-like hiss.",
+    when: "It comes and goes. Some owners hear it in Transparency or Adaptive mode, others on flights.",
+    quote: "It sounds like a high-pitched whistle mixed with the sound of the sea (like static or white noise).",
+    source: "An owner on Reddit",
+  },
+  "fx-wind": {
+    name: "Wind gusts",
+    what: "Gusts of wind that seem to come from one side of the room.",
+    when: "On and off, often on one side. Take the earbuds out and the room is silent.",
+    quote: "it sounds like it's windy outside and off to my right.",
+    source: "An owner on Reddit",
+  },
+  "fx-clicks": {
+    name: "Underwater clicks",
+    what: "A short click, like dipping your head underwater for a second.",
+    when: "For one owner, every 30 seconds or so.",
+    quote: "every thirty seconds or so I get this 'bick' idk how else to describe it.",
+    source: "An owner on Reddit",
+  },
+  "fx-breathing": {
+    name: "Breathing",
+    what: "Your own breathing, chewing and jaw movements, louder in the faulty earbud.",
+    when: "Along with the hiss, on the affected side.",
+    quote: "I can even hear myself breathing with this noise.",
+    source: "An owner on Reddit",
+  },
+};
+function soundNote(key, ear) {
+  const t = TIPS[key];
+  return `${t.name}, in your ${ear} ear. ${t.what} ${t.when}`;
+}
+
+// one shared card, shown on hover (computers) or keyboard focus
+const tip = document.createElement("div");
+tip.className = "tip"; tip.id = "tip"; tip.setAttribute("role", "tooltip"); tip.hidden = true;
+document.body.appendChild(tip);
+function showTip(el) {
+  const t = TIPS[el.dataset.tip];
+  if (!t) return;
+  const line = (cls, label, text) => {
+    const p = document.createElement("p"); p.className = cls;
+    if (label) { const b = document.createElement("b"); b.textContent = label; p.append(b, " "); }
+    p.append(text); return p;
+  };
+  const h = document.createElement("strong"); h.textContent = t.name;
+  const q = document.createElement("blockquote"); q.textContent = t.quote;
+  const s = document.createElement("span"); s.className = "tip-src"; s.textContent = t.source;
+  tip.replaceChildren(h, line("tip-what", "", t.what), line("tip-when", "When:", t.when), q, s);
+  tip.hidden = false;
+  const r = el.getBoundingClientRect(), w = tip.offsetWidth, ht = tip.offsetHeight;
+  const x = Math.min(Math.max(12, r.left + r.width / 2 - w / 2), innerWidth - w - 12);
+  const y = r.top - ht - 12 > 100 ? r.top - ht - 12 : r.bottom + 12;
+  tip.style.transform = `translate(${Math.round(x)}px, ${Math.round(y)}px)`;
+}
+const hideTip = () => { tip.hidden = true; };
+const canHover = matchMedia("(hover: hover)").matches;
+document.querySelectorAll("[data-tip]").forEach(el => {
+  el.setAttribute("aria-describedby", "tip");
+  if (canHover) {
+    el.addEventListener("pointerenter", () => showTip(el));
+    el.addEventListener("pointerleave", hideTip);
+  }
+  el.addEventListener("focus", () => { if (el.matches(":focus-visible")) showTip(el); });
+  el.addEventListener("blur", hideTip);
+});
+addEventListener("scroll", hideTip, { passive: true });
 
 function meterLoop() {
   const data = new Float32Array(audio.anaL.fftSize);
@@ -921,30 +1022,39 @@ const replies = document.getElementById("chat-replies");
 const wait = ms => new Promise(r => setTimeout(r, reduceMotion ? Math.min(ms, 150) : ms));
 let chatRun = 0;
 
+const REAL = text => ({ text, real: true });   // owners report hearing this from Apple staff
 const SCRIPT = {
   start: {
     them: ["Hi, I'm Kevin. Thanks for waiting 40 minutes.", "What brings you in today?"],
-    replies: [["There's an ocean sound in my left AirPod.", "diag"], ["Noise cancelling makes a hissing static.", "diag"]],
+    replies: [["There's an ocean sound in my right AirPod.", "diag"], ["Noise cancelling makes a hissing static.", "diag"]],
   },
   diag: {
     them: ["Oh no, that sounds frustrating.", "Let me run a quick diagnostic. It checks everything."],
     diag: true, next: "passed",
   },
   passed: {
-    them: ["Good news! All tests passed.", "Honestly, this is the first time we've heard of a case like this.", "Your AirPods are working as designed."],
+    them: [REAL("Good news! All tests passed."), REAL("Honestly, this is the first time we've heard of a case like this."), "Your AirPods are working as designed."],
     replies: [["But I can hear it right now.", "personal"], ["It's all over Reddit.", "reddit"]],
   },
   personal: {
     them: ["Sound is very personal. Everyone hears things a little differently.", "Some people hear the ocean. Some people hear their own thoughts."],
-    replies: [["It started the day after I bought them.", "clean"]],
+    next: "clean",
   },
   reddit: {
     them: ["I can't comment on third-party forums.", "But a lot of people there find the sound calming."],
-    replies: [["It started the day after I bought them.", "clean"]],
+    next: "clean",
   },
   clean: {
-    them: ["Have you tried cleaning them?", "Gently. With intention."],
-    replies: [["Yes. Three times.", "ears"], ["I did your whole 7-step ritual.", "ears"]],
+    them: ["Have you tried cleaning them?"],
+    replies: [["Yes. Three times.", "cloth"], ["They're brand new.", "brandnew"]],
+  },
+  cloth: {
+    them: ["With a dry cloth? It was too dry. Or not dry enough.", "It's hard to say, which is your fault."],
+    next: "ears",
+  },
+  brandnew: {
+    them: ["Brand-new pairs don't make noise.", "So if yours do, what did you do to them?"],
+    next: "ears",
   },
   ears: {
     them: ["Mind if I take a quick look at your ears?", "…", "Yes. They're quite unique. We see a lot of unique ears with this."],
@@ -952,10 +1062,10 @@ const SCRIPT = {
   },
   swap: {
     them: ["I can offer you a brand-new replacement pair!", "It may also hear the ocean. That's how you know it's genuine."],
-    replies: [["So nothing changes?", "end"]],
+    replies: [["Is this a known issue?", "known"]],
   },
   known: {
-    them: ["There's no known issue.", "What you're hearing is normal. Expected behavior, really.", "There are just a lot of people with the same unknown one."],
+    them: ["There's no known issue.", REAL("What you're hearing is normal. Expected behavior, really."), "There are just a lot of people with the same unknown one."],
     replies: [["So nothing changes?", "end"]],
   },
   end: {
@@ -980,7 +1090,7 @@ function bubble(text, who) {
   return el;
 }
 
-async function say(text, run) {
+async function say(text, run, real) {
   const typing = document.createElement("div");
   typing.className = "msg them typing";
   typing.setAttribute("aria-label", "Kevin is typing");
@@ -991,6 +1101,13 @@ async function say(text, run) {
   typing.remove();
   if (run !== chatRun) return false;
   bubble(text, "them");
+  if (real) {
+    const tag = document.createElement("div");
+    tag.className = "msg-tag";
+    tag.textContent = "Said to a real owner";
+    log.appendChild(tag);
+    log.scrollTop = log.scrollHeight;
+  }
   return true;
 }
 
@@ -1021,7 +1138,10 @@ async function runDiagnostic(run) {
 async function play(nodeId, run) {
   const node = SCRIPT[nodeId];
   replies.innerHTML = "";
-  for (const line of node.them) if (!(await say(line, run))) return;
+  for (const line of node.them) {
+    const real = typeof line === "object";
+    if (!(await say(real ? line.text : line, run, real))) return;
+  }
   if (node.diag && !(await runDiagnostic(run))) return;
   if (node.next) return play(node.next, run);
   if (node.closed) {
@@ -1030,6 +1150,11 @@ async function play(nodeId, run) {
     c.textContent = `Case ${Math.floor(1e9 + Math.random() * 9e9)} closed. Cause: your ears.`;
     log.appendChild(c);
     log.scrollTop = log.scrollHeight;
+    const again = document.createElement("button");
+    again.className = "pill big";
+    again.textContent = "Practice again";
+    again.addEventListener("click", startChat);
+    replies.appendChild(again);
     return;
   }
   node.replies.forEach(([label, next]) => {
@@ -1052,7 +1177,6 @@ function startChat() {
   replies.innerHTML = "";
   play("start", chatRun);
 }
-document.getElementById("chat-restart").addEventListener("click", startChat);
 
 // start the conversation when it scrolls into view
 let chatStarted = false;
@@ -1061,104 +1185,48 @@ new IntersectionObserver(([e]) => {
 }, { threshold: 0.35 }).observe(document.querySelector(".chat"));
 
 /* =========================================================
-   Blame headline fills in as you scroll
+   Petition: each signature is saved privately (see petition-api/). Nothing can be read back.
    ========================================================= */
-const blame = document.querySelector(".blame");
-const blameBig = document.querySelector(".blame-big");
-function blameWipe() {
-  const r = blame.getBoundingClientRect();
-  const p = clamp((innerHeight - r.top) / (innerHeight * 0.9));
-  blameBig.style.setProperty("--wipe", `${(reduceMotion ? 100 : p * 100).toFixed(1)}%`);
-}
-addEventListener("scroll", blameWipe, { passive: true });
-blameWipe();
-
-/* =========================================================
-   Cleaning Audit: there is no correct answer
-   ========================================================= */
-const AUDIT = {
-  cloth: "The cloth was too dry. Or not dry enough. It's hard to say, which is your fault.",
-  brush: "Too gentle. Or too firm. We can't tell you which, but you got it wrong.",
-  swab: "We never said to use a cotton swab. We never said not to, either. Either way, that's on you.",
-  alcohol: "Alcohol is fine. Your alcohol wasn't. Did you even check the percentage?",
-  tips: "If you tried every size, none of them were right for you. That's not how sizes work.",
-  reset: "Two resets is one too many. Or one too few. You'd know if you'd done it properly.",
-  pray: "Are you sure you prayed? Nobody else hears it after praying.",
-  new: "Brand-new pairs don't make noise. So if yours do, what did you do to them?",
-};
-const auditForm = document.getElementById("audit");
-const auditOut = document.getElementById("audit-result");
-auditForm.addEventListener("submit", e => {
+const PETITION_API = "https://seashells-petition-api.vercel.app/api/sign";
+const petition = document.getElementById("petition-form");
+const petitionError = document.getElementById("petition-error");
+petition?.addEventListener("submit", async e => {
   e.preventDefault();
-  const picked = [...auditForm.querySelectorAll("input:checked")].map(i => i.value);
-  const reasons = picked.length ? picked.map(k => AUDIT[k]) : ["You didn't clean them? Then of course they hiss. And if you had, they'd still hiss, because you'd have done it wrong."];
-  auditOut.hidden = false;
-  auditOut.innerHTML = "";
-  const v = document.createElement("p");
-  v.className = "verdict";
-  v.textContent = "You didn't clean right.";
-  const ul = document.createElement("ul");
-  reasons.forEach(r => { const li = document.createElement("li"); li.textContent = r; ul.appendChild(li); });
-  const sc = document.createElement("p");
-  sc.className = "score";
-  sc.textContent = picked.length
-    ? `${picked.length} of ${picked.length} steps done wrong. Start again from step 1.`
-    : "0 steps done. That also counts as wrong.";
-  auditOut.append(v, ul, sc);
-  auditForm.querySelector("button").textContent = "Run it again";
-});
-
-/* =========================================================
-   Pre-order: a checkout that checks nothing and charges nothing
-   ========================================================= */
-const orderDialog = document.getElementById("preorder-dialog");
-const orderForm = document.getElementById("order-form");
-const orderGo = document.getElementById("order-go");
-const orderSteps = [...orderForm.querySelectorAll(".order-step")];
-let orderRun = 0;
-
-function showStep(n) { orderSteps.forEach(el => { el.hidden = el.dataset.step !== String(n); }); }
-function orderPrice() { return orderForm.care.checked ? 294 : 249; }
-
-document.getElementById("preorder").addEventListener("click", () => {
-  orderRun++;
-  orderForm.reset();
-  showStep(1);
-  orderGo.textContent = `Pre-order for €${orderPrice()}`;
-  orderDialog.showModal();
-});
-orderForm.care.addEventListener("change", () => { orderGo.textContent = `Pre-order for €${orderPrice()}`; });
-orderDialog.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => { orderRun++; orderDialog.close(); }));
-
-orderForm.addEventListener("submit", async e => {
-  e.preventDefault();
-  const run = ++orderRun;
-  const ear = orderForm.ear.value;
-  const care = orderForm.care.checked;
-  const engraving = orderForm.engrave.value.trim();
-  const checks = [
-    `Payment: not taken. You already paid €${orderPrice()}.`,
-    ear === "surprise" ? "Ear: support will decide. It will be the other one."
-      : `Ear: ${ear}. The ${ear === "left" ? "right" : "left"} one gets to wonder why.`,
-    care ? "SeaCare+: added. Your replacement pair will hiss identically." : "SeaCare+: declined. Bold.",
-    engraving ? `Engraving: “${engraving}”, printed on the inside, facing your ear.` : "Engraving: none. The hum is engraving enough.",
-    "Diagnostics: all tests passed, before your pair was even made.",
-  ];
-  const list = document.getElementById("order-checks");
-  const title = document.getElementById("order-done-title");
-  const final = document.getElementById("order-final");
-  list.innerHTML = ""; final.textContent = "";
-  title.textContent = "Checking your order…";
-  showStep(2);
-  for (const line of checks) {
-    await wait(650);
-    if (run !== orderRun) return;
-    const li = document.createElement("li");
-    li.textContent = line;
-    list.appendChild(li);
+  const f = petition.elements;
+  const btn = petition.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  const data = {
+    name: f.name.value,
+    country: f.country.value,
+    sounds: [...petition.querySelectorAll('input[name="sounds"]:checked')].map(i => i.value),
+    side: petition.querySelector('input[name="side"]:checked')?.value || "",
+    story: f.story.value,
+    email: f.email.value,
+    website: f.website.value,   // hidden; only bots fill it
+  };
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+  petitionError.hidden = true;
+  try {
+    const res = await fetch(PETITION_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data),
+    });
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok || !out.success) throw new Error(out.error || "We couldn't save your signature right now. Please try again in a moment.");
+    const done = document.getElementById("petition-done");
+    done.querySelector(".done-title").textContent = `Thank you, ${data.name.trim().split(/\s+/)[0]}.`;
+    petition.hidden = true;
+    done.hidden = false;
+    done.focus();
+  } catch (err) {
+    petitionError.textContent = err instanceof TypeError
+      ? "We couldn't reach the petition. Check your connection and try again."
+      : err.message;
+    petitionError.hidden = false;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = label;
   }
-  await wait(500);
-  if (run !== orderRun) return;
-  title.textContent = "Pre-order confirmed.";
-  final.textContent = "Estimated delivery: when the hum goes away.";
 });

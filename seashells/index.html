@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SeaShells Pro</title>
-  <meta name="description" content="SeaShells Pro: two white ceramic turban shells with silicone ear tips, in a magnetic clam case. The famous AirPods Pro ocean hum, now in ceramic, for €249. Or free, as SeaShells Mode, for any earbud you own.">
-  <link rel="canonical" href="https://isaque.me/seashells/">
+  <meta name="description" content="AirPods Pro 3 are great at noise cancelling, but many owners hear a low hum, like a seashell held to the ear. Hear it, learn what to call it, and sign the petition.">
   <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://isaque.me/seashells/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://isaque.me/seashells/">
   <meta property="og:title" content="SeaShells Pro">
-  <meta property="og:description" content="Hear the ocean. Whether you asked or not. A parody product launch about the AirPods Pro 3 ocean hum.">
+  <meta property="og:description" content="AirPods Pro 3 are great at noise cancelling, but many owners hear a low hum, like a seashell held to the ear. Hear it, learn what to call it, and sign the petition.">
   <meta property="og:image" content="https://isaque.me/seashells/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=6">
   <script type="importmap">
     { "imports": {
       "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
@@ -30,30 +30,28 @@
 </head>
 <body>
 
-<header class="globalnav">
-  <a class="brand" href="#top" aria-label="SeaShells Pro home">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.6 0-8 3.4-8 7.6 0 3.1 2 5.9 4.9 7.4L8 21h8l-.9-3c2.9-1.5 4.9-4.3 4.9-7.4C20 6.4 16.6 3 12 3Zm0 2.2v11.6M8.4 6.3l2.2 10.3M15.6 6.3l-2.2 10.3M5.6 9.3l4 7.6M18.4 9.3l-4 7.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-  </a>
-  <nav aria-label="Main">
-    <a href="#hardware">SeaShells Pro</a>
-    <a href="#demo">SeaShells Mode</a>
-    <a href="#genius">Support</a>
-    <a href="#clean">Cleaning</a>
-    <a href="#protocol">Open source</a>
-    <a href="#real">The real issue</a>
-  </nav>
+<header class="topbar">
+  <a class="ribbon" href="#facts">A parody about a real AirPods Pro 3 problem. <span>Read the facts</span></a>
 </header>
 
 <div class="subnav">
-  <span class="subnav-name">SeaShells Pro</span>
-  <a class="subnav-link" href="#hardware">Tech Specs</a>
-  <a class="pill" href="#get">Get</a>
+  <a class="subnav-name" href="#top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.6 0-8 3.4-8 7.6 0 3.1 2 5.9 4.9 7.4L8 21h8l-.9-3c2.9-1.5 4.9-4.3 4.9-7.4C20 6.4 16.6 3 12 3Zm0 2.2v11.6M8.4 6.3l2.2 10.3M15.6 6.3l-2.2 10.3M5.6 9.3l4 7.6M18.4 9.3l-4 7.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+    SeaShells Pro
+  </a>
+  <nav class="subnav-links" aria-label="Sections">
+    <a href="#listen">Listen</a>
+    <a href="#owners">Owners</a>
+    <a href="#support">Support</a>
+    <a href="#facts">The facts</a>
+  </nav>
+  <a class="pill" href="#petition">Sign the petition</a>
 </div>
 
 <main id="top">
 
-  <!-- 3D story: one sticky stage, six beats driven by scroll -->
-  <section class="story" aria-label="Introducing SeaShells Pro">
+  <!-- 3D story: one sticky stage driven by scroll; the clam case closes it, without words -->
+  <section class="story" aria-label="The story">
     <div class="stage">
       <canvas id="scene" aria-hidden="true"></canvas>
       <div class="beat" data-from="0" data-to="0.11">
@@ -63,63 +61,30 @@
       </div>
       <div class="beat" data-from="0.14" data-to="0.27">
         <h2 class="beat-title"><span class="ln">Noise cancellation that cancels the noise.</span> <span class="ln">Then brings its own.</span></h2>
-        <p class="beat-line">White ceramic turban shells with silicone ear tips, tuned to the soft, endless hum AirPods Pro 3 owners have been reporting since launch week.</p>
+        <p class="beat-line">AirPods Pro 3 are great at noise cancelling. But they have an annoying bug.</p>
       </div>
       <div class="beat" data-from="0.3" data-to="0.43">
         <h2 class="beat-title">Asymmetric by design.</h2>
-        <p class="beat-line">One ear gets the ocean. The other gets to wonder why.</p>
+        <p class="beat-line">Many owners hear a low tone, like a seashell held to the ear. It usually happens on one side.</p>
       </div>
       <div class="beat" data-from="0.47" data-to="0.6">
-        <h2 class="beat-title"><span class="ln">SeaShells Mode.</span> <span class="ln">Available for every earbud on Earth.</span></h2>
-        <p class="beat-line">A €249 defect, free on your €29 earbuds. Your airport pair. Your gym pair. The pair your phone came with in 2014.</p>
+        <h2 class="beat-title gradient-text"><span class="ln">The ocean.</span> <span class="ln">Everywhere.</span></h2>
+        <p class="beat-line">You're not alone: 186 comments in one Reddit thread, 59 posts on MacRumors. Even replacement pairs do it.</p>
       </div>
       <div class="beat" data-from="0.63" data-to="0.77">
-        <h2 class="beat-title gradient-text"><span class="ln">The ocean.</span> <span class="ln">Everywhere.</span></h2>
-      </div>
-      <div class="beat" data-from="0.84" data-to="1.1">
-        <h2 class="beat-title"><span class="ln">Put them back in the case.</span> <span class="ln">The ocean stops. For a while.</span></h2>
-        <p class="beat-line">A magnetic white clam case that closes with a click. You'll hear it in one ear. Two ceramic turbans. €249.</p>
+        <h2 class="beat-title">“Normal. Expected behavior.”</h2>
+        <p class="beat-line">That's what Apple support told one owner, after replacing their pair.</p>
       </div>
       <div class="progress" aria-hidden="true"><span></span></div>
     </div>
   </section>
 
-  <!-- Hardware -->
-  <section class="hardware light" id="hardware">
-    <div class="wrap">
-      <div class="head">
-        <h2 class="section-title">Two shells. One case. Infinite excuses.</h2>
-        <p class="lede">Two precision-molded white ceramic turban shells, silicone ear tips, one magnetic clam case. Hold one to your ear and you'll hear the ocean. Exactly like the €249 earbuds you already own.</p>
-      </div>
-      <div class="bento">
-        <figure class="tile tile-studio">
-          <canvas id="studio" aria-label="The two white ceramic SeaShells Pro turbans, slowly turning"></canvas>
-          <figcaption>
-            <span class="studio-name">SeaShells Pro</span>
-            <span class="studio-line">Two turbans, one left-handed, one right-handed. A shell that spirals left is very rare in nature and standard in the box. The mother-of-pearl inlay sits where the snail used to close its door.</span>
-          </figcaption>
-        </figure>
-        <div class="tile t4"><p class="big">1,240 °C</p><p>Kiln-fired white ceramic, with a hand-polished nacre glaze inside.</p></div>
-        <div class="tile t4"><p class="big">38 g</p><p>Per shell. You'll feel it, mostly in one ear.</p></div>
-        <div class="tile t4"><p class="big">S, M, L</p><p>Silicone ear tips. None of them will fit. That's on you.</p></div>
-        <div class="tile t3 dark-tile"><p class="big">0 mAh</p><p>No battery. The ocean is self-powered.</p></div>
-        <div class="tile t3 dark-tile"><p class="big">0 fixes</p><p>No firmware. Same number of fixes as the competition.</p></div>
-        <div class="tile t3 dark-tile"><p class="big">IP∞</p><p>Water resistance. It came from the sea.</p></div>
-        <div class="tile t3 dark-tile"><p class="big">Click.</p><p>Magnetic clam case. Opening it again restarts the ocean.</p></div>
-        <div class="tile t12 box-tile">
-          <p class="big nacre">€249</p>
-          <p>In the box: two shells, one magnetic clam case, a lint-free cloth for the cleaning you'll do wrong, and a booklet called <em>It's Your Ears</em>.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Live audio demo -->
-  <section class="demo dark glow" id="demo">
+  <!-- Listen: the sounds, with names -->
+  <section class="demo dark glow" id="listen">
     <div class="wrap">
       <div class="head">
         <h2 class="section-title">Hear it for yourself.</h2>
-        <p class="lede">Headphones on, volume low. A real Paris apartment, window shut. Try what a €249 pair promises, then what it delivers: noise cancelling that works, and a low hum wandering on top, mostly in one ear. Laptop speakers can't play it.</p>
+        <p class="lede">Headphones on, volume low. Play the sounds owners report, so you can name what you hear.</p>
       </div>
 
       <div class="console">
@@ -142,7 +107,7 @@
               <span class="mode-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg></span>
               <span class="mode-name">Noise Cancellation</span>
             </button>
-            <button class="mode" role="radio" data-mode="ocean" aria-checked="false">
+            <button class="mode" role="radio" data-mode="ocean" aria-checked="false" data-tip="ocean">
               <span class="mode-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12.5c2 0 2-3 4.5-3s2.5 3 4.5 3 2.5-3 4.5-3 2.5 3 4.5 3" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></span>
               <span class="mode-name">SeaShells Mode</span>
             </button>
@@ -168,14 +133,14 @@
             <output id="intensity-read">40%</output>
           </label>
           <div class="control toggles">
-            <span class="fx-title">Other sounds owners report</span>
-            <button class="toggle ghost" id="fx-hiss">Hiss</button>
-            <button class="toggle ghost" id="crackle">Crackling</button>
-            <button class="toggle ghost" id="squeal">Squeaky seal</button>
-            <button class="toggle ghost" id="fx-whistle">Whistle</button>
-            <button class="toggle ghost" id="fx-wind">Wind gusts</button>
-            <button class="toggle ghost" id="fx-clicks">Underwater clicks</button>
-            <button class="toggle ghost" id="fx-breathing">Breathing</button>
+            <span class="fx-title">Sounds owners report <span class="fx-hint hint-hover">Hover over one to learn what it is, click to hear it.</span><span class="fx-hint hint-touch">Tap one to hear it and learn what it is.</span></span>
+            <button class="toggle ghost" id="fx-hiss" data-tip="fx-hiss">Hiss</button>
+            <button class="toggle ghost" id="crackle" data-tip="crackle">Crackling</button>
+            <button class="toggle ghost" id="squeal" data-tip="squeal">Squeaky seal</button>
+            <button class="toggle ghost" id="fx-whistle" data-tip="fx-whistle">Whistle</button>
+            <button class="toggle ghost" id="fx-wind" data-tip="fx-wind">Wind gusts</button>
+            <button class="toggle ghost" id="fx-clicks" data-tip="fx-clicks">Underwater clicks</button>
+            <button class="toggle ghost" id="fx-breathing" data-tip="fx-breathing">Breathing</button>
           </div>
         </div>
         <div class="eq">
@@ -187,8 +152,8 @@
     </div>
   </section>
 
-  <!-- Owners' own words -->
-  <section class="wild light" id="wild">
+  <!-- Owners, in their own words -->
+  <section class="wild light" id="owners">
     <div class="wrap">
       <div class="head">
         <h2 class="section-title">Heard in the wild.</h2>
@@ -196,26 +161,27 @@
       </div>
       <div class="quotes">
         <figure class="quote q-big"><blockquote>It sounds a bit like I'm putting my ear into a shell and 'can hear the ocean'.</blockquote><figcaption><a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">An owner on Reddit, September 2025</a></figcaption></figure>
-        <figure class="quote"><blockquote>My window was open and I thought, oh, it's raining, I look out, everything's dry.</blockquote><figcaption><a href="https://forums.macrumors.com/threads/airpods-pro-3-anc-loud-static-white-noise.2467050/" rel="noopener" target="_blank">MacRumors Forums</a></figcaption></figure>
-        <figure class="quote"><blockquote>It just sounds like I have a small fan on in the room all the time (I do not).</blockquote><figcaption><a href="https://forums.macrumors.com/threads/airpods-pro-3-anc-loud-static-white-noise.2467050/" rel="noopener" target="_blank">MacRumors Forums</a></figcaption></figure>
+        <figure class="quote"><blockquote>My window was open and I thought, oh, it's raining, I look out, everything's dry.</blockquote><figcaption><a href="https://forums.macrumors.com/threads/airpods-pro-3-anc-loud-static-white-noise.2467050/" rel="noopener" target="_blank">An owner on the MacRumors Forums</a></figcaption></figure>
+        <figure class="quote"><blockquote>It just sounds like I have a small fan on in the room all the time (I do not).</blockquote><figcaption><a href="https://forums.macrumors.com/threads/airpods-pro-3-anc-loud-static-white-noise.2467050/" rel="noopener" target="_blank">An owner on the MacRumors Forums</a></figcaption></figure>
         <figure class="quote q-dark"><blockquote>Ultimately Apple support told me it was "normal" and "expected behavior".</blockquote><figcaption><a href="https://www.reddit.com/r/airpods/comments/1q0cl5x/highpitched_whistlingocean_sound_in_transparency/" rel="noopener" target="_blank">An owner on Reddit, December 2025</a></figcaption></figure>
-        <figure class="quote"><blockquote>I feel like they should be marketed as "white noise canceling".</blockquote><figcaption><a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">Reddit</a></figcaption></figure>
-        <figure class="quote"><blockquote>I finally got a 3rd pair today after the problem came back. They still have the problem</blockquote><figcaption><a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">Reddit</a></figcaption></figure>
-        <figure class="quote"><blockquote>And with this white noise it's actually louder to use them in a quiet environment</blockquote><figcaption><a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">Reddit</a></figcaption></figure>
-        <figure class="quote q-big q-dark"><blockquote>I haven't seen a single person come up with a solution, not even a mitigation.</blockquote><figcaption><a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">Reddit</a></figcaption></figure>
-        <figure class="quote"><blockquote>I have gusts of wind that sound like they are blowing through a small gap its kinda soothing</blockquote><figcaption><a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">Reddit, finding the bright side</a></figcaption></figure>
+        <figure class="quote"><blockquote>I finally got a 3rd pair today after the problem came back. They still have the problem</blockquote><figcaption><a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">An owner on Reddit</a></figcaption></figure>
+        <figure class="quote q-big q-dark"><blockquote>I haven't seen a single person come up with a solution, not even a mitigation.</blockquote><figcaption><a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">An owner on Reddit</a></figcaption></figure>
       </div>
     </div>
   </section>
 
-  <!-- Support Desk simulator -->
-  <section class="genius dark" id="genius">
+  <!-- Support: practise the appointment -->
+  <section class="genius dark" id="support">
     <div class="wrap genius-grid">
       <div class="genius-copy">
-        <h2 class="section-title">Support Desk Simulator.</h2>
-        <p class="lede">The full support experience without the 40-minute wait or the train fare. Describe your problem. Watch the diagnostic run. Learn it was you all along.</p>
-        <p class="fineprint">Every answer leads to the same conclusion. Just like the real thing.</p>
-        <button class="pill big chat-cta" id="chat-restart">Book another appointment</button>
+        <h2 class="section-title">Practice what support might tell you.</h2>
+        <p class="lede">Don't fall for it.</p>
+        <dl class="rebuttals">
+          <div><dt>“All tests passed.”</dt><dd>Passing the test doesn't mean it's silent. Ask them to listen in a quiet room with noise cancelling on.</dd></div>
+          <div><dt>“First time we've heard of it.”</dt><dd>It isn't. There are long threads on Reddit and MacRumors, and MacRumors has written about it twice.</dd></div>
+          <div><dt>“It's normal. Expected behavior.”</dt><dd>Other pairs are silent. If a replacement doesn't fix it, ask for a refund.</dd></div>
+        </dl>
+        <p class="fineprint">Kevin is made up. The lines marked “Said to a real owner” are close to what owners say Apple staff told them.</p>
       </div>
       <div class="chat" aria-live="polite">
         <div class="chat-head">
@@ -228,206 +194,78 @@
     </div>
   </section>
 
-  <!-- Cleaning: the ritual, then the audit -->
-  <section class="clean light" id="clean">
+  <!-- The facts, and what to do -->
+  <section class="real light" id="facts">
     <div class="wrap">
       <div class="head">
-        <h2 class="section-title">You didn't clean right.</h2>
-        <p class="lede">Most ocean reports come from customers who cleaned incorrectly. Follow every step, in order, with intention. Then tell the Cleaning Audit what you did, and it will tell you what you did wrong.</p>
-      </div>
-      <ol class="ritual">
-        <li><h3>Use a dry, lint-free cloth.</h3><p>Not too dry. You'll know.</p></li>
-        <li><h3>Brush the spiral with a soft brush.</h3><p>Clockwise. Counter-clockwise voids the warranty.</p></li>
-        <li><h3>Remove the ear tips and try a different size.</h3><p>Then the other different size. Then the first one again.</p></li>
-        <li><h3>Run the Ear Tip Fit Test.</h3><p>It will pass. That's important for later.</p></li>
-        <li><h3>Reset your earbuds.</h3><p>Hold the button for 15 seconds and think about what you did. SeaShells Pro have no button. Hold them anyway.</p></li>
-        <li><h3>Reset them again.</h3><p>The first reset was to show you were serious.</p></li>
-        <li><h3>Face the nearest Apple Store and pray.</h3><p>Still hear the ocean? You didn't pray right. Start again from step 1.</p></li>
-      </ol>
-      <form class="audit-card" id="audit">
-        <div class="audit-intro">
-          <h3>Run the Cleaning Audit.</h3>
-          <p>Tick everything you tried. The audit has never found a correct cleaning. We're very proud of that.</p>
-        </div>
-        <div class="audit-form">
-          <fieldset>
-            <legend>What did you do?</legend>
-            <label><input type="checkbox" value="cloth"> Wiped them with a dry, lint-free cloth</label>
-            <label><input type="checkbox" value="brush"> Brushed them with a soft brush</label>
-            <label><input type="checkbox" value="swab"> Used a cotton swab</label>
-            <label><input type="checkbox" value="alcohol"> A little isopropyl alcohol</label>
-            <label><input type="checkbox" value="tips"> Tried every ear tip size</label>
-            <label><input type="checkbox" value="reset"> Reset them, twice</label>
-            <label><input type="checkbox" value="pray"> Prayed</label>
-            <label><input type="checkbox" value="new"> Nothing. They're brand new.</label>
-          </fieldset>
-          <button class="pill big" type="submit">Run Cleaning Audit</button>
-          <div class="audit-result" id="audit-result" aria-live="polite" hidden></div>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- Blame -->
-  <section class="blame" id="blame">
-    <div class="wrap">
-      <p class="blame-big"><span class="ln">It's not the earbuds.</span> <span class="ln">It's your ears.</span></p>
-      <div class="blame-cols">
-        <p>Your canals are an unusual shape.</p>
-        <p>Your ear wax is unusually committed.</p>
-        <p>Your hearing is unusually good. We're working on all three.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Firmware timeline (a real sequence) -->
-  <section class="updates dark" id="updates">
-    <div class="wrap">
-      <div class="head stack">
-        <h2 class="section-title"><span class="ln">Five updates. Zero fixes.</span> <span class="ln">We call that consistency.</span></h2>
-        <p class="lede">Every firmware since launch, and what it did for the ocean.</p>
-      </div>
-      <ol class="timeline">
-        <li><span class="ver">8A358</span><p>October 2025. Owners: "didn't change anything".</p></li>
-        <li><span class="ver">8B25</span><p>November 2025. "Bug fixes and other improvements."</p></li>
-        <li><span class="ver">8B30</span><p>10 December 2025. "Bug fixes and other improvements."</p></li>
-        <li><span class="ver">8B34</span><p>2026. Our pair: still the ocean.</p></li>
-        <li><span class="ver">8B40</span><p>2026. Our pair: still the ocean.</p></li>
-        <li class="next"><span class="ver">8B??</span><p>The ocean has been reclassified as a feature. Release notes coming never.</p></li>
-      </ol>
-      <p class="fineprint">Release notes as quoted by <a href="https://www.macrumors.com/2025/12/18/airpods-pro-3-static-issues/" rel="noopener" target="_blank">MacRumors, 18 December 2025</a>, which reported the issue was still not resolved.</p>
-    </div>
-  </section>
-
-  <!-- Compare -->
-  <section class="compare light" id="compare">
-    <div class="wrap">
-      <div class="head">
-        <h2 class="section-title">Which ocean is right for you?</h2>
-        <p class="lede">Three ways to hear the ocean. Only one of them was sold to you as noise cancelling.</p>
-      </div>
-      <div class="table-scroll">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col"><span class="sr">Feature</span></th>
-              <th scope="col"><span class="col-head"><i class="col-icon plain"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg></i>AirPods Pro&nbsp;3</span></th>
-              <th scope="col"><span class="col-head"><i class="col-icon pearl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-4.6 0-8 3.4-8 7.6 0 3.1 2 5.9 4.9 7.4L8 21h8l-.9-3c2.9-1.5 4.9-4.3 4.9-7.4C20 6.4 16.6 3 12 3Zm0 2.2v11.6M8.4 6.3l2.2 10.3M15.6 6.3l-2.2 10.3M5.6 9.3l4 7.6M18.4 9.3l-4 7.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></i>SeaShells&nbsp;Pro</span></th>
-              <th scope="col"><span class="col-head"><i class="col-icon sea"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12.5c2 0 2-3 4.5-3s2.5 3 4.5 3 2.5-3 4.5-3 2.5 3 4.5 3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></i>SeaShells&nbsp;Mode</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">Price</th><td>€249</td><td>€249</td><td>Free</td></tr>
-            <tr><th scope="row">Ocean sound with noise cancelling</th><td>Yes</td><td>Yes, ceramic grade</td><td>Yes</td></tr>
-            <tr><th scope="row">In one ear only</th><td>Usually</td><td>The one that spirals left</td><td>Your choice</td></tr>
-            <tr><th scope="row">Pauses if you rest it in the case</th><td>For a while</td><td>For exactly as long</td><td>For exactly as long</td></tr>
-            <tr><th scope="row">Fixed by a firmware update</th><td>Not after 5 updates</td><td>No firmware to blame</td><td>Never, on purpose</td></tr>
-            <tr><th scope="row">Store support says it's working as designed</th><td>Yes</td><td>Yes</td><td>Simulated, see above</td></tr>
-            <tr><th scope="row">Replacement pair also does it</th><td>Reportedly</td><td>Guaranteed</td><td>Guaranteed</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- SeaShells Mode, open source -->
-  <section class="protocol dark" id="protocol">
-    <div class="wrap protocol-grid">
-      <div>
-        <h2 class="section-title">SeaShells Mode is open source.</h2>
-        <p class="lede">A reverse-engineered bug: the exact hum, rebuilt in code. Install it on any earbuds and hear what €249 of noise cancelling really sounds like. Free.</p>
-        <a class="pill big gh-cta" href="https://github.com/isaqueseneda/seashells-mode" rel="noopener" target="_blank">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-          Get it on GitHub
-        </a>
-      </div>
-      <pre class="spec" aria-label="Installing SeaShells Mode from the terminal"><code><span class="c">$</span> npx seashells-mode install
-<span class="ok">✓</span> Hum loaded, 50 to 150 Hz
-<span class="ok">✓</span> Right ear selected
-<span class="ok">✓</span> Noise cancelling still technically on
-<span class="c">Your earbuds now sound like €249.</span></code></pre>
-    </div>
-  </section>
-
-  <!-- The serious bit -->
-  <section class="real light" id="real">
-    <div class="wrap">
-      <div class="head">
-        <h2 class="section-title">The part that isn't a joke.</h2>
-        <p class="lede">AirPods Pro 3 owners started reporting a constant ocean or static hiss within days of launch, and replacement pairs often do it too. If that's you, you're not imagining it.</p>
+        <h2 class="section-title">You're not imagining it.</h2>
+        <p class="lede">Owners have reported it since launch week, in September 2025. Here's what's known, and what you can do.</p>
       </div>
       <ul class="facts">
         <li><strong>Since launch week.</strong> The first threads appeared on 19 and 22 September 2025, on <a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">Reddit</a> and the <a href="https://forums.macrumors.com/threads/airpods-pro-3-anc-loud-static-white-noise.2467050/" rel="noopener" target="_blank">MacRumors Forums</a>.</li>
         <li><strong>Worst in quiet rooms.</strong> It's loudest with noise cancelling on and nothing playing. Some owners hear it in Transparency or Adaptive mode instead.</li>
-        <li><strong>Often one ear.</strong> Many reports describe one bud only.</li>
         <li><strong>Swaps don't fix it.</strong> MacRumors reports that replacement earbuds have had the same issue. One owner went through three pairs.</li>
-        <li><strong>Updates don't fix it.</strong> Firmware 8B25 and 8B30 shipped with "bug fixes and other improvements". As of <a href="https://www.macrumors.com/2025/12/18/airpods-pro-3-static-issues/" rel="noopener" target="_blank">18 December 2025</a>, MacRumors said the issue hadn't been resolved.</li>
         <li><strong>One sure stop.</strong> Switch noise cancelling off. Then they're ordinary earbuds.</li>
       </ul>
-      <h3 class="sub-title">If that's your pair</h3>
+      <h3 class="sub-title">If your pair does it</h3>
       <ol class="steps">
-        <li><h3>Write it down.</h3><p>When it started, which ear, and which firmware version you're on (Settings, then your AirPods).</p></li>
-        <li><h3>Keep every receipt.</h3><p>Each store visit and swap is proof the problem came back after a repair.</p></li>
-        <li><h3>Use your legal rights, not just the warranty.</h3><p>In the EU, sellers owe a 2-year legal guarantee of conformity. If a repair or replacement doesn't fix the fault, you can ask for a refund (in France: Code de la consommation, article L217-14).</p></li>
-        <li><h3>Add your voice.</h3><p>Report it to Apple Feedback and add your case to the <a href="https://www.reddit.com/r/AirpodsPro/comments/1nl2fem/ocean_static_noise_with_airpods_pro_3_anyone_else/" rel="noopener" target="_blank">owners' thread on Reddit</a>. A problem with a thousand names is harder to call your ears.</p></li>
+        <li><h3>Name what you hear.</h3><p>Use the sounds above. Note which ear, since when, and your firmware (Settings, then your AirPods).</p></li>
+        <li><h3>Keep receipts, use your rights.</h3><p>In the EU, sellers owe a 2-year legal guarantee. If a repair or swap doesn't fix it, you can ask for a refund (in France: Code de la consommation, article L217-14).</p></li>
+        <li><h3>Sign the petition.</h3><p>Add your case below: what you hear, and what support told you.</p></li>
       </ol>
       <p class="fineprint">Reports: <a href="https://www.macrumors.com/2025/12/18/airpods-pro-3-static-issues/" rel="noopener" target="_blank">MacRumors (Dec 2025)</a>, <a href="https://www.macrumors.com/2025/10/29/airpods-pro-3-static-complaints/" rel="noopener" target="_blank">MacRumors (Oct 2025)</a>, <a href="https://www.heise.de/en/news/Problems-with-ANC-User-reports-of-audio-errors-with-AirPods-Pro-3-11068087.html" rel="noopener" target="_blank">heise</a>, <a href="https://discussions.apple.com/thread/256145529" rel="noopener" target="_blank">Apple Support Community</a>. This is general information, not legal advice.</p>
     </div>
   </section>
 
-  <!-- Get -->
-  <section class="get dark glow" id="get">
-    <div class="wrap center">
-      <h2 class="get-title gradient-text">Choose your ocean.</h2>
-      <div class="choose">
-        <div class="choice">
-          <h3>SeaShells Pro</h3>
-          <p>Two white ceramic turbans with silicone ear tips, in a magnetic clam case.</p>
-          <p class="choice-price">€249</p>
-          <button class="pill big" id="preorder">Pre-order</button>
+  <!-- Petition: signatures are stored privately by petition-api/ (Vercel), one file each in a private repo -->
+  <section class="petition dark glow" id="petition">
+    <div class="wrap">
+      <div class="head stack">
+        <h2 class="section-title">A problem with a thousand names is harder to call your ears.</h2>
+        <p class="lede">Sign with your case: what you hear, and what support told you.</p>
+      </div>
+      <form class="petition-form" id="petition-form">
+        <div class="field-row">
+          <label class="field"><span>Your name</span><input name="name" required autocomplete="name"></label>
+          <label class="field"><span>Country</span><input name="country" autocomplete="country-name"></label>
         </div>
-        <div class="choice">
-          <h3>SeaShells Mode</h3>
-          <p>The reverse-engineered bug, for every earbud you already own.</p>
-          <p class="choice-price">Free. You already paid €249.</p>
-          <a class="pill big gh-cta" href="https://github.com/isaqueseneda/seashells-mode" rel="noopener" target="_blank">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.34.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-            Get it on GitHub
-          </a>
+        <fieldset class="field">
+          <legend>What do you hear?</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="sounds" value="ocean-hum"><span>Ocean hum</span></label>
+            <label class="chip"><input type="checkbox" name="sounds" value="hiss"><span>Hiss</span></label>
+            <label class="chip"><input type="checkbox" name="sounds" value="crackling"><span>Crackling</span></label>
+            <label class="chip"><input type="checkbox" name="sounds" value="squeaky-seal"><span>Squeaky seal</span></label>
+            <label class="chip"><input type="checkbox" name="sounds" value="whistle"><span>Whistle</span></label>
+            <label class="chip"><input type="checkbox" name="sounds" value="wind-gusts"><span>Wind gusts</span></label>
+            <label class="chip"><input type="checkbox" name="sounds" value="underwater-clicks"><span>Underwater clicks</span></label>
+            <label class="chip"><input type="checkbox" name="sounds" value="breathing"><span>Breathing</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="field">
+          <legend>Which side?</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="side" value="left"><span>Left</span></label>
+            <label class="chip"><input type="radio" name="side" value="right"><span>Right</span></label>
+            <label class="chip"><input type="radio" name="side" value="both"><span>Both</span></label>
+          </div>
+        </fieldset>
+        <label class="field"><span>What happened?</span><textarea name="story" rows="4" placeholder="When it started, what support told you, whether a replacement helped."></textarea></label>
+        <label class="field"><span>Email, for updates (optional)</span><input name="email" type="email" autocomplete="email"></label>
+        <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <div class="petition-actions">
+          <button class="pill big" type="submit">Tell Apple it's not your ears</button>
+          <p class="petition-error" id="petition-error" role="alert" hidden></p>
+          <p class="fineprint">We keep your answers private and never show them on this page. Your email is optional and only used for petition updates. <a href="https://isaque.me/privacy.html">Privacy</a>. To write to Apple yourself, use their <a href="https://www.apple.com/feedback/airpods/" rel="noopener" target="_blank">AirPods feedback form</a>.</p>
         </div>
+      </form>
+      <div class="petition-done" id="petition-done" tabindex="-1" hidden>
+        <p class="done-title">Thank you.</p>
+        <p>Your case is in. Send this page to anyone who hears it too.</p>
       </div>
     </div>
   </section>
 
-  <dialog class="sheet sheet-order" id="preorder-dialog" aria-labelledby="order-title">
-    <form id="order-form">
-      <div class="order-step" data-step="1">
-        <h3 id="order-title">Pre-order SeaShells Pro</h3>
-        <p>Two ceramic turbans and a magnetic clam case.</p>
-        <fieldset class="order-group">
-          <legend>Which ear gets the ocean?</legend>
-          <label class="chip"><input type="radio" name="ear" value="left"><span>Left</span></label>
-          <label class="chip"><input type="radio" name="ear" value="right" checked><span>Right</span></label>
-          <label class="chip"><input type="radio" name="ear" value="surprise"><span>Surprise me</span></label>
-        </fieldset>
-        <label class="order-check"><input type="checkbox" name="care"><span><b>Add SeaCare+ for €45.</b> If the hum appears, we swap your pair for a new one with the same hum.</span></label>
-        <label class="order-field"><span>Free engraving</span><input name="engrave" maxlength="20" placeholder="IT'S MY EARS" autocomplete="off"></label>
-        <div class="sheet-actions">
-          <button type="button" class="sheet-cancel" data-close>Cancel</button>
-          <button type="submit" class="sheet-ok" id="order-go">Pre-order for €249</button>
-        </div>
-      </div>
-      <div class="order-step" data-step="2" hidden>
-        <h3 id="order-done-title">Checking your order…</h3>
-        <ul class="order-checks" id="order-checks" aria-live="polite"></ul>
-        <p class="order-final" id="order-final"></p>
-        <p class="order-small">Nothing was ordered and nothing was charged. SeaShells Pro are a parody.</p>
-        <div class="sheet-actions one">
-          <button type="button" class="sheet-ok" data-close>Done</button>
-        </div>
-      </div>
-    </form>
-  </dialog>
   <dialog class="sheet" id="seal-warning" aria-labelledby="seal-title">
     <form method="dialog">
       <h3 id="seal-title">Turn your volume down first.</h3>
@@ -448,17 +286,16 @@
         <span>SeaShells Pro. A parody, and a consumer protest.</span>
       </div>
       <nav class="footer-links" aria-label="Footer">
-        <a href="options.html">Ten shell designs</a>
-        <a href="https://github.com/isaqueseneda/seashells-mode" rel="noopener" target="_blank">SeaShells Mode on GitHub</a>
-        <a href="#real">The real issue</a>
+        <a href="#facts">The facts</a>
+        <a href="#petition">Sign the petition</a>
         <a href="#top">Back to top</a>
       </nav>
     </div>
-    <p class="legal">SeaShells Pro are not affiliated with, endorsed by, or in any way pleasing to Apple Inc. AirPods and AirPods Pro are trademarks of Apple Inc., named here only to identify the product we're complaining about. The preview plays a public-domain Paris room tone (BigSoundBank) with the hum added in the browser. It is not a recording of AirPods. The owner quotes are word for word from public threads, linked next to each one.</p>
+    <p class="legal">SeaShells Pro are not affiliated with, endorsed by, or in any way pleasing to Apple Inc. AirPods and AirPods Pro are trademarks of Apple Inc., named here only to identify the product we're complaining about. The preview plays a public-domain Paris room tone (BigSoundBank) with the sounds added in the browser. It is not a recording of AirPods. The quotes are word for word from public threads and articles, linked or named next to each one.</p>
     <p class="legal">No ears were harmed in the making of this page. Several were ignored.</p>
   </div>
 </footer>
 
-<script type="module" src="main.js?v=13"></script>
+<script type="module" src="main.js?v=5"></script>
 </body>
 </html>
