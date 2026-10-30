@@ -1198,6 +1198,7 @@ petition?.addEventListener("submit", async e => {
   const data = {
     name: f.name.value,
     country: f.country.value,
+    models: [...petition.querySelectorAll('input[name="models"]:checked')].map(i => i.value),
     sounds: [...petition.querySelectorAll('input[name="sounds"]:checked')].map(i => i.value),
     side: petition.querySelector('input[name="side"]:checked')?.value || "",
     story: f.story.value,

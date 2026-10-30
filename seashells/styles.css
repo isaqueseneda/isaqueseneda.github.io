@@ -102,7 +102,7 @@ button, input, textarea { font: inherit; letter-spacing: inherit; }
 .hero-line { margin: 14px 0 0; font-size: clamp(21px, 2.6vw, 28px); font-weight: 600; color: var(--mute-dark); letter-spacing: -0.01em; }
 .scroll-hint { margin-top: 46vh; font-size: 12px; color: var(--mute); }
 .beat-title { margin: 0; font-size: clamp(32px, min(5.2vw, 7.2vh), 64px); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; }
-.beat-line { margin: 18px auto 0; max-width: 34em; font-size: clamp(17px, min(1.8vw, 2.5vh), 21px); color: var(--mute-dark); font-weight: 500; }
+.beat-line { margin: 18px auto 0; max-width: 40em; font-size: clamp(17px, min(1.8vw, 2.5vh), 21px); color: var(--mute-dark); font-weight: 500; }
 .gradient-text { background: var(--nacre); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .beat .gradient-text { font-size: clamp(56px, min(10vw, 13vh), 120px); line-height: .98; }
 .progress { position: absolute; left: 50%; bottom: 28px; width: 120px; height: 2px; transform: translateX(-50%); background: rgba(255,255,255,.15); border-radius: 2px; overflow: hidden; }
@@ -311,7 +311,7 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
 .steps a { color: var(--link); }
 
 /* ---------- The serious bit ---------- */
-.facts { margin: 64px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.facts { margin: 64px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
 .facts li { background: var(--white); border-radius: 22px; padding: 22px 24px; color: #424245; font-size: 17px; line-height: 1.42; }
 .facts strong { display: block; color: var(--ink); font-size: 19px; margin-bottom: 4px; letter-spacing: -0.02em; }
 .facts a { color: inherit; }
